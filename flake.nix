@@ -22,7 +22,7 @@
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
-	./configuration.nix 
+	  ./configuration.nix 
 
       	  # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
@@ -32,7 +32,7 @@
             home-manager.useUserPackages = true;
 
 
-            # home-manager.users.dirakon = import ./home.nix;
+            home-manager.users.dirakon = import ./stolen-home.nix;
           }	
       ];
     };

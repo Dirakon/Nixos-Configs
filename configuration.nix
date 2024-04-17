@@ -71,9 +71,14 @@
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
+    pkgs.waybar
     firefox
     kitty
     lshw
+   # wl-copy
+    pkgs.mako
+    libnotify
+    rofi-wayland
   ];
   
   sound.enable = true;
@@ -103,15 +108,15 @@
   };
   
 
-  services.dbus.enable = true;
-  xdg.autostart.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk 
-    ];
-  };
+   services.dbus.enable = true;
+   xdg.autostart.enable = true;
+   xdg.portal = {
+     enable = true;
+     wlr.enable = true;
+     extraPortals = [
+       pkgs.xdg-desktop-portal-gtk 
+     ];
+   };
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
@@ -120,14 +125,15 @@
     enable = true;
   };
 
-  programs.thunar = {
+   programs.thunar = {
     enable = true;
   };
 
-  programs.firefox.enable = true;
+   programs.firefox.enable = true;
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
   };
 
   # Some programs need SUID wrappers, can be configured further or are
