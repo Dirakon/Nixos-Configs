@@ -32,7 +32,7 @@
             home-manager.useUserPackages = true;
 
 
-            home-manager.users.dirakon = import ./stolen-home.nix;
+            home-manager.users.dirakon = import ./home.nix;
           }	
       ];
     };

@@ -1,5 +1,11 @@
 # home.nix
+{ pkgs, ... }:
 {
+  home.username = "dirakon";
+  home.homeDirectory = "/home/dirakon";
+  programs.home-manager.enable = true;
+  home.stateVersion = "23.11";
+
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     bind =
