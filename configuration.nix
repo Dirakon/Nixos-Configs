@@ -79,10 +79,14 @@
     pkgs.mako
     libnotify
     rofi-wayland
+    swaylock
+    mpv
+    brightnessctl
   ];
   
   sound.enable = true;
   security.rtkit.enable = true;
+  security.pam.services.swaylock = {};
   services.pipewire = {
     enable = true;
     alsa.enable = true;
