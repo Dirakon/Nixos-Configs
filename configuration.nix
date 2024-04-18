@@ -10,6 +10,10 @@
       ./hardware-configuration.nix
     ];
 
+    nixpkgs.config.permittedInsecurePackages = [
+              "electron-25.9.0"
+    ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -82,6 +86,7 @@
     swaylock
     mpv
     brightnessctl
+    obsidian
   ];
   
   sound.enable = true;
