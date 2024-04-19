@@ -86,7 +86,11 @@
     swaylock
     mpv
     brightnessctl
-    obsidian
+    obsidian # TODO: fix? weird electron version
+    telegram-desktop
+    lutris
+    zip
+    unzip
   ];
   
   sound.enable = true;
@@ -129,6 +133,9 @@
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [ ]);
 
   programs.waybar = {
     enable = true;
