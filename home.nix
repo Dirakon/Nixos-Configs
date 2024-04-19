@@ -90,6 +90,19 @@
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
+  programs.neovim = {
+    enable = true;
+    extraConfig = ''
+      set number relativenumber
+    '';
+  };
+
+  programs.neovim.plugins = [
+    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+  ];
+  
+
+
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.

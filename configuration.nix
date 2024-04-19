@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -19,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixbox"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -53,7 +49,6 @@
     videoDrivers = [ "nvidia" ];
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dirakon = {
     isNormalUser = true;
     description = "dirakon";
@@ -67,7 +62,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim 
     wget
     git
     hyprland
@@ -86,7 +81,7 @@
     swaylock
     mpv
     brightnessctl
-    obsidian # TODO: fix? weird electron version
+    obsidian
     telegram-desktop
     lutris
     zip
@@ -103,7 +98,8 @@
     pulse.enable = true;
     jack.enable = true;
   };
-  hardware.opengl.enable = true;
+
+  hardware.opengl.enable = true; # TODO: more configs?
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -119,7 +115,6 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  
 
    services.dbus.enable = true;
    xdg.autostart.enable = true;
@@ -133,19 +128,114 @@
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
-
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = options.programs.nix-ld.libraries.default ++ (with pkgs; [ ]);
+
+  # Sets up all the libraries to load
+  programs.nix-ld.libraries = with pkgs; [
+         stdenv.cc.cc
+         openssl
+         xorg.libXcomposite
+         xorg.libXtst
+         xorg.libXrandr
+         xorg.libXext
+         xorg.libX11
+         xorg.libXfixes
+         libGL
+         libva
+         # pipewire.lib # Works on https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos tho?
+         xorg.libxcb
+         xorg.libXdamage
+         xorg.libxshmfence
+         xorg.libXxf86vm
+         libelf
+         
+         # Required
+         glib
+         gtk2
+         bzip2
+         
+         # Without these it silently fails
+         xorg.libXinerama
+         xorg.libXcursor
+         xorg.libXrender
+         xorg.libXScrnSaver
+         xorg.libXi
+         xorg.libSM
+         xorg.libICE
+         gnome2.GConf
+         nspr
+         nss
+         cups
+         libcap
+         SDL2
+         libusb1
+         dbus-glib
+         ffmpeg
+         # Only libraries are needed from those two
+         libudev0-shim
+         
+         # Verified games requirements
+         xorg.libXt
+         xorg.libXmu
+         libogg
+         libvorbis
+         SDL
+         SDL2_image
+         glew110
+         libidn
+         tbb
+         
+         # Other things from runtime
+         flac
+         freeglut
+         libjpeg
+         libpng
+         libpng12
+         libsamplerate
+         libmikmod
+         libtheora
+         libtiff
+         pixman
+         speex
+         SDL_image
+         SDL_ttf
+         SDL_mixer
+         SDL2_ttf
+         SDL2_mixer
+         libappindicator-gtk2
+         libdbusmenu-gtk2
+         libindicator-gtk2
+         libcaca
+         libcanberra
+         libgcrypt
+         libvpx
+         librsvg
+         xorg.libXft
+         libvdpau
+         gnome2.pango
+         cairo
+         atk
+         gdk-pixbuf
+         fontconfig
+         freetype
+         dbus
+         alsaLib
+         expat
+         # Needed for electron
+         libdrm
+         mesa
+         libxkbcommon
+   ];
 
   programs.waybar = {
     enable = true;
   };
 
-   programs.thunar = {
+  programs.thunar = {
     enable = true;
   };
 
-   programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -171,13 +261,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Install value! Don't change
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
