@@ -5,7 +5,21 @@
   home.homeDirectory = "/home/dirakon";
 
   # link the configuration file in current directory to the specified location in home directory
-  home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  #home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  home.file.".config" = {
+        source = .config;
+        recursive = true;
+  };
+ # home.file.".config/fish/config.fish".source = ./fish/config.fish;
+  home.file."bin/nix-command-not-found" = {
+        text = ''
+          #!/usr/bin/env bash
+          source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+          command_not_found_handle "$@"
+        '';
+ 
+         executable = true;
+       };
 
   # link all files in `./scripts` to `~/.config/i3/scripts`
   # home.file.".config/i3/scripts" = {
@@ -100,6 +114,13 @@
   programs.neovim.plugins = [
     pkgs.vimPlugins.nvim-treesitter.withAllGrammars
   ];
+
+#  programs.nix-index =
+#  {
+#    enable = true;
+#    enableFishIntegration = true;
+#  };
+
   
 
 

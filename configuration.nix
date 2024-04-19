@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixbox"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -86,6 +86,7 @@
     lutris
     zip
     unzip
+    nix-index
   ];
   
   sound.enable = true;
@@ -129,6 +130,10 @@
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
   programs.nix-ld.enable = true;
+  programs.fish.enable = true;
+  programs.command-not-found.enable = false;
+  users.defaultUserShell = pkgs.fish;
+
 
   # Sets up all the libraries to load
   programs.nix-ld.libraries = with pkgs; [
