@@ -7,7 +7,7 @@
   # link the configuration file in current directory to the specified location in home directory
   #home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
   home.file.".config" = {
-        source = .config;
+        source = ./.config;
         recursive = true;
   };
  # home.file.".config/fish/config.fish".source = ./fish/config.fish;
