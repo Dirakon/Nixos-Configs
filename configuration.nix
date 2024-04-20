@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 
 {
   imports =
@@ -60,6 +60,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -89,7 +90,7 @@
     wineWowPackages.stable
     winetricks
     blender
-    xlsclients
+    unstable.htop # Just to test that unstabling works properly
   ];
   
   sound.enable = true;
@@ -131,6 +132,7 @@
    };
 
   programs.hyprland.enable = true;
+  programs.hyprland.package = unstable.hyprland;
   programs.hyprland.xwayland.enable = true;
   programs.nix-ld.enable = true;
   programs.fish.enable = true;
@@ -235,6 +237,7 @@
          mesa
          libxkbcommon
    ];
+  zramSwap.enable = true;
 
   programs.waybar = {
     enable = true;

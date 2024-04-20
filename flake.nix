@@ -12,12 +12,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
      nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
      flatpaks.url = "github:GermanBread/declarative-flatpak/stable"; 
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks,unstable, ... }: {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs.unstable =  unstable.legacyPackages."x86_64-linux";# { inherit unstable; };
       modules = [ 
 	  ./configuration.nix 
 
