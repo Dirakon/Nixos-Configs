@@ -1,7 +1,3 @@
-
-
-
-
 {
 
   description = "NixOS configuration";
@@ -16,13 +12,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
      nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+     flatpaks.url = "github:GermanBread/declarative-flatpak/stable"; 
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, ... }: {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
 	  ./configuration.nix 
+
+          flatpaks.nixosModules.default
 
       	  # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`

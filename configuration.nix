@@ -86,6 +86,8 @@
     zip
     unzip
     nix-index
+    wineWowPackages.stable
+    winetricks
   ];
   
   sound.enable = true;
@@ -132,6 +134,7 @@
   programs.fish.enable = true;
   programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
+  programs.steam.enable = true;
 
 
   # Sets up all the libraries to load
@@ -264,6 +267,13 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  services.flatpak.enable = true;
+  services.flatpak.remotes = {
+    "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+    "flathub-beta" = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
+  };
+  services.flatpak.packages = [ "flathub:app/org.famistudio.FamiStudio/x86_64/stable" ];
+
 
   system.stateVersion = "23.11"; # Install value! Don't change
   
