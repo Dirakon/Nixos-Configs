@@ -66,12 +66,10 @@
     vim 
     wget
     git
-    hyprland
     swww
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
-    pkgs.waybar
     firefox
     kitty
     lshw
