@@ -8,6 +8,11 @@
         source = ./.config;
         recursive = true;
   };
+  home.file.".scripts" = {
+        source = ./.scripts;
+        recursive = true;
+	executable = true;
+  };
   home.file."bin/nix-command-not-found" = {
         text = ''
           #!/usr/bin/env bash

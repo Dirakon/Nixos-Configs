@@ -78,6 +78,7 @@
     pkgs.mako
     libnotify
     rofi-wayland
+    cliphist
     swaylock
     mpv
     brightnessctl
@@ -92,27 +93,27 @@
     blender
     unstable.htop # Just to test that unstabling works properly
     ktorrent
-    arc-kde-theme
-    libsForQt5.frameworkintegration
-    kde-gtk-config
-    kwayland-integration
-    qt5.qtwayland
-    libsForQt5.qtstyleplugin-kvantum
-    qt6.qtwayland
-    kvantumQt6
-    qt6ct
-    qtstyleplugin-kvantum-qt4
+    # arc-kde-theme
+    # libsForQt5.frameworkintegration
+    # kde-gtk-config
+    # kwayland-integration
+    # qt5.qtwayland
+    # libsForQt5.qtstyleplugin-kvantum
+    # qt6.qtwayland
+    # unstable.kvantum#Qt6
+    # qt6ct
+    # qtstyleplugin-kvantum-qt4
   ]; 
 
-  environment.variables = {
-      QT_STYLE_OVERRIDE = "kvantum";
-      QT_QPA_PLATFORMTHEME = lib.mkForce "qt6ct";
-  };
+  # environment.variables = {
+  #     QT_STYLE_OVERRIDE = "kvantum";
+  #   #  QT_QPA_PLATFORMTHEME = "qt6ct";
+  # };
 
-  qt = {
-      enable = true;
-      platformTheme = "qt5ct";
-  };
+  # qt = {
+  #     enable = true;
+  #     platformTheme = "qt5ct";
+  # };
   
   sound.enable = true;
   security.rtkit.enable = true;
