@@ -69,16 +69,17 @@
     git
     swww
     xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
+    unstable.xdg-desktop-portal-hyprland
     xwayland
     firefox
     kitty
     lshw
-   # wl-copy
+    # wl-copy
+    unstable.wl-clipboard
     pkgs.mako
     libnotify
-    rofi-wayland
-    cliphist
+    unstable.rofi-wayland
+    unstable.cliphist
     swaylock
     mpv
     brightnessctl

@@ -38,6 +38,7 @@
   programs.neovim.plugins = [
     pkgs.vimPlugins.nvim-treesitter.withAllGrammars
   ];
+  services.batsignal.enable = true;
 
   home.stateVersion = "23.11";
 
