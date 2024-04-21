@@ -53,6 +53,7 @@
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
     '';
   services.udisks2.enable = true;
+  services.upower.enable = true;
 
 
   users.users.dirakon = {
