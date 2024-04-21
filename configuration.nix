@@ -93,6 +93,7 @@
     winetricks
     blender
     unstable.htop # Just to test that unstabling works properly
+    ripgrep
     ktorrent
     unstable.neovim
     unstable.ripgrep
