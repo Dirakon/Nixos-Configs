@@ -3,32 +3,32 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    ./hardware-configuration.nix
     ];
 
-    # For obsidian
-    nixpkgs.config.permittedInsecurePackages = [
-              "electron-25.9.0"
-    ];
+# For obsidian
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
 
-  # Bootloader.
+# Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixbox"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+# Configure network proxy if necessary
+# networking.proxy.default = "http://user:password@proxy:port/";
+# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+# Enable networking
+    networking.networkmanager.enable = true;
 
-  # Set your time zone.
+# Set your time zone.
   time.timeZone = "Europe/Moscow";
 
-  # Select internationalisation properties.
+# Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -43,7 +43,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Configure keymap in X11
+# Configure keymap in X11
   services.xserver = {
     layout = "ru";
     xkbVariant = "";
@@ -51,7 +51,8 @@
   };
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-  '';
+    '';
+  services.udisks2.enable = true;
 
 
   users.users.dirakon = {
@@ -61,74 +62,87 @@
     packages = with pkgs; [];
   };
 
-  # Allow unfree packages
+# Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+# List packages installed in system profile. To search, run:
+# $ nix search wget
   environment.systemPackages = with pkgs; [
     vim 
-    wget
-    git
-    swww
-    xdg-desktop-portal-gtk
-    unstable.xdg-desktop-portal-hyprland
-    xwayland
-    firefox
-    kitty
-    lshw
-    # wl-copy
-    unstable.wl-clipboard
-    pkgs.mako
-    libnotify
-    unstable.rofi-wayland
-    unstable.cliphist
-    swaylock
-    mpv
-    brightnessctl
-    obsidian
-    telegram-desktop
-    lutris
-    zip
-    unzip
-    nix-index
-    wineWowPackages.stable
-    winetricks
-    blender
-    unstable.htop # Just to test that unstabling works properly
-    ripgrep
-    ktorrent
-    unstable.neovim
-    unstable.ripgrep
-    gnumake
-    # unstable.nil # Nix LSP -- apparenty mason auto-installs it, no need
-    cargo 
-    rustc 
-    networkmanagerapplet
-    unstable.swayosd
-    # arc-kde-theme
-    # libsForQt5.frameworkintegration
-    # kde-gtk-config
-    # kwayland-integration
-    # qt5.qtwayland
-    # libsForQt5.qtstyleplugin-kvantum
-    # qt6.qtwayland
-    # unstable.kvantum#Qt6
-    # qt6ct
-    # qtstyleplugin-kvantum-qt4
-  ]; 
+      wget
+      git
+      swww
+      xdg-desktop-portal-gtk
+      unstable.xdg-desktop-portal-hyprland
+      xwayland
+      firefox
+      kitty
+      lshw
+# wl-copy
+      unstable.wl-clipboard
+      unstable.mako
+      libnotify
+      unstable.rofi-wayland
+      unstable.cliphist
+      swaylock
+      mpv
+      brightnessctl
+      obsidian
+      telegram-desktop
+      lutris
+      zip
+      unzip
+      nix-index
+      wineWowPackages.stable
+      winetricks
+      blender
+      unstable.htop # Just to test that unstabling works properly
+      ripgrep
+      unstable.ktorrent
+      unstable.okular
+      unstable.dolphin
+      unstable.neovim
+      unstable.ripgrep
+      gnumake
+      cargo 
+      rustc 
+      networkmanagerapplet
+      unstable.swayosd
+      libsForQt5.kio
+      libsForQt5.kio-extras
+      unstable.kdePackages.kio
+      unstable.kdePackages.kio-extras
+      libsForQt5.kdegraphics-thumbnailers
+      unstable.kdePackages.kdegraphics-thumbnailers
+      gwenview
+      gnome.adwaita-icon-theme
+      gnome-icon-theme
+      catppuccin-gtk
+      breeze-icons
+      sox
+# arc-kde-theme
+# libsForQt5.frameworkintegration
+# kde-gtk-config
+# kwayland-integration
+# qt5.qtwayland
+# libsForQt5.qtstyleplugin-kvantum
+# qt6.qtwayland
+# unstable.kvantum#Qt6
+# qt6ct
+# qtstyleplugin-kvantum-qt4
+      ]; 
 
-  # environment.variables = {
-  #     QT_STYLE_OVERRIDE = "kvantum";
-  #   #  QT_QPA_PLATFORMTHEME = "qt6ct";
-  # };
+# environment.variables = {
+#     QT_STYLE_OVERRIDE = "kvantum";
+#   #  QT_QPA_PLATFORMTHEME = "qt6ct";
+# };
 
-  # qt = {
-  #     enable = true;
-  #     platformTheme = "qt5ct";
-  # };
-  
+# qt = {
+#     enable = true;
+#     platformTheme = "qt5ct";
+# };
+
   sound.enable = true;
   security.rtkit.enable = true;
   security.pam.services.swaylock = {};
@@ -140,7 +154,9 @@
     jack.enable = true;
   };
 
-  hardware.opengl.enable = true; # TODO: more configs?
+  # TODO: more configs?
+  hardware.opengl.enable = true; 
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -148,8 +164,8 @@
     nvidiaSettings = true;
     prime = {
       offload = {
-	enable = true;
-	enableOffloadCmd = true;
+        enable = true;
+        enableOffloadCmd = true;
       };
 
       intelBusId = "PCI:0:2:0";
@@ -157,15 +173,15 @@
     };
   };
 
-   services.dbus.enable = true;
-   xdg.autostart.enable = true;
-   xdg.portal = {
-     enable = true;
-     wlr.enable = true;
-     extraPortals = [
-       pkgs.xdg-desktop-portal-gtk 
-     ];
-   };
+  services.dbus.enable = true;
+  xdg.autostart.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk 
+    ];
+  };
 
   programs.hyprland.enable = true;
   programs.hyprland.package = unstable.hyprland;
@@ -177,103 +193,127 @@
   users.defaultUserShell = pkgs.fish;
   programs.steam.enable = true;
 
+  
+  # programs.kvantum = {
+  #   enable = true;
+  #   theme.package = pkgs.materia-kde-theme;
+  #   theme.name = "MateriaDark";
+  #   theme.overrides = {
+  #     General = {
+  #       no_inactiveness = true;
+  #       translucent_windows = true;
+  #       reduce_window_opacity = 13;
+  #       reduce_menu_opacity = 13;
+  #       drag_from_buttons = false;
+  #       shadowless_popup = true;
+  #       popup_blurring = true;
+  #       menu_blur_radius = 5;
+  #       tooltip_blur_radius = 5;
+  #     };
+  #     Hacks = {
+  #       transparent_dolphin_view = true;
+  #       style_vertical_toolbars = true;
+  #     };
+  #   };
+  # };
 
-  # Sets up all the libraries to load
+
+# Sets up all the libraries to load
   programs.nix-ld.libraries = with pkgs; [
-         stdenv.cc.cc
-         openssl
-         xorg.libXcomposite
-         xorg.libXtst
-         xorg.libXrandr
-         xorg.libXext
-         xorg.libX11
-         xorg.libXfixes
-         libGL
-         libva
-         # pipewire.lib # Works on https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos tho?
-         xorg.libxcb
-         xorg.libXdamage
-         xorg.libxshmfence
-         xorg.libXxf86vm
-         libelf
-         
-         # Required
-         glib
-         gtk2
-         bzip2
-         
-         # Without these it silently fails
-         xorg.libXinerama
-         xorg.libXcursor
-         xorg.libXrender
-         xorg.libXScrnSaver
-         xorg.libXi
-         xorg.libSM
-         xorg.libICE
-         gnome2.GConf
-         nspr
-         nss
-         cups
-         libcap
-         SDL2
-         libusb1
-         dbus-glib
-         ffmpeg
-         # Only libraries are needed from those two
-         libudev0-shim
-         
-         # Verified games requirements
-         xorg.libXt
-         xorg.libXmu
-         libogg
-         libvorbis
-         SDL
-         SDL2_image
-         glew110
-         libidn
-         tbb
-         
-         # Other things from runtime
-         flac
-         freeglut
-         libjpeg
-         libpng
-         libpng12
-         libsamplerate
-         libmikmod
-         libtheora
-         libtiff
-         pixman
-         speex
-         SDL_image
-         SDL_ttf
-         SDL_mixer
-         SDL2_ttf
-         SDL2_mixer
-         libappindicator-gtk2
-         libdbusmenu-gtk2
-         libindicator-gtk2
-         libcaca
-         libcanberra
-         libgcrypt
-         libvpx
-         librsvg
-         xorg.libXft
-         libvdpau
-         gnome2.pango
-         cairo
-         atk
-         gdk-pixbuf
-         fontconfig
-         freetype
-         dbus
-         alsaLib
-         expat
-         # Needed for electron
-         libdrm
-         mesa
-         libxkbcommon
-   ];
+    stdenv.cc.cc
+      openssl
+      xorg.libXcomposite
+      xorg.libXtst
+      xorg.libXrandr
+      xorg.libXext
+      xorg.libX11
+      xorg.libXfixes
+      libGL
+      libva
+# pipewire.lib # Works on https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos tho?
+      xorg.libxcb
+      xorg.libXdamage
+      xorg.libxshmfence
+      xorg.libXxf86vm
+      libelf
+
+# Required
+      glib
+      gtk2
+      bzip2
+
+# Without these it silently fails
+      xorg.libXinerama
+      xorg.libXcursor
+      xorg.libXrender
+      xorg.libXScrnSaver
+      xorg.libXi
+      xorg.libSM
+      xorg.libICE
+      gnome2.GConf
+      nspr
+      nss
+      cups
+      libcap
+      SDL2
+      libusb1
+      dbus-glib
+      ffmpeg
+# Only libraries are needed from those two
+      libudev0-shim
+
+# Verified games requirements
+      xorg.libXt
+      xorg.libXmu
+      libogg
+      libvorbis
+      SDL
+      SDL2_image
+      glew110
+      libidn
+      tbb
+
+# Other things from runtime
+      flac
+      freeglut
+      libjpeg
+      libpng
+      libpng12
+      libsamplerate
+      libmikmod
+      libtheora
+      libtiff
+      pixman
+      speex
+      SDL_image
+      SDL_ttf
+      SDL_mixer
+      SDL2_ttf
+      SDL2_mixer
+      libappindicator-gtk2
+      libdbusmenu-gtk2
+      libindicator-gtk2
+      libcaca
+      libcanberra
+      libgcrypt
+      libvpx
+      librsvg
+      xorg.libXft
+      libvdpau
+      gnome2.pango
+      cairo
+      atk
+      gdk-pixbuf
+      fontconfig
+      freetype
+      dbus
+      alsaLib
+      expat
+# Needed for electron
+      libdrm
+      mesa
+      libxkbcommon
+      ];
   zramSwap.enable = true;
 
   programs.waybar = {
@@ -290,36 +330,39 @@
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
+    # GTK2_RC_FILES = "/home/dirakon/.config/gtk-2.0/gtkrc";
+    # QT_QPA_PLATFORMTHEME = "gtk2";
+    # QT_STYLE_OVERRIDE = "gtk2";
   };
 
   fonts.packages = with pkgs; [
     (unstable.nerdfonts)#.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+# Some programs need SUID wrappers, can be configured further or are
+# started in user sessions.
+# programs.mtr.enable = true;
+# programs.gnupg.agent = {
+#   enable = true;
+#   enableSSHSupport = true;
+# };
 
-  # List services that you want to enable:
+# List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+# Enable the OpenSSH daemon.
+# services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+# Open ports in the firewall.
+# networking.firewall.allowedTCPPorts = [ ... ];
+# networking.firewall.allowedUDPPorts = [ ... ];
+# Or disable the firewall altogether.
+# networking.firewall.enable = false;
 
   services.flatpak = {
     enable = true;
     deduplicate = true;
     packages = [
-        "flathub:app/org.famistudio.FamiStudio/x86_64/stable" 
+      "flathub:app/org.famistudio.FamiStudio/x86_64/stable" 
     ];
     remotes = {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
@@ -328,6 +371,6 @@
 
 
   system.stateVersion = "23.11"; # Install value! Don't change
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
