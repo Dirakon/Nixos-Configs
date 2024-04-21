@@ -94,6 +94,9 @@
     blender
     unstable.htop # Just to test that unstabling works properly
     ktorrent
+    unstable.neovim
+    unstable.ripgrep
+    gnumake
     # arc-kde-theme
     # libsForQt5.frameworkintegration
     # kde-gtk-config

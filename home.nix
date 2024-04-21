@@ -28,12 +28,12 @@
 #  home.packages = with pkgs; [
 #  ];
 
-  programs.neovim = {
-    enable = true;
+#  programs.neovim = {
+#    enable = true;
 #    extraConfig = ''
 #      set number relativenumber
 #    '';
-  };
+#  };
 
   # programs.neovim.plugins = [
   #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
