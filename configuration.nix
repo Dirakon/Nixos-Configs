@@ -98,6 +98,9 @@
     unstable.neovim
     unstable.ripgrep
     gnumake
+    # unstable.nil # Nix LSP -- apparenty mason auto-installs it, no need
+    cargo 
+    rustc 
     # arc-kde-theme
     # libsForQt5.frameworkintegration
     # kde-gtk-config
@@ -281,6 +284,10 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
