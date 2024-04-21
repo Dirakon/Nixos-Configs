@@ -49,11 +49,15 @@
     xkbVariant = "";
     videoDrivers = [ "nvidia" ];
   };
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  '';
+
 
   users.users.dirakon = {
     isNormalUser = true;
     description = "dirakon";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [];
   };
 
@@ -101,6 +105,8 @@
     # unstable.nil # Nix LSP -- apparenty mason auto-installs it, no need
     cargo 
     rustc 
+    networkmanagerapplet
+    unstable.swayosd
     # arc-kde-theme
     # libsForQt5.frameworkintegration
     # kde-gtk-config
@@ -164,6 +170,7 @@
   programs.hyprland.enable = true;
   programs.hyprland.package = unstable.hyprland;
   programs.hyprland.xwayland.enable = true;
+  programs.nm-applet.enable = true;
   programs.nix-ld.enable = true;
   programs.fish.enable = true;
   programs.command-not-found.enable = false;
