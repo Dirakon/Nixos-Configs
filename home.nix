@@ -30,14 +30,14 @@
 
   programs.neovim = {
     enable = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
+#    extraConfig = ''
+#      set number relativenumber
+#    '';
   };
 
-  programs.neovim.plugins = [
-    pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-  ];
+  # programs.neovim.plugins = [
+  #   pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+  # ];
   services.batsignal.enable = true;
 
   home.stateVersion = "23.11";
