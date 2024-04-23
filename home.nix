@@ -28,11 +28,23 @@
   };
 
 # Attempt at QT theme
-  qt.enable = true;
-  qt.platformTheme = "qtct";
-  # qt.style.name = "adwaita-dark";
-  # qt.style.package = pkgs.adwaita-qt;
-  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
+ #  qt.enable = true;
+ #  qt.platformTheme = "qtct";
+ #  # qt.style.name = "adwaita-dark";
+ #  # qt.style.package = pkgs.adwaita-qt;
+ #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
+
+qt.enable = true;
+qt.platformTheme = "qtct";
+qt.style.name = "kvantum";
+
+home.packages = with pkgs; [
+
+  (catppuccin-kvantum.override {
+    accent = "Mauve";
+    variant = "Mocha";
+  })
+];
 
 # environment.variables = {
 #   QT_QPA_PLATFORMTHEME="gtk2";

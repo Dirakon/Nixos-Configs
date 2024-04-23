@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }:
+{ config, lib, pkgs, unstable, ... }:
 
 {
   imports =
@@ -73,76 +73,84 @@
     vim 
       wget
       git
+      firefox
+      kitty
+      lshw
+      zip
+      unzip
+      unstable.ripgrep
+      unstable.htop # Just to test that unstabling works properly
+
+      # Hyprland stuffs
       swww
       xdg-desktop-portal-gtk
       unstable.xdg-desktop-portal-hyprland
       xwayland
-      firefox
-      kitty
-      lshw
-# wl-copy
       unstable.wl-clipboard
       unstable.mako
       libnotify
       unstable.rofi-wayland
       unstable.cliphist
+      unstable.hyprshot
       swaylock
-      mpv
       brightnessctl
+      networkmanagerapplet
+      unstable.swayosd
+
+      # Nix stuff
+      nix-index
+
+      # Wine
+      wineWowPackages.stable
+      winetricks
+
+      # Actual apps
+      mpv
       obsidian
       telegram-desktop
       lutris
-      zip
-      unzip
-      nix-index
-      wineWowPackages.stable
-      winetricks
       blender
-      unstable.htop # Just to test that unstabling works properly
-      ripgrep
       unstable.ktorrent
       unstable.okular
       unstable.dolphin
       unstable.neovim
-      unstable.ripgrep
+      gwenview
+
+      # Dev
       gnumake
       cargo 
       rustc 
-      networkmanagerapplet
-      unstable.swayosd
       libsForQt5.kio
       libsForQt5.kio-extras
       unstable.kdePackages.kio
       unstable.kdePackages.kio-extras
       libsForQt5.kdegraphics-thumbnailers
       unstable.kdePackages.kdegraphics-thumbnailers
-      gwenview
       gnome.adwaita-icon-theme
       gnome-icon-theme
       catppuccin-gtk
       breeze-icons
+
+      # For playing audio
       sox
-# arc-kde-theme
-# libsForQt5.frameworkintegration
-# kde-gtk-config
-# kwayland-integration
-# qt5.qtwayland
-# libsForQt5.qtstyleplugin-kvantum
-# qt6.qtwayland
-# unstable.kvantum#Qt6
-# qt6ct
-# qtstyleplugin-kvantum-qt4
+
+      # For verilog development
+      verilog
+      gtkwave
+
+      # Thumbnailer stuff for File Managers
+      ffmpegthumbnailer
+      # folderpreview # Only in AUR :(
+      evince
+      poppler
       ]; 
 
-# environment.variables = {
-#     QT_STYLE_OVERRIDE = "kvantum";
-#   #  QT_QPA_PLATFORMTHEME = "qt6ct";
-# };
+      # set default browser for Electron apps
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/qutebrowser";
 
-# qt = {
-#     enable = true;
-#     platformTheme = "qt5ct";
-# };
+  environment.variables = lib.mkForce {
+    QT_STYLE_OVERRIDE = "kvantum";
+  };
 
   sound.enable = true;
   security.rtkit.enable = true;
@@ -193,6 +201,8 @@
   programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
   programs.steam.enable = true;
+
+  programs.java.enable = true;
 
   
   # programs.kvantum = {
@@ -322,8 +332,15 @@
     package = unstable.waybar;
   };
 
+  services.gvfs.enable = true; # File Managers: Mount, trash, and other functionalities
+  services.tumbler.enable = true; # File Managers: Thumbnail support for images
+
   programs.thunar = {
     enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+        thunar-volman
+    ];
   };
 
   programs.firefox.enable = true;
