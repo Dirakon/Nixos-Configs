@@ -1,13 +1,10 @@
-self@{ config, lib, pkgs, unstable, nix-alien, nix-gl, ... }:
-# let pkgs = self.pkgs.appendOverlays [nix-gl.overlay]; in
+self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ];
 
-
- # nixpkgs.overlays = [ (final: prev: nix-gl.overlay ) ];
  nixpkgs.overlays = [ nix-gl.overlay ];
 
 # For obsidian
@@ -79,7 +76,7 @@ self@{ config, lib, pkgs, unstable, nix-alien, nix-gl, ... }:
       lshw
       zip
       unzip
-      # unstable.ripgrep
+      unstable.ripgrep
       unstable.htop # just to test that unstabling works properly
 
 # hyprland stuffs
@@ -101,8 +98,8 @@ self@{ config, lib, pkgs, unstable, nix-alien, nix-gl, ... }:
 # Nix stuff
       nix-index
       nix-alien.nix-alien
-      pkgs.nixgl.nixGLIntel
-      # pkgs.nixgl.auto.nixGLDefault
+      # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
+      # pkgs.nixgl.auto.nixGLDefault # broken for some reason
 
 # Wine
       wineWowPackages.stable
@@ -160,9 +157,7 @@ self@{ config, lib, pkgs, unstable, nix-alien, nix-gl, ... }:
 # set default browser for Electron apps
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
-  environment.variables = lib.mkForce {
-    QT_STYLE_OVERRIDE = "kvantum";
-  };
+  environment.variables.QT_STYLE_OVERRIDE = "kvantum";
 
   sound.enable = true;
   security.rtkit.enable = true;
