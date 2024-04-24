@@ -14,12 +14,19 @@
      nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
      unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
      flatpaks.url = "github:GermanBread/declarative-flatpak/stable"; 
+     nix-alien.url = "github:thiagokokada/nix-alien";
+     nix-gl.url = "github:nix-community/nixGL";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks,unstable, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, ... }:
+ #let overlays = [nix-gl.overlay]; in
+  {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs.unstable =  import unstable { system = "x86_64-linux"; config.allowUnfree = true; };      modules = [ 
+      specialArgs.unstable =  import unstable { system = "x86_64-linux"; config.allowUnfree = true; };      
+      specialArgs.nix-gl = nix-gl;      
+      specialArgs.nix-alien = nix-alien.packages."x86_64-linux";
+      modules = [ 
 	  ./configuration.nix 
 
           flatpaks.nixosModules.default

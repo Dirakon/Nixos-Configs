@@ -1,10 +1,14 @@
-{ config, lib, pkgs, unstable, ... }:
-
+self@{ config, lib, pkgs, unstable, nix-alien, nix-gl, ... }:
+# let pkgs = self.pkgs.appendOverlays [nix-gl.overlay]; in
 {
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ];
+
+
+ # nixpkgs.overlays = [ (final: prev: nix-gl.overlay ) ];
+ nixpkgs.overlays = [ nix-gl.overlay ];
 
 # For obsidian
   nixpkgs.config.permittedInsecurePackages = [
@@ -67,9 +71,7 @@
   nixpkgs.config.allowUnfree = true;
 
 
-# List packages installed in system profile. To search, run:
-# $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [  #nix-gl.overlay]); [
 # some cli tools
     vim 
       wget
@@ -77,7 +79,7 @@
       lshw
       zip
       unzip
-      unstable.ripgrep
+      # unstable.ripgrep
       unstable.htop # just to test that unstabling works properly
 
 # hyprland stuffs
@@ -98,6 +100,9 @@
 
 # Nix stuff
       nix-index
+      nix-alien.nix-alien
+      pkgs.nixgl.nixGLIntel
+      # pkgs.nixgl.auto.nixGLDefault
 
 # Wine
       wineWowPackages.stable
@@ -122,7 +127,7 @@
       gnumake
       cargo 
       rustc 
-      # direnv
+# direnv
 
 # QT theming (cleanup!)
       libsForQt5.kio
@@ -153,194 +158,194 @@
       ]; 
 
 # set default browser for Electron apps
-    environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
-    environment.variables = lib.mkForce {
+  environment.variables = lib.mkForce {
     QT_STYLE_OVERRIDE = "kvantum";
-    };
+  };
 
-    sound.enable = true;
-    security.rtkit.enable = true;
-    security.pam.services.swaylock = {};
-    services.pipewire = {
+  sound.enable = true;
+  security.rtkit.enable = true;
+  security.pam.services.swaylock = {};
+  services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-    };
+  };
 
 # TODO: more configs?
-    hardware.opengl.enable = true; 
+  hardware.opengl.enable = true; 
 
-    hardware.nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = true;
-      nvidiaSettings = true;
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-
-        intelBusId = "PCI:0:2:0";
-        nvidiaBusId = "PCI:1:0:0";
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+    nvidiaSettings = true;
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
       };
+
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
+  };
 
-    services.dbus.enable = true;
-    xdg.autostart.enable = true;
-    xdg.portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-gtk 
-      ];
-    };
+  services.dbus.enable = true;
+  xdg.autostart.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk 
+    ];
+  };
 
-    programs.hyprland.enable = true;
-    programs.hyprland.package = unstable.hyprland;
-    programs.hyprland.xwayland.enable = true;
-    programs.nm-applet.enable = true;
-    programs.nix-ld.enable = true;
-    programs.fish.enable = true;
-    programs.command-not-found.enable = false;
-    users.defaultUserShell = pkgs.fish;
-    programs.steam.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.package = unstable.hyprland;
+  programs.hyprland.xwayland.enable = true;
+  programs.nm-applet.enable = true;
+  programs.nix-ld.enable = true;
+  programs.fish.enable = true;
+  programs.command-not-found.enable = false;
+  users.defaultUserShell = pkgs.fish;
+  programs.steam.enable = true;
 
-    programs.java.enable = true;
+  programs.java.enable = true;
 
-    programs.file-roller.enable = true;
+  programs.file-roller.enable = true;
 
-    programs.neovim.enable = true;
-    programs.neovim.package = unstable.neovim-unwrapped;
+  programs.neovim.enable = true;
+  programs.neovim.package = unstable.neovim-unwrapped;
 
 
 # Sets up all the libraries to load
-    programs.nix-ld.libraries = with pkgs; [
-      stdenv.cc.cc
-        openssl
-        xorg.libXcomposite
-        xorg.libXtst
-        xorg.libXrandr
-        xorg.libXext
-        xorg.libX11
-        xorg.libXfixes
-        libGL
-        libva
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+      openssl
+      xorg.libXcomposite
+      xorg.libXtst
+      xorg.libXrandr
+      xorg.libXext
+      xorg.libX11
+      xorg.libXfixes
+      libGL
+      libva
 # pipewire.lib # Works on https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos tho?
-        xorg.libxcb
-        xorg.libXdamage
-        xorg.libxshmfence
-        xorg.libXxf86vm
-        libelf
+      xorg.libxcb
+      xorg.libXdamage
+      xorg.libxshmfence
+      xorg.libXxf86vm
+      libelf
 
 # Required
-        glib
-        gtk2
-        bzip2
+      glib
+      gtk2
+      bzip2
 
 # Without these it silently fails
-        xorg.libXinerama
-        xorg.libXcursor
-        xorg.libXrender
-        xorg.libXScrnSaver
-        xorg.libXi
-        xorg.libSM
-        xorg.libICE
-        gnome2.GConf
-        nspr
-        nss
-        cups
-        libcap
-        SDL2
-        libusb1
-        dbus-glib
-        ffmpeg
+      xorg.libXinerama
+      xorg.libXcursor
+      xorg.libXrender
+      xorg.libXScrnSaver
+      xorg.libXi
+      xorg.libSM
+      xorg.libICE
+      gnome2.GConf
+      nspr
+      nss
+      cups
+      libcap
+      SDL2
+      libusb1
+      dbus-glib
+      ffmpeg
 # Only libraries are needed from those two
-        libudev0-shim
+      libudev0-shim
 
 # Verified games requirements
-        xorg.libXt
-        xorg.libXmu
-        libogg
-        libvorbis
-        SDL
-        SDL2_image
-        glew110
-        libidn
-        tbb
+      xorg.libXt
+      xorg.libXmu
+      libogg
+      libvorbis
+      SDL
+      SDL2_image
+      glew110
+      libidn
+      tbb
 
 # Other things from runtime
-        flac
-        freeglut
-        libjpeg
-        libpng
-        libpng12
-        libsamplerate
-        libmikmod
-        libtheora
-        libtiff
-        pixman
-        speex
-        SDL_image
-        SDL_ttf
-        SDL_mixer
-        SDL2_ttf
-        SDL2_mixer
-        libappindicator-gtk2
-        libdbusmenu-gtk2
-        libindicator-gtk2
-        libcaca
-        libcanberra
-        libgcrypt
-        libvpx
-        librsvg
-        xorg.libXft
-        libvdpau
-        gnome2.pango
-        cairo
-        atk
-        gdk-pixbuf
-        fontconfig
-        freetype
-        dbus
-        alsaLib
-        expat
+      flac
+      freeglut
+      libjpeg
+      libpng
+      libpng12
+      libsamplerate
+      libmikmod
+      libtheora
+      libtiff
+      pixman
+      speex
+      SDL_image
+      SDL_ttf
+      SDL_mixer
+      SDL2_ttf
+      SDL2_mixer
+      libappindicator-gtk2
+      libdbusmenu-gtk2
+      libindicator-gtk2
+      libcaca
+      libcanberra
+      libgcrypt
+      libvpx
+      librsvg
+      xorg.libXft
+      libvdpau
+      gnome2.pango
+      cairo
+      atk
+      gdk-pixbuf
+      fontconfig
+      freetype
+      dbus
+      alsaLib
+      expat
 # Needed for electron
-        libdrm
-        mesa
-        libxkbcommon
-        ];
-    zramSwap.enable = true;
+      libdrm
+      mesa
+      libxkbcommon
+      ];
+  zramSwap.enable = true;
 
-    programs.waybar = {
+  programs.waybar = {
+    enable = true;
+    package = unstable.waybar;
+  };
+
+  services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
+    services.tumbler.enable = true; # File Managers - Thumbnail support for images
+
+    programs.thunar = {
       enable = true;
-      package = unstable.waybar;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+          thunar-volman
+      ];
     };
 
-    services.gvfs.enable = true; # File Managers: Mount, trash, and other functionalities
-      services.tumbler.enable = true; # File Managers: Thumbnail support for images
+  programs.firefox.enable = true;
 
-      programs.thunar = {
-        enable = true;
-        plugins = with pkgs.xfce; [
-          thunar-archive-plugin
-            thunar-volman
-        ];
-      };
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
 
-    programs.firefox.enable = true;
-
-    environment.sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
-    };
-
-    fonts.packages = with pkgs; [
-      (unstable.nerdfonts)#.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    ];
+  fonts.packages = with pkgs; [
+    (unstable.nerdfonts)#.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
 
 # Some programs need SUID wrappers, can be configured further or are
 # started in user sessions.
@@ -361,19 +366,19 @@
 # Or disable the firewall altogether.
 # networking.firewall.enable = false;
 
-    services.flatpak = {
-      enable = true;
-      deduplicate = true;
-      packages = [
-        "flathub:app/org.famistudio.FamiStudio/x86_64/stable" 
-      ];
-      remotes = {
-        "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      };
+  services.flatpak = {
+    enable = true;
+    deduplicate = true;
+    packages = [
+      "flathub:app/org.famistudio.FamiStudio/x86_64/stable" 
+    ];
+    remotes = {
+      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
     };
+  };
 
 
-    system.stateVersion = "23.11"; # Install value! Don't change
+  system.stateVersion = "23.11"; # Install value! Don't change
 
-      nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
