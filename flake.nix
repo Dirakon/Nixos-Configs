@@ -19,8 +19,7 @@
   outputs = inputs@{ self, nixpkgs, home-manager, flatpaks,unstable, ... }: {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs.unstable =  unstable.legacyPackages."x86_64-linux";# { inherit unstable; };
-      modules = [ 
+      specialArgs.unstable =  import unstable { system = "x86_64-linux"; config.allowUnfree = true; };      modules = [ 
 	  ./configuration.nix 
 
           flatpaks.nixosModules.default
