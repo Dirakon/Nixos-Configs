@@ -70,6 +70,7 @@
 # List packages installed in system profile. To search, run:
 # $ nix search wget
   environment.systemPackages = with pkgs; [
+# some cli tools
     vim 
       wget
       git
@@ -77,9 +78,9 @@
       zip
       unzip
       unstable.ripgrep
-      unstable.htop # Just to test that unstabling works properly
+      unstable.htop # just to test that unstabling works properly
 
-# Hyprland stuffs
+# hyprland stuffs
       swww # wallpapers
       xdg-desktop-portal-gtk # For file-picker
       unstable.xdg-desktop-portal-hyprland # For everything but file picker
@@ -121,6 +122,7 @@
       gnumake
       cargo 
       rustc 
+      # direnv
 
 # QT theming (cleanup!)
       libsForQt5.kio
@@ -151,7 +153,7 @@
       ]; 
 
 # set default browser for Electron apps
-    environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/qutebrowser";
+    environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
     environment.variables = lib.mkForce {
     QT_STYLE_OVERRIDE = "kvantum";

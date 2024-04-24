@@ -82,6 +82,16 @@ home.packages = with pkgs; [
     theme = "Tokyo Night Storm";
   };
 
+# Easy shell environments
+  programs.direnv = {
+    enable = true;
+    # enableNushellIntegration = true;
+    # enableZshIntegration = true;
+    enableFishIntegration = true;
+    # Re-enable when Nix versioning issue is sorted
+    #nix-direnv.enable = true;
+  };
+
   services.swayosd.enable = true;
 
   home.stateVersion = "23.11";
