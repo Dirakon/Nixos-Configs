@@ -55,6 +55,9 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
     layout = "ru";
     xkbVariant = "";
     videoDrivers = [ "nvidia" ];
+
+    # Supposedly fixes intel-vulkan? Does not work for me tho
+    # deviceSection = '' Option      "DRI"    "3" '';
   };
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
@@ -105,10 +108,12 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
       nix-alien.nix-alien
       # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
       # pkgs.nixgl.auto.nixGLDefault # broken for some reason
+      glxinfo
 
 # Wine
       wineWowPackages.stable
       winetricks
+      jstest-gtk
 
 # Actual apps
       mpv
@@ -176,6 +181,14 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 
 # TODO: more configs?
   hardware.opengl.enable = true; 
+  hardware.opengl.extraPackages = with pkgs;[ 
+  rocm-opencl-icd
+  rocm-opencl-runtime
+
+  mesa.drivers ];
+
+    hardware.opengl.driSupport = true;
+    hardware.opengl.driSupport32Bit = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
