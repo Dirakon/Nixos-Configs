@@ -5,7 +5,13 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
     ./hardware-configuration.nix
     ];
 
- nixpkgs.overlays = [ nix-gl.overlay ];
+  system.nixos.label = "test";
+
+
+  services.thermald.enable = true;
+  services.tlp.enable = true;
+
+  nixpkgs.overlays = [ nix-gl.overlay ];
 
 # For obsidian
   nixpkgs.config.permittedInsecurePackages = [
@@ -55,7 +61,6 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
     '';
   services.udisks2.enable = true;
   services.upower.enable = true;
-
 
   users.users.dirakon = {
     isNormalUser = true;
@@ -124,7 +129,6 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
       gnumake
       cargo 
       rustc 
-# direnv
 
 # QT theming (cleanup!)
       libsForQt5.kio

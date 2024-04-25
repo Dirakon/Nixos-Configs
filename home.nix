@@ -83,14 +83,14 @@ home.packages = with pkgs; [
   };
 
 # Easy shell environments
-#  programs.direnv = {
-#    enable = true;
+  programs.direnv = {
+    enable = true;
     # enableNushellIntegration = true;
     # enableZshIntegration = true;
-#    enableFishIntegration = true;
+    enableFishIntegration = true;
     # Re-enable when Nix versioning issue is sorted
     #nix-direnv.enable = true;
-#  };
+  };
 
   services.swayosd.enable = true;
 
