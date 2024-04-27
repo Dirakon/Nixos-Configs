@@ -52,13 +52,21 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 
 # Configure keymap in X11
   services.xserver = {
-    layout = "ru";
+  enable = true;
+    layout = "us,ru";
     xkbVariant = "";
-    videoDrivers = [ "nvidia" ];
-
-    # Supposedly fixes intel-vulkan? Does not work for me tho
-    # deviceSection = '' Option      "DRI"    "3" '';
+    videoDrivers = [ "nvidia" ]; # [ "modeset" "nvidia" ]; # ??
+exportConfiguration = true;
+# Supposedly fixes intel-vulkan? Does not work for me tho
+# deviceSection = '' Option      "DRI"    "3" '';
   };
+
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+  # services.xserver.displayManager.gdm.nvidiaWayland = true;
+services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
+  # services.xserver.displayManager.startx.enable = true;
+  # services.xserver.kk
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
     '';
@@ -91,7 +99,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
       swww # wallpapers
       xdg-desktop-portal-gtk # For file-picker
       unstable.xdg-desktop-portal-hyprland # For everything but file picker
-      xwayland
+      # xwayland
       unstable.wl-clipboard
       unstable.mako # For notifications
       libnotify
@@ -106,8 +114,8 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 # Nix stuff
       nix-index
       nix-alien.nix-alien
-      # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
-      # pkgs.nixgl.auto.nixGLDefault # broken for some reason
+# pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
+# pkgs.nixgl.auto.nixGLDefault # broken for some reason
       glxinfo
 
 # Wine
@@ -164,6 +172,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
       ]; 
 
 # set default browser for Electron apps
+# Aint workin...
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
   environment.variables.QT_STYLE_OVERRIDE = "kvantum";
@@ -182,19 +191,30 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 # TODO: more configs?
   hardware.opengl.enable = true; 
   hardware.opengl.extraPackages = with pkgs;[ 
-  rocm-opencl-icd
-  rocm-opencl-runtime
+    rocm-opencl-icd
+    rocm-opencl-runtime
 
-  mesa.drivers ];
+    mesa.drivers ];
 
-    hardware.opengl.driSupport = true;
-    hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+
+
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
+      version = "550.40.07";
+# the new driver
+      src = pkgs.fetchurl
+      {
+        url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
+        sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
+      };
+    };    
     modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-    nvidiaSettings = true;
+   # powerManagement.enable = true;
+   # powerManagement.finegrained = true;
+    # nvidiaSettings = true;
     prime = {
       offload = {
         enable = true;
@@ -205,6 +225,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+  hardware.nvidia.prime.allowExternalGpu = true;
 
   services.dbus.enable = true;
   xdg.autostart.enable = true;
@@ -219,6 +240,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
   programs.hyprland.enable = true;
   programs.hyprland.package = unstable.hyprland;
   programs.hyprland.xwayland.enable = true;
+  programs.xwayland.enable = true; #????
   programs.nm-applet.enable = true;
   programs.nix-ld.enable = true;
   programs.fish.enable = true;
@@ -232,6 +254,8 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 
   programs.neovim.enable = true;
   programs.neovim.package = unstable.neovim-unwrapped;
+
+  programs.dconf.enable = true;
 
 
 # Sets up all the libraries to load
