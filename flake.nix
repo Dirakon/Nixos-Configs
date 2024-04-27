@@ -4,14 +4,16 @@
 
   inputs = {
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
+      #url = "github:nix-community/home-manager/release-23.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-     nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
+     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
      unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
      flatpaks.url = "github:GermanBread/declarative-flatpak/stable"; 
      nix-alien.url = "github:thiagokokada/nix-alien";

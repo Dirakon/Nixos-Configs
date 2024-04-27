@@ -32,6 +32,22 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 # Enable networking
     networking.networkmanager.enable = true;
 
+
+# Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
+  networking.firewall = {
+# if packets are still dropped, they will show up in dmesg
+    logReversePathDrops = true;
+# wireguard trips rpfilter up
+    extraCommands = ''
+      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN
+      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN
+      '';
+    extraStopCommands = ''
+      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN || true
+      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN || true
+      '';
+  };
+
 # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
@@ -52,21 +68,20 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 
 # Configure keymap in X11
   services.xserver = {
-  enable = true;
+    enable = true;
     layout = "us,ru";
     xkbVariant = "";
-    videoDrivers = [ "nvidia" ]; # [ "modeset" "nvidia" ]; # ??
-exportConfiguration = true;
-# Supposedly fixes intel-vulkan? Does not work for me tho
+    videoDrivers = [ "nvidia" ];
+    exportConfiguration = true;
+# Supposedly fixes intel-vulkan?
 # deviceSection = '' Option      "DRI"    "3" '';
   };
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
-  # services.xserver.displayManager.gdm.nvidiaWayland = true;
-services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
-  # services.xserver.displayManager.startx.enable = true;
-  # services.xserver.kk
+  services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
+# To try to use CLI-only login. Didn't check with NVIDIA tho.
+# services.xserver.displayManager.startx.enable = true;
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
     '';
@@ -84,95 +99,94 @@ services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
   nixpkgs.config.allowUnfree = true;
 
 
-  environment.systemPackages = with pkgs; [  #nix-gl.overlay]); [
+  environment.systemPackages = with pkgs; [ 
 # some cli tools
     vim 
-      wget
-      git
-      lshw
-      zip
-      unzip
-      unstable.ripgrep
-      unstable.htop # just to test that unstabling works properly
+    wget
+    git
+    lshw
+    zip
+    unzip
+    unstable.ripgrep
+    unstable.htop # just to test that unstabling works properly
 
 # hyprland stuffs
-      swww # wallpapers
-      xdg-desktop-portal-gtk # For file-picker
-      unstable.xdg-desktop-portal-hyprland # For everything but file picker
-      # xwayland
-      unstable.wl-clipboard
-      unstable.mako # For notifications
-      libnotify
-      unstable.rofi-wayland # App launcher + clipboard manager frontend
-      unstable.cliphist # Clipboard manager backend
-      unstable.hyprshot # Screenshots
-      swaylock # Lock screen
-      networkmanagerapplet
-      unstable.swayosd # Frontend for +-brigthness, +-sound
-      playerctl # Play controls
+    swww # wallpapers
+    xdg-desktop-portal-gtk # For file-picker
+    unstable.xdg-desktop-portal-hyprland # For everything but file picker
+# xwayland
+    unstable.wl-clipboard
+    unstable.mako # For notifications
+    libnotify
+    unstable.rofi-wayland # App launcher + clipboard manager frontend
+    unstable.cliphist # Clipboard manager backend
+    unstable.hyprshot # Screenshots
+    swaylock # Lock screen
+    networkmanagerapplet
+    unstable.swayosd # Frontend for +-brigthness, +-sound
+    playerctl # Play controls
 
 # Nix stuff
-      nix-index
-      nix-alien.nix-alien
+    nix-index
+    nix-alien.nix-alien
 # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
 # pkgs.nixgl.auto.nixGLDefault # broken for some reason
-      glxinfo
+    glxinfo
 
 # Wine
-      wineWowPackages.stable
-      winetricks
-      jstest-gtk
+    wineWowPackages.stable
+    winetricks
+    jstest-gtk
 
 # Actual apps
-      mpv
-      obsidian
-      telegram-desktop
-      lutris
-      blender
-      unstable.ktorrent
-      unstable.okular
-      unstable.dolphin
-      gwenview
-      firefox
-      kitty
-      unstable.krita
+    mpv
+    obsidian
+    telegram-desktop
+    lutris
+    blender
+    unstable.ktorrent
+    unstable.okular
+    unstable.dolphin
+    gwenview
+    firefox
+    kitty
+    unstable.krita
 
 # Dev
-      unstable.jetbrains.rider
-      gnumake
-      cargo 
-      rustc 
+    unstable.jetbrains.rider
+    gnumake
+    cargo 
+    rustc 
 
 # QT theming (cleanup!)
-      libsForQt5.kio
-      libsForQt5.kio-extras
-      unstable.kdePackages.kio
-      unstable.kdePackages.kio-extras
-      libsForQt5.kdegraphics-thumbnailers
-      unstable.kdePackages.kdegraphics-thumbnailers
+    libsForQt5.kio
+    libsForQt5.kio-extras
+    unstable.kdePackages.kio
+    unstable.kdePackages.kio-extras
+    libsForQt5.kdegraphics-thumbnailers
+    unstable.kdePackages.kdegraphics-thumbnailers
 
 # Gnome theming (cleanup!)
-      gnome.adwaita-icon-theme
-      gnome-icon-theme
-      catppuccin-gtk
-      breeze-icons
+    gnome.adwaita-icon-theme
+    gnome-icon-theme
+    catppuccin-gtk
+    breeze-icons
 
 # For playing audio
-      sox # 'play' command
+    sox # 'play' command
 
 # For verilog development
-      verilog
-      gtkwave
+    verilog
+    gtkwave
 
 # Thumbnailer stuff for File Managers
-      ffmpegthumbnailer
+    ffmpegthumbnailer
 # folderpreview # Only in AUR 
-      evince
-      poppler
-      ]; 
+    evince
+    poppler
+    ]; 
 
 # set default browser for Electron apps
-# Aint workin...
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
   environment.variables.QT_STYLE_OVERRIDE = "kvantum";
@@ -188,34 +202,32 @@ services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
     jack.enable = true;
   };
 
-# TODO: more configs?
   hardware.opengl.enable = true; 
   hardware.opengl.extraPackages = with pkgs;[ 
     rocm-opencl-icd
     rocm-opencl-runtime
-
-    mesa.drivers ];
+    mesa.drivers 
+  ];
 
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
 
-
-
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-   # .beta.overrideAttrs {
-   #   version = "550.40.07";
+# for using specific driver version:
+# .beta.overrideAttrs {
+#   version = "550.40.07";
 # t#he new driver
-   #   src = pkgs.fetchurl
-   #   {
-   #     url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
-   #     sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
-   #   };
-   # };    
+#   src = pkgs.fetchurl
+#   {
+#     url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
+#     sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
+#   };
+# };    
     modesetting.enable = true;
-   powerManagement.enable = true;
+    powerManagement.enable = true;
     powerManagement.finegrained = true;
-     nvidiaSettings = true;
+    nvidiaSettings = true;
     prime = {
       offload = {
         enable = true;
@@ -226,7 +238,7 @@ services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-hardware.nvidia.nvidiaPersistenced = true;
+  hardware.nvidia.nvidiaPersistenced = true;
   hardware.nvidia.prime.allowExternalGpu = true;
 
   services.dbus.enable = true;
@@ -242,24 +254,28 @@ hardware.nvidia.nvidiaPersistenced = true;
   programs.hyprland.enable = true;
   programs.hyprland.package = unstable.hyprland;
   programs.hyprland.xwayland.enable = true;
-  programs.xwayland.enable = true; #????
+  programs.xwayland.enable = true; 
   programs.nm-applet.enable = true;
-  programs.nix-ld.enable = true;
+
   programs.fish.enable = true;
+# To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
   programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
+
   programs.steam.enable = true;
 
   programs.java.enable = true;
 
+# Archive app
   programs.file-roller.enable = true;
 
   programs.neovim.enable = true;
   programs.neovim.package = unstable.neovim-unwrapped;
 
+# ???
   programs.dconf.enable = true;
 
-
+  programs.nix-ld.enable = true;
 # Sets up all the libraries to load
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc
