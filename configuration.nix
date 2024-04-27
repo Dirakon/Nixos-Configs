@@ -202,19 +202,20 @@ services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
 
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
-      version = "550.40.07";
-# the new driver
-      src = pkgs.fetchurl
-      {
-        url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
-        sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
-      };
-    };    
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+   # .beta.overrideAttrs {
+   #   version = "550.40.07";
+# t#he new driver
+   #   src = pkgs.fetchurl
+   #   {
+   #     url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
+   #     sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
+   #   };
+   # };    
     modesetting.enable = true;
-   # powerManagement.enable = true;
-   # powerManagement.finegrained = true;
-    # nvidiaSettings = true;
+   powerManagement.enable = true;
+    powerManagement.finegrained = true;
+     nvidiaSettings = true;
     prime = {
       offload = {
         enable = true;
@@ -225,6 +226,7 @@ services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+hardware.nvidia.nvidiaPersistenced = true;
   hardware.nvidia.prime.allowExternalGpu = true;
 
   services.dbus.enable = true;
