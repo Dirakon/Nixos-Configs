@@ -35,7 +35,7 @@
  #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
 
 qt.enable = true;
-qt.platformTheme = "qtct";
+qt.platformTheme.name = "qtct";
 qt.style.name = "kvantum";
 
 home.packages = with pkgs; [

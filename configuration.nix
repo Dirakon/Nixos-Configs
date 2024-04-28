@@ -1,4 +1,13 @@
 self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in 
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -69,8 +78,8 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 # Configure keymap in X11
   services.xserver = {
     enable = true;
-    layout = "us,ru";
-    xkbVariant = "";
+    xkb.layout = "us,ru";
+    xkb.variant = "";
     videoDrivers = [ "nvidia" ];
     exportConfiguration = true;
 # Supposedly fixes intel-vulkan?
@@ -79,7 +88,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.displayManager.sessionPackages = [ unstable.hyprland ];
+  services.displayManager.sessionPackages = [ unstable.hyprland ];
 # To try to use CLI-only login. Didn't check with NVIDIA tho.
 # services.xserver.displayManager.startx.enable = true;
   services.udev.extraRules = ''
@@ -132,6 +141,9 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
 # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
 # pkgs.nixgl.auto.nixGLDefault # broken for some reason
     glxinfo
+    nvidia-offload
+    vulkan-loader
+    nh
 
 # Wine
     wineWowPackages.stable
@@ -151,9 +163,11 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
     firefox
     kitty
     unstable.krita
+    unstable.loupe
 
 # Dev
     unstable.jetbrains.rider
+    unstable.jetbrains.pycharm-professional
     gnumake
     cargo 
     rustc 
@@ -194,6 +208,10 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
   sound.enable = true;
   security.rtkit.enable = true;
   security.pam.services.swaylock = {};
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -263,6 +281,7 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
   users.defaultUserShell = pkgs.fish;
 
   programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
 
   programs.java.enable = true;
 
