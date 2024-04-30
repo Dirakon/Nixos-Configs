@@ -43,19 +43,20 @@ in
 
 
 # Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
-  networking.firewall = {
-# if packets are still dropped, they will show up in dmesg
-    logReversePathDrops = true;
-# wireguard trips rpfilter up
-    extraCommands = ''
-      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN
-      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN
-      '';
-    extraStopCommands = ''
-      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN || true
-      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN || true
-      '';
-  };
+ networking.firewall.checkReversePath = false; 
+  # networking.firewall = {
+# # if packets are still dropped, they will show up in dmesg
+  #   logReversePathDrops = true;
+# # wireguard trips rpfilter up
+  #   extraCommands = ''
+  #     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN
+  #     ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN
+  #     '';
+  #   extraStopCommands = ''
+  #     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 57798 -j RETURN || true
+  #     ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN || true
+  #     '';
+  # };
 
 # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -91,6 +92,7 @@ in
   services.displayManager.sessionPackages = [ unstable.hyprland ];
 # To try to use CLI-only login. Didn't check with NVIDIA tho.
 # services.xserver.displayManager.startx.enable = true;
+# allow brightness editing thru file
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
     '';
@@ -164,6 +166,8 @@ in
     kitty
     unstable.krita
     unstable.loupe
+    unstable.kdenlive
+    unstable.filelight
 
 # Dev
     unstable.jetbrains.rider
