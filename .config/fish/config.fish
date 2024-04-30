@@ -4,7 +4,7 @@ end
 
 
 function its-nixxing-time
-    FLAKE=~/.dotfiles/ nh os switch --ask #argv
+    FLAKE=~/.dotfiles/ nh os switch --ask $argv
     # sudo nixos-rebuild switch --flake ~/.dotfiles $argv
 end
 

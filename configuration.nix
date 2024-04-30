@@ -168,6 +168,7 @@ in
 # Dev
     unstable.jetbrains.rider
     unstable.jetbrains.pycharm-professional
+    unstable.jetbrains.webstorm
     gnumake
     cargo 
     rustc 
