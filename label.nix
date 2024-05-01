@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Finalize_new_update_script";
+  system.nixos.label = "Update_fish_nix_helper_func";
 }
