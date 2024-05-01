@@ -12,11 +12,11 @@ in
   imports =
     [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./label.nix
     ];
 
 # Trying to set it via env var for now!
-#  system.nixos.label = "test";
-
+# system.nixos.label = "test";
 
   services.thermald.enable = true;
   services.tlp.enable = true;
