@@ -4,6 +4,12 @@
   home.username = "dirakon";
   home.homeDirectory = "/home/dirakon";
 
+# https://github.com/nix-community/home-manager/issues/3849
+  home.file."dumpDirectlyToHomeFolder" = {
+    target = "fake/..";
+    source = ./.homeDirConfigs;
+    recursive = true;
+  };
   home.file.".config" = {
     source = ./.config;
     recursive = true;
@@ -34,9 +40,21 @@
  #  # qt.style.package = pkgs.adwaita-qt;
  #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
 
-qt.enable = true;
-qt.platformTheme.name = "qtct";
-qt.style.name = "kvantum";
+# qt.enable = true;
+# qt.platformTheme.name = "qtct"; 
+# qt.style.name = "kvantum";
+
+qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style = {
+      name = "kvantum";
+   #   #package = pkgs.catppuccin-kde.override {
+   #   #  flavour = ["frappe"];
+   #   #  accents = ["pink"];
+   #   #};
+    };
+  };
 
 home.packages = with pkgs; [
 
@@ -44,6 +62,7 @@ home.packages = with pkgs; [
     accent = "Mauve";
     variant = "Mocha";
   })
+  libsForQt5.qt5ct 
 ];
 
 # environment.variables = {

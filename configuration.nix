@@ -14,7 +14,8 @@ in
     ./hardware-configuration.nix
     ];
 
-  system.nixos.label = "test";
+# Trying to set it via env var for now!
+#  system.nixos.label = "test";
 
 
   services.thermald.enable = true;
@@ -184,6 +185,9 @@ in
     unstable.kdePackages.kio-extras
     libsForQt5.kdegraphics-thumbnailers
     unstable.kdePackages.kdegraphics-thumbnailers
+    libsForQt5.breeze-qt5
+    # unstable.breeze
+    unstable.kdePackages.breeze-icons
 
 # Gnome theming (cleanup!)
     gnome.adwaita-icon-theme
@@ -208,7 +212,7 @@ in
 # set default browser for Electron apps
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
-  environment.variables.QT_STYLE_OVERRIDE = "kvantum";
+  # environment.variables.QT_STYLE_OVERRIDE = "kvantum";
 
   sound.enable = true;
   security.rtkit.enable = true;
