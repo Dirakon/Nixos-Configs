@@ -12,7 +12,7 @@ git status
 read -p "Enter your commit message: " COMMIT_MESSAGE
 
 # Add all changes and commit with the given message
-git add.
+git add .
 git commit -m "$COMMIT_MESSAGE"
 
 
