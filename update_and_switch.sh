@@ -30,6 +30,6 @@ fi
 export NIXOS_LABEL_VERSION
 
 # Run the command 'FLAKE=~/.dotfiles/ nh os switch'
-FLAKE=~/.dotfiles/ nh os switch
+FLAKE=~/.dotfiles/ nh os switch --ask
 #echo $COMMIT_MESSAGE
 #echo $NIXOS_LABEL_VERSION
