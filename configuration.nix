@@ -149,8 +149,10 @@ in
     nh
 
 # Wine
-    wineWowPackages.stable
+    # wine # https://nixos.wiki/wiki/Wine
+    wineWowPackages.full
     winetricks
+    
     jstest-gtk
 
 # Actual apps
@@ -169,7 +171,7 @@ in
     unstable.loupe
     unstable.kdenlive
     unstable.filelight
-    unstable.openutau
+    # unstable.openutau # Eh...
 
 # Dev
     unstable.jetbrains.rider
