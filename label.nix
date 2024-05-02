@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Add_open_uatu";
+  system.nixos.label = "fix_typo";
 }

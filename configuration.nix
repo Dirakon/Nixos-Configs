@@ -169,7 +169,7 @@ in
     unstable.loupe
     unstable.kdenlive
     unstable.filelight
-    unstable.openuatau
+    unstable.openutau
 
 # Dev
     unstable.jetbrains.rider
