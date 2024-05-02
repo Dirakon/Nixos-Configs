@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Update_fish_nix_helper_func";
+  system.nixos.label = "Add_open_uatu";
 }
