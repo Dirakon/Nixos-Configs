@@ -3,7 +3,7 @@ function __fish_command_not_found_handler --on-event fish_command_not_found
 end
 
 function its-nixxing-time
-    ~/.dotfiles/update_and_switch.sh
+    ~/.dotfiles/update_and_switch.sh $argv
 end
 
 
