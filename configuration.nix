@@ -137,6 +137,10 @@ in
     networkmanagerapplet
     unstable.swayosd # Frontend for +-brigthness, +-sound
     playerctl # Play controls
+    unstable.pavucontrol
+    unstable.volumeicon
+    unstable.libappindicator
+    unstable.libappindicator-gtk3
 
 # Nix stuff
     nix-index

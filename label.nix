@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Remove_OpenUtau";
+  system.nixos.label = "Try_to_add_volume_mixer";
 }
