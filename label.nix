@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Attempt_to_add_docker_with_new_cache_setup";
+  system.nixos.label = "Trying_to_setup_wireguard_with_ipv6_problems";
 }

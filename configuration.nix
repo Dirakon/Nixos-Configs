@@ -50,6 +50,14 @@ boot.kernel.sysctl."net.ipv6.conf.enp7s0.disable_ipv6" = true;
 boot.kernel.sysctl."net.ipv6.conf.wlp8s0.disable_ipv6" = true;
 networking.enableIPv6 = false;
 
+
+
+# networking.wg-quick.interfaces = {
+#     wg0 = {
+#       configFile = "/.secrets/wg0.conf";
+#      };
+#   };
+
 # Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
  networking.firewall.checkReversePath = false; 
   # networking.firewall = {
