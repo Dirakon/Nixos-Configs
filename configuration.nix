@@ -198,8 +198,8 @@ in
     unstable.kdePackages.breeze-icons
 
 # Gnome theming (cleanup!)
-    gnome.adwaita-icon-theme
-    gnome-icon-theme
+    #gnome.adwaita-icon-theme
+    # gnome-icon-theme
     catppuccin-gtk
     breeze-icons
 
