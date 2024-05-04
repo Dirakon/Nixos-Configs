@@ -18,9 +18,10 @@
      flatpaks.url = "github:GermanBread/declarative-flatpak/stable"; 
      nix-alien.url = "github:thiagokokada/nix-alien";
      nix-gl.url = "github:nix-community/nixGL";
+     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, ... }:
  #let overlays = [nix-gl.overlay]; in
   {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
@@ -28,8 +29,12 @@
       specialArgs.unstable =  import unstable { system = "x86_64-linux"; config.allowUnfree = true; };      
       specialArgs.nix-gl = nix-gl;      
       specialArgs.nix-alien = nix-alien.packages."x86_64-linux";
+      specialArgs.agenix = agenix.packages."x86_64-linux";
+
       modules = [ 
 	  ./configuration.nix 
+
+          agenix.nixosModules.default
 
           flatpaks.nixosModules.default
 

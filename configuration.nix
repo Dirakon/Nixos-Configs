@@ -1,4 +1,4 @@
-self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
+self@{ config, pkgs, boot, unstable, nix-alien, nix-gl, agenix, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -17,6 +17,9 @@ in
 
 # Trying to set it via env var for now!
 # system.nixos.label = "test";
+
+# New cache? Doesn't make difference
+#  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
 
   services.thermald.enable = true;
   services.tlp.enable = true;
@@ -41,7 +44,11 @@ in
 
 # Enable networking
     networking.networkmanager.enable = true;
-
+# boot.kernel.sysctl."net.ipv6.conf.eth0.disable_ipv6" = true; # Example
+boot.kernel.sysctl."net.ipv6.conf.enp7s0.disable_ipv6" = true;
+#boot.kernel.sysctl."net.ipv6.conf.wg0.disable_ipv6" = true; # wireguard sadface
+boot.kernel.sysctl."net.ipv6.conf.wlp8s0.disable_ipv6" = true;
+networking.enableIPv6 = false;
 
 # Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
  networking.firewall.checkReversePath = false; 
@@ -103,7 +110,7 @@ in
   users.users.dirakon = {
     isNormalUser = true;
     description = "dirakon";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
     packages = with pkgs; [];
   };
 
@@ -152,6 +159,8 @@ in
     nvidia-offload
     vulkan-loader
     nh
+    agenix.default
+    docker-compose
 
 # Wine
     # wine # https://nixos.wiki/wiki/Wine
@@ -291,6 +300,8 @@ in
   programs.hyprland.xwayland.enable = true;
   programs.xwayland.enable = true; 
   programs.nm-applet.enable = true;
+
+  virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
 # To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
