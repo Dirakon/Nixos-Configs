@@ -121,6 +121,7 @@ in
     unzip
     unstable.ripgrep
     unstable.htop # just to test that unstabling works properly
+    unstable.btop
 
 # hyprland stuffs
     swww # wallpapers
