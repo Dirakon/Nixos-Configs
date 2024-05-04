@@ -23,7 +23,7 @@
     source = ./.assets;
     recursive = true;
   };
-  home.file."bin/nix-command-not-found" = {
+  home.file.".scripts/nix-command-not-found" = {
     text = ''
 #!/usr/bin/env bash
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh

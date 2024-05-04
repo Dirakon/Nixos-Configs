@@ -1,5 +1,5 @@
 function __fish_command_not_found_handler --on-event fish_command_not_found
-    ~/bin/nix-command-not-found $argv
+    ~/.scripts/nix-command-not-found $argv
 end
 
 function its-nixxing-time
