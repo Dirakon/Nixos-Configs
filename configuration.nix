@@ -195,6 +195,7 @@ networking.enableIPv6 = false;
     unstable.kdenlive
     unstable.filelight
     # unstable.openutau # Eh...
+    unstable.inkscape
 
 # Dev
     unstable.jetbrains.rider
