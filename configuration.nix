@@ -137,6 +137,7 @@ networking.enableIPv6 = false;
     unstable.ripgrep
     unstable.htop # just to test that unstabling works properly
     unstable.btop
+    unstable.fastfetch
 
 # hyprland stuffs
     swww # wallpapers
