@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Add_inkscape";
+  system.nixos.label = "nvim_customization_for_transparent_theme";
 }
