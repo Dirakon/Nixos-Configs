@@ -138,6 +138,8 @@ networking.enableIPv6 = false;
     unstable.htop # just to test that unstabling works properly
     unstable.btop
     unstable.fastfetch
+    unstable.fuseiso
+#    unstable.udisksctl # Preinstalled
 
 # hyprland stuffs
     swww # wallpapers
