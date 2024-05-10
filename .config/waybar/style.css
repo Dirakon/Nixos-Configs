@@ -54,6 +54,7 @@ window#waybar.hidden {
 #pulseaudio,
 #network,
 #clock,
+#cpu,
 #tray {
 	border-radius: 4px;
 	margin: 6px 3px;
@@ -77,6 +78,9 @@ window#waybar.hidden {
 
 #memory {
 	background-color: #fab387;
+}
+#cpu {
+	background-color: #74d3e0;
 }
 #battery {
 	background-color: #f38ba8;

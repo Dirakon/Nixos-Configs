@@ -10,6 +10,7 @@
         "clock"
     ],
     "modules-right": [
+	"cpu",
         "memory",
         "pulseaudio",
         "battery",
@@ -52,9 +53,15 @@
             "9": []
         }
     },
+    "cpu": {
+	"interval": 10,
+	"format": "{usage}% ",
+        "on-click": "kitty btop",
+	"max-length": 10
+    },
     "memory": {
         "interval": 5,
-        "format": "󰍛 {}%",
+        "format": "{}% ",
         "max-length": 10
     },
     "tray": {
@@ -75,7 +82,7 @@
             "headphone": "",
             "default": ["󰖀","󰕾",""]
         },
-        "on-click": "pamixer -t",
+        "on-click": "pavucontrol",
         "scroll-step": 1
     },
     "battery": {

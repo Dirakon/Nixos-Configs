@@ -1,4 +1,4 @@
 {...}:
 {
-  system.nixos.label = "Add_fuseiso_for_thunar_action";
+  system.nixos.label = "Customize_waybar_with_cpu_and_memory";
 }
