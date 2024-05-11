@@ -111,6 +111,11 @@ home.packages = with pkgs; [
     #nix-direnv.enable = true;
   };
 
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs.obs-studio-plugins; [

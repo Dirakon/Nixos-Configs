@@ -46,7 +46,6 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.okular
     unstable.dolphin
     gwenview
-    firefox
     kitty
     unstable.krita
     unstable.loupe
