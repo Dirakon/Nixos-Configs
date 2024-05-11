@@ -53,6 +53,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.filelight
     # unstable.openutau # Eh...
     unstable.inkscape
+    # unstable.mate.engrampa
 
 # Dev
     unstable.jetbrains.rider
