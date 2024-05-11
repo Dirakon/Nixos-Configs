@@ -12,8 +12,8 @@
     "modules-right": [
 	"cpu",
         "memory",
-        "pulseaudio",
         "battery",
+        "pulseaudio",
         "tray"
     ],
     "wlr/taskbar": {

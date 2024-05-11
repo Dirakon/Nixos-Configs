@@ -23,7 +23,7 @@ else
         NIXOS_LABEL_VERSION=$SANITIZED_COMMIT_MESSAGE
     fi
 
-    LABEL_NIX_CONTENT="{...}:\n{\n  system.nixos.label = \"$NIXOS_LABEL_VERSION\";\n}"
+    LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
     printf "$LABEL_NIX_CONTENT" > label.nix
 
 

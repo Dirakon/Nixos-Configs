@@ -23,16 +23,29 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, ... }:
  #let overlays = [nix-gl.overlay]; in
+ let system = "x86_64-linux"; in
   {
     nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs.unstable =  import unstable { system = "x86_64-linux"; config.allowUnfree = true; };      
+      system = "${system}";
+      specialArgs.unstable =  import unstable { system = system; config.allowUnfree = true; };      
       specialArgs.nix-gl = nix-gl;      
-      specialArgs.nix-alien = nix-alien.packages."x86_64-linux";
-      specialArgs.agenix = agenix.packages."x86_64-linux";
+      specialArgs.nix-alien = nix-alien.packages."${system}";
+      specialArgs.agenix = agenix.packages."${system}";
 
       modules = [ 
+          ./hardware-configuration.nix
+
+          ./system.nix
+
 	  ./configuration.nix 
+
+          ./hyprland.nix
+
+          ./nvidia.nix
+
+          ./nix-ld.nix
+
+          ./flatpak.nix
 
           agenix.nixosModules.default
 
