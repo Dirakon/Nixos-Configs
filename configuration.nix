@@ -51,7 +51,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.loupe
     unstable.kdenlive
     unstable.filelight
-    # unstable.openutau # Eh...
+    unstable.openutau # Eh...
     unstable.inkscape
     # unstable.mate.engrampa
 
