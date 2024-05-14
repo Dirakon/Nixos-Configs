@@ -1,1 +1,1 @@
-"Add_discord_on_flatpak"
+"Add_gammastep"

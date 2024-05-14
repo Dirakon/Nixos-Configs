@@ -110,4 +110,6 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   programs.neovim.package = unstable.neovim-unwrapped;
 
   programs.firefox.enable = true;
+
+  services.geoclue2.enable = true;
 }

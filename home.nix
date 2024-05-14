@@ -125,6 +125,26 @@ home.packages = with pkgs; [
     ];
   };
 
+  # services.gammastep = {
+  #   tray = true;
+  #   enable = true;
+  #   provider = "geoclue2";
+  # };
+
+  services.gammastep = {
+    tray = true;
+    enable = true;
+    enableVerboseLogging = true;
+    provider = "geoclue2";
+    temperature = {
+      day = 6000;
+      night = 4600;
+    };
+    settings = {
+      general.adjustment-method = "wayland";
+    };
+  };
+
   services.swayosd.enable = true;
 
   home.stateVersion = "23.11";
