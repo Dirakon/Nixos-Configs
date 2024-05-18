@@ -7,20 +7,7 @@
 # https://github.com/nix-community/home-manager/issues/3849
   home.file."dumpDirectlyToHomeFolder" = {
     target = "fake/..";
-    source = ./.homeDirConfigs;
-    recursive = true;
-  };
-  home.file.".config" = {
-    source = ./.config;
-    recursive = true;
-  };
-  home.file.".scripts" = {
-    source = ./.scripts;
-    recursive = true;
-    executable = true;
-  };
-  home.file.".assets" = {
-    source = ./.assets;
+    source = ./home;
     recursive = true;
   };
   home.file.".scripts/nix-command-not-found" = {
@@ -64,10 +51,6 @@ home.packages = with pkgs; [
   })
   libsForQt5.qt5ct 
 ];
-
-# environment.variables = {
-#   QT_QPA_PLATFORMTHEME="gtk2";
-#  };
 
 # Attempt at GTK theme
   gtk = {
@@ -125,21 +108,15 @@ home.packages = with pkgs; [
     ];
   };
 
-  # services.gammastep = {
-  #   tray = true;
-  #   enable = true;
-  #   provider = "geoclue2";
-  # };
-
   services.gammastep = {
     tray = true;
     enable = true;
-    enableVerboseLogging = true;
+#    enableVerboseLogging = true;
     provider = "geoclue2";
-    temperature = {
-      day = 6000;
-      night = 4600;
-    };
+#    temperature = {
+#      day = 6000;
+#      night = 4600;
+#    };
     settings = {
       general.adjustment-method = "wayland";
     };
