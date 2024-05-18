@@ -51,6 +51,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.loupe
     unstable.kdenlive
     unstable.filelight
+    unstable.ark
     unstable.openutau # Eh...
     unstable.inkscape
     # unstable.mate.engrampa
@@ -104,7 +105,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   programs.java.enable = true;
 
 # Archive app
-  programs.file-roller.enable = true;
+  # programs.file-roller.enable = true; # Trying Ark for now
 
   programs.neovim.enable = true;
   programs.neovim.package = unstable.neovim-unwrapped;

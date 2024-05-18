@@ -82,13 +82,13 @@ self@{ config, pkgs, unstable, ... }:
   services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
     services.tumbler.enable = true; # File Managers - Thumbnail support for images
 
-    programs.thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-          thunar-volman
-      ];
-    };
+    # programs.thunar = {
+    #   enable = true;
+    #   plugins = with pkgs.xfce; [
+    #     thunar-archive-plugin
+    #       thunar-volman
+    #   ];
+    # };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
