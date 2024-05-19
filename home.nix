@@ -4,7 +4,7 @@
   home.username = "dirakon";
   home.homeDirectory = "/home/dirakon";
 
-# https://github.com/nix-community/home-manager/issues/3849
+  # https://github.com/nix-community/home-manager/issues/3849
   home.file."dumpDirectlyToHomeFolder" = {
     target = "fake/..";
     source = ./home;
@@ -12,47 +12,47 @@
   };
   home.file.".scripts/nix-command-not-found" = {
     text = ''
-#!/usr/bin/env bash
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-      command_not_found_handle "$@"
-      '';
+      #!/usr/bin/env bash
+            source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+            command_not_found_handle "$@"
+    '';
 
     executable = true;
   };
 
-# Attempt at QT theme
- #  qt.enable = true;
- #  qt.platformTheme = "qtct";
- #  # qt.style.name = "adwaita-dark";
- #  # qt.style.package = pkgs.adwaita-qt;
- #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
+  # Attempt at QT theme
+  #  qt.enable = true;
+  #  qt.platformTheme = "qtct";
+  #  # qt.style.name = "adwaita-dark";
+  #  # qt.style.package = pkgs.adwaita-qt;
+  #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
 
-# qt.enable = true;
-# qt.platformTheme.name = "qtct"; 
-# qt.style.name = "kvantum";
+  # qt.enable = true;
+  # qt.platformTheme.name = "qtct"; 
+  # qt.style.name = "kvantum";
 
-qt = {
+  qt = {
     enable = true;
     platformTheme.name = "qtct";
     style = {
       name = "kvantum";
-   #   #package = pkgs.catppuccin-kde.override {
-   #   #  flavour = ["frappe"];
-   #   #  accents = ["pink"];
-   #   #};
+      #   #package = pkgs.catppuccin-kde.override {
+      #   #  flavour = ["frappe"];
+      #   #  accents = ["pink"];
+      #   #};
     };
   };
 
-home.packages = with pkgs; [
+  home.packages = with pkgs; [
 
-  (catppuccin-kvantum.override {
-    accent = "Mauve";
-    variant = "Mocha";
-  })
-  libsForQt5.qt5ct 
-];
+    (catppuccin-kvantum.override {
+      accent = "Mauve";
+      variant = "Mocha";
+    })
+    libsForQt5.qt5ct
+  ];
 
-# Attempt at GTK theme
+  # Attempt at GTK theme
   gtk = {
     enable = true;
     theme = {
@@ -76,15 +76,15 @@ home.packages = with pkgs; [
     };
   };
 
-# Packages that should be installed to the user profile.
-#  home.packages = with pkgs; [
-#  ];
+  # Packages that should be installed to the user profile.
+  #  home.packages = with pkgs; [
+  #  ];
 
   programs.kitty = {
     theme = "Tokyo Night Storm";
   };
 
-# Easy shell environments
+  # Easy shell environments
   programs.direnv = {
     enable = true;
     # enableNushellIntegration = true;
@@ -111,12 +111,12 @@ home.packages = with pkgs; [
   services.gammastep = {
     tray = true;
     enable = true;
-#    enableVerboseLogging = true;
+    #    enableVerboseLogging = true;
     provider = "geoclue2";
-#    temperature = {
-#      day = 6000;
-#      night = 4600;
-#    };
+    #    temperature = {
+    #      day = 6000;
+    #      night = 4600;
+    #    };
     settings = {
       general.adjustment-method = "wayland";
     };
@@ -126,6 +126,6 @@ home.packages = with pkgs; [
 
   home.stateVersion = "23.11";
 
-# Let home Manager install and manage itself.
+  # Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

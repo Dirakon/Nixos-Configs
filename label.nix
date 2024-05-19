@@ -1,1 +1,1 @@
-"Try_setup_sddm_with_theme"
+"Try_adding_formatter"

@@ -4,15 +4,15 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     isNormalUser = true;
     description = "dirakon";
     extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
-# Allow unfree packages
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ 
-# some cli tools
-    vim 
+  environment.systemPackages = with pkgs; [
+    # some cli tools
+    vim
     wget
     git
     lshw
@@ -25,19 +25,19 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.fuseiso
     unstable.imagemagick
 
-# Nix stuff
+    # Nix stuff
     nix-index
     nh
     agenix.default
     docker-compose
 
-# Wine
+    # Wine
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full
     winetricks
     jstest-gtk
 
-# Actual apps
+    # Actual apps
     mpv
     obsidian
     telegram-desktop
@@ -56,15 +56,15 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.openutau # Eh...
     unstable.inkscape
 
-# Dev
+    # Dev
     unstable.jetbrains.rider
     unstable.jetbrains.pycharm-professional
     unstable.jetbrains.webstorm
     gnumake
-    cargo 
-    rustc 
+    cargo
+    rustc
 
-# QT theming (cleanup!)
+    # QT theming (cleanup!)
     libsForQt5.kio
     libsForQt5.kio-extras
     unstable.kio-admin
@@ -76,27 +76,27 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     # unstable.breeze
     unstable.kdePackages.breeze-icons
 
-# Gnome theming (cleanup!)
+    # Gnome theming (cleanup!)
     #gnome.adwaita-icon-theme
     # gnome-icon-theme
     catppuccin-gtk
     breeze-icons
 
-# For playing audio
+    # For playing audio
     sox # 'play' command
 
-# For verilog development
+    # For verilog development
     verilog
     gtkwave
-    ]; 
+  ];
 
-# set default browser for Electron apps
+  # set default browser for Electron apps
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
 
   virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
-# To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
+  # To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
   programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
 
@@ -105,7 +105,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
 
   programs.java.enable = true;
 
-# Archive app
+  # Archive app
   # programs.file-roller.enable = true; # Trying Ark for now
 
   programs.neovim.enable = true;

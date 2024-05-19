@@ -1,157 +1,145 @@
 self@{ config, pkgs, unstable, ... }:
- let sddmBackgroundPath =  pkgs.stdenv.mkDerivation{
-  name="sddm-wallpaper"; 
-   src= /sddm.jpg;
-buildCommand = ''
-    mkdir -p $out
-    cp $src $out/sddm.jpg
-    ls $out
-  '';
-   }; in 
- let sddmTheme = pkgs.stdenv.mkDerivation {
-   name = "sddm-theme";
- 
-   src = pkgs.fetchFromGitHub {
-     owner = "MarianArlt";
-     repo = "sddm-chili";
-     rev = "6516d50176c3b34df29003726ef9708813d06271";
-     sha256 = "036fxsa7m8ymmp3p40z671z163y6fcsa9a641lrxdrw225ssq5f3";
-   };
-   # passthru = {
-   #   sddmBackgroundPath = /.rootAssets/sddm.jpg;
-   # };
-   buildInputs = [
-    sddmBackgroundPath
-    #/.rootAssets/sddm.jpg
-    ];
- 
-   installPhase = ''
-     mkdir -p $out
-     cp -R ./* $out/
-     rm $out/assets/background.jpg
-     echo $sddmBackgroundPath
-     cp $buildInputs/sddm.jpg $out/assets/background.jpg
-   '';
- }; 
+let
+  sddmBackgroundPath = pkgs.stdenv.mkDerivation {
+    name = "sddm-wallpaper";
+    # Using static system file instead of placing relatively to config to not push images to repo
+    src = /sddm.jpg;
+    buildCommand = ''
+      mkdir -p $out
+      cp $src $out/sddm.jpg
+      ls $out
+    '';
+  };
+in
+let
+  sddmTheme = pkgs.stdenv.mkDerivation {
+    name = "sddm-theme";
 
-# let sddmTheme = pkgs.runCommand "sddm-theme" {} ''
-#     mkdir -p $out
-#     cp -R ${pkgs.fetchFromGitHub {
-#       owner = "MarianArlt";
-#       repo = "sddm-chili";
-#       rev = "6516d50176c3b34df29003726ef9708813d06271";
-#       sha256 = "036fxsa7m8ymmp3p40z671z163y6fcsa9a641lrxdrw225ssq5f3";
-#     }} $out
-#     rm $out/assets/background.jpg
-#     cp ${sddmBackgroundPath} $out/assets/background.jpg
-#   '';
+    src = pkgs.fetchFromGitHub {
+      owner = "MarianArlt";
+      repo = "sddm-chili";
+      rev = "6516d50176c3b34df29003726ef9708813d06271";
+      sha256 = "036fxsa7m8ymmp3p40z671z163y6fcsa9a641lrxdrw225ssq5f3";
+    };
+    buildInputs = [
+      sddmBackgroundPath
+    ];
+
+    installPhase = ''
+      mkdir -p $out
+      cp -R ./* $out/
+      rm $out/assets/background.jpg
+      echo $sddmBackgroundPath
+      cp $buildInputs/sddm.jpg $out/assets/background.jpg
+    '';
+  };
 
 in
 {
 
-# Configure keymap in X11
+  # Configure keymap in X11
   services.xserver = {
     enable = true;
     xkb.layout = "us,ru";
     xkb.variant = "";
     videoDrivers = [ "nvidia" ];
     exportConfiguration = true;
-# Supposedly fixes intel-vulkan?
-# deviceSection = '' Option      "DRI"    "3" '';
+    # Supposedly fixes intel-vulkan?
+    # deviceSection = '' Option      "DRI"    "3" '';
   };
 
-# GDM
-# services.xserver.displayManager.gdm.enable = true;
-# services.xserver.displayManager.gdm.wayland = true;
+  # GDM
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.wayland = true;
 
+  # SDDM
   services.xserver.displayManager.sddm.wayland.enable = true;
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.theme = "${sddmTheme}";
 
+  # To try to use CLI-only login. Didn't check with NVIDIA tho.
+  # services.xserver.displayManager.startx.enable = true;
 
-services.displayManager.sessionPackages = [ unstable.hyprland ];
+  services.displayManager.sessionPackages = [ unstable.hyprland ];
 
-# To try to use CLI-only login. Didn't check with NVIDIA tho.
-# services.xserver.displayManager.startx.enable = true;
-
-# allow brightness editing thru file
-services.udev.extraRules = ''
-  ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  # allow brightness editing thru file
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
   '';
 
-environment.systemPackages = with pkgs; [ 
-  swww # wallpapers
-  xdg-desktop-portal-gtk # For file-picker
-  unstable.xdg-desktop-portal-hyprland # For everything but file picker
-  unstable.wl-clipboard
-  unstable.mako # For notifications
-  libnotify
-  unstable.rofi-wayland # App launcher + clipboard manager frontend
-  unstable.cliphist # Clipboard manager backend
-  unstable.hyprshot # Screenshots
-  swaylock # Lock screen
-  networkmanagerapplet
-  unstable.swayosd # Frontend for +-brigthness, +-sound
-  playerctl # Play controls
-  unstable.pavucontrol
-  unstable.volumeicon
-  unstable.libappindicator
-  unstable.libappindicator-gtk3
+  environment.systemPackages = with pkgs; [
+    swww # wallpapers
+    xdg-desktop-portal-gtk # For file-picker
+    unstable.xdg-desktop-portal-hyprland # For everything but file picker
+    unstable.wl-clipboard
+    unstable.mako # For notifications
+    libnotify
+    unstable.rofi-wayland # App launcher + clipboard manager frontend
+    unstable.cliphist # Clipboard manager backend
+    unstable.hyprshot # Screenshots
+    swaylock # Lock screen
+    networkmanagerapplet
+    unstable.swayosd # Frontend for +-brigthness, +-sound
+    playerctl # Play controls
+    unstable.pavucontrol
+    unstable.volumeicon
+    unstable.libappindicator
+    unstable.libappindicator-gtk3
 
-# Thumbnailer stuff for File Managers
-  ffmpegthumbnailer
-# folderpreview # Only in AUR 
-  evince
-  poppler
+    # Thumbnailer stuff for File Managers
+    ffmpegthumbnailer
+    # folderpreview # Only in AUR 
+    evince
+    poppler
 
-# kde components for sddm theme and such
-  libsForQt5.qt5.qtquickcontrols2   
-  libsForQt5.qt5.qtgraphicaleffects
-  ]; 
-
-services.dbus.enable = true;
-xdg.autostart.enable = true;
-xdg.portal = {
-  enable = true;
-  wlr.enable = true;
-  extraPortals = [
-    pkgs.xdg-desktop-portal-gtk 
+    # kde components for sddm theme and such
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
   ];
-};
 
-security.pam.services.swaylock = {};
-security.pam.services.kwallet = {
-  name = "kwallet";
-  enableKwallet = true;
-};
+  services.dbus.enable = true;
+  xdg.autostart.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
-programs.hyprland.enable = true;
-programs.hyprland.package = unstable.hyprland;
-programs.hyprland.xwayland.enable = true;
-programs.xwayland.enable = true; 
-programs.nm-applet.enable = true;
+  security.pam.services.swaylock = { };
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
 
-# Some config service for DEs and WMs??? Not sure
-programs.dconf.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.package = unstable.hyprland;
+  programs.hyprland.xwayland.enable = true;
+  programs.xwayland.enable = true;
+  programs.nm-applet.enable = true;
 
-programs.waybar = {
-  enable = true;
-  package = unstable.waybar;
-};
+  # Some config service for DEs and WMs??? Not sure
+  programs.dconf.enable = true;
 
-services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
-services.tumbler.enable = true; # File Managers - Thumbnail support for images
+  programs.waybar = {
+    enable = true;
+    package = unstable.waybar;
+  };
 
-# programs.thunar = {
-#   enable = true;
-#   plugins = with pkgs.xfce; [
-#     thunar-archive-plugin
-#       thunar-volman
-#   ];
-# };
+  services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
+  services.tumbler.enable = true; # File Managers - Thumbnail support for images
 
-environment.sessionVariables = {
-  WLR_NO_HARDWARE_CURSORS = "1";
-  NIXOS_OZONE_WL = "1";
-};
+  # programs.thunar = {
+  #   enable = true;
+  #   plugins = with pkgs.xfce; [
+  #     thunar-archive-plugin
+  #       thunar-volman
+  #   ];
+  # };
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
 }

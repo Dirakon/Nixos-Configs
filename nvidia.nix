@@ -7,19 +7,19 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-in 
+in
 {
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     glxinfo
     nvidia-offload
     vulkan-loader
-    ]; 
+  ];
 
-  hardware.opengl.enable = true; 
-  hardware.opengl.extraPackages = with pkgs;[ 
+  hardware.opengl.enable = true;
+  hardware.opengl.extraPackages = with pkgs;[
     rocm-opencl-icd
     rocm-opencl-runtime
-    mesa.drivers 
+    mesa.drivers
   ];
 
   hardware.opengl.driSupport = true;
@@ -27,16 +27,16 @@ in
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-# for using specific driver version:
-# .beta.overrideAttrs {
-#   version = "550.40.07";
-# t#he new driver
-#   src = pkgs.fetchurl
-#   {
-#     url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
-#     sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
-#   };
-# };    
+    # for using specific driver version:
+    # .beta.overrideAttrs {
+    #   version = "550.40.07";
+    # t#he new driver
+    #   src = pkgs.fetchurl
+    #   {
+    #     url = "https://download.nvidia.com/XFree86/Linux-x86_64/550.40.07/NVIDIA-Linux-x86_64-550.40.07.run";
+    #     sha256 = "sha256-KYk2xye37v7ZW7h+uNJM/u8fNf7KyGTZjiaU03dJpK0=";
+    #   };
+    # };    
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = true;

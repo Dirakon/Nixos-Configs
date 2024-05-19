@@ -4,6 +4,8 @@ MAX_LENGTH=50
 
 cd ~/.dotfiles || exit
 
+nix fmt
+
 # Check if the -a argument is passed
 if [[ $1 == "-a" ]]; then
     # Append to the last commit without changing its message
