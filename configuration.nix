@@ -23,6 +23,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.btop
     unstable.fastfetch
     unstable.fuseiso
+    unstable.imagemagick
 
 # Nix stuff
     nix-index
@@ -54,7 +55,6 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.ark
     unstable.openutau # Eh...
     unstable.inkscape
-    # unstable.mate.engrampa
 
 # Dev
     unstable.jetbrains.rider
@@ -67,6 +67,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
 # QT theming (cleanup!)
     libsForQt5.kio
     libsForQt5.kio-extras
+    unstable.kio-admin
     unstable.kdePackages.kio
     unstable.kdePackages.kio-extras
     libsForQt5.kdegraphics-thumbnailers

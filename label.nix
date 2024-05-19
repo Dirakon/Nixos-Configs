@@ -1,1 +1,1 @@
-"Try_fix_qt_again"
+"Try_setup_sddm_with_theme"
