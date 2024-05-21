@@ -66,22 +66,22 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
 
     # QT theming (cleanup!)
     # libsForQt5.kio
-    # libsForQt5.kio-extras
+    libsForQt5.kio-extras
     unstable.kio-admin
     unstable.kio-fuse
     unstable.kdePackages.kio
     unstable.kdePackages.kio-extras
     libsForQt5.kdegraphics-thumbnailers
-    unstable.kdePackages.kdegraphics-thumbnailers
-    # libsForQt5.breeze-qt5
-    # unstable.breeze
+    libsForQt5.ffmpegthumbs # shold thumbnail videos but not working ...
+    unstable.kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
+    # unstable.kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
     unstable.kdePackages.breeze-icons
 
     # Gnome theming (cleanup!)
     #gnome.adwaita-icon-theme
     # gnome-icon-theme
     catppuccin-gtk
-    breeze-icons
+    # breeze-icons
 
     # For playing audio
     sox # 'play' command
