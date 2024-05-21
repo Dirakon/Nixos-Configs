@@ -65,14 +65,15 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     rustc
 
     # QT theming (cleanup!)
-    libsForQt5.kio
-    libsForQt5.kio-extras
+    # libsForQt5.kio
+    # libsForQt5.kio-extras
     unstable.kio-admin
+    unstable.kio-fuse
     unstable.kdePackages.kio
     unstable.kdePackages.kio-extras
     libsForQt5.kdegraphics-thumbnailers
     unstable.kdePackages.kdegraphics-thumbnailers
-    libsForQt5.breeze-qt5
+    # libsForQt5.breeze-qt5
     # unstable.breeze
     unstable.kdePackages.breeze-icons
 

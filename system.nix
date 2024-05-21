@@ -29,6 +29,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
 
 
 
+
   # networking.wg-quick.interfaces = {
   #     wg0 = {
   #       configFile = "/.secrets/wg0.conf";
@@ -73,6 +74,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   services.upower.enable = true;
 
   sound.enable = true;
+  security.polkit.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
