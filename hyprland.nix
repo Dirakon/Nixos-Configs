@@ -1,40 +1,4 @@
 self@{ config, pkgs, unstable, ... }:
-let
-  sddmBackgroundPath = pkgs.stdenv.mkDerivation {
-    name = "sddm-wallpaper";
-    # Using static system file instead of placing relatively to config to not push images to repo
-    src = /sddm.jpg;
-    buildCommand = ''
-      mkdir -p $out
-      cp $src $out/sddm.jpg
-      ls $out
-    '';
-  };
-in
-let
-  sddmTheme = pkgs.stdenv.mkDerivation {
-    name = "sddm-theme";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "MarianArlt";
-      repo = "sddm-chili";
-      rev = "6516d50176c3b34df29003726ef9708813d06271";
-      sha256 = "036fxsa7m8ymmp3p40z671z163y6fcsa9a641lrxdrw225ssq5f3";
-    };
-    buildInputs = [
-      sddmBackgroundPath
-    ];
-
-    installPhase = ''
-      mkdir -p $out
-      cp -R ./* $out/
-      rm $out/assets/background.jpg
-      echo $sddmBackgroundPath
-      cp $buildInputs/sddm.jpg $out/assets/background.jpg
-    '';
-  };
-
-in
 {
 
   # Configure keymap in X11
@@ -53,9 +17,6 @@ in
   # services.xserver.displayManager.gdm.wayland = true;
 
   # SDDM
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "${sddmTheme}";
 
   # To try to use CLI-only login. Didn't check with NVIDIA tho.
   # services.xserver.displayManager.startx.enable = true;
@@ -91,10 +52,6 @@ in
     # folderpreview # Only in AUR 
     evince
     poppler
-
-    # kde components for sddm theme and such
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
 
     # polkit
     lxqt.lxqt-policykit

@@ -40,6 +40,8 @@
 
           ./configuration.nix
 
+          ./sddm.nix
+
           ./hyprland.nix
 
           ./nvidia.nix
