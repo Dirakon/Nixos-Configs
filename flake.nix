@@ -40,9 +40,9 @@
 
           ./configuration.nix
 
-          ./sddm.nix
+          ./display-manager.nix
 
-          ./hyprland.nix
+          ./desktop-environment.nix
 
           ./nvidia.nix
 

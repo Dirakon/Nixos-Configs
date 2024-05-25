@@ -1,26 +1,5 @@
 self@{ config, pkgs, unstable, ... }:
 {
-
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us,ru";
-    xkb.variant = "";
-    videoDrivers = [ "nvidia" ];
-    exportConfiguration = true;
-    # Supposedly fixes intel-vulkan?
-    # deviceSection = '' Option      "DRI"    "3" '';
-  };
-
-  # GDM
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.displayManager.gdm.wayland = true;
-
-  # SDDM
-
-  # To try to use CLI-only login. Didn't check with NVIDIA tho.
-  # services.xserver.displayManager.startx.enable = true;
-
   services.displayManager.sessionPackages = [ unstable.hyprland ];
 
   # allow brightness editing thru file
@@ -58,21 +37,7 @@ self@{ config, pkgs, unstable, ... }:
     lxqt.lxqt-policykit
   ];
 
-  services.dbus.enable = true;
-  xdg.autostart.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   security.pam.services.swaylock = { };
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
 
   programs.hyprland.enable = true;
   programs.hyprland.package = unstable.hyprland;
@@ -80,16 +45,10 @@ self@{ config, pkgs, unstable, ... }:
   programs.xwayland.enable = true;
   programs.nm-applet.enable = true;
 
-  # Some config service for DEs and WMs??? Not sure
-  programs.dconf.enable = true;
-
   programs.waybar = {
     enable = true;
     package = unstable.waybar;
   };
-
-  services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
-  services.tumbler.enable = true; # File Managers - Thumbnail support for images
 
   # programs.thunar = {
   #   enable = true;
@@ -101,6 +60,5 @@ self@{ config, pkgs, unstable, ... }:
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
   };
 }

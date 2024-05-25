@@ -93,6 +93,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
 
   # set default browser for Electron apps
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  # use wayland for electron
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   virtualisation.docker.enable = true;
 
