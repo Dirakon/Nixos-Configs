@@ -1,1 +1,1 @@
-"Some_kde_cleanup_hopefully"
+"Some_hypr_customizations"

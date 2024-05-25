@@ -46,6 +46,7 @@ self@{ config, pkgs, unstable, ... }:
     unstable.volumeicon
     unstable.libappindicator
     unstable.libappindicator-gtk3
+    unstable.swayidle
 
     # Thumbnailer stuff for File Managers
     ffmpegthumbnailer
