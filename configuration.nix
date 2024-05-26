@@ -24,6 +24,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.fastfetch
     unstable.fuseiso
     unstable.imagemagick
+    parted
+    gparted
 
     # Nix stuff
     nix-index
@@ -35,7 +37,10 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full
     winetricks
+
+    # Further gaming
     jstest-gtk
+    unstable.joystickwake
 
     # Actual apps
     mpv
