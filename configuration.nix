@@ -26,6 +26,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.imagemagick
     parted
     gparted
+    unstable.tldr
 
     # Nix stuff
     nix-index
@@ -65,6 +66,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.jetbrains.rider
     unstable.jetbrains.pycharm-professional
     unstable.jetbrains.webstorm
+    unstable.neovide
     gnumake
     cargo
     rustc
