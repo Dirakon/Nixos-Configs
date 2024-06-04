@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, ... }:
+self@{ config, pkgs, boot, unstable, stable, agenix, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -48,7 +48,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     obsidian
     telegram-desktop
     lutris
-    blender
+    stable.blender
     unstable.ktorrent
     unstable.okular
     unstable.dolphin
@@ -59,7 +59,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.kdenlive
     unstable.filelight
     unstable.ark
-    unstable.openutau # Eh...
+    # unstable.openutau # Eh...
     unstable.inkscape
 
     # Dev

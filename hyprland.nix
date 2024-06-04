@@ -1,6 +1,6 @@
-self@{ config, pkgs, unstable, ... }:
+self@{ config, pkgs, stable, unstable, ... }:
 {
-  services.displayManager.sessionPackages = [ unstable.hyprland ];
+  services.displayManager.sessionPackages = [ stable.hyprland ];
 
   # allow brightness editing thru file
   services.udev.extraRules = ''
@@ -40,7 +40,7 @@ self@{ config, pkgs, unstable, ... }:
   security.pam.services.swaylock = { };
 
   programs.hyprland.enable = true;
-  programs.hyprland.package = unstable.hyprland;
+  programs.hyprland.package = stable.hyprland;
   programs.hyprland.xwayland.enable = true;
   programs.xwayland.enable = true;
   programs.nm-applet.enable = true;
