@@ -124,6 +124,12 @@
 
   services.swayosd.enable = true;
 
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.

@@ -1,1 +1,1 @@
-"Rerevert_hypr_and_try_new_nvidia"
+"Add_zoxide"
