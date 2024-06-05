@@ -1,1 +1,1 @@
-"hyprland_revert_ver"
+"Fix_default_term_for_dolphin"

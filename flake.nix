@@ -15,14 +15,17 @@
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    stable.url = "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; # "github:NixOS/nixpkgs/release-24.05";
+    hypr-pkgs.url = "github:NixOS/nixpkgs/52c9b9d1b1cde669fea26505c3911ccd03e814c5";
+    # .38 - ??? - 52c9b9d1b1cde669fea26505c3911ccd03e814c5
+    # .39 - bad focus on games? - "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; 
+    # .40 - unstable - "github:NixOS/nixpkgs/release-24.05";
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nixpkgs, stable, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, ... }:
     #let overlays = [nix-gl.overlay]; in
     let system = "x86_64-linux"; in
     {
@@ -30,7 +33,7 @@
       nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
         system = "${system}";
         specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
-        specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
+        specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
         specialArgs.nix-gl = nix-gl;
         specialArgs.nix-alien = nix-alien.packages."${system}";
         specialArgs.agenix = agenix.packages."${system}";

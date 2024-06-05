@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, stable, agenix, ... }:
+self@{ config, pkgs, boot, unstable, agenix, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -48,10 +48,11 @@ self@{ config, pkgs, boot, unstable, stable, agenix, ... }:
     obsidian
     telegram-desktop
     lutris
-    stable.blender
+    unstable.blender
     unstable.ktorrent
     unstable.okular
     unstable.dolphin
+    unstable.konsole # For dolphin integrated term
     gwenview
     kitty
     unstable.krita

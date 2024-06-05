@@ -1,6 +1,6 @@
-self@{ config, pkgs, stable, unstable, ... }:
+self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 {
-  services.displayManager.sessionPackages = [ stable.hyprland ];
+  services.displayManager.sessionPackages = [ hypr-pkgs.hyprland ];
 
   # allow brightness editing thru file
   services.udev.extraRules = ''
@@ -10,13 +10,13 @@ self@{ config, pkgs, stable, unstable, ... }:
   environment.systemPackages = with pkgs; [
     swww # wallpapers
     xdg-desktop-portal-gtk # For file-picker
-    unstable.xdg-desktop-portal-hyprland # For everything but file picker
+    hypr-pkgs.xdg-desktop-portal-hyprland # For everything but file picker
     unstable.wl-clipboard
-    unstable.mako # For notifications
+    hypr-pkgs.mako # For notifications
     libnotify
     unstable.rofi-wayland # App launcher + clipboard manager frontend
     unstable.cliphist # Clipboard manager backend
-    unstable.hyprshot # Screenshots
+    hypr-pkgs.hyprshot # Screenshots
     swaylock # Lock screen
     networkmanagerapplet
     unstable.swayosd # Frontend for +-brigthness, +-sound
@@ -40,14 +40,14 @@ self@{ config, pkgs, stable, unstable, ... }:
   security.pam.services.swaylock = { };
 
   programs.hyprland.enable = true;
-  programs.hyprland.package = stable.hyprland;
+  programs.hyprland.package = hypr-pkgs.hyprland;
   programs.hyprland.xwayland.enable = true;
   programs.xwayland.enable = true;
   programs.nm-applet.enable = true;
 
   programs.waybar = {
     enable = true;
-    package = stable.waybar;
+    package = hypr-pkgs.waybar;
   };
 
   # programs.thunar = {

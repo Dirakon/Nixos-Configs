@@ -1,0 +1,8 @@
+[General]
+TerminalApplication=kitty
+
+[KDE]
+ShowDeleteCommand=false
+
+[PreviewSettings]
+MaximumRemoteSize=0
