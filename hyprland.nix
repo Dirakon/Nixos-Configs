@@ -47,7 +47,7 @@ self@{ config, pkgs, stable, unstable, ... }:
 
   programs.waybar = {
     enable = true;
-    package = unstable.waybar;
+    package = stable.waybar;
   };
 
   # programs.thunar = {

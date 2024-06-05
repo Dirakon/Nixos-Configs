@@ -1,1 +1,1 @@
-"kde_theming_again"
+"hyprland_revert_ver"
