@@ -154,17 +154,17 @@
     },
     "hypr-pkgs": {
       "locked": {
-        "lastModified": 1713639312,
-        "narHash": "sha256-cNu/v00DaycWmxRbBgwKtrYmiTE/4CTeNOYBSLMPnSY=",
+        "lastModified": 1715799246,
+        "narHash": "sha256-LX9iV+7ggJ9Lm8tyyaXlJQJLClHojJwDhjqVziggnAg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "52c9b9d1b1cde669fea26505c3911ccd03e814c5",
+        "rev": "656721f99caa8df33cdbb3cd7910848658489026",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "52c9b9d1b1cde669fea26505c3911ccd03e814c5",
+        "rev": "656721f99caa8df33cdbb3cd7910848658489026",
         "type": "github"
       }
     },

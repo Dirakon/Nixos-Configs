@@ -15,10 +15,12 @@
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hypr-pkgs.url = "github:NixOS/nixpkgs/52c9b9d1b1cde669fea26505c3911ccd03e814c5";
-    # .38 - ??? - 52c9b9d1b1cde669fea26505c3911ccd03e814c5
-    # .39 - bad focus on games? - "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; 
+
+    hypr-pkgs.url = "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026";
+    # .38 - ??? - "github:NixOS/nixpkgs/52c9b9d1b1cde669fea26505c3911ccd03e814c5"; 
+    # .39 - ??? - "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; 
     # .40 - unstable - "github:NixOS/nixpkgs/release-24.05";
+
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
