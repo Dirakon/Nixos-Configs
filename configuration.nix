@@ -27,6 +27,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     parted
     gparted
     unstable.tldr
+    arp-scan
 
     # Nix stuff
     nix-index
@@ -84,6 +85,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
     # unstable.kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
     unstable.kdePackages.breeze-icons
+    kdePackages.qtscxml
+    libsForQt5.qt5.qtscxml
 
     # Gnome theming (cleanup!)
     #gnome.adwaita-icon-theme

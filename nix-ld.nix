@@ -105,5 +105,9 @@ self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
     libdrm
     mesa
     libxkbcommon
+
+    # qt stuff?
+    kdePackages.qtscxml
+    libsForQt5.qt5.qtscxml
   ];
 }
