@@ -26,8 +26,8 @@ in
   hardware.opengl.driSupport32Bit = true;
 
   hardware.nvidia = {
-    # package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
-    package = config.boot.kernelPackages.nvidiaPackages.beta; # beta
+    package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
+    # package = config.boot.kernelPackages.nvidiaPackages.beta; # beta
     # for using specific driver version:
     # .beta.overrideAttrs {
     #   version = "550.40.07";
