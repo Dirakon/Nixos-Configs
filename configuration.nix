@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, ... }:
+self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -63,6 +63,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
     unstable.ark
     # unstable.openutau # Eh...
     unstable.inkscape
+    godot
+    ultim-mc
 
     # Dev
     unstable.jetbrains.rider

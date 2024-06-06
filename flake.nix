@@ -27,9 +27,12 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     agenix.url = "github:ryantm/agenix";
+
+    godot.url = "./programs/godot/";
+    ultim-mc.url = "./programs/ultim-mc/";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, ... }:
     #let overlays = [nix-gl.overlay]; in
     let system = "x86_64-linux"; in
     {
@@ -39,6 +42,8 @@
         specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
         specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
         specialArgs.nix-gl = nix-gl;
+        specialArgs.godot = godot.godot."${system}";
+        specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
         specialArgs.nix-alien = nix-alien.packages."${system}";
         specialArgs.agenix = agenix.packages."${system}";
 
