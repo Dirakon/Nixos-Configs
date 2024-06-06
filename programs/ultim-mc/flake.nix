@@ -47,6 +47,7 @@
               jdk
 
               libsForQt5.qt5.qtscxml
+              pkgs.libsForQt5.qt5.qtwayland
             ];
 
 
@@ -82,6 +83,7 @@
                 jdk
 
                 libsForQt5.qt5.qtscxml
+                libsForQt5.qt5.qtwayland
               ];
 
               dontAutoPatchelf = false;
@@ -107,12 +109,13 @@
           in
           {
             ultim-mc = ultim-mc-wrapped;
-            #  devShell = pkgs.mkShell {
-            #    buildInputs = [
-            #      ultim-mc-wrapped
-            #      pkgs.jdk
-            #    ];
-            #  };
+            devShell = pkgs.mkShell {
+              buildInputs = [
+                ultim-mc-wrapped
+                pkgs.jdk
+                pkgs.libsForQt5.qt5.qtwayland
+              ];
+            };
           });
     in
     let

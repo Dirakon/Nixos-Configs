@@ -48,21 +48,21 @@
         specialArgs.agenix = agenix.packages."${system}";
 
         modules = [
-          ./hardware-configuration.nix
+          ./modules/hardware-configuration.nix
 
-          ./system.nix
+          ./modules/system.nix
 
-          ./configuration.nix
+          ./modules/configuration.nix
 
-          ./display-manager.nix
+          ./modules/display-manager.nix
 
-          ./desktop-environment.nix
+          ./modules/desktop-environment.nix
 
-          ./nvidia.nix
+          ./modules/nvidia.nix
 
-          ./nix-ld.nix
+          ./modules/nix-ld.nix
 
-          ./flatpak.nix
+          ./modules/flatpak.nix
 
           agenix.nixosModules.default
 
@@ -76,7 +76,7 @@
             home-manager.useUserPackages = true;
 
 
-            home-manager.users.dirakon = import ./home.nix;
+            home-manager.users.dirakon = import ./modules/home.nix;
           }
         ];
       };
