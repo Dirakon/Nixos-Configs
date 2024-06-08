@@ -63,10 +63,10 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
     unstable.ark
     # unstable.openutau # Eh...
     unstable.inkscape
-    godot
     ultim-mc
 
     # Dev
+    godot
     unstable.jetbrains.rider
     unstable.jetbrains.pycharm-professional
     unstable.jetbrains.webstorm
@@ -87,8 +87,8 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
     unstable.kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
     # unstable.kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
     unstable.kdePackages.breeze-icons
-    kdePackages.qtscxml
-    libsForQt5.qt5.qtscxml
+    # kdePackages.qtscxml
+    # libsForQt5.qt5.qtscxml
 
     # Gnome theming (cleanup!)
     #gnome.adwaita-icon-theme
@@ -98,10 +98,6 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
 
     # For playing audio
     sox # 'play' command
-
-    # For verilog development
-    verilog
-    gtkwave
   ];
 
   # set default browser for Electron apps

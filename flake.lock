@@ -155,11 +155,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PJ+fTOQlZsXZB35w2bkwU3H0Ju9eNewQmRZh4i2hNEE=",
-        "path": "/nix/store/gb4cmwzn7kpcpivfir1flvqhqdbml6wf-source/programs/godot",
+        "path": "/nix/store/cf384869z9n79kiyr2nv5cckyr100pmq-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/gb4cmwzn7kpcpivfir1flvqhqdbml6wf-source/programs/godot",
+        "path": "/nix/store/cf384869z9n79kiyr2nv5cckyr100pmq-source/programs/godot",
         "type": "path"
       }
     },
@@ -505,12 +505,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-DRM9p/0Ad12ValZtx85HzT4RFPvcXkSSEVHKXn99X2I=",
-        "path": "/nix/store/gb4cmwzn7kpcpivfir1flvqhqdbml6wf-source/programs/ultim-mc",
+        "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
+        "path": "/nix/store/cf384869z9n79kiyr2nv5cckyr100pmq-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/gb4cmwzn7kpcpivfir1flvqhqdbml6wf-source/programs/ultim-mc",
+        "path": "/nix/store/cf384869z9n79kiyr2nv5cckyr100pmq-source/programs/ultim-mc",
         "type": "path"
       }
     },
