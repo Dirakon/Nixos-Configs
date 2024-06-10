@@ -122,6 +122,12 @@
     };
   };
 
+  services.kdeconnect = {
+    enable = true;
+    package = pkgs.kdePackages.kdeconnect-kde;
+    indicator = true;
+  };
+
   services.swayosd.enable = true;
 
 

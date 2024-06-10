@@ -39,6 +39,13 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   # Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
   # networking.firewall.checkReversePath = false; 
   networking.firewall = {
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+      { from = 25565; to = 25565; } # Minecraft
+    ];
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
     #  if packets are still dropped, they will show up in dmesg
     logReversePathDrops = true;
     #  wireguard trips rpfilter up
@@ -51,6 +58,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
       ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN || true
     '';
   };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
