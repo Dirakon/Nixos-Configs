@@ -155,11 +155,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PJ+fTOQlZsXZB35w2bkwU3H0Ju9eNewQmRZh4i2hNEE=",
-        "path": "/nix/store/4y4ijaw1z1ci0z4gpfbdxvvnlajd2db7-source/programs/godot",
+        "path": "/nix/store/4zlcpfa8fwhhgv8zdkg41c49biwvcdfz-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/4y4ijaw1z1ci0z4gpfbdxvvnlajd2db7-source/programs/godot",
+        "path": "/nix/store/4zlcpfa8fwhhgv8zdkg41c49biwvcdfz-source/programs/godot",
         "type": "path"
       }
     },
@@ -379,16 +379,16 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1717631151,
-        "narHash": "sha256-yQAQzSJlHWSrmDIYnaLMU+YroQ6P8H3VlEUCvbHOndo=",
+        "lastModified": 1717974879,
+        "narHash": "sha256-GTO3C88+5DX171F/gVS3Qga/hOs/eRMxPFpiHq2t+D8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9949e790549c09e9332288e2a52a99587b88532d",
+        "rev": "c7b821ba2e1e635ba5a76d299af62821cbcb09f3",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "release-24.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -419,8 +419,25 @@
         "nix-alien": "nix-alien",
         "nix-gl": "nix-gl",
         "nixpkgs": "nixpkgs_6",
+        "stable": "stable",
         "ultim-mc": "ultim-mc",
         "unstable": "unstable"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1718127891,
+        "narHash": "sha256-lJMtINwge5VwCdpeLIWKfePmT5Qk09sX2tvSq2Mjumw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9fec85e1ab9a6cb54ca3c0f3424c92a1573576ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "systems": {
@@ -506,26 +523,26 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/4y4ijaw1z1ci0z4gpfbdxvvnlajd2db7-source/programs/ultim-mc",
+        "path": "/nix/store/4zlcpfa8fwhhgv8zdkg41c49biwvcdfz-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/4y4ijaw1z1ci0z4gpfbdxvvnlajd2db7-source/programs/ultim-mc",
+        "path": "/nix/store/4zlcpfa8fwhhgv8zdkg41c49biwvcdfz-source/programs/ultim-mc",
         "type": "path"
       }
     },
     "unstable": {
       "locked": {
-        "lastModified": 1717631151,
-        "narHash": "sha256-yQAQzSJlHWSrmDIYnaLMU+YroQ6P8H3VlEUCvbHOndo=",
+        "lastModified": 1717974879,
+        "narHash": "sha256-GTO3C88+5DX171F/gVS3Qga/hOs/eRMxPFpiHq2t+D8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9949e790549c09e9332288e2a52a99587b88532d",
+        "rev": "c7b821ba2e1e635ba5a76d299af62821cbcb09f3",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "release-24.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }

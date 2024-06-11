@@ -1,4 +1,4 @@
-self@{ config, pkgs, unstable, ... }:
+self@{ config, pkgs, unstable, hypr-pkgs, ... }:
 {
 
   imports = [ ./hyprland.nix ];
@@ -18,9 +18,9 @@ self@{ config, pkgs, unstable, ... }:
   xdg.autostart.enable = true;
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true; # Temporary disable for hyprland
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+      hypr-pkgs.xdg-desktop-portal-gtk
     ];
   };
 

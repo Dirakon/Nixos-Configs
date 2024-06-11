@@ -8,24 +8,24 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
   '';
 
   environment.systemPackages = with pkgs; [
-    swww # wallpapers
-    xdg-desktop-portal-gtk # For file-picker
+    hypr-pkgs.swww # wallpapers
+    hypr-pkgs.xdg-desktop-portal-gtk # For file-picker
     hypr-pkgs.xdg-desktop-portal-hyprland # For everything but file picker
-    unstable.wl-clipboard
+    hypr-pkgs.wl-clipboard
     hypr-pkgs.mako # For notifications
-    libnotify
-    unstable.rofi-wayland # App launcher + clipboard manager frontend
-    unstable.cliphist # Clipboard manager backend
+    hypr-pkgs.rofi-wayland # App launcher + clipboard manager frontend
+    hypr-pkgs.cliphist # Clipboard manager backend
     hypr-pkgs.hyprshot # Screenshots
-    swaylock # Lock screen
-    networkmanagerapplet
-    unstable.swayosd # Frontend for +-brigthness, +-sound
+    hypr-pkgs.swaylock # Lock screen
+    hypr-pkgs.swayosd # Frontend for +-brigthness, +-sound
+    hypr-pkgs.swayidle
+    libnotify
     playerctl # Play controls
+    networkmanagerapplet
     unstable.pavucontrol
     unstable.volumeicon
     unstable.libappindicator
     unstable.libappindicator-gtk3
-    unstable.swayidle
 
     # Thumbnailer stuff for File Managers
     ffmpegthumbnailer
@@ -43,6 +43,7 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
   programs.hyprland.package = hypr-pkgs.hyprland;
   programs.hyprland.xwayland.enable = true;
   programs.xwayland.enable = true;
+  programs.xwayland.package = hypr-pkgs.xwayland;
   programs.nm-applet.enable = true;
 
   programs.waybar = {

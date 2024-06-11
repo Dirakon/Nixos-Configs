@@ -13,9 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
-    unstable.url = "github:NixOS/nixpkgs/release-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    #unstable.url = "github:NixOS/nixpkgs/release-24.05";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    stable.url = "github:NixOS/nixpkgs/release-24.05";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
     # .37 - ??? - 
@@ -32,7 +34,7 @@
     ultim-mc.url = "./programs/ultim-mc/";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, stable, ... }:
     #let overlays = [nix-gl.overlay]; in
     let system = "x86_64-linux"; in
     {
@@ -40,6 +42,7 @@
       nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
         system = "${system}";
         specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
+        specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
         specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
         specialArgs.nix-gl = nix-gl;
         specialArgs.godot = godot.godot."${system}";

@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
+self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -46,7 +46,7 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, ... }:
 
     # Actual apps
     mpv
-    obsidian
+    stable.obsidian # Fixing weird hash mismatch error
     telegram-desktop
     lutris
     unstable.blender
