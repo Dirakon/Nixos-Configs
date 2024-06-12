@@ -41,7 +41,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   networking.firewall = {
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-      { from = 25565; to = 25565; } # Minecraft
+      # { from = 25565; to = 25565; } # Minecraft
     ];
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect

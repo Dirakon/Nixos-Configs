@@ -26,7 +26,7 @@ else
     fi
 
     LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
-    printf "$LABEL_NIX_CONTENT" > label.nix
+    printf "$LABEL_NIX_CONTENT" > ./modules/label.nix
 
 
     git add .
