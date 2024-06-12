@@ -155,11 +155,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PJ+fTOQlZsXZB35w2bkwU3H0Ju9eNewQmRZh4i2hNEE=",
-        "path": "/nix/store/yr530gfv8j0g5q81zwzlwkk6z3g4g982-source/programs/godot",
+        "path": "/nix/store/i6bdvlll1nxpfavsf7wgkj4ql3hfsdkf-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/yr530gfv8j0g5q81zwzlwkk6z3g4g982-source/programs/godot",
+        "path": "/nix/store/i6bdvlll1nxpfavsf7wgkj4ql3hfsdkf-source/programs/godot",
         "type": "path"
       }
     },
@@ -191,11 +191,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717525419,
-        "narHash": "sha256-5z2422pzWnPXHgq2ms8lcCfttM0dz+hg+x1pCcNkAws=",
+        "lastModified": 1718141734,
+        "narHash": "sha256-cA+6l8ZCZ7MXGijVuY/1f55+wF/RT4PlTR9+g4bx86w=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a7117efb3725e6197dd95424136f79147aa35e5b",
+        "rev": "892f76bd0aa09a0f7f73eb41834b8a904b6d0fad",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
     },
     "hypr-pkgs": {
       "locked": {
-        "lastModified": 1717633060,
-        "narHash": "sha256-0ssxosGXQtxN5D2O5HfTts0PYitK+r2jyG8y3DKAKqw=",
+        "lastModified": 1718215494,
+        "narHash": "sha256-mDJyQBpH6fgP3quyHr+y33oylSwkuRbC3hBneswFaGE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4b55bfc815d996f3fc3cba96e343c744156ccf73",
+        "rev": "24c487d48e2766e8ee0bc0480dbf27166e952240",
         "type": "github"
       },
       "original": {
@@ -379,11 +379,11 @@
     },
     "nixpkgs_6": {
       "locked": {
-        "lastModified": 1717974879,
-        "narHash": "sha256-GTO3C88+5DX171F/gVS3Qga/hOs/eRMxPFpiHq2t+D8=",
+        "lastModified": 1718160348,
+        "narHash": "sha256-9YrUjdztqi4Gz8n3mBuqvCkMo4ojrA6nASwyIKWMpus=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c7b821ba2e1e635ba5a76d299af62821cbcb09f3",
+        "rev": "57d6973abba7ea108bac64ae7629e7431e0199b6",
         "type": "github"
       },
       "original": {
@@ -426,11 +426,11 @@
     },
     "stable": {
       "locked": {
-        "lastModified": 1718127891,
-        "narHash": "sha256-lJMtINwge5VwCdpeLIWKfePmT5Qk09sX2tvSq2Mjumw=",
+        "lastModified": 1718215494,
+        "narHash": "sha256-mDJyQBpH6fgP3quyHr+y33oylSwkuRbC3hBneswFaGE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9fec85e1ab9a6cb54ca3c0f3424c92a1573576ca",
+        "rev": "24c487d48e2766e8ee0bc0480dbf27166e952240",
         "type": "github"
       },
       "original": {
@@ -523,21 +523,21 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/yr530gfv8j0g5q81zwzlwkk6z3g4g982-source/programs/ultim-mc",
+        "path": "/nix/store/i6bdvlll1nxpfavsf7wgkj4ql3hfsdkf-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/yr530gfv8j0g5q81zwzlwkk6z3g4g982-source/programs/ultim-mc",
+        "path": "/nix/store/i6bdvlll1nxpfavsf7wgkj4ql3hfsdkf-source/programs/ultim-mc",
         "type": "path"
       }
     },
     "unstable": {
       "locked": {
-        "lastModified": 1717974879,
-        "narHash": "sha256-GTO3C88+5DX171F/gVS3Qga/hOs/eRMxPFpiHq2t+D8=",
+        "lastModified": 1718160348,
+        "narHash": "sha256-9YrUjdztqi4Gz8n3mBuqvCkMo4ojrA6nASwyIKWMpus=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c7b821ba2e1e635ba5a76d299af62821cbcb09f3",
+        "rev": "57d6973abba7ea108bac64ae7629e7431e0199b6",
         "type": "github"
       },
       "original": {

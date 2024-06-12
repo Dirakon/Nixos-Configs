@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
+self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -18,15 +18,15 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
     lshw
     zip
     unzip
-    unstable.ripgrep
-    unstable.htop # just to test that unstabling works properly
-    unstable.btop
-    unstable.fastfetch
-    unstable.fuseiso
-    unstable.imagemagick
+    ripgrep
+    htop # just to test that unstabling works properly
+    btop
+    fastfetch
+    fuseiso
+    imagemagick
     parted
     gparted
-    unstable.tldr
+    tldr
     arp-scan
 
     # Nix stuff
@@ -42,35 +42,35 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
 
     # Further gaming
     jstest-gtk
-    unstable.joystickwake
+    joystickwake
 
     # Actual apps
     mpv
-    stable.obsidian # Fixing weird hash mismatch error
+    obsidian # Fixing weird hash mismatch error
     telegram-desktop
     lutris
-    unstable.blender
-    unstable.ktorrent
-    unstable.okular
-    unstable.dolphin
-    unstable.konsole # For dolphin integrated term
+    blender
+    ktorrent
+    okular
+    dolphin
+    konsole # For dolphin integrated term
     gwenview
     kitty
-    unstable.krita
-    unstable.loupe
-    unstable.kdenlive
-    unstable.filelight
-    unstable.ark
-    # unstable.openutau # Eh...
-    unstable.inkscape
+    krita
+    loupe
+    kdenlive
+    filelight
+    ark
+    # openutau # Eh...
+    inkscape
     ultim-mc
 
     # Dev
     godot
-    unstable.jetbrains.rider
-    unstable.jetbrains.pycharm-professional
-    unstable.jetbrains.webstorm
-    unstable.neovide
+    jetbrains.rider
+    jetbrains.pycharm-professional
+    jetbrains.webstorm
+    neovide
     gnumake
     cargo
     rustc
@@ -78,15 +78,15 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
     # QT theming (cleanup!)
     # libsForQt5.kio
     libsForQt5.kio-extras
-    unstable.kio-admin
-    unstable.kio-fuse
-    unstable.kdePackages.kio
-    unstable.kdePackages.kio-extras
+    kio-admin
+    kio-fuse
+    kdePackages.kio
+    kdePackages.kio-extras
     libsForQt5.kdegraphics-thumbnailers
     libsForQt5.ffmpegthumbs # shold thumbnail videos but not working ...
-    unstable.kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
-    # unstable.kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
-    unstable.kdePackages.breeze-icons
+    kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
+    # kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
+    kdePackages.breeze-icons
     # kdePackages.qtscxml
     # libsForQt5.qt5.qtscxml
 
@@ -121,7 +121,7 @@ self@{ config, pkgs, boot, unstable, agenix, godot, ultim-mc, stable, ... }:
   # programs.file-roller.enable = true; # Trying Ark for now
 
   programs.neovim.enable = true;
-  programs.neovim.package = unstable.neovim-unwrapped;
+  programs.neovim.package = pkgs.neovim-unwrapped;
 
   programs.firefox.enable = true;
   #programs.firefox.package = pkgs.firefox-bin;
