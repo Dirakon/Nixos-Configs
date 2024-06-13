@@ -9,7 +9,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   services.tlp.enable = true;
   # use 'performance' on AC if needed
   services.tlp.settings = {
-    CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+    # CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
   };
 
@@ -46,8 +47,8 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   networking.firewall = {
     allowedTCPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
-      # { from = 25565; to = 25565; } # Minecraft
     ];
+    allowedTCPPorts = [ 25565 ]; # Minecraft
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
     ];

@@ -98,6 +98,11 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
 
     # For playing audio
     sox # 'play' command
+
+    # Performance
+    undervolt
+    s-tui
+    stress
   ];
 
   # set default browser for Electron apps
