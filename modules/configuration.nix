@@ -100,7 +100,6 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
     sox # 'play' command
 
     # Performance
-    undervolt
     s-tui
     stress
   ];

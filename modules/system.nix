@@ -9,9 +9,13 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   services.tlp.enable = true;
   # use 'performance' on AC if needed
   services.tlp.settings = {
-    # CPU_SCALING_GOVERNOR_ON_AC = "powersave";
-    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_SCALING_GOVERNOR_ON_AC = "powersave";
+    # CPU_SCALING_GOVERNOR_ON_AC = "performance";
     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  };
+  services.undervolt = {
+    enable = true;
+    temp = 60;
   };
 
   # Bootloader.
