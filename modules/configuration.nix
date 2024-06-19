@@ -131,4 +131,9 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
   #programs.firefox.package = pkgs.firefox-bin;
 
   services.geoclue2.enable = true;
+
+  services.zerotierone = {
+    enable = true;
+    port = 25566;
+  };
 }
