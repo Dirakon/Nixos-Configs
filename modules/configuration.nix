@@ -102,6 +102,9 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
     # Performance
     s-tui
     stress
+
+    # For DE interaction with gamepad
+    makima
   ];
 
   # set default browser for Electron apps

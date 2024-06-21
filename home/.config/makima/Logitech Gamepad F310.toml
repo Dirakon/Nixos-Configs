@@ -1,0 +1,16 @@
+[remap]
+BTN_START-BTN_TL = ["KEY_LEFTMETA", "KEY_PAGEDOWN"] #Start + left_trigger to change workspaces
+BTN_START-BTN_TR = ["KEY_LEFTMETA", "KEY_PAGEUP"] #Start + right_trigger to change workspaces
+
+[commands]
+BTN_START-BTN_WEST = ["playerctl play-pause"] #Start + Y to play/pause media
+
+
+[settings]
+GRAB_DEVICE = "false" #gain exclusivity on the device
+CUSTOM_MODIFIERS = "BTN_START"
+
+
+# Doesn't work on my controller sadface
+# LSTICK = "cursor" #cursor, scroll, bind or disabled
+# 16_BIT_AXIS = "true" #necessary for Xbox controllers and Switch joycons, use false for other controllers
