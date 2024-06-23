@@ -70,10 +70,13 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
     jetbrains.rider
     jetbrains.pycharm-professional
     jetbrains.webstorm
+
+    # For nvim
     neovide
     gnumake
     cargo
     rustc
+    gcc
 
     # QT theming (cleanup!)
     # libsForQt5.kio
@@ -105,6 +108,9 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
 
     # For DE interaction with gamepad
     makima
+
+    # For cool self-made DE stuff
+    gtkdialog
   ];
 
   # set default browser for Electron apps

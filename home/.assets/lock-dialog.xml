@@ -1,0 +1,19 @@
+<window title="Lock confirmation" decorated="true" resizable="false" image-name="~/.assets/no-charger.xpm">
+	<vbox>
+		<hseparator></hseparator>
+		<text justify="2">
+			<label>"Charger is not connected. Are you sure?"</label>
+		</text>
+		<hseparator></hseparator>
+		<hbox>
+			<button>
+				<label>"Cancel"</label>
+				<action>EXIT:cancel</action>
+			</button>
+			<button can-default="true" has-default="true">
+				<label>"Lock"</label>
+				<action>EXIT:lock</action>
+			</button>
+		</hbox>
+	</vbox>
+	</window>
