@@ -13,17 +13,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
     #nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
     #unstable.url = "github:NixOS/nixpkgs/release-24.05";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    unstable.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
     stable.url = "github:NixOS/nixpkgs/release-24.05";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
     # .37 - ??? - 
     # .38 - ??? - "github:NixOS/nixpkgs/52c9b9d1b1cde669fea26505c3911ccd03e814c5"; # Gpu flakey
     # .39 - ??? - "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; # Gpu flakey
-    # .40 - unstable - "github:NixOS/nixpkgs/release-24.05"; # Gpu works fine
+    # .40 - unstable - "github:NixOS/nixpkgs/4b55bfc815d996f3fc3cba96e343c744156ccf73"; # Gpu works fine
 
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nix-alien.url = "github:thiagokokada/nix-alien";

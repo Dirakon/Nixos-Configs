@@ -135,8 +135,9 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
 
   services.geoclue2.enable = true;
 
-  services.zerotierone = {
-    enable = true;
-    port = 25566;
-  };
+  #  services.zerotierone = {
+  #    package = stable.zerotierone;
+  #    enable = true;
+  #    port = 25566;
+  #  };
 }
