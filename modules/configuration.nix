@@ -39,6 +39,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, stable, ... }:
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full
     winetricks
+    (python3.pkgs.toPythonApplication python3Packages.sandwine)
 
     # Further gaming
     jstest-gtk

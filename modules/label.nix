@@ -1,1 +1,1 @@
-"Setup_smarter_locking_via_gtkdialog"
+"Install_sandwine"
