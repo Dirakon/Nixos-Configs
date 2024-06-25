@@ -127,6 +127,24 @@
         "type": "github"
       }
     },
+    "flake-utils_5": {
+      "inputs": {
+        "systems": "systems_6"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flatpaks": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
@@ -155,11 +173,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jFX0AeG0j1H+4jO7FDihiME+gyhrR+w/5LZx/JfygM4=",
-        "path": "/nix/store/h6k9ihi8lkrdrpzncrnmy538z7rwp7z8-source/programs/godot",
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/h6k9ihi8lkrdrpzncrnmy538z7rwp7z8-source/programs/godot",
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/godot",
         "type": "path"
       }
     },
@@ -395,6 +413,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1719122173,
+        "narHash": "sha256-aEMsNUtqSPwn6l+LIZ/rX++nCgun3E9M3uSZs6Rwb7w=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "906320ae02f769d13a646eb3605a9821df0d6ea2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1717555607,
         "narHash": "sha256-WZ1s48OODmRJ3DHC+I/DtM3tDRuRJlNqMvxvAPTD7ec=",
         "owner": "NixOS",
@@ -419,9 +453,26 @@
         "nix-alien": "nix-alien",
         "nix-gl": "nix-gl",
         "nixpkgs": "nixpkgs_6",
+        "sandwine": "sandwine",
         "stable": "stable",
         "ultim-mc": "ultim-mc",
         "unstable": "unstable"
+      }
+    },
+    "sandwine": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": "nixpkgs_7"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/sandwine",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/sandwine",
+        "type": "path"
       }
     },
     "stable": {
@@ -515,19 +566,34 @@
         "type": "github"
       }
     },
+    "systems_6": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "ultim-mc": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_7"
+        "flake-utils": "flake-utils_5",
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/h6k9ihi8lkrdrpzncrnmy538z7rwp7z8-source/programs/ultim-mc",
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/h6k9ihi8lkrdrpzncrnmy538z7rwp7z8-source/programs/ultim-mc",
+        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/ultim-mc",
         "type": "path"
       }
     },

@@ -55,6 +55,7 @@ window#waybar.hidden {
 #network,
 #clock,
 #cpu,
+#custom-vpn,
 #tray {
 	border-radius: 4px;
 	margin: 6px 3px;
@@ -84,6 +85,9 @@ window#waybar.hidden {
 }
 #battery {
 	background-color: #f38ba8;
+}
+#custom-vpn {
+	background-color: #d42b61;
 }
 @keyframes blink {
 to {

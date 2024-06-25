@@ -32,9 +32,10 @@
 
     godot.url = "./programs/godot/";
     ultim-mc.url = "./programs/ultim-mc/";
+    sandwine.url = "./programs/sandwine/";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, stable, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, sandwine, stable, ... }:
     #let overlays = [nix-gl.overlay]; in
     let system = "x86_64-linux"; in
     {
@@ -47,6 +48,7 @@
         specialArgs.nix-gl = nix-gl;
         specialArgs.godot = godot.godot."${system}";
         specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
+        specialArgs.sandwine = sandwine.sandwine."${system}";
         specialArgs.nix-alien = nix-alien.packages."${system}";
         specialArgs.agenix = agenix.packages."${system}";
 

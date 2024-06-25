@@ -1,1 +1,1 @@
-"Install_sandwine"
+"Setup_vpn_widget_for_waybar"
