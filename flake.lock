@@ -173,11 +173,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jFX0AeG0j1H+4jO7FDihiME+gyhrR+w/5LZx/JfygM4=",
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/godot",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/godot",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/godot",
         "type": "path"
       }
     },
@@ -224,11 +224,11 @@
     },
     "hypr-pkgs": {
       "locked": {
-        "lastModified": 1719145550,
-        "narHash": "sha256-K0i/coxxTEl30tgt4oALaylQfxqbotTSNb1/+g+mKMQ=",
+        "lastModified": 1719406840,
+        "narHash": "sha256-f28HAjj6t6Uioe6KavnYvTC63VzO8+leRqRSIZM9qUU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e4509b3a560c87a8d4cb6f9992b8915abf9e36d8",
+        "rev": "a67ad0452b1ecd013ed3c0e2d4a50cabca396db7",
         "type": "github"
       },
       "original": {
@@ -467,11 +467,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/sandwine",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/sandwine",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -589,11 +589,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/ultim-mc",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/89nwx250sfkjdwfrf4y3w17z7ycw1gxb-source/programs/ultim-mc",
+        "path": "/nix/store/hns504909aipf30pmf497xcpiqyqs2jl-source/programs/ultim-mc",
         "type": "path"
       }
     },

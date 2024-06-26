@@ -1,1 +1,1 @@
-"Setup_vpn_widget_for_waybar"
+"Add_window_swallowing"

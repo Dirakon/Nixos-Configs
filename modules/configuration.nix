@@ -57,6 +57,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     konsole # For dolphin integrated term
     gwenview
     kitty
+    alacritty
     krita
     loupe
     kdenlive
