@@ -13,6 +13,7 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
     unzip
     ripgrep
     htop
+    ncdu
 
     # Nix stuff
     nh
@@ -23,8 +24,8 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 
   virtualisation.docker.enable = true;
 
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
+  #programs.fish.enable = true;
+  #users.defaultUserShell = pkgs.fish;
 
   zramSwap = {
     enable = true;
