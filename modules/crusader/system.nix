@@ -1,7 +1,5 @@
-self@{ config, pkgs, boot, unstable, agenix, ... }:
+self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
 {
-  system.nixos.label = import ./label.nix;
-
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
 
@@ -22,7 +20,7 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixbox"; # Define your hostname.
+  networking.hostName = "${hostname}";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -134,6 +132,4 @@ self@{ config, pkgs, boot, unstable, agenix, ... }:
   # networking.firewall.enable = false;
 
   system.stateVersion = "23.11"; # Install value! Don't change
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

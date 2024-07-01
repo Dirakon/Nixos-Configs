@@ -1,40 +1,7 @@
 self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
 {
-  users.users.dirakon = {
-    isNormalUser = true;
-    description = "dirakon";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
-    packages = with pkgs; [ ];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    # some cli tools
-    vim
-    wget
-    git
-    lshw
-    zip
-    unzip
-    ripgrep
-    htop # just to test that unstabling works properly
-    btop
-    fastfetch
-    fuseiso
-    imagemagick
-    parted
-    gparted
-    tldr
-    arp-scan
-
-    # Nix stuff
-    nix-index
-    nh
-    agenix.default
-    docker-compose
-
     # Wine
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full
@@ -72,13 +39,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     jetbrains.rider
     jetbrains.pycharm-professional
     jetbrains.webstorm
-
-    # For nvim
     neovide
-    gnumake
-    cargo
-    rustc
-    gcc
 
     # QT theming (cleanup!)
     # libsForQt5.kio
@@ -101,13 +62,6 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     catppuccin-gtk
     # breeze-icons
 
-    # For playing audio
-    sox # 'play' command
-
-    # Performance
-    s-tui
-    stress
-
     # For DE interaction with gamepad
     makima
 
@@ -120,32 +74,10 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  virtualisation.docker.enable = true;
-
-  programs.fish.enable = true;
-  # To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
-  programs.command-not-found.enable = false;
-  users.defaultUserShell = pkgs.fish;
-
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
-  programs.java.enable = true;
-
-  # Archive app
-  # programs.file-roller.enable = true; # Trying Ark for now
-
-  programs.neovim.enable = true;
-  programs.neovim.package = pkgs.neovim-unwrapped;
-
   programs.firefox.enable = true;
+  # use if (for some reason) firefox ain't compiled
   #programs.firefox.package = pkgs.firefox-bin;
-
-  services.geoclue2.enable = true;
-
-  #  services.zerotierone = {
-  #    package = stable.zerotierone;
-  #    enable = true;
-  #    port = 25566;
-  #  };
 }

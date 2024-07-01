@@ -14,7 +14,7 @@
     };
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
     nixpkgs.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
-    #nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    #nixpkgs.url = "github:Failed to mount /usr/bin.NixOS/nixpkgs/release-24.05";
     #unstable.url = "github:NixOS/nixpkgs/release-24.05";
     unstable.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
     stable.url = "github:NixOS/nixpkgs/release-24.05";
@@ -33,58 +33,63 @@
     godot.url = "./programs/godot/";
     ultim-mc.url = "./programs/ultim-mc/";
     sandwine.url = "./programs/sandwine/";
+
+    disko.url = "github:nix-community/disko";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, sandwine, stable, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, sandwine, stable, disko, ... }:
     #let overlays = [nix-gl.overlay]; in
-    let system = "x86_64-linux"; in
+    let commonModules = [ ./modules/common/default.nix ]; in
     {
-      formatter."${system}" = nixpkgs.legacyPackages."${system}".nixpkgs-fmt;
-      nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
-        system = "${system}";
-        specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
-        specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
-        specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
-        specialArgs.nix-gl = nix-gl;
-        specialArgs.godot = godot.godot."${system}";
-        specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
-        specialArgs.sandwine = sandwine.sandwine."${system}";
-        specialArgs.nix-alien = nix-alien.packages."${system}";
-        specialArgs.agenix = agenix.packages."${system}";
+      # TODO: for each unique system if I ever will actually have mutltiple
+      formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixpkgs-fmt;
+      nixosConfigurations.crusader =
+        let system = "x86_64-linux"; in
+        nixpkgs.lib.nixosSystem {
+          system = "${system}";
+          specialArgs.hostname = "crusader";
+          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
+          specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
+          specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
+          specialArgs.nix-gl = nix-gl;
+          specialArgs.godot = godot.godot."${system}";
+          specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
+          specialArgs.sandwine = sandwine.sandwine."${system}";
+          specialArgs.nix-alien = nix-alien.packages."${system}";
+          specialArgs.agenix = agenix.packages."${system}";
 
-        modules = [
-          ./modules/hardware-configuration.nix
+          modules = [
+            ./modules/crusader/default.nix
 
-          ./modules/system.nix
+            agenix.nixosModules.default
 
-          ./modules/configuration.nix
+            flatpaks.nixosModules.default
 
-          ./modules/display-manager.nix
-
-          ./modules/desktop-environment.nix
-
-          ./modules/nvidia.nix
-
-          ./modules/nix-ld.nix
-
-          ./modules/flatpak.nix
-
-          agenix.nixosModules.default
-
-          flatpaks.nixosModules.default
-
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            # make home-manager as a module of nixos
+            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
 
-            home-manager.users.dirakon = import ./modules/home.nix;
-          }
-        ];
-      };
+              home-manager.users.dirakon = import ./modules/crusader/home.nix;
+            }
+          ] ++ commonModules;
+        };
+
+      nixosConfigurations.guide =
+
+        let system = "x86_64-linux"; in
+        nixpkgs.lib.nixosSystem {
+          system = "${system}";
+          specialArgs.hostname = "guide";
+
+          modules = [
+            ./modules/guide/default.nix
+
+            disko.nixosModules.disko
+          ] ++ commonModules;
+        };
     };
-
 }
