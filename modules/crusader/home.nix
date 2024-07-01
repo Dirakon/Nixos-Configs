@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hostname, ... }:
 
 {
   home.username = "dirakon";
@@ -7,7 +7,7 @@
   # https://github.com/nix-community/home-manager/issues/3849
   home.file."dumpDirectlyToHomeFolder" = {
     target = "fake/..";
-    source = ./../../home;
+    source = ./../../home/${hostname};
     recursive = true;
   };
   home.file.".scripts/nix-command-not-found" = {

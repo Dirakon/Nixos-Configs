@@ -44,10 +44,11 @@
       # TODO: for each unique system if I ever will actually have mutltiple
       formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixpkgs-fmt;
       nixosConfigurations.crusader =
+        let hostname = "crusader"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
           system = "${system}";
-          specialArgs.hostname = "crusader";
+          specialArgs.hostname = "${hostname}";
           specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
           specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
@@ -59,7 +60,7 @@
           specialArgs.agenix = agenix.packages."${system}";
 
           modules = [
-            ./modules/crusader/default.nix
+            ./modules/${hostname}/default.nix
 
             agenix.nixosModules.default
 
@@ -73,22 +74,40 @@
               home-manager.useUserPackages = true;
 
 
-              home-manager.users.dirakon = import ./modules/crusader/home.nix;
+              home-manager.users.dirakon =
+                ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
+                  inherit config pkgs;
+                  hostname = hostname;
+                });
             }
           ] ++ commonModules;
         };
 
       nixosConfigurations.guide =
-
+        let hostname = "guide"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
           system = "${system}";
-          specialArgs.hostname = "guide";
+          specialArgs.hostname = "${hostname}";
 
           modules = [
-            ./modules/guide/default.nix
+            ./modules/${hostname}/default.nix
 
             disko.nixosModules.disko
+
+            # make home-manager as a module of nixos
+            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.dirakon =
+                ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
+                  inherit config pkgs;
+                  hostname = hostname;
+                });
+            }
           ] ++ commonModules;
         };
     };
