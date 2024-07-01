@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
+self@{ config, nix, pkgs, boot, stable, hostname, modulesPath, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -38,6 +38,8 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
     # gitMinimal # Temporary
     curl
   ];
+
+  nix.settings.trusted-users = ["dirakon"];
 
   networking.hostName = "${hostname}";
 }
