@@ -13,7 +13,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    #nixpkgs.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
     #nixpkgs.url = "github:Failed to mount /usr/bin.NixOS/nixpkgs/release-24.05";
     #unstable.url = "github:NixOS/nixpkgs/release-24.05";
     unstable.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
@@ -103,7 +104,7 @@
               home-manager.useUserPackages = true;
 
               home-manager.users.dirakon =
-                ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
+                ({ config, pkgs, ... }: import ./home/${hostname}/home.nix {
                   inherit config pkgs;
                   hostname = hostname;
                 });

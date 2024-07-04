@@ -23,6 +23,9 @@ self@{ config, nix, pkgs, boot, stable, hostname, modulesPath, ... }:
   };
 
   services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  # https://discourse.nixos.org/t/security-advisory-openssh-cve-2024-6387-regresshion-update-your-servers-asap/48220
+  services.openssh.settings.LoginGraceTime = 0;
 
   disko.devices.disk.disk1.device = "/dev/vda";
 
@@ -39,7 +42,11 @@ self@{ config, nix, pkgs, boot, stable, hostname, modulesPath, ... }:
     curl
   ];
 
-  nix.settings.trusted-users = ["dirakon"];
+  nix.settings.trusted-users = [ "dirakon" ];
+
+  # https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/6
+  # https://discourse.nixos.org/t/remote-nixos-rebuild-sudo-askpass-problem/28830/22
+  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "${hostname}";
 }

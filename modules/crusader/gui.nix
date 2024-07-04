@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
+self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, ... }:
 {
 
   environment.systemPackages = with pkgs; [
@@ -36,9 +36,10 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
 
     # Dev
     godot
-    jetbrains.rider
-    jetbrains.pycharm-professional
-    jetbrains.webstorm
+
+    unstable.jetbrains.rider
+    unstable.jetbrains.pycharm-professional
+    unstable.jetbrains.webstorm
     neovide
 
     # QT theming (cleanup!)
