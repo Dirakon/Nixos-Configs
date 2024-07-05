@@ -191,11 +191,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jFX0AeG0j1H+4jO7FDihiME+gyhrR+w/5LZx/JfygM4=",
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/godot",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/godot",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/godot",
         "type": "path"
       }
     },
@@ -227,15 +227,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1720045378,
-        "narHash": "sha256-lmE7B+QXw7lWdBu5GQlUABSpzPk3YBb9VbV+IYK5djk=",
+        "lastModified": 1720042825,
+        "narHash": "sha256-A0vrUB6x82/jvf17qPCpxaM+ulJnD8YZwH9Ci0BsAzE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0a30138c694ab3b048ac300794c2eb599dc40266",
+        "rev": "e1391fb22e18a36f57e6999c7a9f966dc80ac073",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "release-24.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -502,11 +503,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/sandwine",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/sandwine",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -624,11 +625,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/ultim-mc",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/snyaqz4j979fhzlmmg3sjf208wwak8h7-source/programs/ultim-mc",
+        "path": "/nix/store/v1vp1mlkj1y2lf6ydbwhq119w4msgsbr-source/programs/ultim-mc",
         "type": "path"
       }
     },

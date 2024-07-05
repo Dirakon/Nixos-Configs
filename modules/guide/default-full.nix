@@ -37,5 +37,23 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
     size = 2 * 1024; # 2 gigs
   }];
 
+
+  services.openssh.ports = [55932];
+
+  networking.firewall.allowedTCPPorts = 
+  [
+    55932
+    80
+    443
+    22
+  ];
+  networking.firewall.allowedUDPPorts = 
+  [
+    55932
+    80
+    443
+    22
+  ];
+
   networking.hostName = "${hostname}";
 }
