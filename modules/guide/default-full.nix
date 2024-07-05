@@ -55,5 +55,14 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
     22
   ];
 
+
+
+
+  services.xray.enable = true;
+  # TODO: encrypted settings file
+  services.xray.settings = {};
+
+
+
   networking.hostName = "${hostname}";
 }
