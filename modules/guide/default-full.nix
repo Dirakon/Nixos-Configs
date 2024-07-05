@@ -20,6 +20,8 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 
     # Docker stuff
     docker-compose
+
+    xray
   ];
 
   virtualisation.docker.enable = true;
@@ -38,29 +40,30 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
   }];
 
 
-  services.openssh.ports = [55932];
+  services.openssh.ports = [ 55932 ];
 
-  networking.firewall.allowedTCPPorts = 
-  [
-    55932
-    80
-    443
-    22
-  ];
-  networking.firewall.allowedUDPPorts = 
-  [
-    55932
-    80
-    443
-    22
-  ];
+  networking.firewall.allowedTCPPorts =
+    [
+      55932
+      80
+      443
+      22
+    ];
+  networking.firewall.allowedUDPPorts =
+    [
+      55932
+      80
+      443
+      22
+    ];
 
 
 
 
   services.xray.enable = true;
+  services.xray.package = pkgs.xray;
   # TODO: encrypted settings file
-  services.xray.settings = {};
+  services.xray.settingsFile = "/xray.json";
 
 
 

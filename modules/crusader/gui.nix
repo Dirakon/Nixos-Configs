@@ -33,6 +33,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, 
     # openutau # Eh...
     inkscape
     ultim-mc
+    nekoray
 
     # Dev
     godot
