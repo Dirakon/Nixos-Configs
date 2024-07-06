@@ -14,7 +14,6 @@
         "memory",
         "battery",
         "pulseaudio",
-	"custom/vpn",
         "tray"
     ],
     "wlr/taskbar": {
@@ -91,7 +90,6 @@
     	"tooltip": false,
     	"format": "{}",
     	"return-type": "json",
-	"on-click": "nmcli c down wg0 || nmcli c up wg0",
     	"exec": "~/.scripts/get-vpn-status.fish"
     },
     "battery": {

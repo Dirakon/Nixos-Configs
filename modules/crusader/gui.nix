@@ -79,7 +79,17 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
+  # TODO: migrate to home-manager managed one, with extensions
   programs.firefox.enable = true;
   # use if (for some reason) firefox ain't compiled
   #programs.firefox.package = pkgs.firefox-bin;
+
+  services.suwayomi-server = {
+    enable = true;
+
+    settings = {
+      server.port = 46571;
+      server.enableSystemTray = true;
+    };
+  };
 }

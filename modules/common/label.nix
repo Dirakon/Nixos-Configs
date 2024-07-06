@@ -1,1 +1,1 @@
-"Try_setup_secret_managment"
+"Add_suwayomi"
