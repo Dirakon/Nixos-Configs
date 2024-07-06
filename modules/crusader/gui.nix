@@ -38,9 +38,9 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, 
     # Dev
     godot
 
-    unstable.jetbrains.rider
-    unstable.jetbrains.pycharm-professional
-    unstable.jetbrains.webstorm
+    jetbrains.rider
+    jetbrains.pycharm-professional
+    jetbrains.webstorm
     neovide
 
     # QT theming (cleanup!)

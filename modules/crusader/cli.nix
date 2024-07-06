@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
+self@{ config, pkgs, boot, godot, ultim-mc, sandwine, stable, ... }:
 {
   environment.systemPackages = with pkgs; [
     # some cli tools
@@ -22,8 +22,8 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     # Nix stuff
     nix-index
     nh
-    agenix.default
     docker-compose
+    sops
 
     # For nvim-(mason?). Think about getting read of these dependenices
     gnumake
@@ -38,6 +38,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     s-tui
     stress
   ];
+
   virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
@@ -48,8 +49,12 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
   # I don't remember why I need it
   programs.java.enable = true;
 
-  programs.neovim.enable = true;
-  programs.neovim.package = pkgs.neovim-unwrapped;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    package = pkgs.neovim-unwrapped;
+  };
+  environment.variables.EDITOR = "nvim";
 
   # For gammastep
   services.geoclue2.enable = true;

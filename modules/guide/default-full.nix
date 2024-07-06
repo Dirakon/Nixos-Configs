@@ -1,6 +1,7 @@
 self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 {
   imports = [
+    ./xray.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -20,8 +21,6 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 
     # Docker stuff
     docker-compose
-
-    xray
   ];
 
   virtualisation.docker.enable = true;
@@ -57,13 +56,6 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
       22
     ];
 
-
-
-
-  services.xray.enable = true;
-  services.xray.package = pkgs.xray;
-  # TODO: encrypted settings file
-  services.xray.settingsFile = "/xray.json";
 
 
 

@@ -29,7 +29,7 @@
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
-    agenix.url = "github:ryantm/agenix";
+    sops-nix.url = "github:Mic92/sops-nix";
 
     godot.url = "./programs/godot/";
     ultim-mc.url = "./programs/ultim-mc/";
@@ -38,7 +38,7 @@
     disko.url = "github:nix-community/disko";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, agenix, godot, ultim-mc, sandwine, stable, disko, ... }:
+  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, sops-nix, godot, ultim-mc, sandwine, stable, disko, ... }:
     #let overlays = [nix-gl.overlay]; in
     let commonModules = [ ./modules/common/default.nix ]; in
     {
@@ -58,12 +58,12 @@
           specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
           specialArgs.sandwine = sandwine.sandwine."${system}";
           specialArgs.nix-alien = nix-alien.packages."${system}";
-          specialArgs.agenix = agenix.packages."${system}";
+          specialArgs.sops-nix = sops-nix.packages."${system}";
 
           modules = [
             ./modules/${hostname}/default.nix
 
-            agenix.nixosModules.default
+            sops-nix.nixosModules.default
 
             flatpaks.nixosModules.default
 
@@ -95,6 +95,8 @@
             ./modules/${hostname}/default.nix
 
             disko.nixosModules.disko
+
+            sops-nix.nixosModules.default
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
