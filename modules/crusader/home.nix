@@ -52,38 +52,27 @@
     libsForQt5.qt5ct
   ];
 
-  # Attempt at GTK theme
   gtk = {
     enable = true;
     theme = {
-      # TODO: fix theme
-      name = "catppuccin-mocha-blue-compact+default"; #"catppuccin-frappe-standard-lavender-dark";
-      package = (pkgs.catppuccin-gtk.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "gtk";
-          rev = "v1.0.3";
-          fetchSubmodules = true;
-          hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
-        };
-
-        postUnpack = "";
-      }).override {
-        accents = [ "lavender" ];
-        size = "standard";
-        tweaks = [ "rimless" "black" ];
-        variant = "frappe";
-      };
+      #name = "Arc-Dark";
+      #package = pkgs.arc-theme;
+      name = "Adwaita-dark";
+      package = pkgs.gnome.gnome-themes-extra;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "frappe";
-        accent = "lavender";
-      };
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
-    font = {
-      name = "Roboto";
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
     };
   };
 
