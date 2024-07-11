@@ -2,6 +2,9 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 {
   imports = [
     ./xray.nix
+    ./nginx.nix
+    ./network.nix
+    ./sops.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -40,23 +43,6 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 
 
   services.openssh.ports = [ 55932 ];
-
-  networking.firewall.allowedTCPPorts =
-    [
-      55932
-      80
-      443
-      22
-    ];
-  networking.firewall.allowedUDPPorts =
-    [
-      55932
-      80
-      443
-      22
-    ];
-
-
 
 
   networking.hostName = "${hostname}";

@@ -23,9 +23,6 @@ self@{ config, nix, pkgs, boot, stable, hostname, networking, ... }:
   };
 
   # TODO: separate file
-  networking.firewall = { };
-
-  # TODO: separate file
   services.couchdb = {
     enable = true;
     package = pkgs.couchdb3;

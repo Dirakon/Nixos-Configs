@@ -32,18 +32,6 @@ in
 let
   baseConfigPart =
     {
-
-      sops.secrets."guide_ip" = {
-        mode = "0444";
-      };
-      # TODO move out to sops if repeatead -- START
-      sops.defaultSopsFile = ../../secrets/secrets.yaml;
-      sops.defaultSopsFormat = "yaml";
-
-      sops.age.keyFile = "/home/dirakon/.config/sops/age/keys.txt";
-      # TODO move out to sops if repeatead -- END
-
-
       # TODO: nginx to proxy towards "hiding_ip", among other things
       # TODO: different keys for sops - one for crusader, one for guide
       # TODO: also similary assemble nekoray client config
@@ -60,7 +48,7 @@ let
             },
             "inbounds": [
               {
-                "listen": "${config.sops.placeholder."guide_ip"}",
+                "listen": "${config.sops.placeholder."guide/ip"}",
                 "port": 443,
                 "protocol": "vless",
                 "tag": "reality-in",

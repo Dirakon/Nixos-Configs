@@ -9,6 +9,8 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.swww # wallpapers
+    hypr-pkgs.hyprpaper
+    hypr-pkgs.hyprlock
     hypr-pkgs.xdg-desktop-portal-gtk # For file-picker
     hypr-pkgs.xdg-desktop-portal-hyprland # For everything but file picker
     hypr-pkgs.wl-clipboard
@@ -38,6 +40,7 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
   ];
 
   security.pam.services.swaylock = { };
+  security.pam.services.hyprlock = { };
 
   programs.hyprland.enable = true;
   programs.hyprland.package = hypr-pkgs.hyprland;
