@@ -1,4 +1,12 @@
-self@{ config, pkgs, boot, godot, ultim-mc, sandwine, stable, ... }:
+self@{ config
+, pkgs
+, boot
+, godot
+, ultim-mc
+, sandwine
+, stable
+, ...
+}:
 {
   environment.systemPackages = with pkgs; [
     # some cli tools

@@ -1,4 +1,14 @@
-self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, ... }:
+self@{ config
+, pkgs
+, boot
+, agenix
+, godot
+, ultim-mc
+, sandwine
+, unstable
+, stable
+, ...
+}:
 {
 
   environment.systemPackages = with pkgs; [
@@ -34,6 +44,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, unstable, stable, 
     inkscape
     ultim-mc
     nekoray
+    electrum
 
     # Dev
     godot

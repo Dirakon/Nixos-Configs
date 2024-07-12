@@ -148,11 +148,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jFX0AeG0j1H+4jO7FDihiME+gyhrR+w/5LZx/JfygM4=",
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/godot",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/godot",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/godot",
         "type": "path"
       }
     },
@@ -455,11 +455,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/sandwine",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/sandwine",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -581,11 +581,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/ultim-mc",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qcyjbl5rw1waaif1l2mdw8jw4gwphbk0-source/programs/ultim-mc",
+        "path": "/nix/store/sjmhyk519mynl4a0cpbfy51y3dbhl6d0-source/programs/ultim-mc",
         "type": "path"
       }
     },

@@ -1,4 +1,8 @@
-{ config, pkgs, hostname, ... }:
+{ config
+, pkgs
+, hostname
+, ...
+}:
 
 {
   home.username = "dirakon";
@@ -19,6 +23,8 @@
 
     executable = true;
   };
+
+  imports = [ ./helix.nix ];
 
   # Attempt at QT theme
   #  qt.enable = true;
@@ -129,7 +135,6 @@
   };
 
   services.swayosd.enable = true;
-
 
   programs.zoxide = {
     enable = true;

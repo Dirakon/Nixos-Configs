@@ -116,7 +116,7 @@ vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
-vim.opt.breakindent = true
+vim.opt.breakindent = true -- Every wrapped line will continue visually indented (same amount of space as the beginning of that line)
 
 -- Save undo history
 vim.opt.undofile = true
@@ -126,7 +126,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes' -- git-like file changes and stuff
 
 -- Decrease update time
 vim.opt.updatetime = 250
