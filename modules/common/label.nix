@@ -1,1 +1,1 @@
-"Working_on_replacing_jetbrains_stuff"
+"separate_wallpapers_scripts_to_allow_better_usage"

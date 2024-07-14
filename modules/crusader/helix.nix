@@ -9,7 +9,7 @@
     settings = {
       theme = "term16_dark";
       editor = {
-        bufferline = "multiple";
+        bufferline = "always";
         lsp.display-messages = true;
         indent-guides.render = true;
         cursorline = true;
@@ -40,6 +40,7 @@
       keys = {
         normal = {
           # TODO: v-split for other apps instead? tmux? check https://github.com/luccahuguet/zellij
+          # some problems would include helix not refreshing on external changes (need to do :refresh(-all))
           "C-g" = [
             # over current window
             ":new"
