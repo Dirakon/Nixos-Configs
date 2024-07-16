@@ -9,11 +9,16 @@
     settings = {
       theme = "term16_dark";
       editor = {
+        mouse = false;
         bufferline = "always";
         lsp.display-messages = true;
         indent-guides.render = true;
         cursorline = true;
-        cursorcolumn = true;
+        line-number = "relative";
+        cursorcolumn = false;
+        cursor-shape = {
+          insert = "bar";
+        };
         color-modes = true;
         statusline = {
           left = [
