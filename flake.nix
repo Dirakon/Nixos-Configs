@@ -34,13 +34,14 @@
     godot.url = "./programs/godot/";
     ultim-mc.url = "./programs/ultim-mc/";
     sandwine.url = "./programs/sandwine/";
+    nixCats.url = "./programs/nvim/";
 
     disko.url = "github:nix-community/disko";
   };
 
-  outputs = inputs@{ self, nixpkgs, hypr-pkgs, home-manager, flatpaks, nix-alien, nix-gl, unstable, sops-nix, godot, ultim-mc, sandwine, stable, disko, ... }:
+  outputs = inputs:
     #let overlays = [nix-gl.overlay]; in
-    let commonModules = [ ./modules/common/default.nix ]; in
+    let commonModules = [ ./modules/common/default.nix ]; in with inputs;
     {
       # TODO: for each unique system if I ever will actually have mutltiple
       formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixpkgs-fmt;
@@ -54,11 +55,14 @@
           specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
           specialArgs.nix-gl = nix-gl;
+          specialArgs.nix-alien = nix-alien.packages."${system}";
+          specialArgs.sops-nix = sops-nix.packages."${system}";
+
           specialArgs.godot = godot.godot."${system}";
           specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
           specialArgs.sandwine = sandwine.sandwine."${system}";
-          specialArgs.nix-alien = nix-alien.packages."${system}";
-          specialArgs.sops-nix = sops-nix.packages."${system}";
+          specialArgs.nixCats = nixCats.packages."${system}";
+
 
           modules = [
             ./modules/${hostname}/default.nix

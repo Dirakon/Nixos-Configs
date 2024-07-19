@@ -5,6 +5,7 @@ self@{ config
 , ultim-mc
 , sandwine
 , stable
+, nixCats
 , ...
 }:
 {
@@ -34,10 +35,12 @@ self@{ config
     sops
 
     # For nvim-(mason?). Think about getting read of these dependenices
-    gnumake
-    cargo
-    rustc
-    gcc
+    # gnumake
+    # cargo
+    # rustc
+    # gcc
+
+    nixCats.default
 
     # For playing audio
     sox # 'play' command
@@ -57,11 +60,11 @@ self@{ config
   # I don't remember why I need it
   programs.java.enable = true;
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    package = pkgs.neovim-unwrapped;
-  };
+  # programs.neovim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  #   package = pkgs.neovim-unwrapped;
+  # };
   environment.variables.EDITOR = "nvim";
 
   # For gammastep
