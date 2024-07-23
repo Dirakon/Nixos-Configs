@@ -173,6 +173,8 @@
                 telescope-ui-select-nvim
                 plenary-nvim
                 telescope-nvim
+                omnisharp-extended-lsp-nvim
+
                 # treesitter
                 nvim-treesitter-textobjects
                 nvim-treesitter.withAllGrammars

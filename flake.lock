@@ -148,11 +148,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jFX0AeG0j1H+4jO7FDihiME+gyhrR+w/5LZx/JfygM4=",
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/godot",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/godot",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/godot",
         "type": "path"
       }
     },
@@ -278,12 +278,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-olS1+MbeAAAAXcgtenHCLCKD8J/DCQfsZAXXmu9C0II=",
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/nvim",
+        "narHash": "sha256-zrEfhD7Jgh2nJkZZO4QDqDfEQR+r6GO4CQO5QyswEz8=",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/nvim",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/nvim",
         "type": "path"
       }
     },
@@ -509,11 +509,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/sandwine",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/sandwine",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -635,11 +635,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/ultim-mc",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/kkbqkvk07aq6hmmjsgpq625cz1z21xij-source/programs/ultim-mc",
+        "path": "/nix/store/viy9xid4r2vykg95z507l7vj6i1ac95j-source/programs/ultim-mc",
         "type": "path"
       }
     },

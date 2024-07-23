@@ -1,2 +1,4 @@
+neovim-bin = "dev"
+
 [Font]
 normal = []

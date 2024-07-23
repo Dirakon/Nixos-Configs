@@ -86,7 +86,7 @@ local servers = {}
 -- servers.rust_analyzer = {},
 -- servers.tsserver = {},
 -- servers.html = { filetypes = { 'html', 'twig', 'hbs'} },
-servers.omnisharp = { cmd = {'OmniSharp'} } -- TODO: https://github.com/Hoffs/omnisharp-extended-lsp.nvim/
+servers.omnisharp = { cmd = {'OmniSharp'} }
 
 
 -- if not require('nixCatsUtils').isNixCats and nixCats('lspDebugMode') then

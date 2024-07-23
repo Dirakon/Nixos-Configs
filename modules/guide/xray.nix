@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 # TODO: make my utils and propogate?
 # https://stackoverflow.com/questions/54504685/nix-function-to-merge-attributes-records-recursively-and-concatenate-arrays
 let
@@ -38,6 +38,11 @@ let
 
       services.xray.enable = true;
       services.xray.settingsFile = "${config.sops.templates."xray.json".path}";
+
+      # systemd restart (otherwise weird failures are possible for some reason):
+      systemd.services.xray.serviceConfig.Restart = lib.mkForce "always";
+      systemd.services.xray.serviceConfig.RestartSec = lib.mkForce 5;
+
 
       sops.templates."xray.json" = {
         mode = "0444";
