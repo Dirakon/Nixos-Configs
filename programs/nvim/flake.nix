@@ -188,7 +188,7 @@
                 # other
                 nvim-lspconfig
                 fidget-nvim
-                # lualine-lsp-progress
+                lualine-lsp-progress
                 lualine-nvim
                 gitsigns-nvim
                 which-key-nvim

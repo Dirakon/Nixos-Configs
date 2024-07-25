@@ -11,8 +11,16 @@ function M.on_attach(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
-  nmap('<leader>a', vim.lsp.buf.code_action, 'code [A]ction')
+  local nvmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set({'n', 'v', 'x'}, keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  nvmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
+  nvmap('<leader>a', vim.lsp.buf.code_action, 'code [A]ction')
 
   --nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   --nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -21,7 +29,7 @@ function M.on_attach(_, bufnr)
   --nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  nvmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality

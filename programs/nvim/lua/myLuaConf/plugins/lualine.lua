@@ -24,7 +24,7 @@ require('lualine').setup({
   tabline = {
     lualine_a = { 'buffers' },
     -- if you use lualine-lsp-progress, I have mine here instead of fidget
-    -- lualine_b = { 'lsp_progress', },
+    lualine_b = { 'lsp_progress', },
     lualine_z = { 'tabs' }
   },
 })

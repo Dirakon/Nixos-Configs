@@ -1,0 +1,45 @@
+
+- git signs or whatnot? view changes
+- integrate lazygit
+- some file exporer?
+- obsidian.nvim or similar
+	- markdown-preview?
+- surround
+- fix weird behaviour on being unable to match like ' and stuff
+	- vim-matchquote? might have to finally package something (n)vim - hell nah why just one line wtf wtf wtf
+	- just use vi/va?
+- harpoon or smth for multi-window navigation?
+- try to use telescope for multi-window creation?
+- maybe cmp hotkey rewrite?
+
+
+(
+
+
+
+)
+
+
+`
+
+
+
+
+`
+
+
+'
+
+
+
+
+'
+
+
+
+"
+
+
+
+
+"
