@@ -17,8 +17,9 @@
             use-beta = true;
             stable-version = "4.2.2-stable";
             stable-hash = "sha256-T+Bz/ZnbzbpKi+p4a3ayWk3+4u+m8qoNT0D0Q9Cd4/Q=";
-            beta-version = "4.3-beta2";
-            beta-hash = "sha256-PzH8I08dcyUPfp/r/bkJAF9oZh/TU8nEvgfGVxqBwoE=";
+            #beta-version = "4.3-beta2";
+            beta-version = "4.3-rc1";
+            beta-hash = "sha256-rSPiY6LkFa3tnKxoFxyAEM051vFC+1D4wMMC+Hn96l4=";
 
             version = if use-beta then beta-version else stable-version;
             hash = if use-beta then beta-hash else stable-hash;

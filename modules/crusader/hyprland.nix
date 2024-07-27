@@ -9,7 +9,7 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.swww # wallpapers
-    hypr-pkgs.hyprpaper
+    # hypr-pkgs.hyprpaper # In the end, swww is superior
     hypr-pkgs.hyprlock
     hypr-pkgs.xdg-desktop-portal-gtk # For file-picker
     hypr-pkgs.xdg-desktop-portal-hyprland # For everything but file picker
