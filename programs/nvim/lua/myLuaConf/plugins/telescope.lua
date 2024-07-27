@@ -53,12 +53,15 @@ vim.keymap.set('n', '<leader>c', builtin.live_grep, { desc = 'find [C]ontent' })
 -- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'select [B]uffer' })
 
+vim.keymap.set('n', '<leader>t', builtin.resume, { desc = 'open previous [T]elescope picker' })
+
 
 vim.keymap.set('n', '<leader>s', builtin.lsp_document_symbols, { desc = 'search local [S]ymbols' })
 vim.keymap.set('n', '<leader>S', builtin.lsp_dynamic_workspace_symbols, { desc = 'search workspace [S]ymbols' }) -- need 'dynamic' part???
 
 vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = '[G]oto [R]eferences' })
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = '[G]oto [D]efinitions' })
+vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = '[G]oto [T]ype definitions' })
 vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = '[G]oto [I]mplementation' })
 
 -- TODO general:
