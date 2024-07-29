@@ -1,1 +1,1 @@
-"More_nvim_personalization"
+"Add_kanata"

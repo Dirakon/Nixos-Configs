@@ -3,7 +3,7 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
   users.users.dirakon = {
     isNormalUser = true;
     description = "dirakon";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "uinput" ];
     packages = with pkgs; [ ];
   };
 
@@ -25,6 +25,8 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     ./nix-ld.nix
 
     ./flatpak.nix
+
+    ./kanata.nix
   ];
 
   # Allow unfree packages

@@ -106,11 +106,6 @@ let
             ],
             "routing": {
               "rules": [
-                {
-                  "type": "field",
-                  "protocol": "bittorrent",
-                  "outboundTag": "block"
-                }
               ],
               "domainStrategy": "IPIfNonMatch"
             }
