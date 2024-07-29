@@ -1,1 +1,1 @@
-"Add_kanata"
+"Add_neovide_wrapper"
