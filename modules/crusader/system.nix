@@ -109,7 +109,7 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
   zramSwap.enable = true;
 
   fonts.packages = with pkgs; [
-    (unstable.nerdfonts) #.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts) #.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

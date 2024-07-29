@@ -24,10 +24,10 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
     libnotify
     playerctl # Play controls
     networkmanagerapplet
-    unstable.pavucontrol
-    unstable.volumeicon
-    unstable.libappindicator
-    unstable.libappindicator-gtk3
+    pavucontrol
+    volumeicon
+    libappindicator
+    libappindicator-gtk3
 
     # Thumbnailer stuff for File Managers
     ffmpegthumbnailer
