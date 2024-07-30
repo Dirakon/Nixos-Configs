@@ -148,11 +148,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-gXc0GYNg9XWlJIT/orWVTp4ig8fvKN1u8PLkTl+LICU=",
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/godot",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/godot",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/godot",
         "type": "path"
       }
     },
@@ -274,16 +274,17 @@
     "nixCats": {
       "inputs": {
         "nixCats": "nixCats_2",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_6",
+        "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Zxi72O4zVkdd7L/yO91antY8pqEWKExqkO704/5auR4=",
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/nvim",
+        "narHash": "sha256-DfSHiaECo7pvHshpEzLh/FgQPBb6l0UVmQyXp15e2WY=",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/nvim",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/nvim",
         "type": "path"
       }
     },
@@ -501,6 +502,22 @@
         "unstable": "unstable"
       }
     },
+    "roslyn-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721941596,
+        "narHash": "sha256-nUirwTjda9OK2M8Y6j2pA86yG2d0wF643YObTH3Jt8A=",
+        "owner": "seblj",
+        "repo": "roslyn.nvim",
+        "rev": "070cda8c7db75e9600b0719045c6d1f183a58c4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "seblj",
+        "repo": "roslyn.nvim",
+        "type": "github"
+      }
+    },
     "sandwine": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -509,11 +526,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/sandwine",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/sandwine",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -635,11 +652,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/ultim-mc",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/5pd2a0qlk7gv7bb7i7vb0gbxb9vd9ixr-source/programs/ultim-mc",
+        "path": "/nix/store/pvs7950r72il2a228zx3lc3zn7k9qavc-source/programs/ultim-mc",
         "type": "path"
       }
     },

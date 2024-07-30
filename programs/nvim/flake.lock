@@ -39,7 +39,24 @@
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "roslyn-nvim": "roslyn-nvim"
+      }
+    },
+    "roslyn-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721941596,
+        "narHash": "sha256-nUirwTjda9OK2M8Y6j2pA86yG2d0wF643YObTH3Jt8A=",
+        "owner": "seblj",
+        "repo": "roslyn.nvim",
+        "rev": "070cda8c7db75e9600b0719045c6d1f183a58c4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "seblj",
+        "repo": "roslyn.nvim",
+        "type": "github"
       }
     }
   },

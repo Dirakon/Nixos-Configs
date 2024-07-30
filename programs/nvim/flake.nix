@@ -39,12 +39,16 @@
     # for specific tags, branches and commits, see:
     # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#examples
 
+    roslyn-nvim = {
+      url = "github:seblj/roslyn.nvim";
+      flake = false;
+    };
   };
 
   # see :help nixCats.flake.outputs
-  outputs = { self, nixpkgs, nixCats, ... }@inputs:
+  outputs = { self, nixpkgs, nixCats, roslyn-nvim, ... }@inputs:
     let
-      utils = (nixCats).utils;
+      utils = nixCats.utils;
       luaPath = "${./.}";
       # this is flake-utils eachSystem
       forEachSystem = utils.eachSystem nixpkgs.lib.platforms.all;
@@ -87,202 +91,215 @@
       # see :help nixCats.flake.outputs.categories
       # and
       # :help nixCats.flake.outputs.categoryDefinitions.scheme
-      categoryDefinitions = { pkgs, settings, categories, name, ... }@packageDef: {
-        # to define and use a new category, simply add a new list to a set here, 
-        # and later, you will include categoryname = true; in the set you
-        # provide when you build the package using this builder function.
-        # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
+      categoryDefinitions = { pkgs, settings, categories, name, ... }@packageDef:
 
-        # propagatedBuildInputs:
-        # this section is for dependencies that should be available
-        # at BUILD TIME for plugins. WILL NOT be available to PATH
-        # However, they WILL be available to the shell 
-        # and neovim path when using nix develop
-        propagatedBuildInputs = {
-          generalBuildInputs = with pkgs; [
-          ];
-        };
+        let
+          mkNvimPlugin = src: pname:
+            pkgs.vimUtils.buildVimPlugin {
+              inherit pname src;
+              version = src.lastModifiedDate;
+            };
+        in
 
-        # lspsAndRuntimeDeps:
-        # this section is for dependencies that should be available
-        # at RUN TIME for plugins. Will be available to PATH within neovim terminal
-        # this includes LSPs
-        lspsAndRuntimeDeps = {
-          general = with pkgs; [
-            universal-ctags
-            ripgrep
-            fd
-          ];
-          neonixdev = {
-            # also you can do this.
-            inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn;
-            # nix-doc tags will make your tags much better in nix
-            # but only if you have nil as well for some reason
-          };
-          lint = with pkgs; [
-          ];
-          debug = with pkgs; [
-          ];
-          format = with pkgs; [
-          ];
-        };
 
-        # This is for plugins that will load at startup without using packadd:
-        startupPlugins = {
-          debug = with pkgs.vimPlugins; [
-            nvim-nio
-            nvim-dap
-            nvim-dap-ui
-            nvim-dap-virtual-text
-          ];
-          lint = with pkgs.vimPlugins; [
-            nvim-lint
-          ];
-          format = with pkgs.vimPlugins; [
-            conform-nvim
-          ];
-          # yes these category names are arbitrary
-          markdown = with pkgs.vimPlugins; [
-            markdown-preview-nvim
-          ];
-          general = {
-            gitPlugins = [
-              # If it was included in your flake inputs as plugins-hlargs,
-              # this would be how to add that plugin in your config.
-              # pkgs.neovimPlugins.hlargs
+        {
+          # to define and use a new category, simply add a new list to a set here, 
+          # and later, you will include categoryname = true; in the set you
+          # provide when you build the package using this builder function.
+          # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
+
+          # propagatedBuildInputs:
+          # this section is for dependencies that should be available
+          # at BUILD TIME for plugins. WILL NOT be available to PATH
+          # However, they WILL be available to the shell 
+          # and neovim path when using nix develop
+          propagatedBuildInputs = {
+            generalBuildInputs = with pkgs; [
             ];
-            vimPlugins = {
-              # you can make a subcategory
-              cmp = with pkgs.vimPlugins; [
-                # cmp stuff
-                nvim-cmp
-                luasnip
-                friendly-snippets
-                cmp_luasnip
-                cmp-buffer
-                cmp-path
-                cmp-nvim-lua
-                cmp-nvim-lsp
-                cmp-cmdline
-                cmp-nvim-lsp-signature-help
-                cmp-cmdline-history
-                lspkind-nvim
-              ];
-              general = with pkgs.vimPlugins; [
-                telescope-fzf-native-nvim
-                telescope-ui-select-nvim
-                plenary-nvim
-                telescope-nvim
-                omnisharp-extended-lsp-nvim
+          };
 
-                # treesitter
-                nvim-treesitter-textobjects
-                nvim-treesitter.withAllGrammars
-                # This is for if you only want some of the grammars
-                # (nvim-treesitter.withPlugins (
-                #   plugins: with plugins; [
-                #     nix
-                #     lua
-                #   ]
-                # ))
-                # other
-                nvim-lspconfig
-                fidget-nvim
-                lualine-lsp-progress
-                lualine-nvim
-                gitsigns-nvim
-                which-key-nvim
-                comment-nvim
-                vim-sleuth
-                vim-fugitive
-                vim-rhubarb
-                vim-repeat
-                undotree
-                nvim-surround
-                indent-blankline-nvim
-                nvim-web-devicons
-                oil-nvim
-                lazygit-nvim
+          # lspsAndRuntimeDeps:
+          # this section is for dependencies that should be available
+          # at RUN TIME for plugins. Will be available to PATH within neovim terminal
+          # this includes LSPs
+          lspsAndRuntimeDeps = {
+            general = with pkgs; [
+              universal-ctags
+              ripgrep
+              fd
+            ];
+            neonixdev = {
+              # also you can do this.
+              inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn roslyn-ls
+                ;
+              # nix-doc tags will make your tags much better in nix
+              # but only if you have nil as well for some reason
+            };
+            lint = with pkgs; [
+            ];
+            debug = with pkgs; [
+            ];
+            format = with pkgs; [
+            ];
+          };
+
+          # This is for plugins that will load at startup without using packadd:
+          startupPlugins = {
+            debug = with pkgs.vimPlugins; [
+              nvim-nio
+              nvim-dap
+              nvim-dap-ui
+              nvim-dap-virtual-text
+            ];
+            lint = with pkgs.vimPlugins; [
+              nvim-lint
+            ];
+            format = with pkgs.vimPlugins; [
+              conform-nvim
+            ];
+            # yes these category names are arbitrary
+            markdown = with pkgs.vimPlugins; [
+              markdown-preview-nvim
+            ];
+            general = {
+              gitPlugins = [
+                # If it was included in your flake inputs as plugins-hlargs,
+                # this would be how to add that plugin in your config.
+                # pkgs.neovimPlugins.hlargs
               ];
+              vimPlugins = {
+                # you can make a subcategory
+                cmp = with pkgs.vimPlugins; [
+                  # cmp stuff
+                  nvim-cmp
+                  luasnip
+                  friendly-snippets
+                  cmp_luasnip
+                  cmp-buffer
+                  cmp-path
+                  cmp-nvim-lua
+                  cmp-nvim-lsp
+                  cmp-cmdline
+                  cmp-nvim-lsp-signature-help
+                  cmp-cmdline-history
+                  lspkind-nvim
+                ];
+                general = with pkgs.vimPlugins; [
+                  telescope-fzf-native-nvim
+                  telescope-ui-select-nvim
+                  plenary-nvim
+                  telescope-nvim
+                  omnisharp-extended-lsp-nvim
+
+                  # treesitter
+                  nvim-treesitter-textobjects
+                  nvim-treesitter.withAllGrammars
+                  # This is for if you only want some of the grammars
+                  # (nvim-treesitter.withPlugins (
+                  #   plugins: with plugins; [
+                  #     nix
+                  #     lua
+                  #   ]
+                  # ))
+                  # other
+                  nvim-lspconfig
+                  (mkNvimPlugin roslyn-nvim "roslyn-nvim")
+                  fidget-nvim
+                  lualine-lsp-progress
+                  lualine-nvim
+                  gitsigns-nvim
+                  which-key-nvim
+                  comment-nvim
+                  vim-sleuth
+                  vim-fugitive
+                  vim-rhubarb
+                  vim-repeat
+                  undotree
+                  nvim-surround
+                  indent-blankline-nvim
+                  nvim-web-devicons
+                  oil-nvim
+                  lazygit-nvim
+                ];
+              };
+            };
+            # You can retreive information from the
+            # packageDefinitions of the package this was packaged with.
+            # :help nixCats.flake.outputs.categoryDefinitions.scheme
+            themer = with pkgs.vimPlugins;
+              (builtins.getAttr categories.colorscheme {
+                # Theme switcher without creating a new category
+                "onedark" = onedark-nvim;
+                "catppuccin" = catppuccin-nvim;
+                "catppuccin-mocha" = catppuccin-nvim;
+                "tokyonight" = tokyonight-nvim;
+                "tokyonight-day" = tokyonight-nvim;
+              }
+              );
+            # This is obviously a fairly basic usecase for this, but still nice.
+            # Checking packageDefinitions also has the bonus
+            # of being able to be easily set by importing flakes.
+          };
+
+          # not loaded automatically at startup.
+          # use with packadd and an autocommand in config to achieve lazy loading
+          optionalPlugins = {
+            neonixdev = with pkgs.vimPlugins; [
+              # loaded in the same file as the lsps are configured.
+              # see there or at `:h nixCats.LSPs` for more info on lazy loading.
+              lazydev-nvim
+            ];
+            custom = with pkgs.nixCatsBuilds; [ ];
+            gitPlugins = with pkgs.neovimPlugins; [ ];
+            general = with pkgs.vimPlugins; [ ];
+          };
+
+          # shared libraries to be added to LD_LIBRARY_PATH
+          # variable available to nvim runtime
+          sharedLibraries = {
+            general = with pkgs; [
+              # libgit2
+            ];
+          };
+
+          # environmentVariables:
+          # this section is for environmentVariables that should be available
+          # at RUN TIME for plugins. Will be available to path within neovim terminal
+          environmentVariables = {
+            test = {
+              subtest1 = {
+                CATTESTVAR = "It worked!";
+              };
+              subtest2 = {
+                CATTESTVAR3 = "It didn't work!";
+              };
             };
           };
-          # You can retreive information from the
-          # packageDefinitions of the package this was packaged with.
-          # :help nixCats.flake.outputs.categoryDefinitions.scheme
-          themer = with pkgs.vimPlugins;
-            (builtins.getAttr categories.colorscheme {
-              # Theme switcher without creating a new category
-              "onedark" = onedark-nvim;
-              "catppuccin" = catppuccin-nvim;
-              "catppuccin-mocha" = catppuccin-nvim;
-              "tokyonight" = tokyonight-nvim;
-              "tokyonight-day" = tokyonight-nvim;
-            }
-            );
-          # This is obviously a fairly basic usecase for this, but still nice.
-          # Checking packageDefinitions also has the bonus
-          # of being able to be easily set by importing flakes.
-        };
 
-        # not loaded automatically at startup.
-        # use with packadd and an autocommand in config to achieve lazy loading
-        optionalPlugins = {
-          neonixdev = with pkgs.vimPlugins; [
-            # loaded in the same file as the lsps are configured.
-            # see there or at `:h nixCats.LSPs` for more info on lazy loading.
-            lazydev-nvim
-          ];
-          custom = with pkgs.nixCatsBuilds; [ ];
-          gitPlugins = with pkgs.neovimPlugins; [ ];
-          general = with pkgs.vimPlugins; [ ];
-        };
+          # If you know what these are, you can provide custom ones by category here.
+          # If you dont, check this link out:
+          # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
+          extraWrapperArgs = {
+            test = [
+              '' --set CATTESTVAR2 "It worked again!"''
+            ];
+          };
 
-        # shared libraries to be added to LD_LIBRARY_PATH
-        # variable available to nvim runtime
-        sharedLibraries = {
-          general = with pkgs; [
-            # libgit2
-          ];
-        };
+          # lists of the functions you would have passed to
+          # python.withPackages or lua.withPackages
 
-        # environmentVariables:
-        # this section is for environmentVariables that should be available
-        # at RUN TIME for plugins. Will be available to path within neovim terminal
-        environmentVariables = {
-          test = {
-            subtest1 = {
-              CATTESTVAR = "It worked!";
-            };
-            subtest2 = {
-              CATTESTVAR3 = "It didn't work!";
-            };
+          # get the path to this python environment
+          # in your lua config via
+          # vim.g.python3_host_prog
+          # or run from nvim terminal via :!<packagename>-python3
+          extraPython3Packages = {
+            test = (_: [ ]);
+          };
+          # populates $LUA_PATH and $LUA_CPATH
+          extraLuaPackages = {
+            general = [ (_: [ ]) ];
           };
         };
-
-        # If you know what these are, you can provide custom ones by category here.
-        # If you dont, check this link out:
-        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/setup-hooks/make-wrapper.sh
-        extraWrapperArgs = {
-          test = [
-            '' --set CATTESTVAR2 "It worked again!"''
-          ];
-        };
-
-        # lists of the functions you would have passed to
-        # python.withPackages or lua.withPackages
-
-        # get the path to this python environment
-        # in your lua config via
-        # vim.g.python3_host_prog
-        # or run from nvim terminal via :!<packagename>-python3
-        extraPython3Packages = {
-          test = (_: [ ]);
-        };
-        # populates $LUA_PATH and $LUA_CPATH
-        extraLuaPackages = {
-          general = [ (_: [ ]) ];
-        };
-      };
 
 
 
