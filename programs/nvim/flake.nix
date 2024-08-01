@@ -18,7 +18,7 @@
 # each section is tagged with its relevant help section.
 
 {
-  description = "A Lua-natic's neovim flake, with extra cats! nixCats!";
+  description = "NixCats-based NeoVim config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -127,11 +127,11 @@
               universal-ctags
               ripgrep
               fd
+              lazygit
             ];
             neonixdev = {
               # also you can do this.
-              inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn roslyn-ls
-                ;
+              inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn roslyn-ls;
               # nix-doc tags will make your tags much better in nix
               # but only if you have nil as well for some reason
             };
@@ -329,6 +329,7 @@
           };
           # see :help nixCats.flake.outputs.packageDefinitions
           categories = {
+            useVscodeLspOverOmnisharp = false;
             generalBuildInputs = true;
             markdown = true;
             general.vimPlugins = true;
@@ -359,41 +360,6 @@
               thing4 = "couch is for scratching";
             };
             # see :help nixCats
-          };
-        };
-        regularCats = { pkgs, ... }@misc: {
-          settings = {
-            # will check for config in .config rather than the store
-            # this is mostly useful for fast iteration while editing lua.
-            wrapRc = false;
-            # will now look for nixCats-nvim within .config and .local and others
-            configDirName = "nixCats-nvim";
-            aliases = [ "testCat" ];
-            # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-          };
-          categories = {
-            generalBuildInputs = true;
-            markdown = true;
-            general = true;
-            custom = true;
-            neonixdev = true;
-            lint = true;
-            format = true;
-            test = true;
-            lspDebugMode = false;
-            themer = true;
-            colorscheme = "catppuccin";
-            theBestCat = "says meow!!";
-            theWorstCat = {
-              thing'1 = [ "MEOW" "HISSS" ];
-              thing2 = [
-                {
-                  thing3 = [ "give" "treat" ];
-                }
-                "I LOVE KEYBOARDS"
-              ];
-              thing4 = "couch is for scratching";
-            };
           };
         };
       };
@@ -446,7 +412,7 @@
           devShells = {
             default = pkgs.mkShell {
               name = defaultPackageName;
-              packages = [ nixCatsPackage idev ];
+              packages = [ idev ];
               inputsFrom = [ ];
               shellHook = ''
         '';

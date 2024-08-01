@@ -67,9 +67,9 @@
     };
   };
 
-  programs.lazygit = {
-    enable = true;
-  };
+  # programs.lazygit = {
+  #   enable = true;
+  # };
 
   imports = map (file: ./helix + "/${file}") (
     lib.strings.filter (file: file != "default.nix") (builtins.attrNames (builtins.readDir ./helix))

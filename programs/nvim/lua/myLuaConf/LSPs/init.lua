@@ -26,7 +26,7 @@ local servers = {}
 --   -- NOTE: AFTER DIRECTORIES WILL NOT BE SOURCED BY PACKADD!!!!!
 --   -- this must be done by you manually if,
 --   -- for example, you wanted to lazy load nvim-cmp sources
--- 
+--
 --   servers.lua_ls = {
 --     Lua = {
 --       formatters = {
@@ -45,28 +45,28 @@ local servers = {}
 --   else servers.rnix = {}
 --   end
 --   servers.nil_ls = {}
--- 
+--
 -- end
 --
-  servers.lua_ls = {
-    Lua = {
-      formatters = {
-        ignoreComments = true,
-      },
-      signatureHelp = { enabled = true },
-      diagnostics = {
-        globals = { 'nixCats' },
-        disable = { 'missing-fields' },
-      },
+servers.lua_ls = {
+  Lua = {
+    formatters = {
+      ignoreComments = true,
     },
-    telemetry = { enabled = false },
-    filetypes = { 'lua' },
-  }
-  -- if require('nixCatsUtils').isNixCats then 
-  servers.nixd = {}
-  -- else servers.rnix = {}
-  -- end
-  servers.nil_ls = {}
+    signatureHelp = { enabled = true },
+    diagnostics = {
+      globals = { 'nixCats' },
+      disable = { 'missing-fields' },
+    },
+  },
+  telemetry = { enabled = false },
+  filetypes = { 'lua' },
+}
+-- if require('nixCatsUtils').isNixCats then
+servers.nixd = {}
+-- else servers.rnix = {}
+-- end
+servers.nil_ls = {}
 
 -- This is this flake's version of what kickstarter has set up for mason handlers.
 -- This is a convenience function that calls lspconfig on the lsps we downloaded via nix
@@ -86,7 +86,6 @@ local servers = {}
 -- servers.rust_analyzer = {},
 -- servers.tsserver = {},
 -- servers.html = { filetypes = { 'html', 'twig', 'hbs'} },
-servers.omnisharp = { cmd = {'OmniSharp'} }
 
 
 -- if not require('nixCatsUtils').isNixCats and nixCats('lspDebugMode') then
@@ -102,75 +101,83 @@ servers.omnisharp = { cmd = {'OmniSharp'} }
 --  end
 --})
 
--- if require('nixCatsUtils').isNixCats then
-  for server_name,_ in pairs(servers) do
-    require('lspconfig')[server_name].setup({
-      capabilities = require('myLuaConf.LSPs.caps-on_attach').get_capabilities(),
-      -- this line is interchangeable with the above LspAttach autocommand
-      on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-      cmd = (servers[server_name] or {}).cmd,
-      root_pattern = (servers[server_name] or {}).root_pattern,
-    })
-  end
 
--- roslyn does not use lspconfig yet - https://github.com/neovim/nvim-lspconfig/issues/2657
--- based on https://github.com/tarantoj/kickstart-nix.nvim/blob/2317d2fee0d32cac352cf741089f26846ba9cb62/nvim/plugin/lsp.lua
--- local capabilities2 = 
---   require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- capabilities2 = vim.tbl_deep_extend('force', capabilities2, {
---           workspace = {
---             didChangeWatchedFiles = {
---               dynamicRegistration = false,
---             },
---           },
---         })
--- 
--- 
--- require('roslyn').setup {
---   exe = 'Microsoft.CodeAnalysis.LanguageServer',
--- --  filewatching = false,
---   config = {
---     on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
---     capabilities = capabilities2,
---     settings = {
---       ['csharp|completion'] = {
---         ['dotnet_provide_regex_completions'] = true,
---         ['dotnet_show_completion_items_from_unimported_namespaces'] = true,
---         ['dotnet_show_name_completion_suggestions'] = true,
---       },
---       ['csharp|highlighting'] = {
---         ['dotnet_highlight_related_json_components'] = true,
---         ['dotnet_highlight_related_regex_components'] = true,
---       },
---        ['navigation'] = {
---          ['dotnet_navigate_to_decompiled_sources'] = true,
---        },
---       ['csharp|inlay_hints'] = {
---         csharp_enable_inlay_hints_for_implicit_object_creation = true,
---         csharp_enable_inlay_hints_for_implicit_variable_types = true,
---         csharp_enable_inlay_hints_for_lambda_parameter_types = true,
---         csharp_enable_inlay_hints_for_types = true,
---         dotnet_enable_inlay_hints_for_indexer_parameters = true,
---         dotnet_enable_inlay_hints_for_literal_parameters = true,
---         dotnet_enable_inlay_hints_for_object_creation_parameters = true,
---         dotnet_enable_inlay_hints_for_other_parameters = true,
---         dotnet_enable_inlay_hints_for_parameters = true,
---         dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
---         dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
---         dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
---       },
---       ['csharp|code_lens'] = { dotnet_enable_tests_code_lens = false,
--- dotnet_enable_references_code_lens = true
---       },
---        ['csharp|background_analysis'] = {
---          dotnet_analyzer_diagnostics_scope = 'FullSolution',
---          dotnet_compiler_diagnostics_scope = 'FullSolution',
---        },
---     },
---   },
--- }
+if nixCats('useVscodeLspOverOmnisharp') then
+  -- roslyn does not use lspconfig yet - https://github.com/neovim/nvim-lspconfig/issues/2657
+  -- based on https://github.com/tarantoj/kickstart-nix.nvim/blob/2317d2fee0d32cac352cf741089f26846ba9cb62/nvim/plugin/lsp.lua
+  local capabilities2 =
+      require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities2 = vim.tbl_deep_extend('force', capabilities2, {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = false,
+      },
+    },
+  })
+
+  require('roslyn').setup {
+    exe = 'Microsoft.CodeAnalysis.LanguageServer',
+    --  filewatching = false,
+    config = {
+      on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
+      capabilities = capabilities2,
+      settings = {
+        ['csharp|completion'] = {
+          ['dotnet_provide_regex_completions'] = true,
+          ['dotnet_show_completion_items_from_unimported_namespaces'] = true,
+          ['dotnet_show_name_completion_suggestions'] = true,
+        },
+        ['csharp|highlighting'] = {
+          ['dotnet_highlight_related_json_components'] = true,
+          ['dotnet_highlight_related_regex_components'] = true,
+        },
+        ['navigation'] = {
+          ['dotnet_navigate_to_decompiled_sources'] = true,
+        },
+        ['csharp|inlay_hints'] = {
+          csharp_enable_inlay_hints_for_implicit_object_creation = true,
+          csharp_enable_inlay_hints_for_implicit_variable_types = true,
+          csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+          csharp_enable_inlay_hints_for_types = true,
+          dotnet_enable_inlay_hints_for_indexer_parameters = true,
+          dotnet_enable_inlay_hints_for_literal_parameters = true,
+          dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+          dotnet_enable_inlay_hints_for_other_parameters = true,
+          dotnet_enable_inlay_hints_for_parameters = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+          dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+        },
+        ['csharp|code_lens'] = { dotnet_enable_tests_code_lens = false,
+          dotnet_enable_references_code_lens = true
+        },
+        ['csharp|background_analysis'] = {
+          dotnet_analyzer_diagnostics_scope = 'FullSolution',
+          dotnet_compiler_diagnostics_scope = 'FullSolution',
+        },
+      },
+    },
+  }
+else
+  servers.omnisharp = { cmd = { 'OmniSharp' } }
+end
+
+
+
+
+
+-- if require('nixCatsUtils').isNixCats then
+for server_name, _ in pairs(servers) do
+  require('lspconfig')[server_name].setup({
+    capabilities = require('myLuaConf.LSPs.caps-on_attach').get_capabilities(),
+    -- this line is interchangeable with the above LspAttach autocommand
+    on_attach = require('myLuaConf.LSPs.caps-on_attach').on_attach,
+    settings = servers[server_name],
+    filetypes = (servers[server_name] or {}).filetypes,
+    cmd = (servers[server_name] or {}).cmd,
+    root_pattern = (servers[server_name] or {}).root_pattern,
+  })
+end
 --else
 --  require('mason').setup()
 --  local mason_lspconfig = require 'mason-lspconfig'
