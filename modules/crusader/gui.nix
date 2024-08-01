@@ -9,11 +9,6 @@ self@{ config
 , stable
 , ...
 }:
-let
-  idev = pkgs.writeShellScriptBin "idev" ''
-    exec -a shell ${pkgs.neovide}/bin/neovide --no-fork "$@"
-  '';
-in
 {
 
   environment.systemPackages = with pkgs; [
@@ -57,8 +52,6 @@ in
     jetbrains.rider
     jetbrains.pycharm-professional
     jetbrains.webstorm
-    neovide
-    idev
 
     # QT theming (cleanup!)
     # libsForQt5.kio

@@ -40,7 +40,7 @@ self@{ config
     # rustc
     # gcc
 
-    nixCats.default
+    nixCats.idev
 
     # For playing audio
     sox # 'play' command

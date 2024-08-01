@@ -427,19 +427,26 @@
           # The one used to build neovim is resolved inside the builder
           # and is passed to our categoryDefinitions and packageDefinitions
         in
+        let nixCatsPackage = nixCatsBuilder defaultPackageName; in
+        let
+          idev = pkgs.writeShellScriptBin "idev" ''
+            exec -a shell ${pkgs.neovide}/bin/neovide --no-fork --neovim-bin "${nixCatsPackage}/bin/${defaultPackageName}" "$@"
+          '';
+        in
         {
           # these outputs will be wrapped with ${system} by utils.eachSystem
 
           # this will make a package out of each of the packageDefinitions defined above
           # and set the default package to the one named here.
-          packages = utils.mkPackages nixCatsBuilder packageDefinitions defaultPackageName;
+          packages = { default = nixCatsPackage; idev = idev; } // utils.mkExtraPackages nixCatsBuilder packageDefinitions;
+
 
           # choose your package for devShell
           # and add whatever else you want in it.
           devShells = {
             default = pkgs.mkShell {
               name = defaultPackageName;
-              packages = [ (nixCatsBuilder defaultPackageName) ];
+              packages = [ nixCatsPackage idev ];
               inputsFrom = [ ];
               shellHook = ''
         '';
