@@ -66,20 +66,20 @@ vim.keymap.set("n", ']d', goto_next_diagnostic_by_severity, { noremap = true, de
 vim.keymap.set("n", '[D', goto_prev_diagnostic, { noremap = true, desc = 'Jump to previous [D]iagnostic (all)' })
 vim.keymap.set("n", ']D', goto_next_diagnostic, { noremap = true, desc = 'Jump to next [D]iagnostic (all)' })
 
-if os.getenv('WAYLAND_DISPLAY') and vim.fn.exepath('wl-copy') ~= "" then
-	vim.g.clipboard = {
-		name = 'wl-clipboard',
-		copy = {
-			['+'] = 'wl-copy',
-			['*'] = 'wl-copy',
-		},
-		paste = {
-			['+'] = 'wl-paste',
-			['*'] = 'wl-paste',
-		},
-		cache_enabled = 1,
-	}
-end
+--if os.getenv('WAYLAND_DISPLAY') and vim.fn.exepath('wl-copy') ~= "" then
+--	vim.g.clipboard = {
+--		name = 'wl-clipboard',
+--		copy = {
+--			['+'] = 'wl-copy',
+--			['*'] = 'wl-copy',
+--		},
+--		paste = {
+--			['+'] = 'wl-paste',
+--			['*'] = 'wl-paste',
+--		},
+--		cache_enabled = 1,
+--	}
+--end
 
 
 -- kickstart.nvim starts you with this.
