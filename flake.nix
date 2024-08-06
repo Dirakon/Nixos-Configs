@@ -117,5 +117,33 @@
             }
           ] ++ commonModules;
         };
+
+      nixosConfigurations.sentinel =
+        let hostname = "sentinel"; in
+        let system = "x86_64-linux"; in
+        nixpkgs.lib.nixosSystem {
+          system = "${system}";
+          specialArgs.hostname = "${hostname}";
+
+          modules = [
+            ./modules/${hostname}/default.nix
+
+            sops-nix.nixosModules.default
+
+            # make home-manager as a module of nixos
+            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.dirakon =
+                ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
+                  inherit config pkgs;
+                  hostname = hostname;
+                });
+            }
+          ] ++ commonModules;
+        };
     };
 }
