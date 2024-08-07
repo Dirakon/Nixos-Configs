@@ -27,6 +27,8 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     ./flatpak.nix
 
     ./kanata.nix
+
+    ./nextcloud.nix # Temporary
   ];
 
   # Allow unfree packages
