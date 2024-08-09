@@ -185,6 +185,10 @@
                   lspkind-nvim
                 ];
                 general = with pkgs.vimPlugins; [
+                  neotest
+                  neotest-dotnet
+                  # neotest-plenary idk what it is
+                  camelcasemotion
                   telescope-fzf-native-nvim
                   telescope-ui-select-nvim
                   plenary-nvim

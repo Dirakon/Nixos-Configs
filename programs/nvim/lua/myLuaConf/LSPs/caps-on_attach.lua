@@ -20,7 +20,7 @@ function M.on_attach(_, bufnr)
   end
 
   nvmap('<leader>r', vim.lsp.buf.rename, '[R]ename')
-  nvmap('<leader>a', vim.lsp.buf.code_action, 'code [A]ction')
+  nvmap('<leader>a', vim.lsp.buf.code_action, 'Code [A]ction')
 
   --nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   --nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
