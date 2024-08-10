@@ -49,9 +49,10 @@ self@{ config
     # Dev
     godot
 
-    jetbrains.rider
-    jetbrains.pycharm-professional
-    jetbrains.webstorm
+    # doing neovim now
+    # jetbrains.rider
+    # jetbrains.pycharm-professional
+    # jetbrains.webstorm
 
     # QT theming (cleanup!)
     # libsForQt5.kio

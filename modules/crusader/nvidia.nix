@@ -35,20 +35,20 @@ in
 
   hardware.nvidia = {
     # open = true;
-    # package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
+    package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
     forceFullCompositionPipeline = false;
-    package = config.boot.kernelPackages.nvidiaPackages.beta#; # beta
-    # for using specific driver version:
-    #.beta
-    .overrideAttrs {
-      version = "555.42.02";
-      # the new driver
-      src = pkgs.fetchurl
-        {
-          url = "https://download.nvidia.com/XFree86/Linux-x86_64/555.42.02/NVIDIA-Linux-x86_64-555.42.02.run";
-          sha256 = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
-        };
-    };
+    # package = config.boot.kernelPackages.nvidiaPackages.beta#; # beta
+    # # for using specific driver version:
+    # #.beta
+    # .overrideAttrs {
+    #   version = "555.42.02";
+    #   # the new driver
+    #   src = pkgs.fetchurl
+    #     {
+    #       url = "https://download.nvidia.com/XFree86/Linux-x86_64/555.42.02/NVIDIA-Linux-x86_64-555.42.02.run";
+    #       sha256 = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
+    #     };
+    # };
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
