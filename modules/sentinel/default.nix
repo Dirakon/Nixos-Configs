@@ -15,6 +15,15 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     ./system.nix
   ];
 
+  environment.etc."nextcloud-admin-pass".text = "PWD";
+  services.nextcloud = {
+    enable = true;
+    package = pkgs.nextcloud28;
+    hostName = "localhost";
+    config.adminpassFile = "/etc/nextcloud-admin-pass";
+  };
+
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

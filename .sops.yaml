@@ -1,7 +1,15 @@
 keys:
-  - &primary age13gjyu480526r7v4flwk9ys7e9xdrq7aut6f5n0cr8uem89kgcv7svpvzc4
+  - &crusader age1grdprksjjlycrcfy9snkmg7nc9spxg7l4676azd2nt972zgyselsdp688l
+  - &guide age13gjyu480526r7v4flwk9ys7e9xdrq7aut6f5n0cr8uem89kgcv7svpvzc4
+  - &guide2 age1dgpkyw8p86m2uzak34m99sp46n2khsdt5n0ssuhrm748g9t97e0sn7qxtu
 creation_rules:
-  - path_regex: secrets/secrets.yaml$
+  - path_regex: secrets/secrets-guide.yaml$
     key_groups:
     - age:
-      - *primary
+      - *crusader
+      - *guide
+  - path_regex: secrets/secrets-guide2.yaml$
+    key_groups:
+    - age:
+      - *crusader
+      - *guide2
