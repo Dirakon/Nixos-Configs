@@ -148,11 +148,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-jJGWYqsgqw+r6197pyOEXZM72VLlqSFJDrmeiqLlUv4=",
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/godot",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/godot",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/godot",
         "type": "path"
       }
     },
@@ -279,11 +279,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-x4Pwl8YxI0xMMhg6Hf3V+et7BYAVjCKRz85KH3OR0ac=",
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/nvim",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/nvim",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/nvim",
         "type": "path"
       }
     },
@@ -525,11 +525,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/sandwine",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/sandwine",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -651,11 +651,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/ultim-mc",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/afwgvb2kq0sc2xbaqrqbjy2b8gq0wik7-source/programs/ultim-mc",
+        "path": "/nix/store/c7gnwl9g11smhb17frcazkipbsg5410v-source/programs/ultim-mc",
         "type": "path"
       }
     },

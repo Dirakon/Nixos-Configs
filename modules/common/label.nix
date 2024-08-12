@@ -1,1 +1,1 @@
-"Restructure_secrets"
+"Amnezia-wg_setup"
