@@ -1,1 +1,1 @@
-"Amnezia-wg_setup"
+"Configure_telescope_more"
