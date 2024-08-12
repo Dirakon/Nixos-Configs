@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "amnezia-wg": {
+    "amneziawg-go": {
       "flake": false,
       "locked": {
         "lastModified": 1719830864,
@@ -52,7 +52,7 @@
     },
     "root": {
       "inputs": {
-        "amnezia-wg": "amnezia-wg",
+        "amneziawg-go": "amneziawg-go",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs"
       }

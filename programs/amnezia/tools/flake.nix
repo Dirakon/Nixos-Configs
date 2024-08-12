@@ -3,18 +3,18 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.amneziawg-tools.url = "github:amnezia-vpn/amneziawg-tools";
   inputs.amneziawg-tools.flake = false;
-  inputs.amnziawg-go = "./../wg";
+  inputs.amneziawg-go.url = "./../wg/";
 
   outputs =
     { self
     , nixpkgs
     , flake-utils
     , amneziawg-tools
-    , amnezia-wg
+    , amneziawg-go
     , ...
     }:
     let
-      amnezia-wg-outputs =
+      amneziawg-tools-outputs =
         flake-utils.lib.eachDefaultSystem (system:
           let
             pkgs = nixpkgs.legacyPackages.${system};
@@ -26,7 +26,8 @@
               src = amneziawg-tools;
               outputs = [ "out" "man" ];
 
-              sourceRoot = "${src.name}/src";
+              sourceRoot = "./source/src";
+              #setSourceRoot = "sourceRoot=$(ls ./source)";
 
               nativeBuildInputs = [ pkgs.makeWrapper ];
 
@@ -56,7 +57,7 @@
               ''
                 for f in $out/bin/*; do
                   wrapProgram $f \
-                    --prefix PATH : ${pkgs.lib.makeBinPath [ amnezia-wg.amnezia-wg ]}
+                    --prefix PATH : ${pkgs.lib.makeBinPath [ amneziawg-go.amneziawg-go."${system}" ]}
                 done
               '';
 
@@ -79,10 +80,11 @@
             };
           in
           {
-            amnezia-wg = amneziawg-tools-built;
+            amneziawg-tools = amneziawg-tools-built;
             devShell = pkgs.mkShell {
               buildInputs = [
                 amneziawg-tools-built
+                amneziawg-go.amneziawg-go."${system}"
               ];
             };
           });
@@ -98,5 +100,5 @@
             formatter = pkgs.nixpkgs-fmt;
           });
     in
-    amnezia-wg-outputs // formatter-outputs;
+    amneziawg-tools-outputs // formatter-outputs;
 }

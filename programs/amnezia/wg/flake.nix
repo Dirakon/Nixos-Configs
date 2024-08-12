@@ -1,28 +1,28 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.amnezia-wg.url = "github:amnezia-vpn/amneziawg-go";
-  inputs.amnezia-wg.flake = false;
+  inputs.amneziawg-go.url = "github:amnezia-vpn/amneziawg-go";
+  inputs.amneziawg-go.flake = false;
 
   outputs =
     { self
     , nixpkgs
     , flake-utils
-    , amnezia-wg
+    , amneziawg-go
     , ...
     }:
     let
-      amnezia-wg-outputs =
+      amneziawg-go-outputs =
         flake-utils.lib.eachDefaultSystem (system:
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            amnezia-wg-built = pkgs.buildGoModule rec {
+            amneziawg-go-built = pkgs.buildGoModule rec {
               pname = "amneziawg-go";
               version = "0.0.20230223";
 
               vendorHash = "sha256-zXd9PK3fpOx/YjCNs2auZWhbLUk2fO6tyLV5FxAH0us=";
-              src = amnezia-wg;
+              src = amneziawg-go;
 
               postPatch = ''
                 # Skip formatting tests
@@ -53,10 +53,10 @@
             };
           in
           {
-            amnezia-wg = amnezia-wg-built;
+            amneziawg-go = amneziawg-go-built;
             devShell = pkgs.mkShell {
               buildInputs = [
-                amnezia-wg-built
+                amneziawg-go-built
               ];
             };
           });
@@ -72,5 +72,5 @@
             formatter = pkgs.nixpkgs-fmt;
           });
     in
-    amnezia-wg-outputs // formatter-outputs;
+    amneziawg-go-outputs // formatter-outputs;
 }
