@@ -130,6 +130,7 @@
                   plenary-nvim
                   telescope-nvim
                   omnisharp-extended-lsp-nvim
+                  nvim-dbee
 
                   # treesitter
                   nvim-treesitter-textobjects

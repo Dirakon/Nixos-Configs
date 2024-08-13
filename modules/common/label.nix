@@ -1,1 +1,1 @@
-"Configure_telescope_more"
+"Try_dbee_setup"
