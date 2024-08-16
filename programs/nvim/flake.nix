@@ -74,7 +74,7 @@
             ];
             neonixdev = {
               # also you can do this.
-              inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn roslyn-ls;
+              inherit (pkgs) nix-doc nil lua-language-server nixd omnisharp-roslyn roslyn-ls clang-tools;
               # nix-doc tags will make your tags much better in nix
               # but only if you have nil as well for some reason
             };

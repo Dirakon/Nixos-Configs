@@ -80,7 +80,7 @@ servers.nil_ls = {}
 --  define the property 'filetypes' to the map in question.
 --  You may do the same thing with cmd
 
--- servers.clangd = {},
+servers.clangd = {}
 -- servers.gopls = {},
 -- servers.pyright = {},
 -- servers.rust_analyzer = {},
