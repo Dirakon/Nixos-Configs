@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-FvtreqTd0F2qqHKRIU6wfYAcgdMA233eelG5LdTuj5k=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/amnezia/wg",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/amnezia/wg",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/amnezia/wg",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/amnezia/wg",
         "type": "path"
       }
     },
@@ -42,12 +42,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-z3rYLAdyxjh+zqIYVGQ5NlaAiTDHPg9JDDxEfD472Wg=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/amnezia/tools",
+        "narHash": "sha256-8ZLlPMYTnLbGB8XXmX2hL6opYUZcLYJEGwukJ3cYjbc=",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/amnezia/tools",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/amnezia/tools",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/amnezia/tools",
         "type": "path"
       }
     },
@@ -68,6 +68,21 @@
       }
     },
     "call-flake": {
+      "locked": {
+        "lastModified": 1723340488,
+        "narHash": "sha256-ythzL6iO/eE6r1IA6dflpWx0vC4JBGBlHLTK3BpYhrQ=",
+        "owner": "divnix",
+        "repo": "call-flake",
+        "rev": "5224b2ac795f4b77fbe443f86b45638344a81ceb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "divnix",
+        "repo": "call-flake",
+        "type": "github"
+      }
+    },
+    "call-flake_2": {
       "locked": {
         "lastModified": 1723340488,
         "narHash": "sha256-ythzL6iO/eE6r1IA6dflpWx0vC4JBGBlHLTK3BpYhrQ=",
@@ -266,11 +281,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-Av6AR6d9iqrcj77ffINHniT9rX06po7KxmTE3+2ub4k=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/godot",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/godot",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/godot",
         "type": "path"
       }
     },
@@ -396,12 +411,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-OS+k1BDHKENXfPjkeqkckjft+sokpzLCG/FMp4SZae4=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/nvim",
+        "narHash": "sha256-sxDMhWGIYZ1AQycaMzAO1rCoBnx87D8tBAdJolz6iTg=",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/nvim",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/nvim",
         "type": "path"
       }
     },
@@ -637,6 +652,7 @@
       "inputs": {
         "amneziawg-go": "amneziawg-go",
         "amneziawg-tools": "amneziawg-tools",
+        "call-flake": "call-flake_2",
         "disko": "disko",
         "flatpaks": "flatpaks",
         "godot": "godot",
@@ -677,11 +693,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/sandwine",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/sandwine",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -833,11 +849,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/ultim-mc",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/r7bi2r2r2z2lb53na2la4x8jpn8a1878-source/programs/ultim-mc",
+        "path": "/nix/store/p4ssd8sgk00bwyzaa4nzhxvwx5vjmpwb-source/programs/ultim-mc",
         "type": "path"
       }
     },

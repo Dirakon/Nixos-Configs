@@ -1,1 +1,1 @@
-"lix_and_work_and_amneziawg"
+"Add_nvim_auto-session"

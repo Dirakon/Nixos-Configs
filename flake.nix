@@ -37,6 +37,7 @@
     nixCats.url = "./programs/nvim/";
     amneziawg-go.url = "./programs/amnezia/wg/";
     amneziawg-tools.url = "./programs/amnezia/tools/";
+    call-flake.url = "github:divnix/call-flake";
 
     disko.url = "github:nix-community/disko";
   };
@@ -157,7 +158,7 @@
           system = "${system}";
           specialArgs.hostname = "${hostname}";
           specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
-          specialArgs.amneziawg-tools = amneziawg-tools.amneziawg-tools."${system}";
+          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
           modules = [
             ./modules/${hostname}/default.nix

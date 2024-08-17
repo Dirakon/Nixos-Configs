@@ -122,6 +122,7 @@
                   lspkind-nvim
                 ];
                 general = with pkgs.vimPlugins; [
+                  auto-session
                   neotest
                   neotest-dotnet
                   camelcasemotion
@@ -130,7 +131,7 @@
                   plenary-nvim
                   telescope-nvim
                   omnisharp-extended-lsp-nvim
-                  nvim-dbee
+                  nvim-dbee #TODO fix for mac
 
                   # treesitter
                   nvim-treesitter-textobjects
