@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
+self@{ config, pkgs, boot, unstable, agenix, hostname, amneziawg-go, amneziawg-tools, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
@@ -109,6 +109,11 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  environment.systemPackages = with pkgs; [
+    amneziawg-tools
+    amneziawg-go
+  ];
 
   system.stateVersion = "24.05"; # Install value! Don't change
 }

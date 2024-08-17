@@ -3,16 +3,19 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.amneziawg-tools.url = "github:amnezia-vpn/amneziawg-tools";
   inputs.amneziawg-tools.flake = false;
-  inputs.amneziawg-go.url = "./../wg/";
+  # inputs.amneziawg-go.url = "./../wg/";
+  inputs.call-flake.url = "github:divnix/call-flake";
 
   outputs =
     { self
     , nixpkgs
     , flake-utils
     , amneziawg-tools
-    , amneziawg-go
+      # , amneziawg-go
+    , call-flake
     , ...
     }:
+    let amneziawg-go = call-flake ./../wg; in
     let
       amneziawg-tools-outputs =
         flake-utils.lib.eachDefaultSystem (system:

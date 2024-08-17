@@ -2,6 +2,7 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
+  nix.package = pkgs.lix;
 
   services.thermald.enable = true;
   services.tlp.enable = true;

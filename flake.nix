@@ -35,6 +35,8 @@
     ultim-mc.url = "./programs/ultim-mc/";
     sandwine.url = "./programs/sandwine/";
     nixCats.url = "./programs/nvim/";
+    amneziawg-go.url = "./programs/amnezia/wg/";
+    amneziawg-tools.url = "./programs/amnezia/tools/";
 
     disko.url = "github:nix-community/disko";
   };
@@ -154,6 +156,8 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
+          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.amneziawg-tools = amneziawg-tools.amneziawg-tools."${system}";
 
           modules = [
             ./modules/${hostname}/default.nix
