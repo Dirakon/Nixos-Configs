@@ -11,4 +11,5 @@ require('myLuaConf.plugins.surround')
 require('myLuaConf.plugins.git')
 require('myLuaConf.plugins.neotest')
 require('myLuaConf.plugins.dbee')
-require('myLuaConf.plugins.autoSession')
+-- Dont like it
+-- require('myLuaConf.plugins.autoSession')

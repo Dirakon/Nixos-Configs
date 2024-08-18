@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-FvtreqTd0F2qqHKRIU6wfYAcgdMA233eelG5LdTuj5k=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/amnezia/wg",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/amnezia/wg",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/amnezia/wg",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/amnezia/wg",
         "type": "path"
       }
     },
@@ -43,11 +43,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8ZLlPMYTnLbGB8XXmX2hL6opYUZcLYJEGwukJ3cYjbc=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/amnezia/tools",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/amnezia/tools",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/amnezia/tools",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/amnezia/tools",
         "type": "path"
       }
     },
@@ -281,11 +281,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-Av6AR6d9iqrcj77ffINHniT9rX06po7KxmTE3+2ub4k=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/godot",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/godot",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/godot",
         "type": "path"
       }
     },
@@ -411,12 +411,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-sxDMhWGIYZ1AQycaMzAO1rCoBnx87D8tBAdJolz6iTg=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/nvim",
+        "narHash": "sha256-ALnwtXlnPoF04GCUSocuMFBMqNZQWb3+PK91TViZtOw=",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/nvim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/nvim",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/nvim",
         "type": "path"
       }
     },
@@ -693,11 +693,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-ffqfGpgHyJYuOcC3YppylhJ6iciyTpmTNgQ+bQQjLgQ=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/sandwine",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/sandwine",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/sandwine",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/sandwine",
         "type": "path"
       }
     },
@@ -849,11 +849,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-uInQ584KkG/QUirNP4c+juTLRarEF8T0mUgHMaXgJP8=",
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/ultim-mc",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/ultim-mc",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/injkcxhxvir9mzg2mijq1zyfr50pqlz0-source/programs/ultim-mc",
+        "path": "/nix/store/qysaxjxmhaxxk8yr7rjf2avi0fbimg46-source/programs/ultim-mc",
         "type": "path"
       }
     },

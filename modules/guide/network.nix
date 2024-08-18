@@ -2,6 +2,8 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
 {
   sops.secrets."guide/ip" = {
     mode = "0444";
+    key = "ip";
+    sopsFile = ./../../secrets/guide-public.yaml;
   };
   sops.secrets."guide/domain" = {
     mode = "0444";
