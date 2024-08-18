@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, hostname, amneziawg-go, amneziawg-tools, ... }:
+self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
@@ -33,6 +33,8 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, amneziawg-go, amneziawg-t
       80 # http
       443 # https
       22 # ssh (just in case)
+      53
+      51871 # wg???
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -40,6 +42,8 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, amneziawg-go, amneziawg-t
       80 # http
       443 # https
       22 # ssh (just in case)
+      53
+      51871 # wg???
     ];
   networking.firewall = {
     #  if packets are still dropped, they will show up in dmesg
@@ -109,11 +113,6 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, amneziawg-go, amneziawg-t
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  environment.systemPackages = with pkgs; [
-    amneziawg-tools
-    amneziawg-go
-  ];
 
   system.stateVersion = "24.05"; # Install value! Don't change
 }

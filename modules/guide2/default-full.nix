@@ -4,6 +4,7 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
     ./nginx.nix
     ./network.nix
     ./sops.nix
+    ./amnezia.nix
   ];
 
   environment.systemPackages = with pkgs; [

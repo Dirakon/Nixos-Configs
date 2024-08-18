@@ -6,6 +6,8 @@ self@{ config
 , sandwine
 , stable
 , nixCats
+, amneziawg-tools
+, amneziawg-go
 , ...
 }:
 {
@@ -48,6 +50,10 @@ self@{ config
     # Performance
     s-tui
     stress
+
+    # amneziawg
+    amneziawg-go
+    amneziawg-tools
   ];
 
   virtualisation.docker.enable = true;

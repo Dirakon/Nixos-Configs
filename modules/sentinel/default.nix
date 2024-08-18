@@ -13,6 +13,10 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     ./cli.nix
 
     ./system.nix
+
+    ./sops.nix
+
+    ./amnezia.nix
   ];
 
   environment.etc."nextcloud-admin-pass".text = "PWD";

@@ -54,9 +54,13 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
     allowedTCPPorts = [
       25565 # Minecraft
       25566 # Zerotier
+      53
+      51871 # wg???
     ];
     allowedUDPPorts = [
       25566 # Zerotier
+      53
+      51871 # wg???
     ];
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect

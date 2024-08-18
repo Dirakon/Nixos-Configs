@@ -65,6 +65,8 @@
           specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
           specialArgs.sandwine = sandwine.sandwine."${system}";
           specialArgs.nixCats = nixCats.packages."${system}";
+          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
 
           modules = [
@@ -127,6 +129,8 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
+          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
           modules = [
             ./modules/${hostname}/default.nix
