@@ -1,1 +1,1 @@
-"Add_nvim_auto-session"
+"Add_dolphin_plugins"

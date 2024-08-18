@@ -31,6 +31,8 @@ self@{ config
     ktorrent
     okular
     dolphin
+    kdePackages.dolphin-plugins
+    libsForQt5.dolphin-plugins
     konsole # For dolphin integrated term
     gwenview
     kitty
