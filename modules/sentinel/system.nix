@@ -33,7 +33,6 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
       80 # http
       443 # https
       22 # ssh (just in case)
-      53
       51871 # wg???
     ];
   networking.firewall.allowedUDPPorts =
@@ -42,7 +41,6 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
       80 # http
       443 # https
       22 # ssh (just in case)
-      53
       51871 # wg???
     ];
   networking.firewall = {

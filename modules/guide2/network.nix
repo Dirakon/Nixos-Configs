@@ -6,8 +6,9 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
       80
       443
       22
-      53
       51871 # wg???
+      55933 # ssh proxying for sentinel
+      55934 # certbot
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -15,7 +16,8 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
       80
       443
       22
-      53
       51871 # wg???
+      55933 # ssh proxying for sentinel
+      55934 # certbot
     ];
 }

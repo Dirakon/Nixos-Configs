@@ -11,6 +11,11 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, lib, ... }:
     mode = "0444";
     key = "ip";
   };
+  sops.secrets."guide2/hostname" = {
+    sopsFile = ./../../secrets/guide2-public.yaml;
+    mode = "0444";
+    key = "hostname";
+  };
   sops.secrets."guide/ip" = {
     sopsFile = ./../../secrets/guide-public.yaml;
     mode = "0444";
@@ -25,9 +30,13 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, lib, ... }:
   sops.templates."ssh.conf" = {
     mode = "0444";
     content = ''
-      Host sentinel
+      Host sentinel-local
         HostName ${config.sops.placeholder."sentinel/ip"}
         Port 55932
+        User dirakon
+      Host sentinel
+        HostName ${config.sops.placeholder."guide2/hostname"}
+        Port 55933
         User dirakon
       Host guide
         HostName ${config.sops.placeholder."guide/ip"}
