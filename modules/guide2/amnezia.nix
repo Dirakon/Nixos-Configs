@@ -5,7 +5,7 @@ let
     pids=$(${pkgs.procps}/bin/pgrep amneziawg)
     # Why cant you wait for non-children...
     # wait $pids
-    while [ -e /proc/$pids ]; do sleep 3; done
+    while [ -e /proc/$pids ]; do sleep 60; done
   '';
 in
 {
@@ -27,10 +27,17 @@ in
       Address = 10.0.0.1/32
       ListenPort = 51871
       PrivateKey = ${config.sops.placeholder."guide2/awg/private-key"}
+      Jc = 5
+      Jmin = 100
+      Jmax = 1000
+      S1 = 324
+      S2 = 452
+      H1 = 25
 
       [Peer]
       PublicKey = ${config.sops.placeholder."sentinel/awg/public-key"}
       AllowedIPs = 10.0.0.2/24
+      PersistentKeepalive = 25
     '';
   };
 

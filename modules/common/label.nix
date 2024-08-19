@@ -1,1 +1,1 @@
-"More_amnezia_setup"
+"Amnezia-specific_settings"

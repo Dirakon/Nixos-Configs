@@ -5,14 +5,14 @@ let
     pids=$(${pkgs.procps}/bin/pgrep amneziawg)
     # Why cant you wait for non-children...
     # wait $pids
-    while [ -e /proc/$pids ]; do sleep 3; done
+    while [ -e /proc/$pids ]; do sleep 60; done
   '';
 in
 let
   wg-auto-server-pinger = pkgs.writeShellScriptBin "wg-auto-server-pinger" ''
     # Cuz without ping the connection sometimes is not established?
     while [ true ]; do 
-      ${pkgs.iputils}/bin/ping -W 3 -c 3 10.0.0.1
+      ${pkgs.iputils}/bin/ping -W 3 -c 1 10.0.0.1
       sleep 60
     done
   '';
@@ -40,11 +40,20 @@ in
       [Interface]
       Address = 10.0.0.2/24
       PrivateKey = ${config.sops.placeholder."sentinel/awg/private-key"}
+      Jc = 5
+      Jmin = 100
+      Jmax = 1000
+      # Parameters below will not work with the existing WireGuarg implementation.
+      # Use if your peer running Amnesia-WG
+      S1 = 324
+      S2 = 452
+      H1 = 25
 
       [Peer]
       PublicKey = ${config.sops.placeholder."guide2/awg/public-key"}
       AllowedIPs = 10.0.0.1/32
       Endpoint = ${config.sops.placeholder."guide2/ip"}:51871
+      PersistentKeepalive = 25
     '';
   };
 
@@ -80,6 +89,4 @@ in
         RestartSec = 5;
       };
   };
-  # Wants=sshd-keygen.service
-  # After=network.target sshd-keygen.service
 }
