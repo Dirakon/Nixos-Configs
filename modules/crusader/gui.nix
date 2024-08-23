@@ -50,6 +50,8 @@ self@{ config
 
     # Dev
     godot
+    lmms
+    audacity
 
     # doing neovim now
     # jetbrains.rider
