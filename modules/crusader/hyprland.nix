@@ -21,6 +21,7 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
     hypr-pkgs.swaylock # Lock screen
     hypr-pkgs.swayosd # Frontend for +-brigthness, +-sound
     hypr-pkgs.swayidle
+    hypr-pkgs.pyprland
     libnotify
     playerctl # Play controls
     networkmanagerapplet
