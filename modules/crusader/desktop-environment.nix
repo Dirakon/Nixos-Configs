@@ -1,7 +1,10 @@
 self@{ config, pkgs, unstable, hypr-pkgs, ... }:
 {
 
-  imports = [ ./hyprland.nix ];
+  imports = [
+    ./desktop/hyprland.nix
+    ./desktop/sway.nix
+  ];
 
   # Configure keymap in X11
   services.xserver = {
@@ -34,4 +37,8 @@ self@{ config, pkgs, unstable, hypr-pkgs, ... }:
 
   services.gvfs.enable = true; # File Managers - Mount, trash and other functionalities
   services.tumbler.enable = true; # File Managers - Thumbnail support for images
+
+  # Enable the gnome-keyring secrets vault. 
+  # Will be exposed through DBus to programs willing to store secrets.
+  services.gnome.gnome-keyring.enable = true;
 }

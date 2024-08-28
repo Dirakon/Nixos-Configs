@@ -1,7 +1,5 @@
 self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 {
-  services.displayManager.sessionPackages = [ hypr-pkgs.hyprland ];
-
   # allow brightness editing thru file
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
@@ -9,19 +7,14 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.swww # wallpapers
-    # hypr-pkgs.hyprpaper # In the end, swww is superior
-    hypr-pkgs.hyprlock
-    hypr-pkgs.xdg-desktop-portal-gtk # For file-picker
-    hypr-pkgs.xdg-desktop-portal-hyprland # For everything but file picker
+    hypr-pkgs.xdg-desktop-portal-gtk
     hypr-pkgs.wl-clipboard
     hypr-pkgs.mako # For notifications
     hypr-pkgs.rofi-wayland # App launcher + clipboard manager frontend
     hypr-pkgs.cliphist # Clipboard manager backend
-    hypr-pkgs.hyprshot # Screenshots
     hypr-pkgs.swaylock # Lock screen
     hypr-pkgs.swayosd # Frontend for +-brigthness, +-sound
     hypr-pkgs.swayidle
-    hypr-pkgs.pyprland
     libnotify
     playerctl # Play controls
     networkmanagerapplet
@@ -41,8 +34,6 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
   ];
 
   security.pam.services.swaylock = { };
-  security.pam.services.hyprlock = { };
-
   programs.hyprland.enable = true;
   programs.hyprland.package = hypr-pkgs.hyprland;
   programs.hyprland.xwayland.enable = true;
@@ -55,15 +46,5 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
     package = hypr-pkgs.waybar;
   };
 
-  # programs.thunar = {
-  #   enable = true;
-  #   plugins = with pkgs.xfce; [
-  #     thunar-archive-plugin
-  #       thunar-volman
-  #   ];
-  # };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
 }

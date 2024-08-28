@@ -1,1 +1,1 @@
-"Add_pyprland_with_monitor_switch"
+"Add_sway"

@@ -35,9 +35,9 @@ let
   };
 in
 {
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "${sddmTheme}";
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.theme = "${sddmTheme}";
 
   # Define the script /etc/scripts/sddm-avatar.sh
   environment.etc = {
