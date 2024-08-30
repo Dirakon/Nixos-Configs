@@ -40,6 +40,8 @@
     call-flake.url = "github:divnix/call-flake";
 
     disko.url = "github:nix-community/disko";
+    swayhide.url = "github:rehanzo/swayhide";
+    swayhide.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
@@ -67,6 +69,7 @@
           specialArgs.nixCats = nixCats.packages."${system}";
           specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+          specialArgs.swayhide = swayhide.packages."${system}".default;
 
 
           modules = [

@@ -29,7 +29,7 @@ bindsym $mod+Control+v exec rofi -modi clipboard:~/.scripts/cliphist-rofi-img -s
 exec_always autotiling
 
 # Window borders
-default_border pixel 1
+default_border pixel 4
 default_floating_border normal
 hide_edge_borders smart
 
@@ -93,6 +93,10 @@ exec lxqt-policykit-agent
 #
 # Workspaces:
 #
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
 
 # Switch to workspace
 bindsym $mod+1 workspace number 1

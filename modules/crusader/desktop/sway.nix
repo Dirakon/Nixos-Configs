@@ -1,6 +1,6 @@
 # TODO: based on https://github.com/gytis-ivaskevicius/nixfiles/blob/4a6dc53cb1eae075d7303ce2b90e02ad850b48fb/config/sway.nix#L7
 # ??
-self@{ config, pkgs, hypr-pkgs, unstable, ... }:
+self@{ config, pkgs, hypr-pkgs, swayhide, unstable, ... }:
 {
   services.displayManager.sessionPackages = [ hypr-pkgs.sway ];
 
@@ -8,6 +8,8 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.autotiling
+    # swayhide # works like 5% of the time at most???
+    i3-swallow # <- this works better
   ];
 
   programs.sway = {
@@ -31,4 +33,8 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
     extraOptions = [ "--unsupported-gpu" ];
   };
 
+  environment.sessionVariables = {
+    WLR_RENDERER = "vulkan";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 }
