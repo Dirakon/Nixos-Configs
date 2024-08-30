@@ -52,7 +52,7 @@ in
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
-    nvidiaSettings = true;
+    # nvidiaSettings = true;
     prime = {
       offload = {
         enable = true;

@@ -19,6 +19,8 @@
     #unstable.url = "github:NixOS/nixpkgs/release-24.05";
     unstable.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
     stable.url = "github:NixOS/nixpkgs/release-24.05";
+    # TODO: fix names
+    really-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
     # .37 - ??? - 
@@ -42,6 +44,10 @@
     disko.url = "github:nix-community/disko";
     swayhide.url = "github:rehanzo/swayhide";
     swayhide.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland/b1a4cc50c00c553da75b3ce2b3e736798fdbd788";
+    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
@@ -57,6 +63,7 @@
           system = "${system}";
           specialArgs.hostname = "${hostname}";
           specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
+          specialArgs.really-unstable = import really-unstable { system = system; config.allowUnfree = true; };
           specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
           specialArgs.nix-gl = nix-gl;
@@ -70,6 +77,7 @@
           specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
           specialArgs.swayhide = swayhide.packages."${system}".default;
+          specialArgs.nixpkgs-wayland = nixpkgs-wayland;
 
 
           modules = [
