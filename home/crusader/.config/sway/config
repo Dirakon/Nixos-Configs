@@ -6,25 +6,24 @@ set $down j
 set $up k
 set $right l
 
-#TODO: enter
+# Apps
 bindsym $mod+Control+t exec alacritty
-#TODO: /
 bindsym $mod+Control+b exec firefox
-#TODO: ;
 bindsym $mod+Control+d exec dolphin
+bindsym $mod+Control+r exec rofi -show drun
+bindsym $mod+Control+v exec rofi -modi clipboard:~/.scripts/cliphist-rofi-img -show clipboard -show-icons
 
+# Functionality
 bindsym $mod+Control+f fullscreen
 bindsym $mod+Control+$left focus left
 bindsym $mod+Control+$right focus right
 bindsym $mod+Control+$down focus down
 bindsym $mod+Control+$up focus up
-
 bindsym $mod+Control+c kill
-bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish
-bindsym $mod+Control+q exit
-bindsym $mod+Control+r exec rofi -show drun
-bindsym $mod+Control+v exec rofi -modi clipboard:~/.scripts/cliphist-rofi-img -show clipboard -show-icons
 
+# Sessions
+bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish
+bindsym $mod+Alt+q exit
 
 exec_always autotiling
 

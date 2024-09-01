@@ -5,7 +5,6 @@ self@{ config, pkgs, hypr-pkgs, unstable, ... }:
   imports = [ ./wm-utils.nix ];
 
   environment.systemPackages = with pkgs; [
-    hypr-pkgs.pyprland
     hypr-pkgs.hyprshot
   ];
 
