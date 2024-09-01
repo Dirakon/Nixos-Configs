@@ -52,6 +52,7 @@ self@{ config
     godot
     lmms
     audacity
+    trenchbroom
 
     # doing neovim now
     # jetbrains.rider
@@ -107,4 +108,9 @@ self@{ config
       server.enableSystemTray = true;
     };
   };
+
+  # For trenchbroom
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
 }
