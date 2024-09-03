@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
+self@{ config, pkgs, boot, hostname, ... }:
 {
   environment.etc."nextcloud-admin-pass".text = "PWD";
   services.nextcloud = {

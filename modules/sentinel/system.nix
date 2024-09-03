@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
+self@{ config, pkgs, boot, hostname, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
@@ -34,6 +34,7 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
       443 # https
       22 # ssh (just in case)
       51871 # wg???
+      54932 # couch db (for obs)
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -42,6 +43,7 @@ self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
       443 # https
       22 # ssh (just in case)
       51871 # wg???
+      54932 # couch db (for obs)
     ];
   networking.firewall = {
     #  if packets are still dropped, they will show up in dmesg

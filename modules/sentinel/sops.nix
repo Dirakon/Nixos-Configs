@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 {
   sops.defaultSopsFile = ../../secrets/sentinel-private.yaml;
   sops.defaultSopsFormat = "yaml";

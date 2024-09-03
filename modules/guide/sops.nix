@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 {
   sops.defaultSopsFile = ../../secrets/guide-private.yaml;
   sops.defaultSopsFormat = "yaml";

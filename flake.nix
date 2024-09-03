@@ -3,6 +3,8 @@
   description = "NixOS configuration";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+
     home-manager = {
       #url = "github:nix-community/home-manager";
       url = "github:nix-community/home-manager/release-24.05";
@@ -12,42 +14,18 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
-    #nixpkgs.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
-    #nixpkgs.url = "github:Failed to mount /usr/bin.NixOS/nixpkgs/release-24.05";
-    #unstable.url = "github:NixOS/nixpkgs/release-24.05";
-    unstable.url = "github:NixOS/nixpkgs/57d6973abba7ea108bac64ae7629e7431e0199b6";
-    stable.url = "github:NixOS/nixpkgs/release-24.05";
-    # TODO: fix names
-    really-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
-    # .37 - ??? - 
-    # .38 - ??? - "github:NixOS/nixpkgs/52c9b9d1b1cde669fea26505c3911ccd03e814c5"; # Gpu flakey
-    # .39 - ??? - "github:NixOS/nixpkgs/656721f99caa8df33cdbb3cd7910848658489026"; # Gpu flakey
-    # .40 - unstable - "github:NixOS/nixpkgs/4b55bfc815d996f3fc3cba96e343c744156ccf73"; # Gpu works fine
+    # add some more pinning things when needed
 
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
 
-    godot.url = "./programs/godot/";
-    ultim-mc.url = "./programs/ultim-mc/";
-    sandwine.url = "./programs/sandwine/";
-    nixCats.url = "./programs/nvim/";
-    amneziawg-go.url = "./programs/amnezia/wg/";
-    amneziawg-tools.url = "./programs/amnezia/tools/";
     call-flake.url = "github:divnix/call-flake";
 
     disko.url = "github:nix-community/disko";
-    swayhide.url = "github:rehanzo/swayhide";
-    swayhide.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    # nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland/b1a4cc50c00c553da75b3ce2b3e736798fdbd788";
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:
@@ -62,22 +40,16 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
-          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
-          specialArgs.really-unstable = import really-unstable { system = system; config.allowUnfree = true; };
-          specialArgs.stable = import stable { system = system; config.allowUnfree = true; };
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
           specialArgs.nix-gl = nix-gl;
           specialArgs.nix-alien = nix-alien.packages."${system}";
           specialArgs.sops-nix = sops-nix.packages."${system}";
 
-          specialArgs.godot = godot.godot."${system}";
-          specialArgs.ultim-mc = ultim-mc.ultim-mc."${system}";
-          specialArgs.sandwine = sandwine.sandwine."${system}";
-          specialArgs.nixCats = nixCats.packages."${system}";
-          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
+          specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
+          specialArgs.nixCats = (call-flake ./programs/nvim).packages."${system}";
+          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
-          specialArgs.swayhide = swayhide.packages."${system}".default;
-          specialArgs.nixpkgs-wayland = nixpkgs-wayland;
 
 
           modules = [
@@ -140,7 +112,7 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
-          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
           modules = [
@@ -172,7 +144,7 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
-          specialArgs.amneziawg-go = amneziawg-go.amneziawg-go."${system}";
+          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
           modules = [

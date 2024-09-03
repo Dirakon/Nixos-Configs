@@ -1,12 +1,8 @@
 self@{ config
 , pkgs
 , boot
-, agenix
 , godot
 , ultim-mc
-, sandwine
-, unstable
-, stable
 , ...
 }:
 {
@@ -16,7 +12,7 @@ self@{ config
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full
     winetricks
-    (python3.pkgs.toPythonApplication sandwine)
+    # (python3.pkgs.toPythonApplication sandwine)
 
     # Further gaming
     jstest-gtk

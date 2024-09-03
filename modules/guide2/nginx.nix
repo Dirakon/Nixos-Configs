@@ -1,4 +1,4 @@
-self@{ config, nix, pkgs, boot, stable, hostname, networking, ... }:
+self@{ config, nix, pkgs, boot, hostname, networking, ... }:
 let
   certbot-script =
     pkgs.writeShellScriptBin "certbot-script" ''
@@ -25,6 +25,15 @@ in
         server {
             listen 55933;
             proxy_pass ssh_proxy;
+        }
+
+        upstream couchdb_proxy {
+            server 10.0.0.2:54932;
+        }
+
+        server {
+            listen 54932;
+            proxy_pass couchdb_proxy;
         }
       }
     '';

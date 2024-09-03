@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, nix-alien, nix-gl, agenix, ... }:
+self@{ config, pkgs, boot, nix-alien, nix-gl, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1

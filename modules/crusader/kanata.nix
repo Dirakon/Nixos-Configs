@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, ... }:
+self@{ config, pkgs, boot, ... }:
 {
   services.kanata = {
     enable = true;

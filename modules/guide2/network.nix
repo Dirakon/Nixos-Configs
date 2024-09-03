@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 {
   networking.firewall.allowedTCPPorts =
     [
@@ -9,6 +9,7 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
       51871 # wg???
       55933 # ssh proxying for sentinel
       55934 # certbot
+      54932 # couchdb for obs
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -19,5 +20,6 @@ self@{ config, pkgs, boot, stable, hostname, modulesPath, ... }:
       51871 # wg???
       55933 # ssh proxying for sentinel
       55934 # certbot
+      54932 # couchdb for obs
     ];
 }

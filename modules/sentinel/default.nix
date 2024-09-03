@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
+self@{ config, pkgs, boot, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;
@@ -17,14 +17,16 @@ self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
     ./sops.nix
 
     ./amnezia.nix
+
+    ./couchdb.nix
   ];
 
-  environment.etc."nextcloud-admin-pass".text = "PWD";
-  services.nextcloud = {
-    enable = true;
-    package = pkgs.nextcloud28;
-    config.adminpassFile = "/etc/nextcloud-admin-pass";
-  };
+  # environment.etc."nextcloud-admin-pass".text = "PWD";
+  # services.nextcloud = {
+  #   enable = true;
+  #   package = pkgs.nextcloud28;
+  #   config.adminpassFile = "/etc/nextcloud-admin-pass";
+  # };
 
 
   # Allow unfree packages

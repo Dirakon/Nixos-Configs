@@ -1,7 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, stable
 , ...
 }:
 {

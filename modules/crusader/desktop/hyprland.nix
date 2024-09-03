@@ -1,4 +1,4 @@
-self@{ config, pkgs, hypr-pkgs, unstable, ... }:
+self@{ config, pkgs, hypr-pkgs, ... }:
 {
   services.displayManager.sessionPackages = [ hypr-pkgs.hyprland ];
 

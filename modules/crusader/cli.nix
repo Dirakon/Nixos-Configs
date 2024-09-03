@@ -1,10 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, godot
-, ultim-mc
-, sandwine
-, stable
 , nixCats
 , amneziawg-tools
 , amneziawg-go
@@ -20,7 +16,7 @@ self@{ config
     zip
     unzip
     ripgrep
-    htop # just to test that unstabling works properly
+    htop
     btop
     fastfetch
     fuseiso
@@ -36,13 +32,9 @@ self@{ config
     docker-compose
     sops
 
-    # For nvim-(mason?). Think about getting read of these dependenices
-    # gnumake
-    # cargo
-    # rustc
-    # gcc
-
+    nixCats.dev
     nixCats.idev
+    # nixCats.hidev # <- TOOD: add this with i3-swallow (is there aerospace swallow?)
 
     # For playing audio
     sox # 'play' command

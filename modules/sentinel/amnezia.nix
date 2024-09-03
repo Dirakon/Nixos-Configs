@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, stable, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, ... }:
 let
   wg-start-and-wait-subprocesses = pkgs.writeShellScriptBin "wg-start-and-wait-subprocesses" ''
     ${amneziawg-tools}/bin/awg-quick up wg0

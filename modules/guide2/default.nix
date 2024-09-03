@@ -1,4 +1,4 @@
-self@{ config, nix, pkgs, boot, stable, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;

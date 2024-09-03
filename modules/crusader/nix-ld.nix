@@ -1,4 +1,4 @@
-self@{ config, pkgs, unstable, nix-alien, nix-gl, ... }:
+self@{ config, pkgs, nix-alien, nix-gl, ... }:
 {
   nixpkgs.overlays = [ nix-gl.overlay ];
 

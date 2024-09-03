@@ -1,4 +1,4 @@
-self@{ config, pkgs, unstable, ... }:
+self@{ config, pkgs, ... }:
 {
   # GDM
   # services.xserver.displayManager.gdm.enable = true;
