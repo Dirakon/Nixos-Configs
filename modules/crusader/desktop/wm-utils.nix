@@ -1,4 +1,4 @@
-self@{ config, pkgs, hypr-pkgs, unstable, ... }:
+self@{ config, pkgs, hypr-pkgs, ... }:
 {
   # allow brightness editing thru file
   services.udev.extraRules = ''

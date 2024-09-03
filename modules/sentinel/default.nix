@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, agenix, godot, ultim-mc, sandwine, stable, ... }:
+self@{ config, pkgs, boot, ... }:
 {
   users.users.dirakon = {
     isNormalUser = true;

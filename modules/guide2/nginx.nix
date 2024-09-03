@@ -1,4 +1,4 @@
-self@{ config, nix, pkgs, boot, stable, hostname, networking, ... }:
+self@{ config, nix, pkgs, boot, hostname, networking, ... }:
 let
   certbot-script =
     pkgs.writeShellScriptBin "certbot-script" ''

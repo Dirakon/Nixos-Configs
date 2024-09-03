@@ -306,7 +306,7 @@
 
           # this will make a package out of each of the packageDefinitions defined above
           # and set the default package to the one named here.
-          packages = { default = nixCatsPackage; idev = idev; } // utils.mkExtraPackages nixCatsBuilder packageDefinitions;
+          packages = { dev = nixCatsPackage; idev = idev; } // utils.mkExtraPackages nixCatsBuilder packageDefinitions;
 
 
           # choose your package for devShell
@@ -314,7 +314,7 @@
           devShells = {
             default = pkgs.mkShell {
               name = defaultPackageName;
-              packages = [ idev ];
+              packages = [ idev nixCatsPackage ];
               inputsFrom = [ ];
               shellHook = ''
         '';

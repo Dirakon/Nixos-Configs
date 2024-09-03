@@ -1,4 +1,4 @@
-self@{ config, pkgs, unstable, hypr-pkgs, ... }:
+self@{ config, pkgs, hypr-pkgs, ... }:
 {
 
   imports = [
@@ -13,8 +13,6 @@ self@{ config, pkgs, unstable, hypr-pkgs, ... }:
     xkb.variant = "";
     videoDrivers = [ "nvidia" ];
     exportConfiguration = true;
-    # Supposedly fixes intel-vulkan?
-    # deviceSection = '' Option      "DRI"    "3" '';
   };
 
   services.dbus.enable = true;

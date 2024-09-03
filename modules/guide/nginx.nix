@@ -1,2 +1,2 @@
-self@{ config, nix, pkgs, boot, stable, hostname, networking, ... }:
+self@{ config, nix, pkgs, boot, hostname, networking, ... }:
 { }

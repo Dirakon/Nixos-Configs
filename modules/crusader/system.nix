@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, agenix, hostname, ... }:
+self@{ config, pkgs, boot, hostname, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
