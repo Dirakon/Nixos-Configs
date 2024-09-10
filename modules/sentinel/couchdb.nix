@@ -19,7 +19,7 @@ self@{ config, pkgs, boot, hostname, ... }:
   };
 
   sops.templates."couchdb.conf" = {
-    mode = "0444";
+    mode = "0777"; # why does it need write access to config file.....
     content = ''
       [admins]
       ${config.sops.placeholder."couchdb/login"} = ${config.sops.placeholder."couchdb/password"}

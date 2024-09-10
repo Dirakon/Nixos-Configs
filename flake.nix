@@ -26,6 +26,8 @@
     call-flake.url = "github:divnix/call-flake";
 
     disko.url = "github:nix-community/disko";
+
+    nvim.url = "github:Dirakon/Neovim-Configs";
   };
 
   outputs = inputs:
@@ -47,7 +49,7 @@
 
           specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
           specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
-          specialArgs.nixCats = (call-flake ./programs/nvim).packages."${system}";
+          specialArgs.nixCats = nvim.packages."${system}";
           specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 
