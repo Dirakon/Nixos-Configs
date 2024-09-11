@@ -71,7 +71,8 @@
   #   enable = true;
   # };
 
-  imports = map (file: ./helix + "/${file}") (
-    lib.strings.filter (file: file != "default.nix") (builtins.attrNames (builtins.readDir ./helix))
-  );
+  # I don't actually want LSPs now - I have nvim for that
+  #  imports = map (file: ./helix + "/${file}") (
+  #    lib.strings.filter (file: file != "default.nix") (builtins.attrNames (builtins.readDir ./helix))
+  #  );
 }

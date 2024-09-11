@@ -1,7 +1,7 @@
 self@{ config
 , pkgs
 , boot
-, nixCats
+, nvimPackages
 , amneziawg-tools
 , amneziawg-go
 , ...
@@ -32,10 +32,6 @@ self@{ config
     docker-compose
     sops
 
-    nixCats.dev
-    nixCats.idev
-    # nixCats.hidev # <- TOOD: add this with i3-swallow (is there aerospace swallow?)
-
     # For playing audio
     sox # 'play' command
 
@@ -46,7 +42,8 @@ self@{ config
     # amneziawg
     amneziawg-go
     amneziawg-tools
-  ];
+  ]
+  ++ nvimPackages;
 
   virtualisation.docker.enable = true;
 

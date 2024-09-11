@@ -20,7 +20,8 @@ self@{ config
 
     # Actual apps
     mpv
-    obsidian # Fixing weird hash mismatch error
+    obsidian
+    libreoffice
     telegram-desktop
     lutris
     blender

@@ -24,7 +24,9 @@
     executable = true;
   };
 
-  imports = [ ./helix.nix ];
+  imports = [
+    ./helix.nix
+  ];
 
   # Attempt at QT theme
   #  qt.enable = true;
