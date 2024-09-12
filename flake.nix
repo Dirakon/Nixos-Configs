@@ -49,7 +49,7 @@
 
           specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
           specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
-          specialArgs.nvimPackages = nvim.packages."${system}".packages;
+          specialArgs.nvimPackages = nixpkgs.lib.attrsets.attrValues (nvim.packages."${system}".packages);
           specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
 

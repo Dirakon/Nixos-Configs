@@ -350,11 +350,11 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1726085664,
-        "narHash": "sha256-BOLyYiYSBrwqmidm5pJA9AWhebmZ9TwJ4ueh/KLoGyo=",
+        "lastModified": 1726164200,
+        "narHash": "sha256-tNRP84ofezcwFhPsSlcrQf9KuwqnJmbMDaVOKWmCcKE=",
         "owner": "Dirakon",
         "repo": "Neovim-Configs",
-        "rev": "e63fb7add94a4d17aba3038cd9b74ce48ba2d0c4",
+        "rev": "62735e9d7fd8756c3275ea6a3eb65584f1d552ae",
         "type": "github"
       },
       "original": {
