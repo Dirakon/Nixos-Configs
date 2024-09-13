@@ -28,8 +28,6 @@ self@{ config, pkgs, boot, ... }:
 
     ./kanata.nix
 
-    ./nextcloud.nix # Temporary
-
     ./ssh.nix
   ];
 

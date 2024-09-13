@@ -19,7 +19,6 @@ self@{ config
     joystickwake
 
     # Actual apps
-    mpv
     obsidian
     libreoffice
     telegram-desktop

@@ -143,6 +143,21 @@
     enableFishIntegration = true;
   };
 
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      memo # [h]istory
+      mpris # playerctl integration
+      autoload # all files in current directory are added to playlist
+      uosc # some kinda UI overhaul?
+      mpv-cheatsheet # ? to see keybinds
+      thumbfast # thing to display thumnails when scrolling through timeline
+    ];
+    config = {
+      save-position-on-quit = true; # somewhat better history -- remember position too
+    };
+  };
+
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.
