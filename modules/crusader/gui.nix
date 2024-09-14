@@ -49,6 +49,7 @@ self@{ config
     lmms
     audacity
     trenchbroom
+    hoppscotch
 
     # doing neovim now
     # jetbrains.rider
