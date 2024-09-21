@@ -5,6 +5,8 @@ let
       domain=$(cat '${config.sops.secrets."guide2/hostname".path}')
       mkdir -p /var/www/demo
       ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d $domain --non-interactive
+      chown -R nginx:acme /etc/letsencrypt/ # nginx..
+      chmod 755 /etc/letsencrypt/ # nginx...
     '';
 in
 {
@@ -32,7 +34,11 @@ in
         }
 
         server {
-            listen 54932;
+            listen 54932 ssl;
+            
+            ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+
             proxy_pass couchdb_proxy;
         }
       }
@@ -50,6 +56,8 @@ in
       }
     '';
   };
+
+  users.extraGroups."acme".members = ["nginx"];
 
   services.nginx = {
     enable = true;
