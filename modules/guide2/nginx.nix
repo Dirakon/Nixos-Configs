@@ -57,7 +57,7 @@ in
     '';
   };
 
-  users.extraGroups."acme".members = ["nginx"];
+  users.extraGroups."acme".members = [ "nginx" ];
 
   services.nginx = {
     enable = true;

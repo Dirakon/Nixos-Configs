@@ -158,6 +158,9 @@
     };
   };
 
+  # Use dolphin as default file manager
+  xdg.mimeApps.defaultApplications."inode/directory" = "dolphin.desktop";
+
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.

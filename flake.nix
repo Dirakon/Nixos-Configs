@@ -27,7 +27,7 @@
 
     disko.url = "github:nix-community/disko";
 
-    nvim.url = "github:Dirakon/Neovim-Configs";
+    nvim.url = "git+file:programs/nvim";
   };
 
   outputs = inputs:
