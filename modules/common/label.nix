@@ -1,1 +1,1 @@
-"Try_submodule_setup_for_better_nvim_dev_ux"
+"Add_rss_reader"

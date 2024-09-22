@@ -1,29 +1,29 @@
 self@{ config, pkgs, boot, unstable, hostname, ... }:
 {
   services.suwayomi-server = {
-        package = unstable.suwayomi-server;
-        enable = true;
-        openFirewall = true;
+    package = unstable.suwayomi-server;
+    enable = true;
+    openFirewall = true;
 
-        settings = {
-          server = {
-            ip = "0.0.0.0";
-            port = 34674;
-            basicAuthEnabled = true;
-            basicAuthUsername = "dirakon";
-            basicAuthPasswordFile = config.sops.secrets."suwayomi/password".path;
+    settings = {
+      server = {
+        ip = "0.0.0.0";
+        port = 34674;
+        basicAuthEnabled = true;
+        basicAuthUsername = "dirakon";
+        basicAuthPasswordFile = config.sops.secrets."suwayomi/password".path;
 
-            systemTrayEnabled = false;
-            webUIEnabled = true;
+        systemTrayEnabled = false;
+        webUIEnabled = true;
 
-            autoDownloadNewChapters = false;
-            socksProxyEnabled = false;
+        autoDownloadNewChapters = false;
+        socksProxyEnabled = false;
 
-            maxSourcesInParallel = 6;
-            extensionRepos = [
-              "https://raw.githubusercontent.com/ThePBone/tachiyomi-extensions-revived/repo/index.min.json"
-              "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
-            ];
+        maxSourcesInParallel = 6;
+        extensionRepos = [
+          "https://raw.githubusercontent.com/ThePBone/tachiyomi-extensions-revived/repo/index.min.json"
+          "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
+        ];
         #     settings = {
         #       server.webUIEnabled = true;
         #       server.initialOpenInBrowserEnabled = false;
@@ -36,9 +36,9 @@ self@{ config, pkgs, boot, unstable, hostname, ... }:
         #       server.globalUpdateInterval = 12;
         #       server.updateMangas = false;
         #     };
-          };
-        };
       };
+    };
+  };
 
   sops.secrets."suwayomi/password" = {
     sopsFile = ./../../secrets/sentinel-private.yaml;
