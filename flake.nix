@@ -4,6 +4,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       #url = "github:nix-community/home-manager";
@@ -148,6 +149,7 @@
           specialArgs.hostname = "${hostname}";
           specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
 
           modules = [
             ./modules/${hostname}/default.nix

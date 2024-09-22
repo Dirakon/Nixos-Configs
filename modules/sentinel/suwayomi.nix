@@ -1,8 +1,8 @@
-self@{ config, pkgs, boot, hostname, ... }:
+self@{ config, pkgs, boot, unstable, hostname, ... }:
 {
   services.suwayomi-server = {
+        package = unstable.suwayomi-server;
         enable = true;
-
         openFirewall = true;
 
         settings = {
