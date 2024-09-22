@@ -41,6 +41,19 @@ in
 
             proxy_pass couchdb_proxy;
         }
+
+        upstream suwayomi_proxy {
+            server 10.0.0.2:34674;
+        }
+
+        server {
+            listen 34674 ssl;
+            
+            ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+
+            proxy_pass suwayomi_proxy;
+        }
       }
     '';
   };

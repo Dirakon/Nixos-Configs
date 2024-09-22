@@ -19,6 +19,8 @@ self@{ config, pkgs, boot, ... }:
     ./amnezia.nix
 
     ./couchdb.nix
+
+    ./suwayomi.nix
   ];
 
   # environment.etc."nextcloud-admin-pass".text = "PWD";

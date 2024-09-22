@@ -10,6 +10,7 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
       55933 # ssh proxying for sentinel
       55934 # certbot
       54932 # couchdb for obs
+      34674 # suwayomi
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -21,5 +22,6 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
       55933 # ssh proxying for sentinel
       55934 # certbot
       54932 # couchdb for obs
+      34674 # suwayomi
     ];
 }
