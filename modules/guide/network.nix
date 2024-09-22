@@ -5,9 +5,10 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
     key = "ip";
     sopsFile = ./../../secrets/guide-public.yaml;
   };
-  sops.secrets."guide/domain" = {
-    mode = "0444";
-  };
+  #  sops.secrets."guide/domain" = {
+  #    mode = "0444";
+  #    key = "domain";
+  #  };
 
   networking.firewall.allowedTCPPorts =
     [

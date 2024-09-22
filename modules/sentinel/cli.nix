@@ -22,6 +22,7 @@ self@{ config
     gparted
     tldr
     arp-scan
+    ncdu
 
     # Nix stuff
     nix-index

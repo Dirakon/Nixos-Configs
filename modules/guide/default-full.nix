@@ -33,7 +33,6 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 
   zramSwap = {
     enable = true;
-    memoryPercent = 100;
   };
 
   swapDevices = [{
