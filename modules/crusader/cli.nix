@@ -7,13 +7,6 @@ self@{ config
 , sensitive
 , ...
 }:
-# temp
-let
-  sensitive-checker =
-    pkgs.writeShellScriptBin "sensitive-checker" ''
-      echo ${sensitive.sentinel.hostname}
-    '';
-in
 {
   environment.systemPackages = with pkgs; [
     # some cli tools
@@ -39,7 +32,6 @@ in
     nh
     docker-compose
     sops
-    sensitive-checker
 
     # For playing audio
     sox # 'play' command

@@ -43,7 +43,7 @@ self@{ config
     ultim-mc
     nekoray
     electrum
-    fluent-reader # rss reader
+    newsflash # rss reader
 
     # Dev
     godot
