@@ -53,40 +53,42 @@
 
   home.packages = with pkgs; [
 
-    (catppuccin-kvantum.override {
-      accent = "Mauve";
-      variant = "Mocha";
-    })
+    #  (catppuccin-kvantum.override {
+    #    accent = "Mauve";
+    #    variant = "Mocha";
+    #  })
     libsForQt5.qt5ct
   ];
 
-  gtk = {
-    enable = true;
-    theme = {
-      #name = "Arc-Dark";
-      #package = pkgs.arc-theme;
-      name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
-    };
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-    };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-  };
+  #gtk = {
+  #  enable = true;
+  #  theme = {
+  #    #name = "Arc-Dark";
+  #    #package = pkgs.arc-theme;
+  #    name = "Adwaita-dark";
+  #    package = pkgs.gnome.gnome-themes-extra;
+  #  };
+  #  iconTheme = {
+  #    name = "Adwaita";
+  #    package = pkgs.gnome.adwaita-icon-theme;
+  #  };
+  #  gtk3.extraConfig = {
+  #    Settings = ''
+  #      gtk-application-prefer-dark-theme=1
+  #    '';
+  #  };
+  #  gtk4.extraConfig = {
+  #    Settings = ''
+  #      gtk-application-prefer-dark-theme=1
+  #    '';
+  #  };
+  #};
 
   # Packages that should be installed to the user profile.
   #  home.packages = with pkgs; [
   #  ];
+
+
 
   programs.kitty = {
     theme = "Tokyo Night Storm";

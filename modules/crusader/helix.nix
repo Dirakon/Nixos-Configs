@@ -7,7 +7,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "term16_dark";
+      # theme = "term16_dark";
       editor = {
         mouse = false;
         bufferline = "always";

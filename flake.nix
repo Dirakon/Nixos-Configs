@@ -15,6 +15,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
     # add some more pinning things when needed
@@ -64,6 +65,8 @@
             sops-nix.nixosModules.default
 
             flatpaks.nixosModules.default
+
+            stylix.nixosModules.stylix
 
             # make home-manager as a module of nixos
             # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
