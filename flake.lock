@@ -374,6 +374,7 @@
         "nix-gl": "nix-gl",
         "nixpkgs": "nixpkgs_4",
         "nvim": "nvim",
+        "sensitive": "sensitive",
         "sops-nix": "sops-nix",
         "unstable": "unstable"
       }
@@ -392,6 +393,21 @@
         "owner": "seblj",
         "repo": "roslyn.nvim",
         "type": "github"
+      }
+    },
+    "sensitive": {
+      "locked": {
+        "lastModified": 1727106484,
+        "narHash": "sha256-CbmD6rUyUhPXxNvLKZp/cMq2eS9vGJlqGuc/ApqM48w=",
+        "ref": "refs/heads/main",
+        "rev": "04be1e8333d3b972cea4f9d095b3049ed1571197",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:sensitive"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:sensitive"
       }
     },
     "sops-nix": {

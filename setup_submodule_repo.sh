@@ -2,4 +2,5 @@
 
 echo $1
 
-git config url."$1".insteadOf "git-server:"
+# For some reason, local config does not work...
+git config --global url."$1".insteadOf "my-git:"

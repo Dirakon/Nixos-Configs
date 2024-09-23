@@ -29,6 +29,8 @@
     disko.url = "github:nix-community/disko";
 
     nvim.url = "git+file:programs/nvim";
+
+    sensitive.url = "git+file:sensitive";
   };
 
   outputs = inputs:
@@ -47,6 +49,7 @@
           specialArgs.nix-gl = nix-gl;
           specialArgs.nix-alien = nix-alien.packages."${system}";
           specialArgs.sops-nix = sops-nix.packages."${system}";
+          specialArgs.sensitive = sensitive;
 
           specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
           specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";

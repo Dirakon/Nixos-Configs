@@ -4,8 +4,16 @@ self@{ config
 , nvimPackages
 , amneziawg-tools
 , amneziawg-go
+, sensitive
 , ...
 }:
+# temp
+let
+  sensitive-checker =
+    pkgs.writeShellScriptBin "sensitive-checker" ''
+      echo ${sensitive.sentinel.hostname}
+    '';
+in
 {
   environment.systemPackages = with pkgs; [
     # some cli tools
@@ -31,6 +39,7 @@ self@{ config
     nh
     docker-compose
     sops
+    sensitive-checker
 
     # For playing audio
     sox # 'play' command
