@@ -21,15 +21,9 @@ self@{ config, pkgs, boot, ... }:
     ./couchdb.nix
 
     ./suwayomi.nix
+
+    ./nextcloud.nix
   ];
-
-  # environment.etc."nextcloud-admin-pass".text = "PWD";
-  # services.nextcloud = {
-  #   enable = true;
-  #   package = pkgs.nextcloud28;
-  #   config.adminpassFile = "/etc/nextcloud-admin-pass";
-  # };
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

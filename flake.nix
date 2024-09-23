@@ -88,6 +88,7 @@
         nixpkgs.lib.nixosSystem {
           system = "${system}";
           specialArgs.hostname = "${hostname}";
+          specialArgs.sensitive = sensitive;
 
           modules = [
             ./modules/${hostname}/default.nix
@@ -120,6 +121,7 @@
           specialArgs.hostname = "${hostname}";
           specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+          specialArgs.sensitive = sensitive;
 
           modules = [
             ./modules/${hostname}/default.nix
@@ -153,6 +155,7 @@
           specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
           specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
+          specialArgs.sensitive = sensitive;
 
           modules = [
             ./modules/${hostname}/default.nix

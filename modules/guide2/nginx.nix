@@ -54,6 +54,22 @@ in
 
             proxy_pass suwayomi_proxy;
         }
+
+
+        upstream nextcloud_proxy {
+            server 10.0.0.2:80;
+        }
+
+        server {
+            listen 443 ssl;
+            
+            server_name nextcloud.${config.sops.placeholder."guide2/hostname"};
+            
+            ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+
+            proxy_pass nextcloud_proxy;
+        }
       }
     '';
   };
