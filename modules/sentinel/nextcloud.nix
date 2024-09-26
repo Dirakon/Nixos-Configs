@@ -37,6 +37,12 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       ];
     };
 
+    # (not enough apps available for current nextcloud imo - using imperative approach for now)
+    # extraApps = {
+    #   inherit (config.services.nextcloud.package.packages.apps) news contacts calendar tasks forms mail notes;
+    # };
+    # extraAppsEnable = true;
+
     # Auto-update Nextcloud Apps
     autoUpdateApps.enable = true;
     autoUpdateApps.startAt = "05:00:00";
@@ -51,14 +57,13 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
 
     phpOptions."opcache.interned_strings_buffer" = "64";
 
-    # TODO: migrate to postgres
-    #config =
-    #  {
-    #    dbtype = "pgsql";
-    #    dbuser = "nextcloud";
-    #    dbhost = "/run/postgresql";
-    #    dbname = "nextcloud";
-    #  };
+    config =
+      {
+        dbtype = "pgsql";
+        dbuser = "nextcloud";
+        dbhost = "/run/postgresql";
+        dbname = "nextcloud";
+      };
     database.createLocally = true;
   };
 
@@ -72,15 +77,15 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
     enable = true;
 
     # This authenticates the Unix user with the same name only, and that without the need for a password
-    ensureUsers = [
-      {
-        name = "nextcloud";
-      }
-    ];
+    # ensureUsers = [
+    #   {
+    #     name = "nextcloud";
+    #   }
+    # ];
 
-    ensureDatabases = [
-      "nextcloud"
-    ];
+    # ensureDatabases = [
+    #   "nextcloud"
+    # ];
   };
 
   # Ensure that postgres is running *before* running the setup
