@@ -31,6 +31,7 @@ self@{ config
     nix-index
     nh
     docker-compose
+    distrobox
     sops
 
     # For playing audio
@@ -46,7 +47,10 @@ self@{ config
   ]
   ++ nvimPackages;
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
   programs.fish.enable = true;
   # To overwrite fish command-not-found, which breaks, so we create our own (./.config/fish/config.fish)
