@@ -28,60 +28,23 @@
     ./helix.nix
   ];
 
-  # Attempt at QT theme
-  #  qt.enable = true;
-  #  qt.platformTheme = "qtct";
-  #  # qt.style.name = "adwaita-dark";
-  #  # qt.style.package = pkgs.adwaita-qt;
-  #  home.packages = [ pkgs.libsForQt5.qt5ct ]; 
-
-  # qt.enable = true;
-  # qt.platformTheme.name = "qtct"; 
-  # qt.style.name = "kvantum";
-
   qt = {
     enable = true;
     platformTheme.name = "qtct";
     style = {
       name = "kvantum";
-      #   #package = pkgs.catppuccin-kde.override {
-      #   #  flavour = ["frappe"];
-      #   #  accents = ["pink"];
-      #   #};
     };
   };
 
   home.packages = with pkgs; [
-
-    #  (catppuccin-kvantum.override {
-    #    accent = "Mauve";
-    #    variant = "Mocha";
-    #  })
     libsForQt5.qt5ct
   ];
 
   gtk = {
-    #  enable = true;
-    #  theme = {
-    #    #name = "Arc-Dark";
-    #    #package = pkgs.arc-theme;
-    #    name = "Adwaita-dark";
-    #    package = pkgs.gnome.gnome-themes-extra;
-    #  };
     iconTheme = {
       name = "Adwaita";
       package = pkgs.gnome.adwaita-icon-theme;
     };
-    #  gtk3.extraConfig = {
-    #    Settings = ''
-    #      gtk-application-prefer-dark-theme=1
-    #    '';
-    #  };
-    #  gtk4.extraConfig = {
-    #    Settings = ''
-    #      gtk-application-prefer-dark-theme=1
-    #    '';
-    #  };
   };
 
   # Packages that should be installed to the user profile.
@@ -152,7 +115,7 @@
       mpris # playerctl integration
       autoload # all files in current directory are added to playlist
       uosc # some kinda UI overhaul?
-      mpv-cheatsheet # ? to see keybinds
+      mpv-cheatsheet # '?' to see keybinds
       thumbfast # thing to display thumnails when scrolling through timeline
     ];
     config = {
