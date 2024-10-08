@@ -2,7 +2,6 @@
 let
   sddmBackgroundPath = pkgs.stdenv.mkDerivation {
     name = "sddm-wallpaper";
-    # Using static system file instead of placing relatively to config to not push images to repo
     src = sensitive.crusader.login-background;
     buildCommand = ''
       mkdir -p $out

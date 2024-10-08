@@ -571,11 +571,11 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1727814940,
-        "narHash": "sha256-ziaHAUAfdYwNrutBl5AOqUUau/7ipP9ozao9gRdtchA=",
+        "lastModified": 1728413365,
+        "narHash": "sha256-6MODORsys983vjj+sfMSzXrf34cXsfxPDu9H8hlOOp4=",
         "ref": "refs/heads/main",
-        "rev": "9fd3699b52f7b16c19e6468f644c7d8fbb2b05bb",
-        "revCount": 8,
+        "rev": "f3c29d9bb0c7a66211b1ae656e878fded4681552",
+        "revCount": 10,
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -619,11 +619,10 @@
     },
     "sensitive": {
       "locked": {
+        "dirtyRev": "70d1904039c4dab3af9414a978de301abf1bef0e-dirty",
+        "dirtyShortRev": "70d1904-dirty",
         "lastModified": 1727816361,
-        "narHash": "sha256-SBDcNUCLGHwilgvncnPIgHvI9bzzVvFIVZuU1CiFDns=",
-        "ref": "refs/heads/main",
-        "rev": "70d1904039c4dab3af9414a978de301abf1bef0e",
-        "revCount": 4,
+        "narHash": "sha256-TsngNJybj8PUgC9F/kutkP98En6QKEOSLSeyg/Usr6w=",
         "type": "git",
         "url": "file:sensitive"
       },
