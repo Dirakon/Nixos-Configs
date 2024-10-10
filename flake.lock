@@ -325,11 +325,11 @@
     },
     "hypr-pkgs": {
       "locked": {
-        "lastModified": 1725055192,
-        "narHash": "sha256-yoKospiBU8zSQ8jWKyjXG88G+PxW4ME3X8yZAu7kNxk=",
+        "lastModified": 1728676218,
+        "narHash": "sha256-zfxq+7yy1mhmrAS4Jku0WTn/m8iwF+Ya3Vd4ZY1YuYU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "680c1ff14e6b113f5614c46bef308188cc9e3e4c",
+        "rev": "84911fd0614c16ed0ed87193d79efdfa1d16e6b7",
         "type": "github"
       },
       "original": {

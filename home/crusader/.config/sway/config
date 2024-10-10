@@ -127,7 +127,7 @@ bindsym $mod+h workspace number 26
 bindsym $mod+j workspace number 27
 bindsym $mod+k workspace number 28
 bindsym $mod+l workspace number 29
-bindsym $mod+z workspace number 20
+bindsym $mod+z workspace number 30
 bindsym $mod+x workspace number 31
 bindsym $mod+c workspace number 32
 bindsym $mod+v workspace number 33
@@ -164,7 +164,7 @@ bindsym $mod+Shift+h move container to workspace number 26
 bindsym $mod+Shift+j move container to workspace number 27
 bindsym $mod+Shift+k move container to workspace number 28
 bindsym $mod+Shift+l move container to workspace number 29
-bindsym $mod+Shift+z move container to workspace number 20
+bindsym $mod+Shift+z move container to workspace number 30
 bindsym $mod+Shift+x move container to workspace number 31
 bindsym $mod+Shift+c move container to workspace number 32
 bindsym $mod+Shift+v move container to workspace number 33

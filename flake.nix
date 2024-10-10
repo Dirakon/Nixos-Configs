@@ -17,7 +17,8 @@
     };
     stylix.url = "github:danth/stylix";
 
-    hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    #hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
+    hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05"; # Unfortunately seems to now work on unstable. Will try again on 24.11.
     # add some more pinning things when needed
 
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
