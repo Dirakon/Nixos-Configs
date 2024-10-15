@@ -1,21 +1,20 @@
-self@{ config, nix, pkgs, boot, hostname, networking, ... }:
+self@{ config, nix, pkgs, boot, sensitive, hostname, networking, ... }:
 let
   certbot-script =
     pkgs.writeShellScriptBin "certbot-script" ''
-      domain=$(cat '${config.sops.secrets."guide2/hostname".path}')
       mkdir -p /var/www/demo
-      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d $domain --non-interactive
+      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
+      sleep 10
+      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.git.hostname} --non-interactive
+      sleep 10
+      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
+      sleep 10
+      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.chat.hostname} --non-interactive
       chown -R nginx:acme /etc/letsencrypt/ # nginx..
       chmod 755 /etc/letsencrypt/ # nginx...
     '';
 in
 {
-  sops.secrets."guide2/hostname" = {
-    sopsFile = ./../../secrets/guide2-public.yaml;
-    mode = "0444";
-    key = "hostname";
-  };
-
   sops.templates."nginx.conf" = {
     mode = "0444";
     content = ''
@@ -36,8 +35,8 @@ in
         server {
             listen 54932 ssl;
             
-            ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
-            ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+            ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.misc.hostname}/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.misc.hostname}/privkey.pem;
 
             proxy_pass couchdb_proxy;
         }
@@ -49,8 +48,8 @@ in
         server {
             listen 34674 ssl;
             
-            ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
-            ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+            ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.misc.hostname}/fullchain.pem;
+            ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.misc.hostname}/privkey.pem;
 
             proxy_pass suwayomi_proxy;
         }
@@ -70,10 +69,42 @@ in
 
       server {
         listen 443 ssl;
-        server_name nextcloud.${config.sops.placeholder."guide2/hostname"} www.nextcloud.${config.sops.placeholder."guide2/hostname"};
+        server_name ${sensitive.sentinel.nextcloud.hostname} www.${sensitive.sentinel.nextcloud.hostname};
 
-        ssl_certificate /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/${config.sops.placeholder."guide2/hostname"}/privkey.pem;
+        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.nextcloud.hostname}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.nextcloud.hostname}/privkey.pem;
+
+        location / {
+          proxy_pass http://10.0.0.2/;
+        
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+        }
+      }
+
+      server {
+        listen 443 ssl;
+        server_name ${sensitive.sentinel.git.hostname} www.${sensitive.sentinel.git.hostname};
+
+        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.git.hostname}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.git.hostname}/privkey.pem;
+
+        location / {
+          proxy_pass http://10.0.0.2/;
+        
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+        }
+      }
+ 
+      server {
+        listen 443 ssl;
+        server_name ${sensitive.sentinel.chat.hostname} www.${sensitive.sentinel.chat.hostname};
+
+        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/privkey.pem;
 
         location / {
           proxy_pass http://10.0.0.2/;
