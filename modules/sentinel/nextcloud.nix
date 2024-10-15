@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, hostname, sensitive, ... }:
+self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
 {
   sops.secrets."nextcloud/password" = {
     # TODO: move secrets to sensitive repo (why not?)
@@ -75,7 +75,12 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
   # Database configuration
   services.postgresql = {
     enable = true;
-
+    enableTCPIP = true;
+    authentication = lib.mkOverride 10 ''
+      local all all trust
+      host all all 127.0.0.1/32 trust
+      host all all ::1/128 trust
+    '';
     # This authenticates the Unix user with the same name only, and that without the need for a password
     # ensureUsers = [
     #   {

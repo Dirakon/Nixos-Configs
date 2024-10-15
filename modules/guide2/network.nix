@@ -11,6 +11,7 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
       55934 # certbot
       54932 # couchdb for obs
       34674 # suwayomi
+      51273 # gitea ssh
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -23,5 +24,6 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
       55934 # certbot
       54932 # couchdb for obs
       34674 # suwayomi
+      51273 # gitea ssh
     ];
 }

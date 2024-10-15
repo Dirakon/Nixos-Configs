@@ -28,6 +28,16 @@ in
             proxy_pass ssh_proxy;
         }
 
+        upstream ssh_proxy_gitea {
+            server 10.0.0.2:51273;
+        }
+
+        server {
+            listen 51273;
+            server_name ${sensitive.sentinel.git.hostname} www.${sensitive.sentinel.git.hostname};
+            proxy_pass ssh_proxy_gitea;
+        }
+
         upstream couchdb_proxy {
             server 10.0.0.2:54932;
         }
@@ -91,7 +101,7 @@ in
         ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.git.hostname}/privkey.pem;
 
         location / {
-          proxy_pass http://10.0.0.2/;
+          proxy_pass http://10.0.0.2:41239/;
         
           proxy_set_header   Host             $host;
           proxy_set_header   X-Real-IP        $remote_addr;

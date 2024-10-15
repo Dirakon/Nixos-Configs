@@ -23,6 +23,8 @@ self@{ config, pkgs, boot, ... }:
     ./suwayomi.nix
 
     ./nextcloud.nix
+
+    ./gitea.nix
   ];
 
   # Allow unfree packages
