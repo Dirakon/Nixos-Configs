@@ -571,11 +571,11 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1728413365,
-        "narHash": "sha256-6MODORsys983vjj+sfMSzXrf34cXsfxPDu9H8hlOOp4=",
+        "lastModified": 1729100529,
+        "narHash": "sha256-9fRFAOykvmP9LFgKlgTAIStX1rmVDKx9OCRablHt4xw=",
         "ref": "refs/heads/main",
-        "rev": "f3c29d9bb0c7a66211b1ae656e878fded4681552",
-        "revCount": 10,
+        "rev": "ed7e14235d0912562edf2f5991f9c70151d2d095",
+        "revCount": 11,
         "type": "git",
         "url": "file:programs/nvim"
       },

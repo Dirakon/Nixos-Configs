@@ -13,7 +13,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
         ppdOptions = ppdOptions;
       })
     ];
-    
+
     ensureDefaultPrinter = sensitive.sentinel.printer.name;
   };
 }

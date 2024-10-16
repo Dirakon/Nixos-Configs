@@ -1,7 +1,7 @@
 self@{ config, pkgs, boot, hostname, sensitive, ... }:
 {
   # based on https://github.com/ryan4yin/nix-config/blob/47e1ca61c3055d65e1b36bda7efcc570f5f2effa/hosts/idols-aquamarine/gitea.nix#L3
- services.gitea = {
+  services.gitea = {
     enable = true;
     user = "gitea";
     group = "gitea";
