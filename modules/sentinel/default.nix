@@ -27,6 +27,8 @@ self@{ config, pkgs, boot, ... }:
     ./gitea.nix
 
     ./mattermost.nix
+
+    ./printing.nix
   ];
 
   # Allow unfree packages
