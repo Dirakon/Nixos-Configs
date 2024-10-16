@@ -37,6 +37,7 @@ self@{ config, pkgs, boot, hostname, ... }:
       54932 # couch db (for obs)
       51273 # gitea ssh
       41239 # gitea https
+      34231 # mattermost
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -48,6 +49,7 @@ self@{ config, pkgs, boot, hostname, ... }:
       54932 # couch db (for obs)
       51273 # gitea ssh
       41239 # gitea https
+      34231 # mattermost
     ];
   networking.firewall = {
     #  if packets are still dropped, they will show up in dmesg

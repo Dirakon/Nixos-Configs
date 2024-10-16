@@ -25,6 +25,8 @@ self@{ config, pkgs, boot, ... }:
     ./nextcloud.nix
 
     ./gitea.nix
+
+    ./mattermost.nix
   ];
 
   # Allow unfree packages

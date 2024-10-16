@@ -95,6 +95,22 @@ in
 
       server {
         listen 443 ssl;
+        server_name ${sensitive.sentinel.chat.hostname} www.${sensitive.sentinel.chat.hostname};
+
+        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/privkey.pem;
+
+        location / {
+          proxy_pass http://10.0.0.2:34231/;
+        
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+        }
+      }
+
+      server {
+        listen 443 ssl;
         server_name ${sensitive.sentinel.git.hostname} www.${sensitive.sentinel.git.hostname};
 
         ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.git.hostname}/fullchain.pem;
@@ -102,22 +118,6 @@ in
 
         location / {
           proxy_pass http://10.0.0.2:41239/;
-        
-          proxy_set_header   Host             $host;
-          proxy_set_header   X-Real-IP        $remote_addr;
-          proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
-        }
-      }
- 
-      server {
-        listen 443 ssl;
-        server_name ${sensitive.sentinel.chat.hostname} www.${sensitive.sentinel.chat.hostname};
-
-        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/privkey.pem;
-
-        location / {
-          proxy_pass http://10.0.0.2/;
         
           proxy_set_header   Host             $host;
           proxy_set_header   X-Real-IP        $remote_addr;
