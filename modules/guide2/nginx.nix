@@ -100,12 +100,42 @@ in
         ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.chat.hostname}/privkey.pem;
 
+        location ~ /api/v[0-9]+/(users/)?websocket$ {
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          client_max_body_size 50M;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Frame-Options SAMEORIGIN;
+          proxy_buffers 256 16k;
+          proxy_buffer_size 16k;
+          client_body_timeout 60s;
+          send_timeout 300s;
+          lingering_timeout 5s;
+          proxy_connect_timeout 90s;
+          proxy_send_timeout 300s;
+          proxy_read_timeout 90s;
+          proxy_http_version 1.1;
+
+          proxy_pass http://10.0.0.2:34231;
+        }
+
         location / {
-          proxy_pass http://10.0.0.2:34231/;
-        
-          proxy_set_header   Host             $host;
-          proxy_set_header   X-Real-IP        $remote_addr;
-          proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+          client_max_body_size 100M;
+          proxy_set_header Connection "";
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Frame-Options SAMEORIGIN;
+          proxy_buffers 256 16k;
+          proxy_buffer_size 16k;
+          proxy_read_timeout 600s;
+          proxy_http_version 1.1;
+
+          proxy_pass http://10.0.0.2:34231;
         }
       }
 

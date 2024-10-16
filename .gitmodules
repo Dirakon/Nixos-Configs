@@ -4,3 +4,6 @@
 [submodule "sensitive"]
 	path = sensitive
 	url = my-git:Nixos-Sensitive-Data.git
+[submodule "programs/mattermost-printer-bot"]
+	path = programs/mattermost-printer-bot
+	url = git@github.com:Dirakon/Mattermost-Printer-Bot.git

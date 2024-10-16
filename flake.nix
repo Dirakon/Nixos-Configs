@@ -31,6 +31,7 @@
     disko.url = "github:nix-community/disko";
 
     nvim.url = "git+file:programs/nvim";
+    mattermost-printer-bot.url = "git+file:programs/mattermost-printer-bot";
 
     sensitive.url = "git+file:sensitive";
   };
@@ -160,6 +161,7 @@
           specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
           specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
           specialArgs.sensitive = sensitive;
+          specialArgs.mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
 
           modules = [
             ./modules/${hostname}/default.nix
