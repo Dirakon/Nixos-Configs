@@ -363,11 +363,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1729113215,
-        "narHash": "sha256-Vk2YnsZbkC7u2YHZ3xHrdIQMeKF9JdBswysg5doH8V8=",
+        "lastModified": 1729193332,
+        "narHash": "sha256-fObS2jQ26JrxGWSnyRYx1hAHuvnIRTh+U72qe/Om130=",
         "ref": "refs/heads/main",
-        "rev": "75e6073366e1d212b44805715e7da7209491f75b",
-        "revCount": 4,
+        "rev": "96a4b368cea8bef89a88b6750af4de0b471dc2be",
+        "revCount": 5,
         "type": "git",
         "url": "file:programs/mattermost-printer-bot"
       },

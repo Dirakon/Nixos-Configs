@@ -16,4 +16,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
 
     ensureDefaultPrinter = sensitive.sentinel.printer.name;
   };
+
+  hardware.sane.enable = true;
+  users.users.dirakon.extraGroups = [ "scanner" "lp" ];
 }

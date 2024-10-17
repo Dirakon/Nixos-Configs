@@ -2,8 +2,13 @@ self@{ config, pkgs, boot, hostname, sensitive, mattermost-printer-bot, ... }:
 let
   run-mattermost-printer-bot = pkgs.writeShellScriptBin "run-mattermost-printer-bot" ''
     token=`cat ${config.sops.secrets."sentinel/mattermost/printer-bot-token".path}`
-    PATH=$PATH:${pkgs.cups}/bin/
-    ${mattermost-printer-bot}/bin/mattermost-printer-bot "Home" "https://${sensitive.sentinel.chat.hostname}" "$token"
+
+    ${mattermost-printer-bot}/bin/mattermost-printer-bot \
+      "https://${sensitive.sentinel.chat.hostname}" \
+      "Home" \
+      "$token" \
+      --print "${pkgs.cups}/bin/lp" \
+      --scan "${pkgs.sane-backends}/bin/scanimage --jpeg=no --resolution=300 -o"
   '';
   in
 {
