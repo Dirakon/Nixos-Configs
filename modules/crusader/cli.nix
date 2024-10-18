@@ -26,6 +26,10 @@ self@{ config
     gparted
     tldr
     arp-scan
+    poppler_utils # pdf to png thing - `pdftoppm`
+    timer
+    openssl
+    cloc
 
     # Nix stuff
     nix-index

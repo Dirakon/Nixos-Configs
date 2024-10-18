@@ -10,7 +10,7 @@ let
       --print "${pkgs.cups}/bin/lp" \
       --scan "${pkgs.sane-backends}/bin/scanimage --jpeg=no --resolution=300 -o"
   '';
-  in
+in
 {
   sops.secrets."sentinel/mattermost/printer-bot-token" = {
     sopsFile = sensitive.sentinel.secrets;
