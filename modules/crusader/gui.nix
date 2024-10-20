@@ -23,9 +23,12 @@ self@{ config
     obsidian
     libreoffice
     telegram-desktop
+    mattermost-desktop
     lutris
     blender
     ktorrent
+    ryujinx
+    nsz
     okular
     dolphin
     kdePackages.dolphin-plugins

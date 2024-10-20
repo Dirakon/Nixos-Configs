@@ -11,7 +11,7 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     hostName = sensitive.sentinel.nextcloud.hostname;
     config.adminpassFile = config.sops.secrets."nextcloud/password".path;
     https = true;
