@@ -4,7 +4,7 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
     # TODO: move secrets to sensitive repo (why not?)
     # Then would be like `sopsFile = sensitive.sentinel.secrets`
     # 'public' part would become just sensitive strings
-    sopsFile = ./../../secrets/sentinel-private.yaml;
+    sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
     key = "nextcloud/password";
   };
@@ -19,7 +19,7 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
     settings = {
       maintenance_window_start = "4";
       trusted_proxies = [
-        "10.0.0.1" # guide2 via amnezia-wg
+        sensitive.guide2.awg.ip
       ];
       enabledPreviewProviders = [
         "OC\\Preview\\BMP"

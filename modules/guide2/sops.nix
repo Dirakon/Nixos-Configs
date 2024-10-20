@@ -1,6 +1,6 @@
-self@{ config, pkgs, boot, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 {
-  sops.defaultSopsFile = ../../secrets/guide2-private.yaml;
+  sops.defaultSopsFile = sensitive.guide2.secrets;
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "/home/dirakon/.config/sops/age/keys.txt";

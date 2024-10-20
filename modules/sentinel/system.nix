@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, hostname, ... }:
+self@{ config, pkgs, boot, hostname, sensitive, ... }:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
@@ -29,27 +29,27 @@ self@{ config, pkgs, boot, hostname, ... }:
   networking.firewall.checkReversePath = false;
   networking.firewall.allowedTCPPorts =
     [
-      55932 # ssh
+      sensitive.sentinel.ssh.port
       80 # http
       443 # https
       22 # ssh (just in case)
-      51871 # wg???
-      54932 # couch db (for obs)
-      51273 # gitea ssh
-      41239 # gitea https
-      34231 # mattermost
+      sensitive.sentinel.awg.port
+      sensitive.sentinel.obsidian-couchdb.port
+      sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.gitea.http-port
+      sensitive.sentinel.mattermost.port
     ];
   networking.firewall.allowedUDPPorts =
     [
-      55932 # ssh
+      sensitive.sentinel.ssh.port
       80 # http
       443 # https
       22 # ssh (just in case)
-      51871 # wg???
-      54932 # couch db (for obs)
-      51273 # gitea ssh
-      41239 # gitea https
-      34231 # mattermost
+      sensitive.sentinel.awg.port
+      sensitive.sentinel.obsidian-couchdb.port
+      sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.gitea.http-port
+      sensitive.sentinel.mattermost.port
     ];
   networking.firewall = {
     #  if packets are still dropped, they will show up in dmesg
@@ -112,7 +112,7 @@ self@{ config, pkgs, boot, hostname, ... }:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.ports = [ 55932 ];
+  services.openssh.ports = [ sensitive.sentinel.ssh.port ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

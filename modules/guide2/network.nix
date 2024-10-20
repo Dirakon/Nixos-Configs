@@ -1,29 +1,29 @@
-self@{ config, pkgs, boot, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, sensitive, ... }:
 {
   networking.firewall.allowedTCPPorts =
     [
-      55932
-      80
-      443
-      22
-      51871 # wg???
-      55933 # ssh proxying for sentinel
-      55934 # certbot
-      54932 # couchdb for obs
-      34674 # suwayomi
-      51273 # gitea ssh
+      sensitive.guide2.ssh.port
+      sensitive.guide2.awg.port
+      sensitive.sentinel.ssh.port
+
+      80 # nginx
+      443 # nginx
+      sensitive.guide2.certbot.port
+      sensitive.sentinel.obsidian-couchdb.port
+      sensitive.sentinel.suwayomi.port
+      sensitive.sentinel.gitea.ssh-port
     ];
   networking.firewall.allowedUDPPorts =
     [
-      55932
-      80
-      443
-      22
-      51871 # wg???
-      55933 # ssh proxying for sentinel
-      55934 # certbot
-      54932 # couchdb for obs
-      34674 # suwayomi
-      51273 # gitea ssh
+      sensitive.guide2.ssh.port
+      sensitive.guide2.awg.port
+      sensitive.sentinel.ssh.port
+
+      80 # nginx
+      443 # nginx
+      sensitive.guide2.certbot.port
+      sensitive.sentinel.obsidian-couchdb.port
+      sensitive.sentinel.suwayomi.port
+      sensitive.sentinel.gitea.ssh-port
     ];
 }

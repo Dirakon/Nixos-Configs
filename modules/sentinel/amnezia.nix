@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, sensitive, ... }:
 let
   wg-start-and-wait-subprocesses = pkgs.writeShellScriptBin "wg-start-and-wait-subprocesses" ''
     ${amneziawg-tools}/bin/awg-quick up wg0
@@ -12,33 +12,23 @@ let
   wg-auto-server-pinger = pkgs.writeShellScriptBin "wg-auto-server-pinger" ''
     # Cuz without ping the connection sometimes is not established?
     while [ true ]; do 
-      ${pkgs.iputils}/bin/ping -W 3 -c 1 10.0.0.1
+      ${pkgs.iputils}/bin/ping -W 3 -c 1 ${sensitive.guide2.awg.ip}
       sleep 60
     done
   '';
 in
 {
   sops.secrets."sentinel/awg/private-key" = {
-    sopsFile = ./../../secrets/sentinel-private.yaml;
+    sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
     key = "awg/private-key";
-  };
-  sops.secrets."guide2/awg/public-key" = {
-    sopsFile = ./../../secrets/guide2-public.yaml;
-    mode = "0444";
-    key = "awg/public-key";
-  };
-  sops.secrets."guide2/ip" = {
-    sopsFile = ./../../secrets/guide2-public.yaml;
-    mode = "0444";
-    key = "ip";
   };
 
   sops.templates."wg0.conf" = {
     mode = "0444";
     content = ''
       [Interface]
-      Address = 10.0.0.2/24
+      Address = ${sensitive.sentinel.awg.ip}/24
       PrivateKey = ${config.sops.placeholder."sentinel/awg/private-key"}
       Jc = 5
       Jmin = 100
@@ -50,9 +40,9 @@ in
       H1 = 25
 
       [Peer]
-      PublicKey = ${config.sops.placeholder."guide2/awg/public-key"}
-      AllowedIPs = 10.0.0.1/32
-      Endpoint = ${config.sops.placeholder."guide2/ip"}:51871
+      PublicKey = ${sensitive.guide2.awg.public-key}
+      AllowedIPs = ${sensitive.guide2.awg.ip}/32
+      Endpoint = ${sensitive.guide2.ip}:${toString sensitive.guide2.awg.port}
       PersistentKeepalive = 25
     '';
   };

@@ -363,11 +363,10 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
+        "dirtyRev": "4a2509632d4a0f4f13abddb984629cb8e1783351-dirty",
+        "dirtyShortRev": "4a25096-dirty",
         "lastModified": 1729281504,
-        "narHash": "sha256-MLWgzWXIf9cBnD/PS6iE/AwLEwkoAAMqP318tUX7dn4=",
-        "ref": "refs/heads/main",
-        "rev": "4a2509632d4a0f4f13abddb984629cb8e1783351",
-        "revCount": 8,
+        "narHash": "sha256-rRzAB97bNlKA7CMW2sHzHpg4xDS+PkSbBXlQTtvebYQ=",
         "type": "git",
         "url": "file:programs/mattermost-printer-bot"
       },
@@ -733,11 +732,11 @@
     },
     "sensitive": {
       "locked": {
-        "lastModified": 1729099121,
-        "narHash": "sha256-GXXpb51nck9FeH4nMAbfVdqxyzXGWOBtD2VIAvZAT/w=",
+        "lastModified": 1729417943,
+        "narHash": "sha256-Hq498Njz5wRP60DqSj0ZN5RKTVYvZyoYLfPWdJmFXrE=",
         "ref": "refs/heads/main",
-        "rev": "94b0f2117ceec04b74112f63c51a836978aa9d53",
-        "revCount": 8,
+        "rev": "a3ede6c9d07fc87eb3f8ad0cf6ba6c6d31b0ad58",
+        "revCount": 10,
         "type": "git",
         "url": "file:sensitive"
       },

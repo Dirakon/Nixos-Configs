@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 {
   imports = [
     ./nginx.nix
@@ -41,7 +41,7 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
   }];
 
 
-  services.openssh.ports = [ 55932 ];
+  services.openssh.ports = [ sensitive.guide2.ssh.port ];
 
 
   networking.hostName = "${hostname}";

@@ -1,8 +1,7 @@
-self@{ config, pkgs, boot, hostname, modulesPath, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 {
   imports = [
     ./xray.nix
-    ./nginx.nix
     ./network.nix
     ./sops.nix
   ];
@@ -67,7 +66,7 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
   };
 
 
-  services.openssh.ports = [ 55932 ];
+  services.openssh.ports = [ sensitive.guide.ssh.port ];
 
 
   networking.hostName = "${hostname}";

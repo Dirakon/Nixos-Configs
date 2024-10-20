@@ -59,12 +59,17 @@ self@{ config
     # jetbrains.webstorm
 
     # QT theming (cleanup!)
-    # libsForQt5.kio
+    libsForQt5.kio
     libsForQt5.kio-extras
+    libsForQt5.kio-admin
+
     kio-admin
     kio-fuse
+
     kdePackages.kio
     kdePackages.kio-extras
+    kdePackages.kio-fuse
+
     libsForQt5.kdegraphics-thumbnailers
     libsForQt5.ffmpegthumbs # shold thumbnail videos but not working ...
     kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...

@@ -19,18 +19,18 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
     # mailerPasswordFile = "";
     settings = {
       server = {
-        SSH_PORT = 51273;
+        SSH_PORT = sensitive.sentinel.gitea.ssh-port;
         START_SSH_SERVER = true;
-        SSH_DOMAIN = "${sensitive.sentinel.git.hostname}";
+        SSH_DOMAIN = sensitive.sentinel.gitea.hostname;
         # SSH_LISTEN_HOST = 51273;
         # SSH_LISTEN_PORT = 51273;
         SSH_ROOT_PATH = "~/.gitea-ssh";
         SSH_SERVER_USE_PROXY_PROTOCOL = false;
         PROTOCOL = "http";
-        HTTP_PORT = 41239;
+        HTTP_PORT = sensitive.sentinel.gitea.http-port;
         HTTP_ADDR = "0.0.0.0";
-        DOMAIN = "${sensitive.sentinel.git.hostname}";
-        ROOT_URL = "https://${sensitive.sentinel.git.hostname}/";
+        DOMAIN = "${sensitive.sentinel.gitea.hostname}";
+        ROOT_URL = "https://${sensitive.sentinel.gitea.hostname}/";
       };
       # one of "Trace", "Debug", "Info", "Warn", "Error", "Critical"
       log.LEVEL = "Info";
@@ -47,7 +47,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
         PASSWORD_HASH_ALGO = "scrypt";
         MIN_PASSWORD_LENGTH = 10;
         REVERSE_PROXY_LIMIT = 2;
-        REVERSE_PROXY_TRUSTED_PROXIES = "10.0.0.1"; # guide2 via amnezia-wg
+        REVERSE_PROXY_TRUSTED_PROXIES = sensitive.guide2.awg.ip;
       };
       "service.explore" = {
         REQUIRE_SIGNIN_VIEW = true;

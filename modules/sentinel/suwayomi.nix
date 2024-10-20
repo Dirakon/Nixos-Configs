@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, unstable, hostname, ... }:
+self@{ config, pkgs, boot, unstable, hostname, sensitive, ... }:
 {
   services.suwayomi-server = {
     package = unstable.suwayomi-server;
@@ -8,7 +8,7 @@ self@{ config, pkgs, boot, unstable, hostname, ... }:
     settings = {
       server = {
         ip = "0.0.0.0";
-        port = 34674;
+        port = sensitive.sentinel.suwayomi.port;
         basicAuthEnabled = true;
         basicAuthUsername = "dirakon";
         basicAuthPasswordFile = config.sops.secrets."suwayomi/password".path;
@@ -41,7 +41,7 @@ self@{ config, pkgs, boot, unstable, hostname, ... }:
   };
 
   sops.secrets."suwayomi/password" = {
-    sopsFile = ./../../secrets/sentinel-private.yaml;
+    sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
     key = "suwayomi/password";
   };

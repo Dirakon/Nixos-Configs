@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, sensitive, ... }:
 let
   wg-start-and-wait-subprocesses = pkgs.writeShellScriptBin "wg-start-and-wait-subprocesses" ''
     ${amneziawg-tools}/bin/awg-quick up wg0
@@ -9,13 +9,8 @@ let
   '';
 in
 {
-  sops.secrets."sentinel/awg/public-key" = {
-    sopsFile = ./../../secrets/sentinel-public.yaml;
-    mode = "0444";
-    key = "awg/public-key";
-  };
   sops.secrets."guide2/awg/private-key" = {
-    sopsFile = ./../../secrets/guide2-private.yaml;
+    sopsFile = sensitive.guide2.secrets;
     mode = "0444";
     key = "awg/private-key";
   };
@@ -24,8 +19,8 @@ in
     mode = "0444";
     content = ''
       [Interface]
-      Address = 10.0.0.1/32
-      ListenPort = 51871
+      Address = ${sensitive.guide2.awg.ip}/32
+      ListenPort = ${toString sensitive.guide2.awg.port}
       PrivateKey = ${config.sops.placeholder."guide2/awg/private-key"}
       Jc = 5
       Jmin = 100
@@ -35,8 +30,8 @@ in
       H1 = 25
 
       [Peer]
-      PublicKey = ${config.sops.placeholder."sentinel/awg/public-key"}
-      AllowedIPs = 10.0.0.2/24
+      PublicKey = ${sensitive.sentinel.awg.public-key}
+      AllowedIPs = ${sensitive.sentinel.awg.ip}/24
       PersistentKeepalive = 25
     '';
   };

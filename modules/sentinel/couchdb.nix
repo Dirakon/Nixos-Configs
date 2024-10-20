@@ -1,20 +1,20 @@
-self@{ config, pkgs, boot, hostname, ... }:
+self@{ config, pkgs, boot, hostname, sensitive, ... }:
 {
   services.couchdb = {
     enable = true;
     bindAddress = "0.0.0.0";
-    port = 54932;
+    port = sensitive.sentinel.obsidian-couchdb.port;
     configFile = "${config.sops.templates."couchdb.conf".path}";
   };
 
   sops.secrets."couchdb/password" = {
-    sopsFile = ./../../secrets/sentinel-private.yaml;
+    sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
     key = "couchdb/password";
   };
 
   sops.secrets."couchdb/login" = {
-    sopsFile = ./../../secrets/sentinel-private.yaml;
+    sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
     key = "couchdb/login";
   };
