@@ -69,7 +69,7 @@ self@{ config
   #   defaultEditor = true;
   #   package = pkgs.neovim-unwrapped;
   # };
-  environment.variables.EDITOR = "idev";
+  environment.variables.EDITOR = "dev";
 
   # For gammastep
   services.geoclue2.enable = true;

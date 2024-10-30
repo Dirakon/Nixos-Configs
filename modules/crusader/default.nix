@@ -12,6 +12,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./cli.nix
 
+    ./tmux.nix
+
     ./gui.nix
 
     ./system.nix
