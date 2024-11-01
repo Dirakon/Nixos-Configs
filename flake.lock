@@ -147,6 +147,22 @@
         "type": "github"
       }
     },
+    "easy-dotnet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730146439,
+        "narHash": "sha256-PJEKpoEOmf63frLKiHtaOmduKWQTbpggjHcQAdL2OFs=",
+        "owner": "GustavEikaas",
+        "repo": "easy-dotnet.nvim",
+        "rev": "a1e528bdf75846408e6c7ecaebf82d494b886bd1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GustavEikaas",
+        "repo": "easy-dotnet.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -650,16 +666,17 @@
     },
     "nvim": {
       "inputs": {
+        "easy-dotnet": "easy-dotnet",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_7",
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1730400631,
-        "narHash": "sha256-+tPvxM+6/abCHeZdgxEXqx8wXctLMvpDuyiq99Dh8VY=",
+        "lastModified": 1730492582,
+        "narHash": "sha256-vTUoUnGcLll0W4F+ojMvamGObc5FYk+J3SOtMF7ftmg=",
         "ref": "refs/heads/main",
-        "rev": "98664bbce75e23c735d1cc5046c8a63e400ba955",
-        "revCount": 13,
+        "rev": "9b019b9a230f6146a0ec823e67870fd1d4f92d06",
+        "revCount": 14,
         "type": "git",
         "url": "file:programs/nvim"
       },
