@@ -18,8 +18,9 @@ self@{ config, pkgs, boot, hostname, sensitive, modulesPath, lib, ... }:
       # recomended setup for good nvim (see nvim :checkhealth)
       set-option -sg escape-time 10
       set-option -g focus-events on
-      set-option -g default-terminal "screen-256color"
+      set-option -g default-terminal "tmux-256color"
       set-option -a terminal-features 'alacritty:RGB'
+      set-option -ga terminal-features ",alacritty:usstyle"
 
       # ctrl-W as prefix key
       unbind C-b
