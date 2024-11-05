@@ -8,6 +8,13 @@ self@{ config, pkgs, boot, hostname, sensitive, modulesPath, lib, ... }:
       pkgs.tmuxPlugins.vim-tmux-navigator
     ];
     extraConfig = ''
+      # for better selection mode
+      set -g mouse on
+      setw -g mode-keys vi
+      bind-key -T copy-mode-vi 'v' send -X begin-selection
+      bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
+      bind-key -T copy-mode-vi 'y' send -X copy-selection
+
       # recomended setup for good nvim (see nvim :checkhealth)
       set-option -sg escape-time 10
       set-option -g focus-events on

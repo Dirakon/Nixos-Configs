@@ -8,6 +8,11 @@ end
 
 
 if status is-interactive
+and not set -q TMUX
+    exec tmux
+end
+
+if status is-interactive
     fastfetch
     zoxide init fish --cmd cd | source
 end
