@@ -60,6 +60,8 @@ self@{ config
     nekoray
     electrum
     newsflash # rss reader
+    brave
+    chromium
 
     # Dev
     godot
