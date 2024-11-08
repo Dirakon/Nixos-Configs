@@ -1,7 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, nvimPackages
 , amneziawg-tools
 , amneziawg-go
 , sensitive
@@ -48,8 +47,7 @@ self@{ config
     # amneziawg
     amneziawg-go
     amneziawg-tools
-  ]
-  ++ nvimPackages;
+  ];
 
   virtualisation.podman = {
     enable = true;
@@ -69,7 +67,6 @@ self@{ config
   #   defaultEditor = true;
   #   package = pkgs.neovim-unwrapped;
   # };
-  environment.variables.EDITOR = "dev";
 
   # For gammastep
   services.geoclue2.enable = true;

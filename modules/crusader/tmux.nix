@@ -22,10 +22,10 @@ self@{ config, pkgs, boot, hostname, sensitive, modulesPath, lib, ... }:
       set-option -a terminal-features 'alacritty:RGB'
       set-option -ga terminal-features ",alacritty:usstyle"
 
-      # ctrl-W as prefix key
+      # ctrl-s as prefix key
       unbind C-b
-      set-option -g prefix C-w
-      bind-key C-w send-prefix
+      set-option -g prefix C-s
+      bind-key C-s send-prefix
 
       # so that ctrl-enter does not break (wtf tmux)
       # TODO
