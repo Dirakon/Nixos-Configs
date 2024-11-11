@@ -12,6 +12,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.languagetool.port
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -25,5 +26,6 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.languagetool.port
     ];
 }

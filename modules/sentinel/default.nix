@@ -29,6 +29,8 @@ self@{ config, pkgs, boot, ... }:
     ./mattermost.nix
 
     ./printing.nix
+
+    ./languagetool.nix
   ];
 
   # Allow unfree packages

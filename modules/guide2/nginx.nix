@@ -132,14 +132,17 @@ let
     }
 
     server {
-      listen 443 ssl;
-      server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
+      listen ${toString sensitive.sentinel.languagetool.port} ssl;
+      server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
 
       location / {
-        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.gitea.http-port}/;
+        allow ${sensitive.guide.ip};
+        deny all;
+
+        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.languagetool.port}/;
         
         proxy_set_header   Host             $host;
         proxy_set_header   X-Real-IP        $remote_addr;
