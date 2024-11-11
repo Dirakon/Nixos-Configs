@@ -1,15 +1,15 @@
-{
-  pkgs
-  , sensitive
-  , ...
+{ pkgs
+, sensitive
+, ...
 }:
 let
   languageIdentifierModel = pkgs.fetchurl {
     url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
     hash = "sha256-fmnsVFG8JhzHhE5J5HkqhdfwnAZ4nsgA/EpErsNidk4=";
-  }; in
-  let
-    port = sensitive.sentinel.languagetool.port;
+  };
+in
+let
+  port = sensitive.sentinel.languagetool.port;
 in
 {
   services.languagetool = {

@@ -7,29 +7,21 @@ self@{ config
 , nvimPackages
 , ...
 }:
-# TODO: need to somehow
+# kitty is much easier to do (wtf alacritty)
 # env -u TMUX -- kitty fish --login --init-command "dev ^^FILE^^"
-# but with alacritty??
-# let
-#   alacrittyConfig = builtins.toFile ".alacritty-nvim-config" ''
-#     import = ["/home/dirakon/.config/alacritty/alacritty.toml"]
-#
-#     [shell]
-#     program = "${pkgs.fish}/bin/fish"
-#     args = ["--login", "--no-config", "--init-command", "exec ${nvimPackages.dev}/bin/dev $FILE_TO_OPEN"]
-#   '';
-# in
+# (this would even open with tmux, pretty cool)
+# (and wouldn't need double escape)
 let
-  alacrittyConfig = builtins.toFile ".alacritty-nvim-config" ''
+  alacrittyConfig = pkgs.writeText ".alacritty-nvim-config" ''
     import = ["/home/dirakon/.config/alacritty/alacritty.toml"]
 
     [shell]
-    program = "fish"
-    args = ["--login", "--no-config", "--init-command", "exec dev $FILE_TO_OPEN"]
+    program = "${pkgs.fish}/bin/fish"
+    args = ["--login", "--no-config", "--init-command", "exec ${nvimPackages.dev}/bin/dev $FILE_TO_OPEN"]
   '';
 in
 let
-  customWrapper =
+  customNvimWrapper =
     (pkgs.makeDesktopItem {
       name = "nvim";
       desktopName = "Nvim";
@@ -59,19 +51,9 @@ in
 {
   environment.systemPackages =
     [
-      customWrapper
+      customNvimWrapper
     ]
     ++ (pkgs.lib.attrsets.attrValues nvimPackages);
 
   environment.variables.EDITOR = "dev";
-
-  #     xdg.desktopEntries.org-protocol = {
-  #   name = "org-protocol";
-  #   exec = "emacsclient -- %u";
-  #   terminal = false;
-  #   type = "Application";
-  #   categories = ["System"];
-  #   mimeType = ["x-scheme-handler/org-protocol"];
-  # };
-
 }
