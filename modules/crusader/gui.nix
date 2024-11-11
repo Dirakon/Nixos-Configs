@@ -60,8 +60,6 @@ self@{ config
     nekoray
     electrum
     newsflash # rss reader
-    brave
-    chromium
 
     # Dev
     godot
@@ -108,27 +106,11 @@ self@{ config
     gtkdialog
   ];
 
-  # set default browser for Electron apps
-  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-
-  # TODO: migrate to home-manager managed one, with extensions
-  programs.firefox.enable = true;
-  # use if (for some reason) firefox ain't compiled
-  #programs.firefox.package = pkgs.firefox-bin;
-
-  services.suwayomi-server = {
-    enable = true;
-
-    settings = {
-      server.port = 46571;
-      server.enableSystemTray = true;
-    };
-  };
 
   # For trenchbroom
   nixpkgs.config.permittedInsecurePackages = [

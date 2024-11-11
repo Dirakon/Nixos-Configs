@@ -1,1 +1,1 @@
-"Try_setup_.desktop_for_nvim"
+"Add_languagetool_for_spellchecking"

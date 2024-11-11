@@ -18,6 +18,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./gui.nix
 
+    ./browser.nix
+
     ./system.nix
 
     ./display-manager.nix
