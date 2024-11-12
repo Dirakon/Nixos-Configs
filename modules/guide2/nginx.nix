@@ -149,6 +149,22 @@ let
         proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
       }
     }
+
+    server {
+      listen 443 ssl;
+      server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
+
+      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/privkey.pem;
+
+      location / {
+        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.gitea.http-port}/;
+        
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+      }
+    }
   '';
 in
 {
