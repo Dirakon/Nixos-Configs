@@ -65,7 +65,7 @@ self@{ config
     godot
     lmms
     audacity
-    trenchbroom
+    # trenchbroom
     hoppscotch
 
     # doing neovim now
@@ -113,9 +113,9 @@ self@{ config
   programs.steam.gamescopeSession.enable = true;
 
   # For trenchbroom
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "freeimage-unstable-2021-11-01"
+  # ];
 
   stylix.enable = true;
   stylix.polarity = "dark";

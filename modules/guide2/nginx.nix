@@ -3,16 +3,21 @@ let
   certbot-script =
     pkgs.writeShellScriptBin "certbot-script" ''
       mkdir -p /var/www/demo
-      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.gitea.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.gitea.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot-full}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.mattermost.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.mattermost.hostname} --non-interactive
       chown -R nginx:acme /etc/letsencrypt/ # nginx..
       chmod 755 /etc/letsencrypt/ # nginx...
     '';
+  temp-docs-deploy = pkgs.writeShellScriptBin "temp-docs-deploy" ''
+    cd /home/dirakon/example_docs/
+    ${pkgs.python3}/bin/python3 -m http.server 8321 --bind 127.0.0.1
+
+  '';
   nginx-config = ''
     stream {
       upstream ssh_proxy {
@@ -151,6 +156,18 @@ let
     }
 
     server {
+      listen 8322 ssl;
+      server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
+
+      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
+
+      location / {
+        proxy_pass http://localhost:8321/;
+      }
+    }
+
+    server {
       listen 443 ssl;
       server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
 
@@ -202,5 +219,16 @@ in
       Persistent = true;
     };
     wantedBy = [ "timers.target" ];
+  };
+  systemd.services.temp-docs-deploy = {
+    enable = true;
+    description = "Temp docs deploy";
+    serviceConfig = {
+      ExecStart = "${temp-docs-deploy}/bin/temp-docs-deploy";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+    after = [ "sops-nix.service" "network.target" ];
+    wantedBy = [ "sops-nix.service" "multi-user.target" ];
   };
 }

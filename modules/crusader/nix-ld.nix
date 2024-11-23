@@ -100,7 +100,6 @@ self@{ config, pkgs, nix-alien, nix-gl, ... }:
     fontconfig
     freetype
     dbus
-    alsaLib
     expat
     # Needed for electron
     libdrm

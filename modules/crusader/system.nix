@@ -100,7 +100,6 @@ self@{ config, pkgs, boot, hostname, ... }:
   services.udisks2.enable = true;
   services.upower.enable = true;
 
-  sound.enable = true;
   security.polkit.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {

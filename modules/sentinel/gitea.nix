@@ -40,7 +40,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       # so this parameter should NOT be set before the first user registers!
       service.DISABLE_REGISTRATION = true;
       #service.SHOW_REGISTRATION_BUTTON = false;
-      service.REQUIRE_SIGNIN_VIEW = true;
+      # service.REQUIRE_SIGNIN_VIEW = true;
       # https://docs.gitea.com/administration/config-cheat-sheet#security-security
       security = {
         LOGIN_REMEMBER_DAYS = 31;

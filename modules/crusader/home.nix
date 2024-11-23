@@ -43,7 +43,7 @@
   gtk = {
     iconTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
   };
 
@@ -51,19 +51,13 @@
   #  home.packages = with pkgs; [
   #  ];
 
-
-
-  programs.kitty = {
-    theme = "Tokyo Night Storm";
-  };
-
   # Easy shell environments
   programs.direnv = {
     enable = true;
     # enableNushellIntegration = true;
     # enableZshIntegration = true;
     enableFishIntegration = true;
-    # Re-enable when Nix versioning issue is sorted
+    silent = true;
     nix-direnv.enable = true;
   };
 

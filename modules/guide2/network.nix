@@ -8,6 +8,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
 
       80 # nginx
       443 # nginx
+      8322 # TEMP! TODO: remove later
       sensitive.guide2.certbot.port
       sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port
@@ -22,6 +23,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
 
       80 # nginx
       443 # nginx
+      8322 # TEMP! TODO: remove later
       sensitive.guide2.certbot.port
       sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port

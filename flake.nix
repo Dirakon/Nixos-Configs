@@ -2,12 +2,14 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
+    # nixpkgs.url = "github:NixOS/nixpkgs/fb6d23b8745161a876fb298d68618a92c8ce7bf0";
+    # nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       #url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
@@ -17,10 +19,10 @@
     stylix.url = "github:danth/stylix";
 
     #hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    hypr-pkgs.url = "github:NixOS/nixpkgs/release-24.05"; # Unfortunately seems to now work on unstable. Will try again on 24.11.
+    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add some more pinning things when needed
 
-    flatpaks.url = "github:GermanBread/declarative-flatpak/stable";
+    flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -65,7 +67,7 @@
 
             sops-nix.nixosModules.default
 
-            flatpaks.nixosModules.default
+            flatpaks.nixosModules.declarative-flatpak
 
             stylix.nixosModules.stylix
 
