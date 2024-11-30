@@ -26,6 +26,10 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
+    umu = {
+      url = "git+file:programs/umu-launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     call-flake.url = "github:divnix/call-flake";
 
@@ -51,6 +55,7 @@
           specialArgs.hostname = "${hostname}";
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
           specialArgs.nix-gl = nix-gl;
+          specialArgs.umu = (inputs.umu.packages.${system}.umu.override { version = "${inputs.umu.shortRev}"; });
           specialArgs.nix-alien = nix-alien.packages."${system}";
           specialArgs.sops-nix = sops-nix.packages."${system}";
           specialArgs.sensitive = sensitive;

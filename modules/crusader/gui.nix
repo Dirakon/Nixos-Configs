@@ -4,6 +4,7 @@ self@{ config
 , godot
 , ultim-mc
 , sensitive
+, umu
 , ...
 }:
 {
@@ -37,6 +38,7 @@ self@{ config
     telegram-desktop
     mattermost-desktop
     lutris
+    umu
     blender
     ktorrent
     ryujinx

@@ -759,6 +759,7 @@
         "sensitive": "sensitive",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "umu": "umu",
         "unstable": "unstable"
       }
     },
@@ -936,6 +937,26 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
+      }
+    },
+    "umu": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1732997327,
+        "narHash": "sha256-9pr1xwkFe7UWwQpRipgJZpRZef/2ZFb+4YDj+Jv3sqo=",
+        "ref": "refs/heads/main",
+        "rev": "366915fc60b75194fcc95814d792e42f067b996b",
+        "revCount": 870,
+        "type": "git",
+        "url": "file:programs/umu-launcher"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:programs/umu-launcher"
       }
     },
     "unstable": {
