@@ -15,7 +15,7 @@ let
   alacrittyConfig = pkgs.writeText ".alacritty-nvim-config" ''
     general.import = ["/home/dirakon/.config/alacritty/alacritty.toml"]
 
-    [shell]
+    [terminal.shell]
     program = "${pkgs.fish}/bin/fish"
     args = ["--login", "--no-config", "--init-command", "exec ${nvimPackages.dev}/bin/dev $FILE_TO_OPEN"]
   '';

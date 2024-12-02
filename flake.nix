@@ -27,7 +27,8 @@
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
     umu = {
-      url = "git+file:programs/umu-launcher";
+      # url = "git+file:programs/umu-launcher";
+      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
