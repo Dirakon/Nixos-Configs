@@ -13,7 +13,7 @@ self@{ config
 # (and wouldn't need double escape)
 let
   alacrittyConfig = pkgs.writeText ".alacritty-nvim-config" ''
-    import = ["/home/dirakon/.config/alacritty/alacritty.toml"]
+    general.import = ["/home/dirakon/.config/alacritty/alacritty.toml"]
 
     [shell]
     program = "${pkgs.fish}/bin/fish"
