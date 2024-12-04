@@ -106,6 +106,9 @@ self@{ config
 
     # For cool self-made DE stuff
     gtkdialog
+
+    # latex
+    texlive.combined.scheme-full
   ];
 
   # use wayland for electron
@@ -124,4 +127,6 @@ self@{ config
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # Why is this option mandatory...
   stylix.image = sensitive.crusader.login-background;
+
+
 }
