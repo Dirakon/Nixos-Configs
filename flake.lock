@@ -383,10 +383,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "dirtyRev": "4a2509632d4a0f4f13abddb984629cb8e1783351-dirty",
-        "dirtyShortRev": "4a25096-dirty",
-        "lastModified": 1729281504,
+        "lastModified": 1733346721,
         "narHash": "sha256-rRzAB97bNlKA7CMW2sHzHpg4xDS+PkSbBXlQTtvebYQ=",
+        "ref": "refs/heads/main",
+        "rev": "b0cea49a969234beb533922a352f0278fc1679d9",
+        "revCount": 9,
         "type": "git",
         "url": "file:programs/mattermost-printer-bot"
       },
@@ -709,11 +710,11 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1732973912,
-        "narHash": "sha256-HRXsb3A42b1WTDuWoiJc6Uxvz8Jfl+b7Zmg2hES2eGY=",
+        "lastModified": 1733346561,
+        "narHash": "sha256-JY9sT4Fk7bZq6usRbThyaykqBooV10GUQrbwV3dxZtM=",
         "ref": "refs/heads/main",
-        "rev": "3d4193f841fe41d0b2d0d7c04e898c84803f6302",
-        "revCount": 16,
+        "rev": "a8c664576281a2f7be766bf4378b65e5388a8995",
+        "revCount": 19,
         "type": "git",
         "url": "file:programs/nvim"
       },
