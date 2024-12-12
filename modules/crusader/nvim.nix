@@ -21,12 +21,16 @@ let
   '';
 in
 let
+  nvim-runner = pkgs.writeShellScriptBin "nvim-runner" ''
+    FILE_TO_OPEN="$1" ${pkgs.alacritty}/bin/alacritty --config-file ${alacrittyConfig}
+  '';
+in
+let
   customNvimWrapper =
     (pkgs.makeDesktopItem {
       name = "nvim";
       desktopName = "Nvim";
-
-      exec = "sh -c \"FILE_TO_OPEN=\\\\\"%f\\\\\" ${pkgs.alacritty}/bin/alacritty --config-file ${alacrittyConfig}\"";
+      exec = "${nvim-runner}/bin/nvim-runner %f";
       terminal = false;
       mimeTypes =
         [

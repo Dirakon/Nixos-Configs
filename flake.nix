@@ -2,8 +2,6 @@
   description = "NixOS configuration";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/fb6d23b8745161a876fb298d68618a92c8ce7bf0";
-    # nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -27,7 +25,6 @@
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
     umu = {
-      # url = "git+file:programs/umu-launcher";
       url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
