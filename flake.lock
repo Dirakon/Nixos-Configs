@@ -150,11 +150,11 @@
     "easy-dotnet": {
       "flake": false,
       "locked": {
-        "lastModified": 1733743919,
-        "narHash": "sha256-bySE+Bg93SayPEF7xop0vWO7wO/gANSiLomlkA+0iwo=",
+        "lastModified": 1734175937,
+        "narHash": "sha256-NeNTWSUvTw/EZOKgSXaRKpnbJQmkdj4WiTB3tNpa0qU=",
         "owner": "GustavEikaas",
         "repo": "easy-dotnet.nvim",
-        "rev": "449c426cd373b148860f5bc04125c20b3b36918a",
+        "rev": "a0dd4ff889d5ad00b239a83628e0644f3b4b542f",
         "type": "github"
       },
       "original": {
@@ -671,16 +671,16 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1733656523,
-        "narHash": "sha256-w0FXPfpGhOihoJDiwMsyN1EzpsXi2F8VQ+NVZQSMtys=",
+        "lastModified": 1733940404,
+        "narHash": "sha256-Pj39hSoUA86ZePPF/UXiYHHM7hMIkios8TYG29kQT4g=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "93dc9803a1ee435e590b02cde9589038d5cc3a4e",
+        "rev": "5d67ea6b4b63378b9c13be21e2ec9d1afc921713",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -710,11 +710,10 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
-        "lastModified": 1733763286,
-        "narHash": "sha256-pmkahJVvVlEyo36lSouk7VUAKpaPVENk2URV0/pATcE=",
-        "ref": "refs/heads/main",
-        "rev": "ac17e26708cdd61bc783cc6f9b3ee56a8c0921d9",
-        "revCount": 20,
+        "dirtyRev": "5f75d9bc02ca99212125e1f7bba3e64090d6d769-dirty",
+        "dirtyShortRev": "5f75d9b-dirty",
+        "lastModified": 1734179174,
+        "narHash": "sha256-ShHPoD/3ezZ8Rrt/6kvtBmw4pfJyY8frsbT0jAeF7yk=",
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -767,11 +766,11 @@
     "roslyn-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1733745736,
-        "narHash": "sha256-s2VcmTLobRyo3XwB8LHMfc3xFeVf3FPGZlF76aZQ3mY=",
+        "lastModified": 1734107830,
+        "narHash": "sha256-JQDQIteuiS0gwu4KauDtlzMIlMWwLzrXsGQ02oEC/Ww=",
         "owner": "seblj",
         "repo": "roslyn.nvim",
-        "rev": "91ef075a7b6bf3b4592a5bf785fb9fe7502c27aa",
+        "rev": "6d591af98e0fac1d382de15de88d26df53ec8b67",
         "type": "github"
       },
       "original": {
