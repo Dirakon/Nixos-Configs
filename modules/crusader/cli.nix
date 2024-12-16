@@ -77,4 +77,8 @@ self@{ config
   #    enable = true;
   #    port = 25566;
   #  };
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 }
