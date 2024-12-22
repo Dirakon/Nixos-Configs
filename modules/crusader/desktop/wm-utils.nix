@@ -7,7 +7,7 @@ self@{ config, pkgs, hypr-pkgs, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.swww # wallpapers
-    hypr-pkgs.xdg-desktop-portal-gtk
+    # hypr-pkgs.xdg-desktop-portal-gtk # Apparenty enabled by default - https://github.com/NixOS/nixpkgs/issues/249645
     hypr-pkgs.wl-clipboard
     hypr-pkgs.mako # For notifications
     hypr-pkgs.rofi-wayland # App launcher + clipboard manager frontend

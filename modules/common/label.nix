@@ -1,1 +1,1 @@
-"Add_ollama"
+"Update_hyprland"

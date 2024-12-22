@@ -16,8 +16,10 @@
     };
     stylix.url = "github:danth/stylix";
 
-    #hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
-    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
+
+    # hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add some more pinning things when needed
 
     flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
@@ -57,6 +59,7 @@
           specialArgs.nix-alien = nix-alien.packages."${system}";
           specialArgs.sops-nix = sops-nix.packages."${system}";
           specialArgs.sensitive = sensitive;
+          specialArgs.hyprland-qtutils = hyprland-qtutils.packages."${system}";
 
           specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
           specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";

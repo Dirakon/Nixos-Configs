@@ -21,7 +21,7 @@ self@{ config, pkgs, hypr-pkgs, ... }:
     enable = true;
     # wlr.enable = true; # Temporary disable for hyprland
     extraPortals = [
-      hypr-pkgs.xdg-desktop-portal-gtk
+      # hypr-pkgs.xdg-desktop-portal-gtk # Apparenty enabled by default - https://github.com/NixOS/nixpkgs/issues/249645
     ];
   };
 

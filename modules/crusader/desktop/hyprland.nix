@@ -1,4 +1,4 @@
-self@{ config, pkgs, hypr-pkgs, ... }:
+self@{ config, pkgs, hypr-pkgs, hyprland-qtutils, ... }:
 {
   services.displayManager.sessionPackages = [ hypr-pkgs.hyprland ];
 
@@ -6,6 +6,7 @@ self@{ config, pkgs, hypr-pkgs, ... }:
 
   environment.systemPackages = with pkgs; [
     hypr-pkgs.hyprshot
+    hyprland-qtutils.default
   ];
 
   security.pam.services.hyprlock = { };
