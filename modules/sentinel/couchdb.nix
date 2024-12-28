@@ -1,10 +1,20 @@
-self@{ config, pkgs, boot, hostname, sensitive, ... }:
+self@{ lib, config, pkgs, boot, hostname, sensitive, ... }:
+# go to hell couchdb WHY DO YOU NEED TO TOUCH MY CONFIGS
+# THEY ARE NOT FOR YOUR FILTHY LITTLE HANDS!!
+let
+  couchdb-config-copier =
+    pkgs.writeShellScriptBin "couchdb-config-copier" ''
+      mkdir -p /home/dirakon/.config/couchdbsaver/
+      rm /home/dirakon/.config/couchdbsaver/couchdb.conf
+      cp "${config.sops.templates."couchdb.conf".path}" /home/dirakon/.config/couchdbsaver/couchdb.conf
+    '';
+in
 {
   services.couchdb = {
     enable = true;
     bindAddress = "0.0.0.0";
     port = sensitive.sentinel.obsidian-couchdb.port;
-    configFile = "${config.sops.templates."couchdb.conf".path}";
+    configFile = "/home/dirakon/.config/couchdbsaver/couchdb.conf";
   };
 
   sops.secrets."couchdb/password" = {
@@ -50,4 +60,20 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
     '';
   };
 
+  systemd.services.couchdb-config-copier = {
+    enable = true;
+    description = "couchdb-config-copier";
+    serviceConfig = {
+      ExecStart = "${couchdb-config-copier}/bin/couchdb-config-copier";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+    after = [ "sops-nix.service" "network.target" ];
+    wantedBy = [ "sops-nix.service" "multi-user.target" ];
+  };
+
+  systemd.services.couchdb.serviceConfig.Restart = lib.mkForce "always";
+  systemd.services.couchdb.serviceConfig.RestartSec = lib.mkForce 5;
+  systemd.services.couchdb.after = [ "couchdb-config-copier.service" ];
+  systemd.services.couchdb.wantedBy = [ "couchdb-config-copier.service" ];
 }
