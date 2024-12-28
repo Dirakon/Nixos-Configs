@@ -13,11 +13,6 @@ let
       chown -R nginx:acme /etc/letsencrypt/ # nginx..
       chmod 755 /etc/letsencrypt/ # nginx...
     '';
-  temp-docs-deploy = pkgs.writeShellScriptBin "temp-docs-deploy" ''
-    cd /home/dirakon/example_docs/
-    ${pkgs.python3}/bin/python3 -m http.server 8321 --bind 127.0.0.1
-
-  '';
   nginx-config = ''
     stream {
       upstream ssh_proxy {
@@ -219,16 +214,5 @@ in
       Persistent = true;
     };
     wantedBy = [ "timers.target" ];
-  };
-  systemd.services.temp-docs-deploy = {
-    enable = true;
-    description = "Temp docs deploy";
-    serviceConfig = {
-      ExecStart = "${temp-docs-deploy}/bin/temp-docs-deploy";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    after = [ "sops-nix.service" "network.target" ];
-    wantedBy = [ "sops-nix.service" "multi-user.target" ];
   };
 }

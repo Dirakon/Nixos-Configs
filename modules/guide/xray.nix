@@ -43,7 +43,10 @@ let
       systemd.services.xray.serviceConfig.Restart = lib.mkForce "always";
       systemd.services.xray.serviceConfig.RestartSec = lib.mkForce 5;
 
-
+      sops.templates."xray-connection-string" = {
+        mode = "0444";
+        content = ''vless://${config.sops.placeholder."xray/uuid"}@${sensitive.guide.ip}:443/?encryption=none&type=tcp&sni=${config.sops.placeholder."xray/hiding_domain"}&fp=chrome&security=reality&alpn=h2&flow=xtls-rprx-vision&pbk=${config.sops.placeholder."xray/public_key"}&packetEncoding=xudp'';
+      };
       sops.templates."xray.json" = {
         mode = "0444";
         content = ''

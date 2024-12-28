@@ -1,1 +1,1 @@
-"Full_update_for_new_hyprland"
+"Update_to_new_guide_machine"
