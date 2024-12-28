@@ -1,1 +1,1 @@
-"Update_hyprland"
+"Full_update_for_new_hyprland"
