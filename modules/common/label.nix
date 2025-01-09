@@ -1,1 +1,1 @@
-"Add_ghostty"
+"Hyprland_improvments"

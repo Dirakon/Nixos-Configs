@@ -1,2 +1,3 @@
 background-opacity = 0.65
 window-decoration = false
+confirm-close-surface = false

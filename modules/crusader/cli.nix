@@ -81,4 +81,6 @@ self@{ config
     enable = true;
     acceleration = "cuda";
   };
+
+  programs.yazi.enable = true;
 }

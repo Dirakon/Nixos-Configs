@@ -34,9 +34,6 @@ self@{ config, pkgs, hypr-pkgs, ... }:
   ];
 
   security.pam.services.swaylock = { };
-  programs.hyprland.enable = true;
-  programs.hyprland.package = hypr-pkgs.hyprland;
-  programs.hyprland.xwayland.enable = true;
   programs.xwayland.enable = true;
   programs.xwayland.package = hypr-pkgs.xwayland;
   programs.nm-applet.enable = true;
@@ -45,6 +42,4 @@ self@{ config, pkgs, hypr-pkgs, ... }:
     enable = true;
     package = hypr-pkgs.waybar;
   };
-
-
 }
