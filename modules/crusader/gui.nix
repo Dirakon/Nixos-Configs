@@ -51,6 +51,7 @@ self@{ config
     gwenview
     kitty
     alacritty
+    ghostty
     krita
     loupe
     kdenlive
