@@ -1,4 +1,4 @@
-{ config
+inputs@{ config
 , pkgs
 , hostname
 , ...
@@ -26,6 +26,7 @@
 
   imports = [
     ./helix.nix
+    (import ./switch.nix inputs)
   ];
 
   qt = {

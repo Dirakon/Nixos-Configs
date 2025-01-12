@@ -41,8 +41,7 @@ self@{ config
     umu
     blender
     ktorrent
-    ryujinx
-    nsz
+
     okular
     dolphin
     kdePackages.dolphin-plugins
@@ -57,7 +56,7 @@ self@{ config
     kdenlive
     filelight
     ark
-    # openutau # Eh...
+    openutau # Eh...
     inkscape
     ultim-mc
     nekoray

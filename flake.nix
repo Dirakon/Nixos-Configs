@@ -89,6 +89,8 @@
                 ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
                   inherit config pkgs;
                   hostname = hostname;
+                  sensitive = sensitive;
+
                 });
             }
           ] ++ commonModules;
