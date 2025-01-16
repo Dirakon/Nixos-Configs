@@ -111,6 +111,9 @@ self@{ config
     texlive.combined.scheme-full
   ];
 
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
