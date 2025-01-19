@@ -14,12 +14,12 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            use-beta = false;
+            use-beta = true;
             stable-version = "4.3-stable";
             stable-hash = "sha256-7N881aYASmVowZlYHVi6aFqZBZJuUWd5BrdvvdnK01E=";
-            #beta-version = "4.3-beta2";
-            beta-version = "4.3-rc3";
-            beta-hash = "sha256-TCTgXe7aZH/TfhoXTV5uQXf65dqjdmEnE5y1D+1GeB8=";
+            beta-version = "4.4-beta1";
+            # beta-version = "4.3-rc3";
+            beta-hash = "sha256-+1D5GLNoIhXOgn+BKPOi6SvjlQfCDDMkQfuVCzlIpDc=";
 
             version = if use-beta then beta-version else stable-version;
             hash = if use-beta then beta-hash else stable-hash;
