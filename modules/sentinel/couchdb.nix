@@ -4,17 +4,21 @@ self@{ lib, config, pkgs, boot, hostname, sensitive, ... }:
 let
   couchdb-config-copier =
     pkgs.writeShellScriptBin "couchdb-config-copier" ''
-      mkdir -p /home/dirakon/.config/couchdbsaver/
-      rm /home/dirakon/.config/couchdbsaver/couchdb.conf
-      cp "${config.sops.templates."couchdb.conf".path}" /home/dirakon/.config/couchdbsaver/couchdb.conf
+      mkdir -p /var/shared_files/couchdbsaver/
+      rm /var/shared_files/couchdbsaver/couchdb.conf
+      cp "${config.sops.templates."couchdb.conf".path}" /var/shared_files/couchdbsaver/couchdb.conf
+      chmod 777 /var/shared_files/couchdbsaver/couchdb.conf
     '';
 in
 {
+  systemd.tmpfiles.rules = [
+    "d /var/shared_files 1777 root root"
+  ];
   services.couchdb = {
     enable = true;
     bindAddress = "0.0.0.0";
     port = sensitive.sentinel.obsidian-couchdb.port;
-    configFile = "/home/dirakon/.config/couchdbsaver/couchdb.conf";
+    configFile = "/var/shared_files/couchdbsaver/couchdb.conf";
   };
 
   sops.secrets."couchdb/password" = {
