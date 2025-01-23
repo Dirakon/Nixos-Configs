@@ -177,6 +177,22 @@ let
         proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
       }
     }
+
+    server {
+      listen ${toString sensitive.sentinel.jellyfin.port} ssl;
+      server_name ${sensitive.sentinel.jellyfin.hostname} www.${sensitive.sentinel.jellyfin.hostname};
+
+      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/privkey.pem;
+
+      location / {
+        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.jellyfin.port}/;
+        
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+      }
+    }
   '';
 in
 {

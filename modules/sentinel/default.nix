@@ -24,6 +24,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./nextcloud.nix
 
+    ./jellyfin.nix
+
     ./gitea.nix
 
     ./mattermost.nix
