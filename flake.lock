@@ -743,11 +743,10 @@
         "roslyn-nvim": "roslyn-nvim"
       },
       "locked": {
+        "dirtyRev": "602c33b5e867c76ea4717b3dd65fcaf66c0c7dad-dirty",
+        "dirtyShortRev": "602c33b-dirty",
         "lastModified": 1736793483,
-        "narHash": "sha256-1SYPQsIWQcWvgtNVovqOSbmOrjbE13TaOQGIb07IeKo=",
-        "ref": "refs/heads/main",
-        "rev": "602c33b5e867c76ea4717b3dd65fcaf66c0c7dad",
-        "revCount": 25,
+        "narHash": "sha256-yy+oE3W6etQsxq/Bly/mrc2qVCly6uzuWRiabYK0sEw=",
         "type": "git",
         "url": "file:programs/nvim"
       },
