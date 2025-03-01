@@ -12,10 +12,11 @@ self@{ config
   environment.systemPackages = with pkgs; [
     chromium
     brave
+    floorp
   ];
 
   # set default browser for Electron apps
-  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+  environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.floorp}/bin/floorp";
 
   # TODO: migrate to home-manager managed one, with extensions
   programs.firefox.enable = true;
