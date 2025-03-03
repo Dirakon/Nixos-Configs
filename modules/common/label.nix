@@ -1,1 +1,1 @@
-"Try_frame.sh"
+"Try_reverse_hypr_pkgs"

@@ -62,7 +62,7 @@ self@{ config
     nekoray
     electrum
     framesh
-    bisq2
+    unstable.bisq2
     tor-browser
     newsflash # rss reader
 
