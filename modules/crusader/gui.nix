@@ -4,7 +4,7 @@ self@{ config
 , godot
 , ultim-mc
 , sensitive
-, umu
+, unstable
 , ...
 }:
 {
@@ -38,7 +38,7 @@ self@{ config
     telegram-desktop
     mattermost-desktop
     lutris
-    umu
+    unstable.umu-launcher # TODO: make stable when its there
     blender
     ktorrent
 
@@ -61,6 +61,9 @@ self@{ config
     ultim-mc
     nekoray
     electrum
+    framesh
+    bisq2
+    tor-browser
     newsflash # rss reader
 
     # Dev

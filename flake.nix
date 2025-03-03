@@ -14,7 +14,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-24.11";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
@@ -26,10 +26,6 @@
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
-    umu = {
-      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     call-flake.url = "github:divnix/call-flake";
 
@@ -54,8 +50,8 @@
           system = "${system}";
           specialArgs.hostname = "${hostname}";
           specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
+          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
           specialArgs.nix-gl = nix-gl;
-          specialArgs.umu = (inputs.umu.packages.${system}.umu.override { version = "${inputs.umu.shortRev}"; });
           specialArgs.nix-alien = nix-alien.packages."${system}";
           specialArgs.sops-nix = sops-nix.packages."${system}";
           specialArgs.sensitive = sensitive;

@@ -89,6 +89,7 @@ let
                 },
                 "sniffing": {
                   "enabled": true,
+                  "routeOnly": true,
                   "destOverride": [
                     "http",
                     "tls",
