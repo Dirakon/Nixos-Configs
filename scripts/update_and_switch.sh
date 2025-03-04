@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 
-ammend_commit=false
-host=""
+default_host="crusader"
+host=$default_host
 MAX_LENGTH=50
 
+function yes_or_no {
+  while true; do
+      read -p "$* [y/n]: " yn
+      case $yn in
+          [Yy]*) return 0  ;;  
+          [Nn]*) echo "Aborted" ; return  1 ;;
+      esac
+  done
+}
+
 # Parse command line arguments
-while getopts ":ah:" opt; do
+while getopts ":h:" opt; do
   case $opt in
-    a)
-      ammend_commit=true
-      ;;
     h)
       host="$OPTARG"
       ;;
@@ -31,36 +38,30 @@ cd ~/.dotfiles || exit
 ~/.dotfiles/scripts/actualize_submodule_flakes.sh
 nix fmt
 
-if $ammend_commit; then
-    # Append to the last commit without changing its message
-    git add .
-    git commit --amend --no-edit
+lazygit || exit 1
+COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+COMMIT_MESSAGE_WITH_UNDERSCORES="${COMMIT_MESSAGE// /_}"
+SANITIZED_COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE_WITH_UNDERSCORES" | tr -dc '[:alnum:]._-')
+# Extract the first MAX_LENGTH characters from the sanitized commit message, truncate if necessary, and set it as an environment variable
+if [[ ${#SANITIZED_COMMIT_MESSAGE} -gt MAX_LENGTH ]]; then
+    NIXOS_LABEL_VERSION=${SANITIZED_COMMIT_MESSAGE:0:MAX_LENGTH}...
 else
-    git status
-    read -p "Enter your commit message: " COMMIT_MESSAGE
-
-    COMMIT_MESSAGE_WITH_UNDERSCORES="${COMMIT_MESSAGE// /_}"
-    SANITIZED_COMMIT_MESSAGE=$(echo "$COMMIT_MESSAGE_WITH_UNDERSCORES" | tr -dc '[:alnum:]._-')
-
-    # Extract the first MAX_LENGTH characters from the sanitized commit message, truncate if necessary, and set it as an environment variable
-    if [[ ${#SANITIZED_COMMIT_MESSAGE} -gt MAX_LENGTH ]]; then
-        NIXOS_LABEL_VERSION=${SANITIZED_COMMIT_MESSAGE:0:MAX_LENGTH}...
-    else
-        NIXOS_LABEL_VERSION=$SANITIZED_COMMIT_MESSAGE
-    fi
-
-    LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
-    printf "%s" "$LABEL_NIX_CONTENT" > ./modules/common/label.nix
-
-
-    nix fmt
-    git add .
-    git commit -m "$COMMIT_MESSAGE"
+    NIXOS_LABEL_VERSION=$SANITIZED_COMMIT_MESSAGE
 fi
 
+yes_or_no "${host}: ${NIXOS_LABEL_VERSION}?"|| exit 1
 
-if [ "$host" == "" ]; then
-    # Default host (this)
+
+LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
+printf "%s" "$LABEL_NIX_CONTENT" > ./modules/common/label.nix
+
+
+nix fmt
+git add ./modules/common/label.nix
+git commit --amend --no-edit 
+
+
+if [ "$host" == "$default_host" ]; then
     FLAKE=~/.dotfiles/ nh os switch --ask
 else
     # Don't know how to use nh tool with remote machines, so fallback to default for now

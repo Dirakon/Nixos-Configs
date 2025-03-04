@@ -134,6 +134,4 @@ self@{ config
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # Why is this option mandatory...
   stylix.image = sensitive.crusader.login-background;
-
-
 }
