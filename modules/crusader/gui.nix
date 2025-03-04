@@ -63,6 +63,7 @@ self@{ config
     electrum
     framesh
     unstable.bisq2
+    unstable.basicswap
     tor-browser
     newsflash # rss reader
 
