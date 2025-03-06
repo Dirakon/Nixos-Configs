@@ -29,6 +29,7 @@ self@{ config
     timer
     openssl
     cloc
+    ncdu
 
     # Nix stuff
     nix-index

@@ -41,6 +41,7 @@ self@{ config
     unstable.umu-launcher # TODO: make stable when its there
     blender
     ktorrent
+    popsicle
 
     okular
     dolphin
