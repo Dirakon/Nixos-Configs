@@ -908,10 +908,11 @@
     },
     "sensitive": {
       "locked": {
-        "dirtyRev": "ac4ae9c2878a6f655f741b349424a87133a99e13-dirty",
-        "dirtyShortRev": "ac4ae9c-dirty",
-        "lastModified": 1736644697,
-        "narHash": "sha256-L9lBYcRUIvkVbTwTSGQFAb8R2bfNNd6xsHxXRCG14zY=",
+        "lastModified": 1741337188,
+        "narHash": "sha256-FJZcQCKmiaxQbCrv2OZfDWiIVfGpYZ585yEiPAWV/Ww=",
+        "ref": "refs/heads/main",
+        "rev": "4e6def02a4fe76e89810118f48026b9112a896e3",
+        "revCount": 15,
         "type": "git",
         "url": "file:sensitive"
       },
