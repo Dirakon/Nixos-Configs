@@ -5,6 +5,7 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       sensitive.guide2.ssh.port
       sensitive.guide2.awg.port
       sensitive.sentinel.ssh.port
+      sensitive.sentinel.firefox-syncserver.port
 
       80 # nginx
       443 # nginx

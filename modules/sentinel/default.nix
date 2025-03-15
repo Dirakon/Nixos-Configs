@@ -33,6 +33,8 @@ self@{ config, pkgs, boot, ... }:
     ./printing.nix
 
     ./languagetool.nix
+
+    ./firefox-sync.nix
   ];
 
   # Allow unfree packages

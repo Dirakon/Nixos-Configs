@@ -163,6 +163,25 @@ let
     }
 
     server {
+      listen ${toString sensitive.sentinel.firefox-syncserver.port} ssl;
+      server_name ${sensitive.sentinel.firefox-syncserver.hostname} www.${sensitive.sentinel.firefox-syncserver.hostname};
+
+      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/privkey.pem;
+
+      location / {
+        allow ${sensitive.guide.ip};
+        deny all;
+
+        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.firefox-syncserver.port}/;
+        
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+      }
+    }
+
+    server {
       listen 443 ssl;
       server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
 
