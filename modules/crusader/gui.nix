@@ -39,6 +39,7 @@ self@{ config
     mattermost-desktop
     lutris
     unstable.umu-launcher # TODO: make stable when its there
+    rpcs3
     blender
     ktorrent
     popsicle
