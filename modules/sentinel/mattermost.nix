@@ -39,4 +39,13 @@ in
     siteUrl = "https://${sensitive.sentinel.mattermost.hostname}";
     preferNixConfig = true;
   };
+
+  networking.firewall.allowedTCPPorts =
+    [
+      sensitive.sentinel.mattermost.port
+    ];
+  networking.firewall.allowedUDPPorts =
+    [
+      sensitive.sentinel.mattermost.port
+    ];
 }

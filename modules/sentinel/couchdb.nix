@@ -80,4 +80,13 @@ in
   systemd.services.couchdb.serviceConfig.RestartSec = lib.mkForce 5;
   systemd.services.couchdb.after = [ "couchdb-config-copier.service" ];
   systemd.services.couchdb.wantedBy = [ "couchdb-config-copier.service" ];
+
+  networking.firewall.allowedTCPPorts =
+    [
+      sensitive.sentinel.obsidian-couchdb.port
+    ];
+  networking.firewall.allowedUDPPorts =
+    [
+      sensitive.sentinel.obsidian-couchdb.port
+    ];
 }

@@ -30,26 +30,12 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
   networking.firewall.allowedTCPPorts =
     [
       sensitive.sentinel.ssh.port
-      80 # http
-      443 # https
-      22 # ssh (just in case)
-      sensitive.sentinel.awg.port
-      sensitive.sentinel.obsidian-couchdb.port
-      sensitive.sentinel.gitea.ssh-port
-      sensitive.sentinel.gitea.http-port
-      sensitive.sentinel.mattermost.port
+      22 # default ssh (just in case)
     ];
   networking.firewall.allowedUDPPorts =
     [
       sensitive.sentinel.ssh.port
-      80 # http
-      443 # https
-      22 # ssh (just in case)
-      sensitive.sentinel.awg.port
-      sensitive.sentinel.obsidian-couchdb.port
-      sensitive.sentinel.gitea.ssh-port
-      sensitive.sentinel.gitea.http-port
-      sensitive.sentinel.mattermost.port
+      22 # default ssh (just in case)
     ];
   networking.firewall = {
     #  if packets are still dropped, they will show up in dmesg

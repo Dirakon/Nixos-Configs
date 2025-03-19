@@ -75,4 +75,15 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       createDatabase = true;
     };
   };
+
+  networking.firewall.allowedTCPPorts =
+    [
+      sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.gitea.http-port
+    ];
+  networking.firewall.allowedUDPPorts =
+    [
+      sensitive.sentinel.gitea.ssh-port
+      sensitive.sentinel.gitea.http-port
+    ];
 }

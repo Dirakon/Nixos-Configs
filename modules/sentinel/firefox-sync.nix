@@ -53,6 +53,5 @@
 
   systemd.services.firefox-syncserver.serviceConfig.StateDirectory = "firefox-syncserver";
 
-  # TODO: guide2 nginx
   networking.firewall.allowedTCPPorts = [ sensitive.sentinel.firefox-syncserver.port ];
 }

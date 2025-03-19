@@ -79,4 +79,13 @@ in
         RestartSec = 5;
       };
   };
+
+  networking.firewall.allowedTCPPorts =
+    [
+      sensitive.sentinel.awg.port
+    ];
+  networking.firewall.allowedUDPPorts =
+    [
+      sensitive.sentinel.awg.port
+    ];
 }
