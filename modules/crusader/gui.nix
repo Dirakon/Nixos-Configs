@@ -67,7 +67,6 @@ self@{ config
   #   "freeimage-unstable-2021-11-01"
   # ];
 
-
   home-manager.users.dirakon =
     {
       xdg.mimeApps.defaultApplications =
@@ -92,20 +91,6 @@ self@{ config
           obs-backgroundremoval
           obs-pipewire-audio-capture
         ];
-      };
-
-      services.gammastep = {
-        tray = true;
-        enable = true;
-        #    enableVerboseLogging = true;
-        provider = "geoclue2";
-        #    temperature = {
-        #      day = 6000;
-        #      night = 4600;
-        #    };
-        settings = {
-          general.adjustment-method = "wayland";
-        };
       };
 
       services.kdeconnect = {

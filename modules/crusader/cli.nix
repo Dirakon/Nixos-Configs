@@ -95,9 +95,6 @@ self@{ config
 
   programs.java.enable = true;
 
-  # For gammastep
-  services.geoclue2.enable = true;
-
   # TODO: fix
   #  services.zerotierone = {
   #    package = stable.zerotierone;

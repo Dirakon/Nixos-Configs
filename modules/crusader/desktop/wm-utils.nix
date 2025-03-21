@@ -43,10 +43,25 @@ self@{ config, pkgs, hypr-pkgs, ... }:
     package = hypr-pkgs.waybar;
   };
 
-
-  home-manager.users.dirakon =
+  # Gammastep
+  services.geoclue2.enable = true;
+  home-manager.users.dirakon.services.gammastep =
     {
-      services.swayosd.enable = true;
+      tray = true;
+      enable = true;
+      #    enableVerboseLogging = true;
+      provider = "geoclue2";
+      #    temperature = {
+      #      day = 6000;
+      #      night = 4600;
+      #    };
+      settings = {
+        general.adjustment-method = "wayland";
+      };
     };
 
+  home-manager.users.dirakon.services.swayosd = {
+    enable = true;
+    package = hypr-pkgs.swayosd;
+  };
 }
