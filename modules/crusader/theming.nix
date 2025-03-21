@@ -11,6 +11,19 @@ inputs@{ config
   # Why is this option mandatory...
   stylix.image = sensitive.crusader.login-background;
 
+  environment.systemPackages = with pkgs; [
+    # QT (cleanup!)
+    kdePackages.breeze-icons
+    # kdePackages.qtscxml
+    # libsForQt5.qt5.qtscxml
+
+    # Gnome/GTK (cleanup!)
+    # gnome.adwaita-icon-theme
+    # gnome-icon-theme
+    catppuccin-gtk
+    # breeze-icons
+  ];
+
   home-manager.users.dirakon =
     {
       qt = {

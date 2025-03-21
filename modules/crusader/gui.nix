@@ -2,52 +2,22 @@ self@{ config
 , pkgs
 , boot
 , godot
-, ultim-mc
 , sensitive
 , unstable
 , ...
 }:
 {
-
   environment.systemPackages = with pkgs; [
-    # Wine
-    # wine # https://nixos.wiki/wiki/Wine
-    wineWowPackages.full
-    dxvk
-    mesa
-    wineWowPackages.fonts
-    winetricks
-    gst_all_1.gstreamer
-    gst_all_1.gst-vaapi
-    gst_all_1.gst-libav
-    gst_all_1.gstreamermm
-    gst_all_1.gst-plugins-rs
-    gst_all_1.gst-plugins-base
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-ugly
-
-    # Further gaming
-    jstest-gtk
-    joystickwake
-
     # Actual apps
     obsidian
     libreoffice
     telegram-desktop
     mattermost-desktop
-    lutris
-    unstable.umu-launcher # TODO: make stable when its there
-    rpcs3
     blender
     ktorrent
     popsicle
 
     okular
-    dolphin
-    kdePackages.dolphin-plugins
-    libsForQt5.dolphin-plugins
-    konsole # For dolphin integrated term
     gwenview
     kitty
     alacritty
@@ -59,52 +29,22 @@ self@{ config
     ark
     openutau # Eh...
     inkscape
-    ultim-mc
     nekoray
+    newsflash # rss reader
+
+    # Crypto
     electrum
     framesh
     unstable.bisq2
     unstable.basicswap
-    tor-browser
-    newsflash # rss reader
 
+    tor-browser
     # Dev
     godot
     lmms
     audacity
     # trenchbroom
     hoppscotch
-
-    # doing neovim now
-    # jetbrains.rider
-    # jetbrains.pycharm-professional
-    # jetbrains.webstorm
-
-    # QT theming (cleanup!)
-    libsForQt5.kio
-    libsForQt5.kio-extras
-    libsForQt5.kio-admin
-
-    kio-admin
-    kio-fuse
-
-    kdePackages.kio
-    kdePackages.kio-extras
-    kdePackages.kio-fuse
-
-    libsForQt5.kdegraphics-thumbnailers
-    libsForQt5.ffmpegthumbs # shold thumbnail videos but not working ...
-    kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
-    # kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
-    kdePackages.breeze-icons
-    # kdePackages.qtscxml
-    # libsForQt5.qt5.qtscxml
-
-    # Gnome theming (cleanup!)
-    #gnome.adwaita-icon-theme
-    # gnome-icon-theme
-    catppuccin-gtk
-    # breeze-icons
 
     # For DE interaction with gamepad
     makima
@@ -122,9 +62,6 @@ self@{ config
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-
   # For trenchbroom
   # nixpkgs.config.permittedInsecurePackages = [
   #   "freeimage-unstable-2021-11-01"
@@ -133,8 +70,6 @@ self@{ config
 
   home-manager.users.dirakon =
     {
-      xdg.mimeApps.defaultApplications."inode/directory" = "dolphin.desktop";
-
       programs.obs-studio = {
         enable = true;
         plugins = with pkgs.obs-studio-plugins; [

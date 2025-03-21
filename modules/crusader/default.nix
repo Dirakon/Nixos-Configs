@@ -20,6 +20,10 @@ self@{ config, pkgs, boot, ... }:
 
     ./gui.nix
 
+    ./file-explorer.nix
+
+    ./gaming.nix
+
     ./browser.nix
 
     ./system.nix
