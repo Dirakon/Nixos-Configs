@@ -70,6 +70,21 @@ self@{ config
 
   home-manager.users.dirakon =
     {
+      xdg.mimeApps.defaultApplications =
+        {
+          "application/pdf" = "org.kde.okular.desktop";
+          "application/x-bittorrent" = "org.kde.ktorrent.desktop";
+          "application/zip" = "org.kde.ark.desktop";
+          "hoppscotch" = "hoppscotch-handler.desktop";
+          "image/gif" = "org.gnome.Loupe.desktop";
+          "image/jpeg" = "org.gnome.Loupe.desktop";
+          "image/png" = "org.gnome.Loupe.desktop";
+          "image/svg+xml" = "org.gnome.Loupe.desktop";
+          "image/webp" = "org.gnome.Loupe.desktop";
+          "x-scheme-handler/tg" = "org.telegram.desktop.desktop";
+          "x-scheme-handler/tonsite" = "org.telegram.desktop.desktop";
+        };
+
       programs.obs-studio = {
         enable = true;
         plugins = with pkgs.obs-studio-plugins; [
@@ -113,5 +128,6 @@ self@{ config
           save-position-on-quit = true; # somewhat better history -- remember position too
         };
       };
+      xdg.mimeApps.defaultApplications."video/x-matroska" = "mpv.desktop";
     };
 }

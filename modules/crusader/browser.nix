@@ -19,7 +19,7 @@ self@{ config
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.floorp}/bin/floorp";
 
   # TODO: migrate to home-manager managed one, with extensions
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
   # use if (for some reason) firefox ain't compiled
   #programs.firefox.package = pkgs.firefox-bin;
 
@@ -32,4 +32,21 @@ self@{ config
   #     fasttextBinary = "${pkgs.fasttext}/bin/fasttext";
   #   };
   # };
+
+  home-manager.users.dirakon =
+    {
+      xdg.mimeApps.defaultApplications =
+        {
+          "application/x-extension-htm" = "floorp.desktop";
+          "application/x-extension-html" = "floorp.desktop";
+          "application/x-extension-shtml" = "floorp.desktop";
+          "application/x-extension-xht" = "floorp.desktop";
+          "application/x-extension-xhtml" = "floorp.desktop";
+          "application/xhtml+xml" = "floorp.desktop";
+          "text/html" = "floorp.desktop";
+          "x-scheme-handler/chrome" = "floorp.desktop";
+          "x-scheme-handler/http" = "floorp.desktop";
+          "x-scheme-handler/https" = "floorp.desktop";
+        };
+    };
 }

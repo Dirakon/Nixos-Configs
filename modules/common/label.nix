@@ -1,1 +1,1 @@
-"Further_split-up_gui.nix"
+"Setup_default_mime_types"

@@ -39,6 +39,6 @@ self@{ config
 
   home-manager.users.dirakon =
     {
-      xdg.mimeApps.defaultApplications."inode/directory" = "dolphin.desktop";
+      xdg.mimeApps.defaultApplications."inode/directory" = "org.kde.dolphin.desktop";
     };
 }
