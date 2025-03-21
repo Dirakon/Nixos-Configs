@@ -26,7 +26,6 @@ self@{ config
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-ugly
-    # (python3.pkgs.toPythonApplication sandwine)
 
     # Further gaming
     jstest-gtk
@@ -131,9 +130,53 @@ self@{ config
   #   "freeimage-unstable-2021-11-01"
   # ];
 
-  stylix.enable = true;
-  stylix.polarity = "dark";
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  # Why is this option mandatory...
-  stylix.image = sensitive.crusader.login-background;
+
+  home-manager.users.dirakon =
+    {
+      xdg.mimeApps.defaultApplications."inode/directory" = "dolphin.desktop";
+
+      programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      };
+
+      services.gammastep = {
+        tray = true;
+        enable = true;
+        #    enableVerboseLogging = true;
+        provider = "geoclue2";
+        #    temperature = {
+        #      day = 6000;
+        #      night = 4600;
+        #    };
+        settings = {
+          general.adjustment-method = "wayland";
+        };
+      };
+
+      services.kdeconnect = {
+        enable = true;
+        package = pkgs.kdePackages.kdeconnect-kde;
+        indicator = true;
+      };
+
+      programs.mpv = {
+        enable = true;
+        scripts = with pkgs.mpvScripts; [
+          memo # [h]istory
+          mpris # playerctl integration
+          autoload # all files in current directory are added to playlist
+          uosc # some kinda UI overhaul?
+          mpv-cheatsheet # '?' to see keybinds
+          thumbfast # thing to display thumnails when scrolling through timeline
+        ];
+        config = {
+          save-position-on-quit = true; # somewhat better history -- remember position too
+        };
+      };
+    };
 }

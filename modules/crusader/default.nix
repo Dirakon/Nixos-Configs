@@ -10,6 +10,8 @@ self@{ config, pkgs, boot, ... }:
   imports = [
     ./hardware-configuration.nix
 
+    ./home.nix
+
     ./cli.nix
 
     ./tmux.nix
@@ -35,6 +37,10 @@ self@{ config, pkgs, boot, ... }:
     ./kanata.nix
 
     ./ssh.nix
+
+    ./switch.nix
+
+    ./theming.nix
   ];
 
   # Allow unfree packages

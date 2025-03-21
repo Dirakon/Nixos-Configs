@@ -511,11 +511,11 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1733346721,
-        "narHash": "sha256-rRzAB97bNlKA7CMW2sHzHpg4xDS+PkSbBXlQTtvebYQ=",
+        "lastModified": 1742415705,
+        "narHash": "sha256-widMctAK2cfongibUGIlP6d2aP11LnL1T7ANRTJDWYc=",
         "ref": "refs/heads/main",
-        "rev": "b0cea49a969234beb533922a352f0278fc1679d9",
-        "revCount": 9,
+        "rev": "a7803924299fe0c0165cd4ee87990c52780cd664",
+        "revCount": 10,
         "type": "git",
         "url": "file:programs/mattermost-printer-bot"
       },
@@ -751,16 +751,16 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1728863046,
-        "narHash": "sha256-DZBO2465PL5V89e8hFSJewyH4QbCPpW3ssws7ckT/0A=",
+        "lastModified": 1742268799,
+        "narHash": "sha256-IhnK4LhkBlf14/F8THvUy3xi/TxSQkp9hikfDZRD4Ic=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d4f247e89f6e10120f911e2e2d2254a050d0f732",
+        "rev": "da044451c6a70518db5b730fe277b70f494188f1",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
       }

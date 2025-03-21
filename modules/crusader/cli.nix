@@ -60,14 +60,40 @@ self@{ config
   programs.command-not-found.enable = false;
   users.defaultUserShell = pkgs.fish;
 
-  # I don't remember why I need it
-  programs.java.enable = true;
+  home-manager.users.dirakon =
+    {
+      # Easy shell environments
+      programs.direnv = {
+        enable = true;
+        # enableNushellIntegration = true;
+        # enableZshIntegration = true;
+        enableFishIntegration = true;
+        silent = true;
+        nix-direnv.enable = true;
+      };
 
-  # programs.neovim = {
-  #   enable = true;
-  #   defaultEditor = true;
-  #   package = pkgs.neovim-unwrapped;
-  # };
+      programs.fzf = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+
+      programs.zoxide = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+
+      home.file.".scripts/nix-command-not-found" = {
+        text = ''
+          #!/usr/bin/env bash
+                source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+                command_not_found_handle "$@"
+        '';
+
+        executable = true;
+      };
+    };
+
+  programs.java.enable = true;
 
   # For gammastep
   services.geoclue2.enable = true;

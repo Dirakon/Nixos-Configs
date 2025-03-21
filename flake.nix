@@ -47,21 +47,23 @@
         let hostname = "crusader"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
-          system = "${system}";
-          specialArgs.hostname = "${hostname}";
-          specialArgs.hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
-          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
-          specialArgs.nix-gl = nix-gl;
-          specialArgs.nix-alien = nix-alien.packages."${system}";
-          specialArgs.sops-nix = sops-nix.packages."${system}";
-          specialArgs.sensitive = sensitive;
-          specialArgs.hyprland-qtutils = hyprland-qtutils.packages."${system}";
+          inherit system;
+          specialArgs =
+            {
+              inherit hostname sensitive;
+              hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
+              unstable = import unstable { system = system; config.allowUnfree = true; };
+              nix-gl = nix-gl;
+              nix-alien = nix-alien.packages."${system}";
+              sops-nix = sops-nix.packages."${system}";
+              hyprland-qtutils = hyprland-qtutils.packages."${system}";
 
-          specialArgs.godot = (call-flake ./programs/godot).godot."${system}";
-          specialArgs.ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
-          specialArgs.nvimPackages = nvim.packages."${system}".packages;
-          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+              godot = (call-flake ./programs/godot).godot."${system}";
+              ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
+              nvimPackages = nvim.packages."${system}".packages;
+              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
+              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+            };
 
 
           modules = [
@@ -73,22 +75,7 @@
 
             stylix.nixosModules.stylix
 
-            # make home-manager as a module of nixos
-            # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-
-              home-manager.users.dirakon =
-                ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
-                  inherit config pkgs;
-                  hostname = hostname;
-                  sensitive = sensitive;
-
-                });
-            }
           ] ++ commonModules;
         };
 
@@ -96,9 +83,11 @@
         let hostname = "guide"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
-          system = "${system}";
-          specialArgs.hostname = "${hostname}";
-          specialArgs.sensitive = sensitive;
+          inherit system;
+          specialArgs =
+            {
+              inherit hostname sensitive;
+            };
 
           modules = [
             ./modules/${hostname}/default.nix
@@ -116,8 +105,7 @@
 
               home-manager.users.dirakon =
                 ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
-                  inherit config pkgs;
-                  hostname = hostname;
+                  inherit config pkgs hostname sensitive;
                 });
             }
           ] ++ commonModules;
@@ -127,11 +115,13 @@
         let hostname = "guide2"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
-          system = "${system}";
-          specialArgs.hostname = "${hostname}";
-          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
-          specialArgs.sensitive = sensitive;
+          inherit system;
+          specialArgs =
+            {
+              inherit hostname sensitive;
+              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
+              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+            };
 
           modules = [
             ./modules/${hostname}/default.nix
@@ -149,8 +139,7 @@
 
               home-manager.users.dirakon =
                 ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
-                  inherit config pkgs;
-                  hostname = hostname;
+                  inherit config pkgs hostname sensitive;
                 });
             }
           ] ++ commonModules;
@@ -160,13 +149,15 @@
         let hostname = "sentinel"; in
         let system = "x86_64-linux"; in
         nixpkgs.lib.nixosSystem {
-          system = "${system}";
-          specialArgs.hostname = "${hostname}";
-          specialArgs.amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-          specialArgs.amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
-          specialArgs.unstable = import unstable { system = system; config.allowUnfree = true; };
-          specialArgs.sensitive = sensitive;
-          specialArgs.mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
+          inherit system;
+          specialArgs =
+            {
+              inherit hostname sensitive;
+              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
+              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
+              unstable = import unstable { system = system; config.allowUnfree = true; };
+              mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
+            };
 
           modules = [
             ./modules/${hostname}/default.nix
@@ -182,8 +173,7 @@
 
               home-manager.users.dirakon =
                 ({ config, pkgs, ... }: import ./modules/${hostname}/home.nix {
-                  inherit config pkgs;
-                  hostname = hostname;
+                  inherit config pkgs hostname sensitive;
                 });
             }
           ] ++ commonModules;

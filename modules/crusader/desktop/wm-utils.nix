@@ -42,4 +42,11 @@ self@{ config, pkgs, hypr-pkgs, ... }:
     enable = true;
     package = hypr-pkgs.waybar;
   };
+
+
+  home-manager.users.dirakon =
+    {
+      services.swayosd.enable = true;
+    };
+
 }
