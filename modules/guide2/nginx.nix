@@ -172,12 +172,16 @@ let
       location / {
         allow ${sensitive.guide.ip};
         deny all;
+        
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_redirect off;
+        proxy_read_timeout 120;
+        proxy_connect_timeout 10;
 
         proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.firefox-syncserver.port}/;
-        
-        proxy_set_header   Host             $host;
-        proxy_set_header   X-Real-IP        $remote_addr;
-        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
       }
     }
 

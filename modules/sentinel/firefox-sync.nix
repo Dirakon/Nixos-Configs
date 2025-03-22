@@ -15,12 +15,14 @@
   sops.templates."fsync.conf" = {
     mode = "0777";
     content = ''
-      SYNC_MASTER_SECRET="${config.sops.placeholder."fsync/master-secret"}"
+      SYNC_MASTER_SECRET=${config.sops.placeholder."fsync/master-secret"}
+      SYNC_MASTER_SECRET=${config.sops.placeholder."fsync/metrics-secret"}
     '';
   };
 
 
   services.mysql.package = pkgs.mariadb;
+  services.mysql.enable = true;
 
   services.firefox-syncserver = {
     enable = true;
@@ -34,6 +36,7 @@
       url = "https://${sensitive.sentinel.firefox-syncserver.hostname}:${toString sensitive.sentinel.firefox-syncserver.port}";
       capacity = 20;
       hostname = sensitive.sentinel.firefox-syncserver.hostname;
+      # enableNginx = true;
     };
 
     settings.port = sensitive.sentinel.firefox-syncserver.port;
