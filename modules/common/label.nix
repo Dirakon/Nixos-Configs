@@ -1,1 +1,1 @@
-"Try_fix_gtk_theming_by_relying_solely_on_stylix"
+"Actualize_sway"

@@ -7,19 +7,38 @@ set $up k
 set $right l
 
 # Apps
-bindsym $mod+Control+t exec alacritty
-bindsym $mod+Control+b exec firefox
+bindsym $mod+Control+t exec ghostty
+bindsym $mod+Control+b exec floorp
 bindsym $mod+Control+d exec dolphin
 bindsym $mod+Control+r exec rofi -show drun
 bindsym $mod+Control+v exec rofi -modi clipboard:~/.scripts/cliphist-rofi-img -show clipboard -show-icons
 
+# Move focus
+bindsym $mod+$left focus left
+bindsym $mod+$right focus right
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+
+# Resize focused
+bindsym $mod+Control+$left resize shrink width 10px
+bindsym $mod+Control+$right resize grow width 10px
+bindsym $mod+Control+$down resize grow height 10px
+bindsym $mod+Control+$up resize shrink height 10px
+
 # Functionality
+bindsym $mod+Control+w kill
 bindsym $mod+Control+f fullscreen
-bindsym $mod+Control+$left focus left
-bindsym $mod+Control+$right focus right
-bindsym $mod+Control+$down focus down
-bindsym $mod+Control+$up focus up
-bindsym $mod+Control+c kill
+bindsym Print exec hyprshot -m region -o ~/Pictures/Screenshots
+# TODO: figure out how to make it single switching keybind instead
+# 	(ideally without writing a wrapper script that greps over `swaymsg -t get_inputs`)
+bindsym $mod+Space exec swaymsg input 1:1:kanata xkb_layout us
+bindsym $mod+Control+Space exec swaymsg input 1:1:kanata xkb_layout ru
 
 # Sessions
 bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish
@@ -87,6 +106,7 @@ exec sleep 1 && ~/.scripts/swww-auto.sh ~/Wallpapers/Final/
 exec dolphin --daemon
 exec gammastep
 exec lxqt-policykit-agent
+exec blueman-applet
 
 
 #
@@ -123,10 +143,6 @@ bindsym $mod+s workspace number 22
 bindsym $mod+d workspace number 23
 bindsym $mod+f workspace number 24
 bindsym $mod+g workspace number 25
-bindsym $mod+h workspace number 26
-bindsym $mod+j workspace number 27
-bindsym $mod+k workspace number 28
-bindsym $mod+l workspace number 29
 bindsym $mod+z workspace number 30
 bindsym $mod+x workspace number 31
 bindsym $mod+c workspace number 32
@@ -160,10 +176,6 @@ bindsym $mod+Shift+s move container to workspace number 22
 bindsym $mod+Shift+d move container to workspace number 23
 bindsym $mod+Shift+f move container to workspace number 24
 bindsym $mod+Shift+g move container to workspace number 25
-bindsym $mod+Shift+h move container to workspace number 26
-bindsym $mod+Shift+j move container to workspace number 27
-bindsym $mod+Shift+k move container to workspace number 28
-bindsym $mod+Shift+l move container to workspace number 29
 bindsym $mod+Shift+z move container to workspace number 30
 bindsym $mod+Shift+x move container to workspace number 31
 bindsym $mod+Shift+c move container to workspace number 32
