@@ -2,12 +2,27 @@ self@{ config
 , pkgs
 , ...
 }:
+let
+  mimeTypes =
+    [
+      "application/x-extension-htm"
+      "application/x-extension-html"
+      "application/x-extension-shtml"
+      "application/x-extension-xht"
+      "application/x-extension-xhtml"
+      "application/xhtml+xml"
+      "text/html"
+      "x-scheme-handler/chrome"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
+in
 # let
-#   languageIdentifierModel = pkgs.fetchurl {
-#     url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
-#     hash = "sha256-fmnsVFG8JhzHhE5J5HkqhdfwnAZ4nsgA/EpErsNidk4=";
-#   };
-# in
+  #   languageIdentifierModel = pkgs.fetchurl {
+  #     url = "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin";
+  #     hash = "sha256-fmnsVFG8JhzHhE5J5HkqhdfwnAZ4nsgA/EpErsNidk4=";
+  #   };
+  # in
 {
   environment.systemPackages = with pkgs; [
     chromium
@@ -17,11 +32,6 @@ self@{ config
 
   # set default browser for Electron apps
   environment.sessionVariables.DEFAULT_BROWSER = "${pkgs.floorp}/bin/floorp";
-
-  # TODO: migrate to home-manager managed one, with extensions
-  # programs.firefox.enable = true;
-  # use if (for some reason) firefox ain't compiled
-  #programs.firefox.package = pkgs.firefox-bin;
 
   # For local usage (currently I'm hosting it on sentinel instead - see languagetool.nix):
   # services.languagetool = {
@@ -33,20 +43,18 @@ self@{ config
   #   };
   # };
 
-  home-manager.users.dirakon =
+  # TODO: migrate to home-manager managed one, with extensions
+  programs.firefox.preferences =
     {
-      xdg.mimeApps.defaultApplications =
+      package = pkgs.floorp;
+      settings =
         {
-          "application/x-extension-htm" = "floorp.desktop";
-          "application/x-extension-html" = "floorp.desktop";
-          "application/x-extension-shtml" = "floorp.desktop";
-          "application/x-extension-xht" = "floorp.desktop";
-          "application/x-extension-xhtml" = "floorp.desktop";
-          "application/xhtml+xml" = "floorp.desktop";
-          "text/html" = "floorp.desktop";
-          "x-scheme-handler/chrome" = "floorp.desktop";
-          "x-scheme-handler/http" = "floorp.desktop";
-          "x-scheme-handler/https" = "floorp.desktop";
+          "browser.urlbar.placeholderName" = "DuckDuckGo";
+          # TODO: more settings (but will require declarative tree-style-tabs...)
         };
     };
+
+  home-manager.users.dirakon.xdg.mimeApps.defaultApplications =
+    pkgs.lib.mergeAttrsList
+      (builtins.map (mimeType: { "${mimeType}" = "floorp.desktop"; }) mimeTypes);
 }

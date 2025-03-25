@@ -1,8 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, godot
-, ultim-mc
 , sensitive
 , unstable
 , ...

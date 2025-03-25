@@ -13,7 +13,6 @@ self@{ config
     libreoffice
     telegram-desktop
     mattermost-desktop
-    blender
     ktorrent
     popsicle
 
@@ -22,13 +21,9 @@ self@{ config
     kitty
     alacritty
     ghostty
-    krita
     loupe
-    kdenlive
     filelight
     ark
-    openutau # Eh...
-    inkscape
     nekoray
     newsflash # rss reader
 
@@ -37,14 +32,7 @@ self@{ config
     framesh
     unstable.bisq2
     unstable.basicswap
-
     tor-browser
-    # Dev
-    godot
-    lmms
-    audacity
-    # trenchbroom
-    hoppscotch
 
     # For DE interaction with gamepad
     makima
@@ -61,11 +49,6 @@ self@{ config
 
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # For trenchbroom
-  # nixpkgs.config.permittedInsecurePackages = [
-  #   "freeimage-unstable-2021-11-01"
-  # ];
 
   home-manager.users.dirakon =
     {

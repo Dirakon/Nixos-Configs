@@ -24,6 +24,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./gaming.nix
 
+    ./gamedev.nix
+
     ./browser.nix
 
     ./system.nix
