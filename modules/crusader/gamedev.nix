@@ -16,6 +16,5 @@ self@{ config
     audacity
     kdenlive
     # trenchbroom
-    hoppscotch # The only non-gamedev dev, but eh.
   ];
 }

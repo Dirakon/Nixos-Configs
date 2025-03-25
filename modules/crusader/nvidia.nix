@@ -16,7 +16,6 @@ in
   ];
 
 
-  # unstable: opengl -> graphics
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   # hardware.graphics.extraPackages32 = with pkgs;[
