@@ -5,23 +5,36 @@ inputs@{ config
 , ...
 }:
 {
-  stylix.enable = true;
-  stylix.polarity = "dark";
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  # Why is this option mandatory...
-  stylix.image = sensitive.crusader.login-background;
+  stylix = {
+    enable = true;
+    polarity = "dark";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    # Why is this option mandatory...
+    image = sensitive.crusader.login-background;
+
+    # iconTheme = {
+    #   enable = true;
+    #   package = pkgs.papirus-icon-theme.override { color = "indigo"; };
+    #   dark = "Papirus-Dark"; # used
+    #   light = "Papirus-Light"; # unused
+    # };
+  };
+
+  home-manager.users.dirakon.stylix =
+    {
+      iconTheme = {
+        enable = true;
+        package = pkgs.reversal-icon-theme;
+        light = "Reversal";
+        dark = "Reversal";
+      };
+    };
 
   environment.systemPackages = with pkgs; [
     # QT (cleanup!)
     kdePackages.breeze-icons
     # kdePackages.qtscxml
     # libsForQt5.qt5.qtscxml
-
-    # Gnome/GTK (cleanup!)
-    # gnome.adwaita-icon-theme
-    # gnome-icon-theme
-    catppuccin-gtk
-    # breeze-icons
   ];
 
   home-manager.users.dirakon =
@@ -37,12 +50,5 @@ inputs@{ config
       home.packages = with pkgs; [
         libsForQt5.qt5ct
       ];
-
-      gtk = {
-        iconTheme = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
-        };
-      };
     };
 }
