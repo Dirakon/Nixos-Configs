@@ -24,9 +24,14 @@ inputs@{ config
     {
       iconTheme = {
         enable = true;
-        package = pkgs.reversal-icon-theme;
-        light = "Reversal";
-        dark = "Reversal";
+        package = pkgs.kdePackages.breeze-icons;
+        light = "breeze";
+        dark = "breeze-dark";
+      };
+      cursor = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Original-Classic";
+        size = 22;
       };
     };
 
