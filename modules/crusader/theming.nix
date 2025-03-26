@@ -8,26 +8,25 @@ inputs@{ config
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     # Why is this option mandatory...
     image = sensitive.crusader.login-background;
-
-    # iconTheme = {
-    #   enable = true;
-    #   package = pkgs.papirus-icon-theme.override { color = "indigo"; };
-    #   dark = "Papirus-Dark"; # used
-    #   light = "Papirus-Light"; # unused
-    # };
   };
 
   home-manager.users.dirakon.stylix =
     {
       iconTheme = {
         enable = true;
-        package = pkgs.kdePackages.breeze-icons;
-        light = "breeze";
-        dark = "breeze-dark";
+        package = pkgs.papirus-icon-theme.override { color = "indigo"; };
+        dark = "Papirus-Dark"; # used
+        light = "Papirus-Light"; # unused
       };
+      # iconTheme = {
+      #   enable = true;
+      #   package = pkgs.kdePackages.breeze-icons;
+      #   light = "breeze";
+      #   dark = "breeze-dark";
+      # };
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Original-Classic";
@@ -42,6 +41,7 @@ inputs@{ config
     # libsForQt5.qt5.qtscxml
   ];
 
+  # TODO: also migrate to stylix on 25.05
   home-manager.users.dirakon =
     {
       qt = {
