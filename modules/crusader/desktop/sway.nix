@@ -71,7 +71,6 @@ self@{ config, lib, pkgs, hypr-pkgs, ... }:
       export SSH_ASKPASS="${pkgs.ksshaskpass}/bin/ksshaskpass"
       export XDG_SESSION_TYPE=wayland
       export XDG_CURRENT_DESKTOP=sway
-      export QT_STYLE_OVERRIDE=kvantum
     '';
     extraOptions = [ "--unsupported-gpu" ];
   };

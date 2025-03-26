@@ -38,7 +38,7 @@ bindsym Print exec hyprshot -m region -o ~/Pictures/Screenshots
 # TODO: figure out how to make it single switching keybind instead
 # 	(ideally without writing a wrapper script that greps over `swaymsg -t get_inputs`)
 bindsym $mod+Space exec swaymsg input 1:1:kanata xkb_layout us
-bindsym $mod+Control+Space exec swaymsg input 1:1:kanata xkb_layout ru
+bindsym $mod+Shift+Space exec swaymsg input 1:1:kanata xkb_layout ru
 
 # Sessions
 bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish
@@ -70,24 +70,8 @@ bindsym --locked XF86AudioNext exec playerctl next
 bindsym --locked XF86AudioPrev exec playerctl previous
 
 # Notifications
-#bindsym Control+Space exec makoctl dismiss
-#bindsym Control+Shift+Space exec makoctl dismiss --all
-
-# input * {
-#     kb_layout us ru
-#     kb_variant nodeadkeys
-#     kb_model =
-#     kb_options =
-#     kb_rules =
-# 
-#     follow_mouse = 1
-# 
-#     touchpad {
-#         natural_scroll = no
-#     }
-# 
-#     sensitivity = 0 # -1.0 to 1.0, 0 means no modification.
-# }
+bindsym $mod+Control+n exec makoctl dismiss
+bindsym $mod+Control+Shift+n exec makoctl dismiss --all
 
 exec waybar
 exec wl-paste --watch cliphist store
