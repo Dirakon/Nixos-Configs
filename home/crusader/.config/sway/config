@@ -1,5 +1,10 @@
 set $mod Mod4
 
+input "1:1:kanata" {
+	xkb_layout us,ru
+	xkb_options "grp:win_space_toggle"
+}
+
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -35,10 +40,7 @@ bindsym $mod+Control+$up resize shrink height 10px
 bindsym $mod+Control+w kill
 bindsym $mod+Control+f fullscreen
 bindsym Print exec hyprshot -m region -o ~/Pictures/Screenshots
-# TODO: figure out how to make it single switching keybind instead
-# 	(ideally without writing a wrapper script that greps over `swaymsg -t get_inputs`)
-bindsym $mod+Space exec swaymsg input 1:1:kanata xkb_layout us
-bindsym $mod+Shift+Space exec swaymsg input 1:1:kanata xkb_layout ru
+# bindsym $mod+Shift+Space exec sway-cycle-input-language
 
 # Sessions
 bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish

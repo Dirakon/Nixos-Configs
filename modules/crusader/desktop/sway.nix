@@ -30,6 +30,21 @@ let
       '';
     };
 in
+let
+  sway-cycle-input-language =
+    pkgs.writeShellApplication {
+      name = "sway-cycle-input-language";
+      runtimeInputs = [ pkgs.sway ];
+      text = ''
+        if swaymsg -t get_inputs | grep -A 6 kanata | grep -q US
+        then
+                exec swaymsg input 1:1:kanata xkb_layout ru
+        else
+                exec swaymsg input 1:1:kanata xkb_layout us
+        fi
+      '';
+    };
+in
 {
   services.displayManager.sessionPackages = [ pkgs.sway ];
 
@@ -39,6 +54,7 @@ in
     autotiling
     i3-swallow # <- this works better
     i3-toolwait
+    sway-cycle-input-language
     sway-start-apps
   ];
 
