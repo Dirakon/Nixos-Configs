@@ -1,58 +1,45 @@
-# TODO: based on https://github.com/gytis-ivaskevicius/nixfiles/blob/4a6dc53cb1eae075d7303ce2b90e02ad850b48fb/config/sway.nix#L7
-# ??
 self@{ config, lib, pkgs, hypr-pkgs, ... }:
-# let
-#   wlroots-overlay = final: prev:
-#     {
-#       wlroots_0_18 = really-unstable.wlroots_0_18;
-#       linuxPackages-xanmod = (final.linuxPackagesFor final.linux-xanmod).extend (
-#         final: _prev: { ryzen_smu = final.callPackage ./ryzen_smu.nix { }; }
-#       );
-#       sway-unwrapped = prev.sway-unwrapped.overrideAttrs (attrs: {
-#         version = "0-unstable-2024-08-11";
-#         src = final.fetchFromGitHub {
-#           owner = "swaywm";
-#           repo = "sway";
-#           rev = "b44015578a3d53cdd9436850202d4405696c1f52";
-#           hash = "sha256-gTsZWtvyEMMgR4vj7Ef+nb+wcXkwGivGfnhnBIfPHOA=";
-#         };
-#         buildInputs = attrs.buildInputs ++ [ final.wlroots ];
-#         mesonFlags =
-#           let
-#             inherit (lib.strings) mesonEnable mesonOption;
-#           in
-#           [
-#             (mesonOption "sd-bus-provider" "libsystemd")
-#             (mesonEnable "tray" attrs.trayEnabled)
-#           ];
-#       });
-#       wayland = really-unstable.wayland;
-#       wayland-protocols = really-unstable.wayland-protocols;
-#       wlroots = prev.wlroots.overrideAttrs (_attrs: {
-#         version = "0-unstable-2024-08-11";
-#         src = final.fetchFromGitLab {
-#           domain = "gitlab.freedesktop.org";
-#           owner = "wlroots";
-#           repo = "wlroots";
-#           rev = "6214144735b6b85fa1e191be3afe33d6bea0faee";
-#           hash = "sha256-nuG2xXLDFsGh23CnhaTtdOshCBN/yILqKCSmqJ53vgI=";
-#         };
-#       });
-#     };
-# in
-{
-  # Try fix nvidia flickering - https://discourse.nixos.org/t/screen-flickering-and-tearing-with-nixos-sway-nvidia/49469/6
-  # nixpkgs.overlays = [ wlroots-overlay ];
-  # Couldn't make it build on stable :(
+let
+  i3-toolwait =
+    pkgs.writeShellApplication {
+      name = "i3-toolwait";
+      runtimeInputs = [
+        (pkgs.python3.withPackages (python-pkgs: [
+          python-pkgs.i3ipc
+        ]))
+      ];
+      text = ''
+        python3 "${./i3-toolwait.py}" "$@"
+      '';
+    };
+in
+let
+  sway-start-apps =
+    pkgs.writeShellApplication {
+      name = "sway-start-apps";
+      runtimeInputs = [ pkgs.sway i3-toolwait pkgs.kitty ];
+      text = ''
+        # workspace 0
+        swaymsg -q 'workspace 10'
+        i3-toolwait --nocheck -v -- kitty --hold sh -c 'sudo -E nekoray'
 
+        # go back to default - workspace 1
+        swaymsg -q 'workspace 1'
+
+        # TODO: notes on n? browser on b?
+      '';
+    };
+in
+{
   services.displayManager.sessionPackages = [ pkgs.sway ];
 
   imports = [ ./wm-utils.nix ];
 
   environment.systemPackages = with pkgs; [
     autotiling
-    # swayhide # works like 5% of the time at most???
     i3-swallow # <- this works better
+    i3-toolwait
+    sway-start-apps
   ];
 
   programs.sway = {

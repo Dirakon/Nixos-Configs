@@ -46,6 +46,10 @@ bindsym $mod+Alt+q exit
 
 exec_always autotiling
 
+# PC-specific startups but only at initial startup:
+exec sway-start-apps
+
+
 # Window borders
 default_border pixel 4
 default_floating_border normal

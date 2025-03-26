@@ -1,1 +1,1 @@
-"Try_fix_qt_on_sway"
+"Try_improve_sway_with_autostarting_apps"
