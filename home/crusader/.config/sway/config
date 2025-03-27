@@ -5,6 +5,12 @@ input "1:1:kanata" {
 	xkb_options "grp:win_space_toggle"
 }
 
+# move mouse with focus
+mouse_warping output
+
+# window focus follows mouse
+focus_follows_mouse yes
+
 # Home row direction keys, like vim
 set $left h
 set $down j
