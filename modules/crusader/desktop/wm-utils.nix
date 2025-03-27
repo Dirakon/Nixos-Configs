@@ -44,17 +44,30 @@ self@{ config, pkgs, hypr-pkgs, ... }:
   };
 
   # Gammastep
-  services.geoclue2.enable = true;
+
+  # Enable automatic time synchronization
+  services.geoclue2 = {
+    enable = true;
+    geoProviderUrl = "https://beacondb.net/v1/geolocate";
+    submitData = false;
+    appConfig.gammastep = {
+      isAllowed = true;
+      isSystem = true;
+    };
+  };
+  location.provider = "geoclue2";
   home-manager.users.dirakon.services.gammastep =
     {
       tray = true;
       enable = true;
       #    enableVerboseLogging = true;
       provider = "geoclue2";
+      # https://github.com/NixOS/nixpkgs/issues/321121
       #    temperature = {
       #      day = 6000;
       #      night = 4600;
       #    };
+
       settings = {
         general.adjustment-method = "wayland";
       };

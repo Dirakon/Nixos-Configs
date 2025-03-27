@@ -100,7 +100,7 @@ exec sleep 1 && ~/.scripts/swww-auto.sh ~/Wallpapers/Final/
 # execonce = joystickwake # Not setup correctly for now... Doesn't actually wake. TODO later
 # exec-once = swayidle -w # ^^^
 exec dolphin --daemon
-exec gammastep
+exec gammastep-indicator
 exec lxqt-policykit-agent
 exec blueman-applet
 
