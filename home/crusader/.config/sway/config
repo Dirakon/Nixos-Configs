@@ -18,10 +18,10 @@ set $up k
 set $right l
 
 # Apps
-bindsym $mod+Control+t exec ghostty
-bindsym $mod+Control+b exec floorp
-bindsym $mod+Control+d exec dolphin
-bindsym $mod+Control+r exec rofi -show drun
+bindsym $mod+Control+t exec uwsm app -- ghostty
+bindsym $mod+Control+b exec uwsm app -- floorp
+bindsym $mod+Control+d exec uwsm app -- dolphin
+bindsym $mod+Control+r exec rofi -show drun -run-command "uwsm app -- {cmd}"
 bindsym $mod+Control+v exec rofi -modi clipboard:~/.scripts/cliphist-rofi-img -show clipboard -show-icons
 
 # Move focus
@@ -54,10 +54,6 @@ bindsym $mod+Alt+q exit
 
 exec_always autotiling
 
-# PC-specific startups but only at initial startup:
-exec sway-start-apps
-
-
 # Window borders
 default_border pixel 4
 default_floating_border normal
@@ -85,24 +81,31 @@ bindsym --locked XF86AudioPrev exec playerctl previous
 bindsym $mod+Control+n exec makoctl dismiss
 bindsym $mod+Control+Shift+n exec makoctl dismiss --all
 
-exec waybar
-exec wl-paste --watch cliphist store
+# Needed for UWSM to start
 exec dbus-update-activation-environment --systemd --all
+exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment QT_QPA_PLATFORMTHEME
-exec nm-applet --indicator
-exec swayosd-server
-exec ~/.scripts/battery-monitor.sh
-exec swww-daemon
-exec sleep 1 && ~/.scripts/swww-auto.sh ~/Wallpapers/Final/
+exec uwsm finalize DISPLAY SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+# PC-specific startups but only at initial startup:
+exec sway-start-apps
+
+exec uwsm app -- waybar
+exec uwsm app -- wl-paste --watch cliphist store
+exec uwsm app -- nm-applet --indicator
+exec uwsm app -- swayosd-server
+exec uwsm app -- ~/.scripts/battery-monitor.sh
+exec uwsm app -- swww-daemon
+exec uwsm app -- ~/.scripts/swww-auto.sh ~/Wallpapers/Final/
 # exec-once = hyprpaper # Doing swww now
 # exec-once = sleep 1 && ~/.scripts/hyprpaper-auto.sh ~/Wallpapers/Final/  # Doing swww now
 # exec-once = thunar --daemon # Doing dolphin now
 # execonce = joystickwake # Not setup correctly for now... Doesn't actually wake. TODO later
 # exec-once = swayidle -w # ^^^
-exec dolphin --daemon
-exec gammastep
-exec lxqt-policykit-agent
-exec blueman-applet
+exec uwsm app -- dolphin --daemon
+exec uwsm app -- gammastep
+exec uwsm app -- lxqt-policykit-agent
+exec uwsm app -- blueman-applet
 
 
 #

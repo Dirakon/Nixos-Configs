@@ -47,6 +47,14 @@ let
 in
 {
   services.displayManager.sessionPackages = [ pkgs.sway ];
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.sway = {
+      prettyName = "Sway (uwsm)";
+      comment = "Sway (uwsm)";
+      binPath = lib.getExe pkgs.sway;
+    };
+  };
 
   imports = [ ./wm-utils.nix ];
 
