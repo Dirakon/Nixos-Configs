@@ -1,4 +1,5 @@
 set $mod Mod4
+floating_modifier $mod
 
 input "1:1:kanata" {
 	xkb_layout us,ru
@@ -46,7 +47,6 @@ bindsym $mod+Control+$up resize shrink height 10px
 bindsym $mod+Control+w kill
 bindsym $mod+Control+f fullscreen
 bindsym Print exec hyprshot -m region -o ~/Pictures/Screenshots
-# bindsym $mod+Shift+Space exec sway-cycle-input-language
 
 # Sessions
 bindsym $mod+Alt+l exec /home/dirakon/.scripts/init-swaylock.fish
@@ -56,7 +56,6 @@ exec_always autotiling
 
 # PC-specific startups but only at initial startup:
 exec sway-start-apps
-
 
 # Window borders
 default_border pixel 4
@@ -146,6 +145,7 @@ bindsym $mod+v workspace number 33
 bindsym $mod+b workspace number 34
 bindsym $mod+n workspace number 35
 bindsym $mod+m workspace number 36
+
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
