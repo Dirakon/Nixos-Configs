@@ -5,9 +5,13 @@
 	font-family: JetBrainsMono Nerd Font;
 	font-size: 13px;
 }
+ window#waybar, tooltip {
+	background: alpha(@base00, 0);
+	color: @base05;
+}
 
 window#waybar {
-	background-color: #181825;
+	/*background-color: #181825;*/
 	transition-property: background-color;
 	transition-duration: 0.5s;
 }
