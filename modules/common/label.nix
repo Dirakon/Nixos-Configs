@@ -1,1 +1,1 @@
-"Make_waybar_transparent"
+"Try_setup_uwsm_again"

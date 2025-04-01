@@ -15,6 +15,7 @@ self@{ config, pkgs, hypr-pkgs, ... }:
     hypr-pkgs.swaylock # Lock screen
     hypr-pkgs.swayosd # Frontend for +-brigthness, +-sound
     hypr-pkgs.swayidle
+    hypr-pkgs.waybar
     libnotify
     playerctl # Play controls
     networkmanagerapplet
@@ -37,11 +38,6 @@ self@{ config, pkgs, hypr-pkgs, ... }:
   programs.xwayland.enable = true;
   programs.xwayland.package = hypr-pkgs.xwayland;
   programs.nm-applet.enable = true;
-
-  programs.waybar = {
-    enable = true;
-    package = hypr-pkgs.waybar;
-  };
 
   # Gammastep
 
