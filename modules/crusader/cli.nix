@@ -29,6 +29,8 @@ self@{ config
     openssl
     cloc
     ncdu
+    ffmpeg-full # media backend and utils
+    gifski # gif helper for ffmpeg - https://stackoverflow.com/a/47486545
 
     # For playing audio
     sox # 'play' command

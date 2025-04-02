@@ -1,42 +1,31 @@
 { config, pkgs, sensitive, ... }:
-let
-  sddmBackgroundPath = pkgs.stdenv.mkDerivation {
-    name = "sddm-wallpaper";
-    src = sensitive.crusader.login-background;
-    buildCommand = ''
-      mkdir -p $out
-      cp $src $out/sddm.jpg
-      ls $out
-    '';
-  };
-in
-let
-  sddmTheme = pkgs.stdenv.mkDerivation {
-    name = "sddm-theme";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "MarianArlt";
-      repo = "sddm-chili";
-      rev = "6516d50176c3b34df29003726ef9708813d06271";
-      sha256 = "036fxsa7m8ymmp3p40z671z163y6fcsa9a641lrxdrw225ssq5f3";
-    };
-    buildInputs = [
-      sddmBackgroundPath
-    ];
-
-    installPhase = ''
-      mkdir -p $out
-      cp -R ./* $out/
-      rm $out/assets/background.jpg
-      echo $sddmBackgroundPath
-      cp $buildInputs/sddm.jpg $out/assets/background.jpg
-    '';
-  };
-in
 {
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "${sddmTheme}";
+  environment.systemPackages = with pkgs; [
+    (pkgs.callPackage ./sddm-astronaut.nix {
+      theme = "hyprland_kath";
+      # theme = "pixel_sakura";
+      themeConfig = {
+        General = {
+          # HeaderText = "Hi";
+          Background = "${sensitive.crusader.login-background-animated}";
+          # FontSize = "10.0";
+          HaveFormBackground = "false";
+          HideSystemButtons = "false";
+        };
+      };
+    })
+  ];
+  services.displayManager.sddm = {
+    wayland.enable = true;
+    enable = true;
+    package = pkgs.kdePackages.sddm;
+    theme = "sddm-astronaut-theme";
+    extraPackages = with pkgs; [
+      kdePackages.qtmultimedia
+      kdePackages.qtsvg
+      kdePackages.qtvirtualkeyboard
+    ];
+  };
 
   # Define the script /etc/scripts/sddm-avatar.sh
   environment.etc = {
@@ -75,11 +64,4 @@ in
   systemd.services.sddm = {
     after = [ "sddm-avatar.service" ];
   };
-
-  environment.systemPackages = with pkgs; [
-    # kde components for sddm theme and such
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtgraphicaleffects
-  ];
-
 }
