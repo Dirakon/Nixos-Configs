@@ -4,18 +4,27 @@
 		"spacing": 0,
 		"height": 42,
 		"modules-left": [
+			"clock",
+			"custom/arrow1",
 			"hyprland/workspaces",
-			"sway/workspaces"
+			"sway/workspaces",
+			"custom/arrow10"
 		],
 		"modules-center": [
-			"clock"
 		],
 		"modules-right": [
+			"custom/arrow9",
 			"cpu",
-		"memory",
-		"battery",
-		"pulseaudio",
-		"tray"
+			"custom/arrow8",
+			"memory",
+			"custom/arrow7",
+			"battery",
+			"custom/arrow6",
+			"pulseaudio",
+			"custom/arrow5",
+			"sway/language",
+			"custom/arrow4",
+			"tray"
 		],
 		"wlr/taskbar": {
 			"format": "{icon}",
@@ -24,6 +33,12 @@
 			"icon-theme": "WhiteSur",
 			"icon-size": 25,
 			"tooltip-format": "{title}"
+		},
+		"sway/language": {
+			"format": "  {}",
+			"min-length": 5,
+			"on-click": "swaymsg 'input * xkb_switch_layout next'",
+			"tooltip": false
 		},
 		"sway/workspaces": {
 			"window-rewrite": {},
@@ -192,5 +207,54 @@
 				"critical": 10
 			},
 			"tooltip": false
-		}
+		},
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	}
 }
