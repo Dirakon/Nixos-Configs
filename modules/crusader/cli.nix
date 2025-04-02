@@ -22,15 +22,16 @@ self@{ config
     imagemagick
     parted
     gparted
-    tldr
-    arp-scan
-    poppler_utils # pdf to png thing - `pdftoppm`
+    tldr # see user-friendly man for some commands
     timer
     openssl
-    cloc
-    ncdu
+    arp-scan # scan local network for devices (+ips)
+    poppler_utils # pdf to png thing - `pdftoppm`
+    cloc # Count Lines Of Code
+    ncdu # explore how much different folder takes mem
     ffmpeg-full # media backend and utils
     gifski # gif helper for ffmpeg - https://stackoverflow.com/a/47486545
+    yt-dlp # download youtube videos
 
     # For playing audio
     sox # 'play' command
