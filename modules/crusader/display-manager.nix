@@ -8,5 +8,5 @@ self@{ config, pkgs, ... }:
   # services.xserver.displayManager.startx.enable = true;
 
   # SDDM
-  imports = [ ./light-dm.nix ];
+  imports = [ ./sddm.nix ];
 }
