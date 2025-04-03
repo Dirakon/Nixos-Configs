@@ -66,7 +66,7 @@
 	color: @white;
 	font-family: JetBrains Mono, Siji;
 	font-size: 10pt;
-	/*font-weight: bold;*/
+	font-weight: bold;
 }
 
 /* Each module */
@@ -213,61 +213,60 @@
 	/*background-color: #cba6f7;*/
 }
 
-#custom-arrow1 {
+#custom-workspacesstart {
+	/*font-size: 26pt;*/
+	color: @date;
+	background: @unfocused;
+}
+#custom-workspacesend {
+	/*font-size: 26pt;*/
+	color: @date;
+	background: @unfocused;
+}
+
+#custom-arrowl1 {
 	font-size: 26pt;
 	color: @date;
 	background: @unfocused;
 }
 
-#custom-arrow2 {
-	font-size: 26pt;
-	color: @date;
-	background: @layout;
-}
-
-#custom-arrow3 {
-	font-size: 26pt;
-	color: @layout;
-	background: @battery;
-}
-
-#custom-arrow4 {
+#custom-arrowr1 {
 	font-size: 26pt;
 	color: @tray;
 	background: @language;
 }
 
-#custom-arrow5 {
+#custom-arrowr2 {
 	font-size: 26pt;
 	color: @language;
 	background: @sound;
 }
 
-#custom-arrow6 {
+#custom-arrowr3 {
 	font-size: 26pt;
 	color: @sound;
 	background: @battery;
 }
 
-#custom-arrow7 {
+#custom-arrowr4 {
 	font-size: 26pt;
 	color: @battery;
 	background: @memory;
 }
 
-#custom-arrow8 {
+#custom-arrowr5 {
 	font-size: 26pt;
 	color: @memory;
 	background: @cpu;
 }
 
-#custom-arrow9 {
+#custom-arrowr6 {
 	font-size: 26pt;
 	color: @cpu;
 	background: transparent;
 }
 
-#custom-arrow10 {
+#custom-arrowl2 {
 	font-size: 26pt;
 	color: @unfocused;
 	background: transparent;
