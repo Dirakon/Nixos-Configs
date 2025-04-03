@@ -88,6 +88,7 @@ exec waybar
 exec wl-paste --watch cliphist store
 exec dbus-update-activation-environment --systemd --all
 exec systemctl --user import-environment QT_QPA_PLATFORMTHEME
+exec systemctl --user import-environment SWAYSOCK
 exec nm-applet --indicator
 exec swayosd-server
 exec ~/.scripts/battery-monitor.sh
