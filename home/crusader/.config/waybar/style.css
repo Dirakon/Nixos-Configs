@@ -28,31 +28,25 @@
 @define-color braqua	#8ec07c;
 @define-color white	#ebdbb2;
 @define-color bg2	#504945;
-/**/
-/**/
-/*@define-color warning 	@bryellow;*/
-/*@define-color critical	@red;*/
-/*@define-color mode	@black;*/
-/*@define-color unfocused	@bg2;*/
-/*@define-color focused	@brpurple;*/
-/*@define-color inactive	@purple;*/
-/*@define-color sound	@brpurple;*/
-/*@define-color network	@purple;*/
-/*@define-color memory	@braqua;*/
-/*@define-color cpu	@green;*/
-/*@define-color temp	@brgreen;*/
-/*@define-color layout	@bryellow;*/
-/*@define-color language	@bryellow;*/
-/*@define-color battery	@aqua;*/
-/*@define-color date	@black;*/
-@define-color col1bg	@brpurple;
-@define-color col1fg	@black;
 
-@define-color col2bg	@black;
-@define-color col2fg	@white;
 
-/*@define-color col3bg	@red;*/
-/*@define-color col3fg	@black;*/
+@define-color warning 	@bryellow;
+@define-color critical	@red;
+@define-color mode	@black;
+@define-color unfocused	@bg2;
+@define-color focused	@blue;
+@define-color inactive	@purple;
+@define-color sound	@brpurple;
+@define-color network	@purple;
+@define-color memory	@braqua;
+@define-color cpu	@green;
+@define-color temp	@brgreen;
+@define-color layout	@bryellow;
+@define-color language	@bryellow;
+@define-color battery	@aqua;
+@define-color date	@black;
+@define-color tray	@black;
+@define-color time	@white;
 
 /* Reset all styles */
 * {
@@ -114,125 +108,171 @@
 #cpu.warning,
 #temperature.warning,
 #battery.warning.discharging {
-	color: @bryellow;
+	color: @warning;
 }
 
 /* And now modules themselves in their respective order */
+
+/* Current sway mode (resize etc) */
+#mode {
+	color: @white;
+	background: @mode;
+}
 
 /* Workspaces stuff */
 #workspaces button {
 	/*font-weight: bold;*/
 	padding-left: 2pt;
 	padding-right: 2pt;
-	color: @col2fg;
-	background: @col2bg;
+	color: @white;
+	background: @unfocused;
 }
 
 /* Inactive (on unfocused output) */
 #workspaces button.visible {
-	color: @col2fg;
-	background: @col2bg;
+	color: @white;
+	background: @inactive;
 }
 
 /* Active (on focused output) */
 #workspaces button.focused {
-	color: @col1fg;
-	background: @col1bg;
+	color: @black;
+	background: @focused;
 }
 
 /* Contains an urgent window */
 #workspaces button.urgent {
-	color: @red;
-	background: @black;
+	color: @black;
+	background: @warning;
 }
 
 /* Style when cursor is on the button */
 #workspaces button:hover {
-	background: @gray;
+	background: @black;
 	color: @white;
 }
 
-#custom-arrowl1 {
-	font-size: 26pt;
-	color: @col2bg;
-	background: @col1bg;
-}
-
-#clock {
-	font-family: JetBrainsMono Nerd Font;
-	color: @col1fg;
-	background: @col1bg;
-	/*background-color: #cba6f7;*/
-}
-
-#custom-arrowl2 {
-	font-size: 26pt;
-	color: @col1bg;
-}
-
-#custom-arrowr6 {
-	font-size: 26pt;
-	color: @col1bg;
-}
-
-#cpu {
-	background: @col1bg;
-	color: @col1fg;
-}
-
-#custom-arrowr5 {
-	font-size: 26pt;
-	color: @col2bg;
-	background: @col1bg;
-}
-
-#memory {
-	background: @col2bg;
-	color: @col2fg;
-}
-
-#custom-arrowr4 {
-	font-size: 26pt;
-	color: @col1bg;
-	background: @col2bg;
-}
-
-#battery {
-	background: @col1bg;
-	color: @col1fg;
-}
-
-#custom-arrowr3 {
-	font-size: 26pt;
-	color: @col2bg;
-	background: @col1bg;
+#window {
+	margin-right: 35pt;
+	margin-left: 35pt;
 }
 
 #pulseaudio {
-	background: @col2bg;
-	color: @col2fg;
+	background: @sound;
+	color: @black;
 }
 
-#custom-arrowr2 {
-	font-size: 26pt;
-	color: @col1bg;
-	background: @col2bg;
+#network {
+	background: @network;
+	color: @white;
+}
+
+#memory {
+	background: @memory;
+	color: @black;
+}
+
+#cpu {
+	background: @cpu;
+	color: @black;
+}
+
+#temperature {
+	background: @temp;
+	color: @black;
 }
 
 #language {
-	background: @col1bg;
-	color: @col1fg;
+	background: @layout;
+	color: @black;
 }
 
-#custom-arrowr1 {
-	font-size: 26pt;
-	color: @col2bg;
-	background: @col1bg;
+#battery {
+	background: @battery;
+	color: @black;
 }
 
 #tray {
-	background: @col2bg;
+	background: @date;
 }
+
+/*#clock.date {*/
+/*	background: @date;*/
+/*	color: @white;*/
+/*}*/
+/**/
+/*#clock {*/
+/*	background: @date;*/
+/*	color: @white;*/
+/*}*/
+
+#clock {
+	font-family: JetBrainsMono Nerd Font;
+	color: @time;
+	background: @date;
+	/*background-color: #cba6f7;*/
+}
+
+#custom-arrow1 {
+	font-size: 26pt;
+	color: @date;
+	background: @unfocused;
+}
+
+#custom-arrow2 {
+	font-size: 26pt;
+	color: @date;
+	background: @layout;
+}
+
+#custom-arrow3 {
+	font-size: 26pt;
+	color: @layout;
+	background: @battery;
+}
+
+#custom-arrow4 {
+	font-size: 26pt;
+	color: @tray;
+	background: @language;
+}
+
+#custom-arrow5 {
+	font-size: 26pt;
+	color: @language;
+	background: @sound;
+}
+
+#custom-arrow6 {
+	font-size: 26pt;
+	color: @sound;
+	background: @battery;
+}
+
+#custom-arrow7 {
+	font-size: 26pt;
+	color: @battery;
+	background: @memory;
+}
+
+#custom-arrow8 {
+	font-size: 26pt;
+	color: @memory;
+	background: @cpu;
+}
+
+#custom-arrow9 {
+	font-size: 26pt;
+	color: @cpu;
+	background: transparent;
+}
+
+#custom-arrow10 {
+	font-size: 26pt;
+	color: @unfocused;
+	background: transparent;
+}
+
 
 /*Make transparent*/
 window#waybar {
