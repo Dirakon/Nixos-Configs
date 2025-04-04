@@ -32,6 +32,7 @@ self@{ config
     ffmpeg-full # media backend and utils
     gifski # gif helper for ffmpeg - https://stackoverflow.com/a/47486545
     yt-dlp # download youtube videos
+    ytdl-sub # download music from youtube to jellyfin
 
     # For playing audio
     sox # 'play' command

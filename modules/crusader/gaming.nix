@@ -33,6 +33,8 @@ self@{ config
     # Further gaming
     jstest-gtk
     joystickwake
+
+    antimicrox # gamepad to keyboards GUI (non-declarative)
   ];
 
   programs.steam.enable = true;
