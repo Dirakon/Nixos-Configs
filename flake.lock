@@ -103,11 +103,11 @@
     "easy-dotnet": {
       "flake": false,
       "locked": {
-        "lastModified": 1734175937,
-        "narHash": "sha256-NeNTWSUvTw/EZOKgSXaRKpnbJQmkdj4WiTB3tNpa0qU=",
+        "lastModified": 1744222716,
+        "narHash": "sha256-4EdLs0BTfjGKztq/PvU/agrZRfwclqPB7hjumGVyIcg=",
         "owner": "GustavEikaas",
         "repo": "easy-dotnet.nvim",
-        "rev": "a0dd4ff889d5ad00b239a83628e0644f3b4b542f",
+        "rev": "d9ad37a813c8f7bd59caf4f0a9c87d2c9f5cfe00",
         "type": "github"
       },
       "original": {
@@ -524,22 +524,6 @@
         "url": "file:programs/mattermost-printer-bot"
       }
     },
-    "multicursor-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1733109630,
-        "narHash": "sha256-0bFqoTq4d49/REDu6Rnmvms3kDIyEl0N57CpxYp0ImU=",
-        "owner": "jake-stewart",
-        "repo": "multicursor.nvim",
-        "rev": "f454cac9d03ccaf20008f4793f05b159f5547e78",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jake-stewart",
-        "repo": "multicursor.nvim",
-        "type": "github"
-      }
-    },
     "nix-alien": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -624,11 +608,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1735395058,
-        "narHash": "sha256-/SqVdchMmzcDJhGoZnTQDtGF+MnVh5cAWa06b6swG7E=",
+        "lastModified": 1744361059,
+        "narHash": "sha256-1fDObEbCaRF3B1WpyF9KNem1YAVIUo4ckQf2ctU43B4=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "3f3f3e9ea4e9b69735e06a757eca19ce06a25f80",
+        "rev": "b35ef16c9c31406cd1f55f80fe41ec6dd8aebea5",
         "type": "github"
       },
       "original": {
@@ -655,11 +639,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1736523798,
-        "narHash": "sha256-Xb8mke6UCYjge9kPR9o4P1nVrhk7QBbKv3xQ9cj7h2s=",
+        "lastModified": 1744232761,
+        "narHash": "sha256-gbl9hE39nQRpZaLjhWKmEu5ejtQsgI5TWYrIVVJn30U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "130595eba61081acde9001f43de3248d8888ac4a",
+        "rev": "f675531bc7e6657c10a18b565cfebd8aa9e24c14",
         "type": "github"
       },
       "original": {
@@ -831,17 +815,15 @@
     "nvim": {
       "inputs": {
         "easy-dotnet": "easy-dotnet",
-        "multicursor-nvim": "multicursor-nvim",
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs_10",
-        "roslyn-nvim": "roslyn-nvim"
+        "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1744136071,
-        "narHash": "sha256-lKzhmM2r+AxNan5JwFQRAXL4jWOxjrdQjWotOWEWRNo=",
+        "lastModified": 1744391085,
+        "narHash": "sha256-rNnUZLoAcU9ffITztVA8Xj6Ozr+WzYsbjFILnyuwMU4=",
         "ref": "refs/heads/main",
-        "rev": "91dd3a268635cadd9e5ea00c93a18d4d7a20b29a",
-        "revCount": 27,
+        "rev": "6d4dd6cca49f42328d66c09754b35c5c8b46a7f5",
+        "revCount": 28,
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -889,22 +871,6 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "unstable": "unstable"
-      }
-    },
-    "roslyn-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735561383,
-        "narHash": "sha256-UW0iWGNNWjLIYszKUBYOqoFxbmELX9VVgTj63UJdo4A=",
-        "owner": "seblj",
-        "repo": "roslyn.nvim",
-        "rev": "85aca5d48ddf8ada4e010ee9fa4d43c77ebf68c9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "seblj",
-        "repo": "roslyn.nvim",
-        "type": "github"
       }
     },
     "sensitive": {
