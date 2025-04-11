@@ -1,1 +1,1 @@
-"Nvim_update"
+"Update_tmux"
