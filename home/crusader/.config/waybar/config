@@ -25,6 +25,7 @@
 			"pulseaudio",
 			"custom/arrowr2",
 			"sway/language",
+			"hyprland/language",
 			"custom/arrowr1",
 			"tray"
 		],
@@ -40,6 +41,12 @@
 			"format": "  {}",
 			"min-length": 5,
 			"on-click": "swaymsg 'input * xkb_switch_layout next'",
+			"tooltip": false
+		},
+		"hyprland/language": {
+			"format": "  {}",
+			"min-length": 5,
+			"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next && hyprctl switchxkblayout kanata next",
 			"tooltip": false
 		},
 		"sway/workspaces": {
