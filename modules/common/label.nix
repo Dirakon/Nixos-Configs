@@ -1,1 +1,1 @@
-"Try_improve_hypr_on_par_with_sway"
+"Try_setup_trilium_as_foss_obsidian_replacement"
