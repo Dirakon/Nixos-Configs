@@ -38,6 +38,11 @@ in
     listenAddress = "0.0.0.0:${toString sensitive.sentinel.mattermost.port}";
     siteUrl = "https://${sensitive.sentinel.mattermost.hostname}";
     preferNixConfig = true;
+    extraConfig = {
+      "SessionLengthMobileInDays" = 1000;
+      "SessionLengthWebInDays" = 1000;
+      "SessionLengthSSOInDays" = 1000;
+    };
   };
 
   networking.firewall.allowedTCPPorts =

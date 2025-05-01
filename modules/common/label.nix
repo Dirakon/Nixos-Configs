@@ -1,1 +1,1 @@
-"Try_setup_trilium_as_foss_obsidian_replacement"
+"Try_add_super_syncthing"

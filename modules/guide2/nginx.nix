@@ -15,6 +15,30 @@ let
     '';
   nginx-config = ''
     stream {
+      upstream syncthing_proxy_1 {
+          server ${sensitive.sentinel.awg.ip}:22000;
+      }
+
+      server {
+          listen 22000;
+          proxy_pass syncthing_proxy_1;
+      }
+
+      server {
+          listen 22000 udp;
+          proxy_pass syncthing_proxy_1;
+          proxy_responses 0;
+      }
+
+      upstream syncthing_proxy_2 {
+          server ${sensitive.sentinel.awg.ip}:21027;
+      }
+
+      server {
+          listen 21027;
+          proxy_pass syncthing_proxy_2;
+      }
+
       upstream ssh_proxy {
           server ${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.ssh.port};
       }

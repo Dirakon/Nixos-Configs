@@ -15,6 +15,8 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
       sensitive.sentinel.languagetool.port
+
+      22000 # syncthing
     ];
   networking.firewall.allowedUDPPorts =
     [
@@ -30,5 +32,9 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
       sensitive.sentinel.languagetool.port
+
+
+      22000 # syncthing 1
+      21027 # syncthing 2
     ];
 }

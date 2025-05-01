@@ -12,6 +12,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./cli.nix
 
+    ./syncthing.nix
+
     ./system.nix
 
     ./sops.nix

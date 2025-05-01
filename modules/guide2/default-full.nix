@@ -18,6 +18,7 @@ self@{ config, pkgs, boot, hostname, modulesPath, sensitive, ... }:
     ripgrep
     htop
     ncdu
+    fastfetch
 
     # Nix stuff
     nh
