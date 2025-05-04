@@ -34,6 +34,20 @@ let
       '';
     };
 in
+let
+  hypr-exit-session =
+    pkgs.writeShellApplication {
+      name = "hypr-exit-session";
+      runtimeInputs = [ pkgs.libnotify pkgs.procps pkgs.uwsm ];
+      text = ''
+        if pgrep "nekoray"; then
+           notify-send --urgency=critical "Disable nekoray first please"
+        else
+            uwsm stop
+        fi
+      '';
+    };
+in
 {
   services.displayManager.sessionPackages = [
     # hypr-pkgs.hyprland
@@ -50,6 +64,7 @@ in
     hyprshot
     hyprland-qtutils.default
     hypr-pkgs.uwsm # <- temp for playing around
+    hypr-exit-session
   ];
 
   security.pam.services.hyprlock = { };
@@ -58,18 +73,13 @@ in
     enable = true;
     package = hypr-pkgs.hyprland;
     xwayland.enable = true;
-    withUWSM = false;
+    withUWSM = true;
   };
 
 
   programs.uwsm = {
     enable = true;
     package = pkgs.uwsm;
-    waylandCompositors.hyprland = {
-      prettyName = "Hyprland";
-      comment = "Hyprland compositor managed by UWSM";
-      binPath = "/run/current-system/sw/bin/Hyprland";
-    };
   };
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
