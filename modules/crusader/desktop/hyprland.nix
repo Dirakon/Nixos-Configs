@@ -12,6 +12,30 @@ let
         fi
       '';
     };
+
+in
+let
+  mkSystemdStartupService = { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none" }:
+    let
+      bashScript = pkgs.writeShellScriptBin name script;
+    in
+    {
+      enable = true;
+      wantedBy = [ "graphical-session.target" ] ++ systemdDependencies;
+      partOf = [ "graphical-session.target" ] ++ systemdDependencies;
+      after = [ "graphical-session.target" ] ++ systemdDependencies;
+      path = dependencies;
+      requisite = [ "graphical-session.target" ] ++ systemdDependencies;
+      description = "${name}: autostarted on hyprland start";
+      serviceConfig =
+        {
+          Restart = "on-failure";
+          ExecStart = "${bashScript}/bin/${name}";
+          RestartSec = 1;
+        } // (if busName == "none" then { } else {
+          BusName = busName;
+        });
+    };
 in
 {
   imports = [ ./wm-utils.nix ];
@@ -30,6 +54,60 @@ in
     package = hypr-pkgs.hyprland;
     xwayland.enable = true;
     withUWSM = true;
+  };
+
+  systemd.user.services = {
+    # swayosd-server already provides systemd
+    # waybar already provides systemd
+    # blueman-applet already provides systemd
+    # nm-applet already provides systemd
+
+    dolphin-daemon = mkSystemdStartupService {
+      dependencies = [ pkgs.dolphin ];
+      name = "dolphin-daemon";
+      script =
+        ''
+          dolphin --daemon
+        '';
+      busName = "org.freedesktop.FileManager1";
+    };
+
+    battery-monitor = mkSystemdStartupService {
+      dependencies = [ pkgs.bash pkgs.fish pkgs.upower pkgs.gawk pkgs.libnotify ];
+      name = "battery-monitor";
+      script =
+        ''
+          /home/dirakon/.scripts/battery-monitor.sh
+        '';
+    };
+
+    swww-daemon = mkSystemdStartupService {
+      dependencies = [ pkgs.swww ];
+      name = "swww-daemon";
+      script =
+        ''
+          swww-daemon
+        '';
+    };
+
+    swww-auto = mkSystemdStartupService {
+      dependencies = [ pkgs.fish pkgs.bash pkgs.swww ];
+      systemdDependencies = [ "swww-daemon.service" ];
+      name = "swww-auto";
+      script =
+        ''
+          /home/dirakon/.scripts/swww-auto.sh /home/dirakon/Wallpapers/Final/
+        '';
+    };
+
+    lxqt-policykit-agent = mkSystemdStartupService {
+      dependencies = [ pkgs.lxqt.lxqt-policykit ];
+      name = "lxqt-policykit-agent";
+      script =
+        ''
+          lxqt-policykit-agent
+        '';
+    };
   };
 
   programs.uwsm = {
