@@ -1,1 +1,1 @@
-"Try_systemdify_all_hypr_autostarts"
+"Try_to_improve_dolphin_daemon_experience"

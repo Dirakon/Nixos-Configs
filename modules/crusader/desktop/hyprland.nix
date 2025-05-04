@@ -15,17 +15,17 @@ let
 
 in
 let
-  mkSystemdStartupService = { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none" }:
+  mkSystemdStartupService = { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none", disablePartOf ? false, disableWantedBy ? false, disableAfter ? false, disableRequisite ? false }:
     let
       bashScript = pkgs.writeShellScriptBin name script;
     in
     {
       enable = true;
-      wantedBy = [ "graphical-session.target" ] ++ systemdDependencies;
-      partOf = [ "graphical-session.target" ] ++ systemdDependencies;
-      after = [ "graphical-session.target" ] ++ systemdDependencies;
+      wantedBy = if disableWantedBy then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
+      partOf = if disablePartOf then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
+      after = if disableAfter then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
+      requisite = if disableRequisite then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
       path = dependencies;
-      requisite = [ "graphical-session.target" ] ++ systemdDependencies;
       description = "${name}: autostarted on hyprland start";
       serviceConfig =
         {
@@ -62,6 +62,7 @@ in
     # blueman-applet already provides systemd
     # nm-applet already provides systemd
 
+    # Based on https://github.com/KDE/dolphin/blob/master/plasma-dolphin.service.in
     dolphin-daemon = mkSystemdStartupService {
       dependencies = [ pkgs.dolphin ];
       name = "dolphin-daemon";
