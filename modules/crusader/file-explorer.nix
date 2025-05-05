@@ -6,7 +6,6 @@ self@{ config
 , ...
 }:
 {
-
   environment.systemPackages = with pkgs; [
     dolphin
     konsole # For dolphin integrated term

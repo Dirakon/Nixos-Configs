@@ -31,7 +31,6 @@ self@{ config, pkgs, boot, unstable, hostname, sensitive, ... }:
     };
   };
 
-
   networking.firewall.allowedTCPPorts =
     [
       22000

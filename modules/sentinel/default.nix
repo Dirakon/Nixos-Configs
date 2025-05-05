@@ -20,7 +20,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./amnezia.nix
 
-    ./couchdb.nix
+    # Not needed - not using obsidian anymore, now syncthing + nvim/markor
+    # ./couchdb.nix
 
     ./suwayomi.nix
 
@@ -36,6 +37,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./languagetool.nix
 
+    # broken atm - need to research https://discourse.nixos.org/t/firefox-sync-401-login-failed-due-to-misconfigured-nginx/61313/12
+    # i think nginx problems?
     ./firefox-sync.nix
   ];
 
