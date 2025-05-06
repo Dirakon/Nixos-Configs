@@ -51,6 +51,8 @@ self@{ config, pkgs, boot, ... }:
     ./switch.nix
 
     ./theming.nix
+
+    ./acer-extension.nix
   ];
 
   # Allow unfree packages
