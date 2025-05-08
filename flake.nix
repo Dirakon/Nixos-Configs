@@ -40,6 +40,7 @@
 
   outputs = inputs:
     #let overlays = [nix-gl.overlay]; in
+    let my-utils = import ./modules/common/utils.nix; in
     let commonModules = [ ./modules/common/default.nix ]; in with inputs;
     {
       # TODO: for each unique system if I ever will actually have mutltiple
@@ -51,7 +52,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive;
+              inherit hostname sensitive my-utils;
               hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
               unstable = import unstable { system = system; config.allowUnfree = true; };
               nix-gl = nix-gl;
@@ -87,7 +88,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive;
+              inherit hostname sensitive my-utils;
             };
 
           modules = [
@@ -119,7 +120,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive;
+              inherit hostname sensitive my-utils;
               amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
               amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
             };
@@ -153,7 +154,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive;
+              inherit hostname sensitive my-utils;
               amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
               amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
               unstable = import unstable { system = system; config.allowUnfree = true; };

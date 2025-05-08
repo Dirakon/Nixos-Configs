@@ -1,4 +1,4 @@
-self@{ config, pkgs, hypr-pkgs, hyprland-qtutils, ... }:
+self@{ config, pkgs, hypr-pkgs, hyprland-qtutils, my-utils, ... }:
 let
   hypr-exit-session =
     pkgs.writeShellApplication {
@@ -13,29 +13,6 @@ let
       '';
     };
 
-in
-let
-  mkSystemdStartupService = { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none", disablePartOf ? false, disableWantedBy ? false, disableAfter ? false, disableRequisite ? false }:
-    let
-      bashScript = pkgs.writeShellScriptBin name script;
-    in
-    {
-      enable = true;
-      wantedBy = if disableWantedBy then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      partOf = if disablePartOf then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      after = if disableAfter then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      requisite = if disableRequisite then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      path = dependencies;
-      description = "${name}: autostarted on hyprland start";
-      serviceConfig =
-        {
-          Restart = "on-failure";
-          ExecStart = "${bashScript}/bin/${name}";
-          RestartSec = 1;
-        } // (if busName == "none" then { } else {
-          BusName = busName;
-        });
-    };
 in
 {
   imports = [ ./wm-utils.nix ];
@@ -63,7 +40,7 @@ in
     # nm-applet already provides systemd
 
     # Based on https://github.com/KDE/dolphin/blob/master/plasma-dolphin.service.in
-    dolphin-daemon = mkSystemdStartupService {
+    dolphin-daemon = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.dolphin ];
       name = "dolphin-daemon";
       script =
@@ -73,7 +50,7 @@ in
       busName = "org.freedesktop.FileManager1";
     };
 
-    battery-monitor = mkSystemdStartupService {
+    battery-monitor = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.bash pkgs.fish pkgs.upower pkgs.gawk pkgs.libnotify ];
       name = "battery-monitor";
       script =
@@ -82,7 +59,7 @@ in
         '';
     };
 
-    swww-daemon = mkSystemdStartupService {
+    swww-daemon = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.swww ];
       name = "swww-daemon";
       script =
@@ -91,7 +68,7 @@ in
         '';
     };
 
-    swww-auto = mkSystemdStartupService {
+    swww-auto = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.fish pkgs.bash pkgs.swww ];
       systemdDependencies = [ "swww-daemon.service" ];
       name = "swww-auto";
@@ -101,7 +78,7 @@ in
         '';
     };
 
-    lxqt-policykit-agent = mkSystemdStartupService {
+    lxqt-policykit-agent = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.lxqt.lxqt-policykit ];
       name = "lxqt-policykit-agent";
       script =

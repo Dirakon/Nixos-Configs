@@ -1,27 +1,4 @@
-self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, ... }:
-let
-  mkSystemdStartupService = { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none", disablePartOf ? false, disableWantedBy ? false, disableAfter ? false, disableRequisite ? false }:
-    let
-      bashScript = pkgs.writeShellScriptBin name script;
-    in
-    {
-      enable = true;
-      wantedBy = if disableWantedBy then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      partOf = if disablePartOf then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      after = if disableAfter then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      requisite = if disableRequisite then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
-      path = dependencies;
-      description = "${name}: autostarted on hyprland start";
-      serviceConfig =
-        {
-          Restart = "on-failure";
-          ExecStart = "${bashScript}/bin/${name}";
-          RestartSec = 1;
-        } // (if busName == "none" then { } else {
-          BusName = busName;
-        });
-    };
-in
+self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-utils, ... }:
 {
   # in fish default config we login to hyprland when on tty1
   systemd.services."getty@tty1" = {
@@ -54,7 +31,7 @@ in
   };
 
   systemd.user.services = {
-    youtube-mattermost-bot = mkSystemdStartupService {
+    youtube-mattermost-bot = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ mattermost-youtube-bot ];
       name = "youtube-mattermost-bot";
       script =

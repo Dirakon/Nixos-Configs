@@ -1,24 +1,8 @@
-# Based on https://github.com/wpdevelopment11/xray-tutorial
-{ pkgs, config, lib, sensitive, ... }:
-let
-  recursiveMerge = attrList:
-    let
-      f = attrPath:
-        builtins.zipAttrsWith (n: values:
-          if builtins.tail values == [ ]
-          then builtins.head values
-          else if builtins.all builtins.isList values
-          then builtins.unique (builtins.concatLists values)
-          else if builtins.all builtins.isAttrs values
-          then f (attrPath ++ [ n ]) values
-          else builtins.last values
-        );
-    in
-    f [ ] attrList;
-in
+# Based on https://github.com/XTLS/Xray-examples/blob/main/VLESS-TCP-XTLS-Vision-REALITY/config_client.jsonc
+{ pkgs, config, lib, sensitive, my-utils, ... }:
 let xrayValues = [ "hiding_domain" "hiding_ip" "uuid" "public_key" ]; in
 let
-  xrayConfigPart = recursiveMerge (builtins.map
+  xrayConfigPart = my-utils.recursiveMerge (builtins.map
     (value:
       {
         sops.secrets."xray/${value}" = {
@@ -110,4 +94,4 @@ let
       };
     };
 in
-recursiveMerge [ xrayConfigPart baseConfigPart ]
+my-utils.recursiveMerge [ xrayConfigPart baseConfigPart ]

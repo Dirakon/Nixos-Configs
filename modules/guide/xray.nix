@@ -1,25 +1,7 @@
-{ pkgs, config, lib, sensitive, ... }:
-# TODO: make my utils and propogate?
-# https://stackoverflow.com/questions/54504685/nix-function-to-merge-attributes-records-recursively-and-concatenate-arrays
-let
-  recursiveMerge = attrList:
-    let
-      f = attrPath:
-        builtins.zipAttrsWith (n: values:
-          if builtins.tail values == [ ]
-          then builtins.head values
-          else if builtins.all builtins.isList values
-          then builtins.unique (builtins.concatLists values)
-          else if builtins.all builtins.isAttrs values
-          then f (attrPath ++ [ n ]) values
-          else builtins.last values
-        );
-    in
-    f [ ] attrList;
-in
+{ pkgs, config, lib, sensitive, my-utils, ... }:
 let xrayValues = [ "hiding_domain" "hiding_ip" "uuid" "public_key" "private_key" ]; in
 let
-  xrayConfigPart = recursiveMerge (builtins.map
+  xrayConfigPart = my-utils.recursiveMerge (builtins.map
     (value:
       {
         sops.secrets."xray/${value}" = {
@@ -118,5 +100,5 @@ let
       };
     };
 in
-recursiveMerge [ xrayConfigPart baseConfigPart ]
+my-utils.recursiveMerge [ xrayConfigPart baseConfigPart ]
 
