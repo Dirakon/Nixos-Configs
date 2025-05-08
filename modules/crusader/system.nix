@@ -56,11 +56,13 @@ self@{ config, pkgs, boot, hostname, ... }:
       25566 # Zerotier
       53
       51871 # wg???
+      8579 # for testing of mattermost bots
     ];
     allowedUDPPorts = [
       25566 # Zerotier
       53
       51871 # wg???
+      8579 # for testing of mattermost bots
     ];
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect

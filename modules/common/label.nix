@@ -1,1 +1,1 @@
-"Add_firefox-kiosk-youtube-autostart-hyprland-thing..."
+"Setup_mattermost-youtube-bot_for_firefox-kiosk-you..."

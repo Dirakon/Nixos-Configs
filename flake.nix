@@ -33,6 +33,7 @@
 
     nvim.url = "git+file:programs/nvim";
     mattermost-printer-bot.url = "git+file:programs/mattermost-printer-bot";
+    mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
 
     sensitive.url = "git+file:sensitive";
   };
@@ -157,6 +158,7 @@
               amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
               unstable = import unstable { system = system; config.allowUnfree = true; };
               mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
+              mattermost-youtube-bot = mattermost-youtube-bot.packages."${system}".default;
             };
 
           modules = [

@@ -42,6 +42,10 @@ in
       "SessionLengthMobileInDays" = 1000;
       "SessionLengthWebInDays" = 1000;
       "SessionLengthSSOInDays" = 1000;
+
+      ServiceSettings = {
+        "AllowedUntrustedInternalConnections" = "127.0.0.1 192.168.0.1/16";
+      };
     };
   };
 
