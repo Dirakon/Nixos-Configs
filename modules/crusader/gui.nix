@@ -48,6 +48,15 @@ self@{ config
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
+  programs.ydotool = {
+    enable = true;
+    group = "ydotool";
+  };
+
+  users.users.dirakon = {
+    extraGroups = [ "ydotool" ];
+  };
+
   # use wayland for electron
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

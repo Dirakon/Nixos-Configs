@@ -1,4 +1,18 @@
 self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-utils, ... }:
+let
+  ensure-firefox-focus = pkgs.writeShellScriptBin "ensure-firefox-focus" ''
+    sleep 7
+    # Check if any monitors are connected
+    if output=$(cat /sys/class/drm/card0/*HDMI*/status |grep '^connected'); then
+      hyprctl dispatch focuswindow irefox
+      sleep 3
+      ydotool mousemove -x 0 -y 0 -a
+      hyprctl dispatch focuswindow irefox
+      sleep 3
+      ydotool mousemove -x 0 -y 0 -a
+    fi
+  '';
+in
 {
   # in fish default config we login to hyprland when on tty1
   systemd.services."getty@tty1" = {
@@ -11,7 +25,19 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-
     withUWSM = true;
   };
 
+  programs.ydotool = {
+    enable = true;
+    group = "ydotool";
+  };
+
+  users.users.dirakon = {
+    extraGroups = [ "ydotool" ];
+  };
+
   environment.systemPackages = [
+    # Only start hypr when monitors are connected
+    pkgs.wlr-randr
+
     # For debugging only!
     pkgs.alacritty
     pkgs.pavucontrol
@@ -48,4 +74,18 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-
 
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Monitor hotplugging (attempt 2)
+  services.udev.extraRules = ''
+    ACTION=="change", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="ensure-firefox-focus"
+  '';
+  systemd.user.services."ensure-firefox-focus" = {
+    description = "Ensure firefox is properly focused even through hyprland weirdness when replugging monitors";
+    path = [ pkgs.ydotool pkgs.hyprland pkgs.wlr-randr ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${ensure-firefox-focus}/bin/ensure-firefox-focus";
+    };
+    after = [ "graphical-session.target" ];
+  };
 }

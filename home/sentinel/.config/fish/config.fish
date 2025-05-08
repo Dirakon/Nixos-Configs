@@ -3,7 +3,13 @@ function __fish_command_not_found_handler --on-event fish_command_not_found
 end
 
 if test (tty) = "/dev/tty1"
-    uwsm start /run/current-system/sw/bin/Hyprland
+    while true;
+        sleep 10
+        cat /sys/class/drm/card0/*HDMI*/status |grep '^connected'
+        if test $status -eq 0 
+            exec uwsm start /run/current-system/sw/bin/Hyprland
+        end
+    end
 end
 
 if status is-interactive
