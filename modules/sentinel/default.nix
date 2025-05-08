@@ -12,6 +12,10 @@ self@{ config, pkgs, boot, ... }:
 
     ./cli.nix
 
+    ./hyprland.nix
+
+    ./xray.nix
+
     ./syncthing.nix
 
     ./system.nix
@@ -53,4 +57,6 @@ self@{ config, pkgs, boot, ... }:
   users.users.dirakon.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF03uj/UUSxx19vzMgnrfOwIflPP//GVHl2gIA4OYnlS dirakon@nixbox"
   ];
+
+  services.openssh.settings.PasswordAuthentication = false;
 }

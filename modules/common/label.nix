@@ -1,1 +1,1 @@
-"Try_add_custom_acer_kernel_module"
+"Add_firefox-kiosk-youtube-autostart-hyprland-thing..."
