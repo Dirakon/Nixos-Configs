@@ -45,6 +45,10 @@ in
 
       ServiceSettings = {
         "AllowedUntrustedInternalConnections" = "127.0.0.1 192.168.0.1/16";
+        "SessionLengthWebInHours" = 24000;
+        "SessionLengthMobileInHours" = 24000;
+        "SessionLengthSsoInHours" = 24000;
+        "SessionIdleTimeoutInMinutes" = 1440000;
       };
     };
   };

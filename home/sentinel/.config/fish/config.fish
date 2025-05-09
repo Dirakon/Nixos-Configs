@@ -5,7 +5,7 @@ end
 if test (tty) = "/dev/tty1"
     while true;
         sleep 10
-        cat /sys/class/drm/card0/*HDMI*/status |grep '^connected'
+        cat /sys/class/drm/card*/*HDMI*/status |grep '^connected'
         if test $status -eq 0 
             exec uwsm start /run/current-system/sw/bin/Hyprland
         end

@@ -3,7 +3,7 @@ let
   ensure-firefox-focus = pkgs.writeShellScriptBin "ensure-firefox-focus" ''
     sleep 7
     # Check if any monitors are connected
-    if output=$(cat /sys/class/drm/card0/*HDMI*/status |grep '^connected'); then
+    if output=$(cat /sys/class/drm/card*/*HDMI*/status |grep '^connected'); then
       hyprctl dispatch focuswindow irefox
       sleep 3
       ydotool mousemove -x 0 -y 0 -a
