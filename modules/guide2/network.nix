@@ -11,7 +11,6 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       443 # nginx
       sensitive.sentinel.jellyfin.port
       sensitive.guide2.certbot.port
-      sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
       sensitive.sentinel.languagetool.port
@@ -28,7 +27,6 @@ self@{ config, pkgs, boot, hostname, sensitive, ... }:
       443 # nginx
       sensitive.sentinel.jellyfin.port
       sensitive.guide2.certbot.port
-      sensitive.sentinel.obsidian-couchdb.port
       sensitive.sentinel.suwayomi.port
       sensitive.sentinel.gitea.ssh-port
       sensitive.sentinel.languagetool.port

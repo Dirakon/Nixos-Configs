@@ -9,8 +9,6 @@ self@{ config
 {
   environment.systemPackages = with pkgs; [
     # Actual apps
-    obsidian
-    unstable.trilium-next-desktop
     libreoffice
     telegram-desktop
     mattermost-desktop

@@ -24,9 +24,6 @@ self@{ config, pkgs, boot, ... }:
 
     ./amnezia.nix
 
-    # Not needed - not using obsidian anymore, now syncthing + nvim/markor
-    # ./couchdb.nix
-
     ./suwayomi.nix
 
     ./nextcloud.nix

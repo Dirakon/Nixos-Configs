@@ -58,19 +58,6 @@ let
           proxy_pass ssh_proxy_gitea;
       }
 
-      upstream couchdb_proxy {
-          server ${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.obsidian-couchdb.port};
-      }
-
-      server {
-          listen ${toString sensitive.sentinel.obsidian-couchdb.port} ssl;
-            
-          ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.obsidian-couchdb.hostname}/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.obsidian-couchdb.hostname}/privkey.pem;
-
-          proxy_pass couchdb_proxy;
-      }
-
       upstream suwayomi_proxy {
           server ${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.suwayomi.port};
       }
