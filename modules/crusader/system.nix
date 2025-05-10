@@ -148,6 +148,12 @@ self@{ config, pkgs, boot, hostname, ... }:
       item = "nofile";
       value = "524288";
     }
+    {
+      domain = "*";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
     # {
     #   domain = "*";
     #   type = "hard";
