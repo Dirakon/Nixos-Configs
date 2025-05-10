@@ -137,7 +137,24 @@ self@{ config, pkgs, boot, hostname, ... }:
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  systemd.extraConfig = "DefaultLimitNOFILE=524288"; # defaults to 1024 if unset
+  # systemd?
+  systemd.extraConfig = "DefaultLimitNOFILE=524288:524288"; # defaults to 1024 if unset
+
+  # non-systemd?
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "-";
+      item = "nofile";
+      value = "524288";
+    }
+    # {
+    #   domain = "*";
+    #   type = "hard";
+    #   item = "nofile";
+    #   value = "524288";
+    # }
+  ];
 
   system.stateVersion = "23.11"; # Install value! Don't change
 }
