@@ -9,6 +9,7 @@ self@{ config
 {
   environment.systemPackages = with pkgs; [
     lutris
+    bottles
     unstable.umu-launcher # TODO: make stable when its there
     rpcs3
     ultim-mc

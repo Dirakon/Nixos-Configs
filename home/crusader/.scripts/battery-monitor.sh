@@ -7,8 +7,8 @@ BATTERY_THRESHOLD=20
 check_battery() {
     BATTERY_PATH=$(upower -e | grep battery)
     LINE_POWER_PATH=$(upower -e | grep line_power)
-    BATTERY_PERCENTAGE=$(upower -i "$BATTERY_PATH" | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//')
-    CABLE_PLUGGED=$(upower -i "$LINE_POWER_PATH" | grep -A2 'line-power' | grep online | awk '{ print $2 }')
+    BATTERY_PERCENTAGE=$(upower -i $BATTERY_PATH | grep 'percentage:' | awk '{ print $2 }' | sed 's/%//')
+    CABLE_PLUGGED=$(upower -i $LINE_POWER_PATH | grep -A2 'line-power' | grep online | awk '{ print $2 }')
 
     # Check if battery level is below the threshold
     if [ "$BATTERY_PERCENTAGE" -lt "$BATTERY_THRESHOLD" ]; then
