@@ -3,7 +3,7 @@ let
   hypr-exit-session =
     pkgs.writeShellApplication {
       name = "hypr-exit-session";
-      runtimeInputs = [ pkgs.libnotify pkgs.procps pkgs.uwsm ];
+      runtimeInputs = [ pkgs.libnotify pkgs.procps hypr-pkgs.uwsm ];
       text = ''
         if pgrep "nekoray"; then
            notify-send --urgency=critical "Disable nekoray first please"
@@ -90,7 +90,7 @@ in
 
   programs.uwsm = {
     enable = true;
-    package = pkgs.uwsm;
+    package = hypr-pkgs.uwsm;
   };
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
