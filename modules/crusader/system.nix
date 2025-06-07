@@ -114,9 +114,9 @@ self@{ config, pkgs, boot, hostname, ... }:
 
   zramSwap.enable = true;
 
-  fonts.packages = with pkgs; [
-    (nerdfonts) #.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-  ];
+  fonts.packages = with pkgs; [ ]
+    # ALL nerdfonts
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

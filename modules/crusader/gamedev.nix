@@ -14,7 +14,8 @@ self@{ config
     godot
     lmms
     audacity
-    kdenlive
+    kdePackages.kdenlive
+    gimp3-with-plugins
     # trenchbroom
   ];
 }

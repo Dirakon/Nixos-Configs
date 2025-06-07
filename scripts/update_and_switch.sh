@@ -62,7 +62,7 @@ git commit --amend --no-edit
 
 
 if [ "$host" == "$default_host" ]; then
-    FLAKE=~/.dotfiles/ nh os switch --ask
+    NH_FLAKE=~/.dotfiles/ nh os switch --ask
 else
     # Don't know how to use nh tool with remote machines, so fallback to default for now
     nixos-rebuild switch --flake ".#$host" --target-host "$host" --use-remote-sudo --build-host "$host"

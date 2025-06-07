@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05"; # "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.amneziawg-go.url = "github:amnezia-vpn/amneziawg-go";
   inputs.amneziawg-go.flake = false;
@@ -21,7 +21,7 @@
               pname = "amneziawg-go";
               version = "0.0.20230223";
 
-              vendorHash = "sha256-zXd9PK3fpOx/YjCNs2auZWhbLUk2fO6tyLV5FxAH0us=";
+              vendorHash = "sha256-I2EUkvnyrE6BguMSJ1FfsrpRhi/KQBnO70S93P16e2I=";
               src = amneziawg-go;
 
               postPatch = ''

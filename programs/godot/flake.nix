@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05"; # "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs =
@@ -91,14 +91,14 @@
               '';
             };
 
-            godot-wrapped = pkgs.buildFHSUserEnv {
+            godot-wrapped = pkgs.buildFHSEnv {
               name = "godot";
               targetPkgs = pkgs: buildInputs ++ [
                 godot-unwrapped
                 pkgs.dotnet-sdk_8
-                pkgs.omnisharp-roslyn
-                pkgs.mono
-                pkgs.msbuild
+                # pkgs.omnisharp-roslyn
+                # pkgs.mono
+                # pkgs.msbuild
               ];
               runScript = "godot";
             };

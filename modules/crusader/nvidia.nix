@@ -21,12 +21,12 @@ in
   # hardware.graphics.extraPackages32 = with pkgs;[
   #   rocm-opencl-icd
   #   rocm-opencl-runtime
-  #   mesa.drivers
+  #   mesa
   # ];
   hardware.graphics.extraPackages = with pkgs;[
     # rocm-opencl-icd
     # rocm-opencl-runtime
-    mesa.drivers
+    mesa
   ];
 
   # hardware.opengl.driSupport = true; # No longer needed

@@ -2,6 +2,7 @@
 , pkgs
 , hostname
 , sensitive
+, deprecated-pkgs
 , ...
 }:
 {
@@ -15,7 +16,7 @@
       };
       home.packages = with pkgs; [
         ryujinx
-        torzu
+        deprecated-pkgs.torzu
         nsz
       ];
     };

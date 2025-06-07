@@ -2,22 +2,22 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    deprecated-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       #url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix/release-25.05";
 
-    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
+    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add some more pinning things when needed
@@ -39,9 +39,17 @@
   };
 
   outputs = inputs:
-    #let overlays = [nix-gl.overlay]; in
+    let overlays = import ./overlays.nix inputs; in
     let my-utils = import ./modules/common/utils.nix; in
-    let commonModules = [ ./modules/common/default.nix ]; in with inputs;
+    let
+      commonModules = [
+        ./modules/common/default.nix
+        {
+          nixpkgs.overlays = overlays;
+        }
+      ];
+    in
+    with inputs;
     {
       # TODO: for each unique system if I ever will actually have mutltiple
       formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixpkgs-fmt;
@@ -53,12 +61,22 @@
           specialArgs =
             {
               inherit hostname sensitive my-utils;
-              hypr-pkgs = import hypr-pkgs { system = system; config.allowUnfree = true; };
-              unstable = import unstable { system = system; config.allowUnfree = true; };
+              hypr-pkgs = import hypr-pkgs {
+                system = system;
+                config.allowUnfree = true;
+              };
+              deprecated-pkgs = import deprecated-pkgs {
+                system = system;
+                config.allowUnfree = true;
+              };
+              unstable = import unstable {
+                system = system;
+                config.allowUnfree = true;
+              };
+              unstable-raw = unstable;
               nix-gl = nix-gl;
               nix-alien = nix-alien.packages."${system}";
               sops-nix = sops-nix.packages."${system}";
-              hyprland-qtutils = hyprland-qtutils.packages."${system}";
 
               godot = (call-flake ./programs/godot).godot."${system}";
               ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
@@ -76,6 +94,34 @@
             flatpaks.nixosModules.declarative-flatpak
 
             stylix.nixosModules.stylix
+
+            home-manager.nixosModules.home-manager
+          ] ++ commonModules;
+        };
+
+      nixosConfigurations.rat =
+        let hostname = "rat"; in
+        let system = "x86_64-linux"; in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs =
+            {
+              inherit hostname sensitive my-utils;
+              deprecated-pkgs = import deprecated-pkgs {
+                system = system;
+                config.allowUnfree = true;
+              };
+              unstable = import unstable {
+                system = system;
+                config.allowUnfree = true;
+              };
+            };
+
+
+          modules = [
+            ./modules/${hostname}/default.nix
+
+            sops-nix.nixosModules.default
 
             home-manager.nixosModules.home-manager
           ] ++ commonModules;

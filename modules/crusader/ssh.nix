@@ -17,5 +17,9 @@ self@{ config, pkgs, boot, hostname, sensitive, modulesPath, lib, ... }:
       HostName ${sensitive.guide2.ip}
       Port ${toString sensitive.guide2.ssh.port}
       User dirakon
+    Host rat
+      HostName 127.0.0.1
+      Port ${toString sensitive.rat.ssh.port}
+      User dirakon
   '';
 }

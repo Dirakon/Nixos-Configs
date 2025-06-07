@@ -3,11 +3,11 @@
     "amneziawg-tools": {
       "flake": false,
       "locked": {
-        "lastModified": 1715014431,
-        "narHash": "sha256-b846rcDfsJ/Zb74Mg3/rAehF/0fReUQ7I5mFxZDH394=",
+        "lastModified": 1727787762,
+        "narHash": "sha256-y6xkOLT9KVD6ACCH60Myk2iA1S8/+tGXEQbOYnu+dPI=",
         "owner": "amnezia-vpn",
         "repo": "amneziawg-tools",
-        "rev": "e42813caac0b1846810f20435b699234ef5f7ead",
+        "rev": "c0b400c6dfc046f5cae8f3051b14cb61686fcf55",
         "type": "github"
       },
       "original": {
@@ -18,11 +18,11 @@
     },
     "call-flake": {
       "locked": {
-        "lastModified": 1723340488,
-        "narHash": "sha256-ythzL6iO/eE6r1IA6dflpWx0vC4JBGBlHLTK3BpYhrQ=",
+        "lastModified": 1747534137,
+        "narHash": "sha256-11/dQG/vjpfMi4D7ku2o1UtUMf8Sud0KJ/Le44zHIc8=",
         "owner": "divnix",
         "repo": "call-flake",
-        "rev": "5224b2ac795f4b77fbe443f86b45638344a81ceb",
+        "rev": "e44315cc2fb6b7d8bd0c63e9b4050247b5f3bbf1",
         "type": "github"
       },
       "original": {
@@ -36,11 +36,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1710146030,
-        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
@@ -51,16 +51,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1723282977,
-        "narHash": "sha256-oTK91aOlA/4IsjNAZGMEBz7Sq1zBS0Ltu4/nIQdYDOg=",
+        "lastModified": 1747610100,
+        "narHash": "sha256-rpR5ZPMkWzcnCcYYo3lScqfuzEw5Uyfh+R0EKZfroAc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a781ff33ae258bbcfd4ed6e673860c3e923bf2cc",
+        "rev": "ca49c4304acf0973078db0a9d200fd2bae75676d",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-24.05",
+        "ref": "nixos-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }

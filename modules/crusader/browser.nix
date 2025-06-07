@@ -43,15 +43,40 @@ in
   #   };
   # };
 
-  # TODO: migrate to home-manager managed one, with extensions
-  programs.firefox.preferences =
+  home-manager.users.dirakon =
     {
-      package = pkgs.floorp;
-      settings =
-        {
-          "browser.urlbar.placeholderName" = "DuckDuckGo";
-          # TODO: more settings (but will require declarative tree-style-tabs...)
+      programs.floorp = {
+        enable = true;
+        policies = {
+          "ExtensionSettings" = {
+            "uBlock0@raymondhill.net" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+            "treestyletab@piro.sakura.ne.jp" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/tree-style-tab/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+            "sponsorBlocker@ajay.app" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+            "languagetool-webextension@languagetool.org" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+            "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/return-youtube-dislikes/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+            "{eb7bbaf9-d059-46ba-a8b3-73e0b31cae95}" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/take-youtube-video-screenshots/latest.xpi";
+              installation_mode = "normal_installed";
+            };
+          };
+          SearchEngines.Default = "DuckDuckGo";
         };
+      };
     };
 
   home-manager.users.dirakon.xdg.mimeApps.defaultApplications =

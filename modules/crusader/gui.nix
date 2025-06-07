@@ -3,7 +3,9 @@ self@{ config
 , boot
 , godot
 , sensitive
+, deprecated-pkgs
 , unstable
+, unstable-raw
 , ...
 }:
 {
@@ -12,18 +14,20 @@ self@{ config
     libreoffice
     telegram-desktop
     mattermost-desktop
-    ktorrent
+    kdePackages.ktorrent
     popsicle
 
-    okular
-    gwenview
+    kdePackages.okular
+    kdePackages.gwenview
     kitty
     alacritty
     ghostty
     loupe
-    filelight
-    ark
-    nekoray
+    kdePackages.filelight
+    kdePackages.ark
+    pkgs.rar # for ark ^
+    pkgs.unrar # for ark ^
+    # unstable.nekoray # TODO: make proper tun2socks setup without any gui
     newsflash # rss reader
 
     # Crypto
@@ -37,7 +41,7 @@ self@{ config
     makima
 
     # For cool self-made DE stuff
-    gtkdialog
+    deprecated-pkgs.gtkdialog
 
     # latex
     texlive.combined.scheme-full
@@ -50,6 +54,17 @@ self@{ config
     enable = true;
     group = "ydotool";
   };
+
+  imports = [
+    "${unstable-raw}/nixos/modules/programs/nekoray.nix"
+  ];
+  programs.nekoray =
+    {
+      enable = true;
+      tunMode.enable = true;
+      tunMode.setuid = true;
+      package = unstable.nekoray;
+    };
 
   users.users.dirakon = {
     extraGroups = [ "ydotool" ];

@@ -145,7 +145,7 @@
 		"cpu": {
 			"interval": 10,
 			"format": "{usage}% ",
-			"on-click": "kitty btop",
+			"on-click": "uwsm app -- kitty btop",
 			"max-length": 10
 		},
 		"memory": {
@@ -171,7 +171,7 @@
 				"headphone": "",
 				"default": ["󰖀","󰕾",""]
 			},
-			"on-click": "pavucontrol",
+			"on-click": "uwsm app -- pavucontrol",
 			"scroll-step": 1
 		},
 		"custom/vpn": {

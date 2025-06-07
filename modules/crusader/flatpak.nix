@@ -15,6 +15,7 @@ self@{ config, pkgs, boot, ... }:
         filesystems = [
           "/home/dirakon/Games"
           "/mnt/arch/home/dirakon/Games"
+          "/media/"
         ];
       };
     };

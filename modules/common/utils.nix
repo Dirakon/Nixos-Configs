@@ -26,7 +26,7 @@
       after = if disableAfter then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
       requisite = if disableRequisite then [ ] else ([ "graphical-session.target" ] ++ systemdDependencies);
       path = dependencies;
-      description = "${name}: autostarted on hyprland start";
+      description = "${name}: autostarted on DE start";
       serviceConfig =
         {
           Restart = "on-failure";

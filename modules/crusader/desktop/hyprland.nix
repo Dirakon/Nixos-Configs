@@ -1,15 +1,16 @@
-self@{ config, pkgs, hypr-pkgs, hyprland-qtutils, my-utils, ... }:
+self@{ config, pkgs, hypr-pkgs, my-utils, ... }:
 let
   hypr-exit-session =
     pkgs.writeShellApplication {
       name = "hypr-exit-session";
       runtimeInputs = [ pkgs.libnotify pkgs.procps hypr-pkgs.uwsm ];
       text = ''
-        if pgrep "nekoray"; then
-           notify-send --urgency=critical "Disable nekoray first please"
-        else
+        # nekoray no longer run with sudo - no need for this logic
+        # if pgrep "nekoray"; then
+        #    notify-send --urgency=critical "Disable nekoray first please"
+        # else
             uwsm stop
-        fi
+        # fi
       '';
     };
 
@@ -19,7 +20,6 @@ in
 
   environment.systemPackages = with hypr-pkgs; [
     hyprshot
-    hyprland-qtutils.default
     hypr-pkgs.uwsm
     hypr-exit-session
   ];
@@ -35,13 +35,18 @@ in
 
   systemd.user.services = {
     # swayosd-server already provides systemd
-    # waybar already provides systemd
     # blueman-applet already provides systemd
     # nm-applet already provides systemd
 
+    # waybar already provides systemd, but we need to give it some dependencies:
+    waybar =
+      {
+        path = [ hypr-pkgs.uwsm pkgs.kitty pkgs.btop pkgs.pavucontrol ];
+      };
+
     # Based on https://github.com/KDE/dolphin/blob/master/plasma-dolphin.service.in
     dolphin-daemon = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ pkgs.dolphin ];
+      dependencies = [ pkgs.kdePackages.dolphin ];
       name = "dolphin-daemon";
       script =
         ''
