@@ -9,6 +9,7 @@ self@{ config
   environment.systemPackages = with pkgs; [
     vim
     hoppscotch
+    posting
 
     # Nix stuff
     nix-index
