@@ -10,6 +10,7 @@ self@{ config
     vim
     hoppscotch
     posting
+    lazysql
 
     # Nix stuff
     nix-index

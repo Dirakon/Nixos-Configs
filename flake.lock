@@ -827,11 +827,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1747780295,
-        "narHash": "sha256-MR3QE/4zvc0dpQ7IX3fRsPFJ/ZB9McxgvQuO/DCvpQ8=",
+        "lastModified": 1749374398,
+        "narHash": "sha256-WBTDMlUFiqvIdJxfyGU2/VYtW5TzLqAG+cqPxOPAg3w=",
         "ref": "refs/heads/main",
-        "rev": "a0686eef046177f485857519a076fce9cf114228",
-        "revCount": 30,
+        "rev": "13f19fda7437a891eb907f0cbed48d408cbad00b",
+        "revCount": 31,
         "type": "git",
         "url": "file:programs/nvim"
       },
