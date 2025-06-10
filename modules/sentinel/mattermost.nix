@@ -35,7 +35,8 @@ in
   # based on https://github.com/arianvp/nixos-stuff/blob/78ad16e9653f4a7d97d83b732fa67e67a099f493/configs/arianvp.me/mattermost.nix#L3
   services.mattermost = {
     enable = true;
-    listenAddress = "0.0.0.0:${toString sensitive.sentinel.mattermost.port}";
+    host = "0.0.0.0";
+    port = sensitive.sentinel.mattermost.port;
     siteUrl = "https://${sensitive.sentinel.mattermost.hostname}";
     preferNixConfig = true;
     extraConfig = {

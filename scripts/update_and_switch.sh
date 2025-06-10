@@ -63,7 +63,10 @@ git commit --amend --no-edit
 
 if [ "$host" == "$default_host" ]; then
     NH_FLAKE=~/.dotfiles/ nh os switch --ask
-else
+elif [ "$host" == "sentinel" ]; then
     # Don't know how to use nh tool with remote machines, so fallback to default for now
     nixos-rebuild switch --flake ".#$host" --target-host "$host" --use-remote-sudo --build-host "$host"
+else
+    # Build on all non-sentinel
+    nixos-rebuild switch --flake ".#$host" --target-host "$host" --use-remote-sudo
 fi
