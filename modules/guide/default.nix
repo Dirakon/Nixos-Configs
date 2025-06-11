@@ -53,23 +53,10 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 
     # Nix stuff
     nh
-
-    # Docker stuff
-    docker-compose
   ];
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
-  zramSwap = {
-    enable = true;
-  };
-
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 2 * 1024; # 2 gigs
-  }];
-
 
   boot.kernel.sysctl = {
     # Xray stuff (TODO: in xray file?)

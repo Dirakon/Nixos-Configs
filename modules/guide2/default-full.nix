@@ -22,25 +22,10 @@ self@{ config, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 
     # Nix stuff
     nh
-
-    # Docker stuff
-    docker-compose
   ];
-
-  virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-
-  zramSwap = {
-    enable = true;
-  };
-
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 2 * 1024; # 2 gigs
-  }];
-
 
   services.openssh.ports = [ sensitive.guide2.ssh.port ];
 
