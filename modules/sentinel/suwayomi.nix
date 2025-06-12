@@ -17,25 +17,17 @@ self@{ config, pkgs, boot, unstable, hostname, sensitive, ... }:
         webUIEnabled = true;
 
         autoDownloadNewChapters = false;
-        socksProxyEnabled = false;
+
+        # See ./xray.nix
+        socksProxyEnabled = true;
+        socksProxyHost = "localhost";
+        socksProxyPort = "10808";
 
         maxSourcesInParallel = 6;
         extensionRepos = [
-          "https://raw.githubusercontent.com/ThePBone/tachiyomi-extensions-revived/repo/index.min.json"
+          # "https://raw.githubusercontent.com/ThePBone/tachiyomi-extensions-revived/repo/index.min.json"
           "https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json"
         ];
-        #     settings = {
-        #       server.webUIEnabled = true;
-        #       server.initialOpenInBrowserEnabled = false;
-        #       server.systemTrayEnabled = false;
-        #       server.socksProxyEnabled = false;
-        #       server.webUIFlavor = "WebUI";
-        #       server.webUIInterface = "browser";
-        #       server.webUIChannel = "stable"; # "bundled" (the version bundled with the server release), "stable" or "preview" - the webUI version that should be used
-        #       server.webUIUpdateCheckInterval = 23;
-        #       server.globalUpdateInterval = 12;
-        #       server.updateMangas = false;
-        #     };
       };
     };
   };

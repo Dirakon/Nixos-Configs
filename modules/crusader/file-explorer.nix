@@ -17,12 +17,9 @@ self@{ config
     kdePackages.kio-fuse
 
     kdePackages.kdegraphics-thumbnailers
-    kdePackages.ffmpegthumbs # shold thumbnail videos but not working ...
-    # kdePackages.kdegraphics-thumbnailers # For some reason only qt5 ver works
+    kdePackages.ffmpegthumbs
 
     kdePackages.breeze-icons
-    # kdePackages.qtscxml
-    # libsForQt5.qt5.qtscxml
   ];
 
   home-manager.users.dirakon =

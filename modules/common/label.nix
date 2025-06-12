@@ -1,1 +1,1 @@
-"Cleanup_remote_hosts"
+"Configure_proxy_for_suwayomi"
