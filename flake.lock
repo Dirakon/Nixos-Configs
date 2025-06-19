@@ -753,11 +753,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1750365218,
-        "narHash": "sha256-Hsk/MauDMUAfUWsojAymKLRnkHJskbP4LiVD3jRW/rU=",
+        "lastModified": 1750450872,
+        "narHash": "sha256-WpUnGoutqyAbZ+kCBxPAXwxLi5VKLY77a/1pUFEzcIc=",
         "ref": "refs/heads/main",
-        "rev": "1af70786b30176662a1368b292318d2a22c5aaf3",
-        "revCount": 33,
+        "rev": "ad8003ef4ebe54d053e763fd0d18f703846b0da8",
+        "revCount": 34,
         "type": "git",
         "url": "file:programs/nvim"
       },

@@ -91,7 +91,7 @@
 
             sops-nix.nixosModules.default
 
-            flatpaks.nixosModules.declarative-flatpak
+            flatpaks.nixosModule
 
             stylix.nixosModules.stylix
 
