@@ -18,4 +18,10 @@ self@{ config
     gimp3-with-plugins
     # trenchbroom
   ];
+
+  services.flatpak = {
+    packages = [
+      "flathub:app/org.famistudio.FamiStudio/x86_64/stable"
+    ];
+  };
 }

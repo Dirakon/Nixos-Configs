@@ -39,7 +39,7 @@ in
     port = sensitive.sentinel.mattermost.port;
     siteUrl = "https://${sensitive.sentinel.mattermost.hostname}";
     preferNixConfig = true;
-    extraConfig = {
+    settings = {
       "SessionLengthMobileInDays" = 1000;
       "SessionLengthWebInDays" = 1000;
       "SessionLengthSSOInDays" = 1000;

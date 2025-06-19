@@ -9,7 +9,7 @@ self@{ config
 {
   environment.systemPackages = with pkgs; [
     lutris
-    unstable.umu-launcher # TODO: make stable when its there
+    umu-launcher
     rpcs3
     ultim-mc
 
@@ -47,6 +47,21 @@ self@{ config
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
+  services.flatpak = {
+    packages = [
+      "flathub:app/com.discordapp.Discord/x86_64/stable"
+      "flathub:app/com.usebottles.bottles/x86_64/stable"
+    ];
+    overrides = {
+      "com.usebottles.bottles" = {
+        filesystems = [
+          "/home/dirakon/Games"
+          "/mnt/arch/home/dirakon/Games"
+          "/media/"
+        ];
+      };
+    };
+  };
 
   # Udev rules for joystick deadzones
   # https://wiki.archlinux.org/title/Gamepad

@@ -42,8 +42,6 @@ self@{ config, pkgs, boot, ... }:
 
     ./nix-ld.nix
 
-    ./flatpak.nix
-
     ./kanata.nix
 
     ./ssh.nix
@@ -51,8 +49,6 @@ self@{ config, pkgs, boot, ... }:
     ./switch.nix
 
     ./theming.nix
-
-    ./acer-extension.nix
   ];
 
   # Allow unfree packages

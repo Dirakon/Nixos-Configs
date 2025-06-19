@@ -1,9 +1,4 @@
 { config, pkgs, sensitive, ... }:
-let
-  user-icon-setter-script = pkgs.writeShellScriptBin "user-icon-setter-script" ''
-    cp -f "${sensitive.crusader.user-icon}" "/var/lib/AccountsService/icons/dirakon"
-  '';
-in
 {
   environment.systemPackages = with pkgs; [
     (pkgs.callPackage ./sddm-astronaut-theme.nix {
@@ -31,24 +26,5 @@ in
       kdePackages.qtsvg
       kdePackages.qtvirtualkeyboard
     ];
-  };
-
-
-  # Define systemd service to run script on boot
-  systemd.services.icon-setter = {
-    description = "Script to copy or update users Avatars at startup.";
-    wantedBy = [ "multi-user.target" ];
-    before = [ "sddm.service" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${user-icon-setter-script}/bin/user-icon-setter-script";
-      StandardOutput = "journal+console";
-      StandardError = "journal+console";
-    };
-  };
-
-  # Ensures SDDM starts after the service.
-  systemd.services.sddm = {
-    after = [ "icon-setter.service" ];
   };
 }
