@@ -26,8 +26,21 @@ in
       # (needs analogous plugin in nvim)
       # pkgs.tmuxPlugins.vim-tmux-navigator
       # ^ cannot use because by nvim bin is called 'dev', which is unsupported by plugin above
+
+      pkgs.tmuxPlugins.jump
+      pkgs.tmuxPlugins.tmux-nova
     ];
+    extraConfigBeforePlugins = ''
+      set -g @nova-nerdfonts true
+      set -g @nova-pane "#I #W#{?window_zoomed_flag,+, }"
+    '';
     extraConfig = ''
+      # bar on bottom (for now)
+      set-option -g status-position bottom
+
+      # more scrollback
+      set -g history-limit 20000
+
       # for better selection mode
       set -g mouse on
       setw -g mode-keys vi

@@ -116,22 +116,6 @@
         "type": "github"
       }
     },
-    "easy-dotnet": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1744222716,
-        "narHash": "sha256-4EdLs0BTfjGKztq/PvU/agrZRfwclqPB7hjumGVyIcg=",
-        "owner": "GustavEikaas",
-        "repo": "easy-dotnet.nvim",
-        "rev": "d9ad37a813c8f7bd59caf4f0a9c87d2c9f5cfe00",
-        "type": "github"
-      },
-      "original": {
-        "owner": "GustavEikaas",
-        "repo": "easy-dotnet.nvim",
-        "type": "github"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -549,11 +533,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1744361059,
-        "narHash": "sha256-1fDObEbCaRF3B1WpyF9KNem1YAVIUo4ckQf2ctU43B4=",
+        "lastModified": 1749615682,
+        "narHash": "sha256-3T2Yl+xSnx7snXZkMaQNHCvlj0CB+lyAj+Q/+eeh+Ns=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "b35ef16c9c31406cd1f55f80fe41ec6dd8aebea5",
+        "rev": "c0148957e961100bff3fd213b8a4bc5f669f3028",
         "type": "github"
       },
       "original": {
@@ -723,11 +707,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1747542820,
-        "narHash": "sha256-GaOZntlJ6gPPbbkTLjbd8BMWaDYafhuuYRNrxCGnPJw=",
+        "lastModified": 1750134718,
+        "narHash": "sha256-v263g4GbxXv87hMXMCpjkIxd/viIF7p3JpJrwgKdNiI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "292fa7d4f6519c074f0a50394dbbe69859bb6043",
+        "rev": "9e83b64f727c88a7711a2c463a7b16eedb69a84c",
         "type": "github"
       },
       "original": {
@@ -765,16 +749,15 @@
     },
     "nvim": {
       "inputs": {
-        "easy-dotnet": "easy-dotnet",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1749374398,
-        "narHash": "sha256-WBTDMlUFiqvIdJxfyGU2/VYtW5TzLqAG+cqPxOPAg3w=",
+        "lastModified": 1750365218,
+        "narHash": "sha256-Hsk/MauDMUAfUWsojAymKLRnkHJskbP4LiVD3jRW/rU=",
         "ref": "refs/heads/main",
-        "rev": "13f19fda7437a891eb907f0cbed48d408cbad00b",
-        "revCount": 31,
+        "rev": "1af70786b30176662a1368b292318d2a22c5aaf3",
+        "revCount": 33,
         "type": "git",
         "url": "file:programs/nvim"
       },

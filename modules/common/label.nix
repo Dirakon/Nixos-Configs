@@ -1,1 +1,1 @@
-"Configure_proxy_for_suwayomi"
+"Nvim_update"
