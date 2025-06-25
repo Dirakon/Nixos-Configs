@@ -48,7 +48,7 @@ in
       bind-key -T copy-mode-vi 'C-v' send -X rectangle-toggle
       bind-key -T copy-mode-vi 'y' send -X copy-selection
 
-      # recomended setup for good nvim (see nvim :checkhealth)
+      # recommended setup for good nvim (see nvim :checkhealth)
       set-option -sg escape-time 10
       set-option -g focus-events on
       set-option -g default-terminal "tmux-256color"

@@ -36,15 +36,6 @@ self@{ config, pkgs, boot, hostname, ... }:
   boot.kernel.sysctl."net.ipv6.conf.wlp8s0.disable_ipv6" = true;
   networking.enableIPv6 = false;
 
-
-
-
-  # networking.wg-quick.interfaces = {
-  #     wg0 = {
-  #       configFile = "/.secrets/wg0.conf";
-  #      };
-  #   };
-
   # Setup from https://nixos.wiki/wiki/WireGuard to allow wireguard
   networking.firewall.checkReversePath = false;
   networking.firewall = {
@@ -114,9 +105,12 @@ self@{ config, pkgs, boot, hostname, ... }:
 
   zramSwap.enable = true;
 
-  fonts.packages = with pkgs; [ ]
-    # ALL nerdfonts
-    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages = with pkgs; [
+    pkgs.corefonts
+    pkgs.vistafonts
+  ]
+  # ALL nerdfonts
+  ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -136,6 +130,8 @@ self@{ config, pkgs, boot, hostname, ... }:
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # TODO why cant i just set the dang ulimit.....
 
   # systemd?
   systemd.extraConfig = "DefaultLimitNOFILE=524288:524288"; # defaults to 1024 if unset
