@@ -1,6 +1,6 @@
 self@{ config
 , pkgs
-, godot
+  # , godot
 , sensitive
 , unstable
 , ...
@@ -11,7 +11,8 @@ self@{ config
     krita
     openutau # Eh...
     inkscape
-    godot
+    # godot
+    godot-mono
     lmms
     audacity
     kdePackages.kdenlive
