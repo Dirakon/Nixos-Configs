@@ -169,7 +169,7 @@
 			"format-muted": "󰝟",
 			"format-icons": {
 				"headphone": "",
-				"default": ["󰖀","󰕾",""]
+				"default": ["󰖀","󰕾"]
 			},
 			"on-click": "uwsm app -- pavucontrol",
 			"scroll-step": 1
