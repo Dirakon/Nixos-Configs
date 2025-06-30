@@ -13,6 +13,7 @@ self@{ config
     inkscape
     # godot
     godot-mono
+    # pixelorama # using flatpak version because I want 1.11.2
     lmms
     audacity
     kdePackages.kdenlive
@@ -23,6 +24,7 @@ self@{ config
   services.flatpak = {
     packages = [
       "flathub:app/org.famistudio.FamiStudio/x86_64/stable"
+      "flathub:app/com.orama_interactive.Pixelorama/x86_64/stable"
     ];
   };
 }
