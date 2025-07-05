@@ -3,7 +3,6 @@ self@{ config
 , sensitive
 , deprecated-pkgs
 , unstable
-, unstable-raw
 , ...
 }:
 {
@@ -25,7 +24,6 @@ self@{ config
     kdePackages.ark
     pkgs.rar # for ark ^
     pkgs.unrar # for ark ^
-    # unstable.nekoray # TODO: make proper tun2socks setup without any gui
     newsflash # rss reader
 
     # Crypto
@@ -53,15 +51,12 @@ self@{ config
     group = "ydotool";
   };
 
-  imports = [
-    "${unstable-raw}/nixos/modules/programs/nekoray.nix"
-  ];
   programs.nekoray =
     {
       enable = true;
       tunMode.enable = true;
       tunMode.setuid = true;
-      package = unstable.nekoray;
+      # package = unstable.nekoray;
     };
 
   users.users.dirakon = {
