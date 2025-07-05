@@ -1,1 +1,1 @@
-"Configure_mpv_screenshot_dir"
+"Try_to_improve_suwayomi_experience"

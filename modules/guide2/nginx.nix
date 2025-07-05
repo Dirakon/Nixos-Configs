@@ -57,19 +57,6 @@ let
           server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
           proxy_pass ssh_proxy_gitea;
       }
-
-      upstream suwayomi_proxy {
-          server ${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.suwayomi.port};
-      }
-
-      server {
-          listen ${toString sensitive.sentinel.suwayomi.port} ssl;
-            
-          ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/privkey.pem;
-
-          proxy_pass suwayomi_proxy;
-      }
     }
   '';
   nginx-http-config = ''
@@ -78,6 +65,36 @@ let
       location '/.well-known/acme-challenge' {
           root /var/www/demo;
       }
+    }
+
+    server {
+        listen ${toString sensitive.sentinel.suwayomi.port} ssl;
+        server_name ${sensitive.sentinel.suwayomi.hostname} www.${sensitive.sentinel.suwayomi.hostname};
+          
+        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/privkey.pem;
+
+        location / {
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
+          client_max_body_size 50M;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Frame-Options SAMEORIGIN;
+          proxy_buffers 256 16k;
+          proxy_buffer_size 16k;
+          client_body_timeout 60s;
+          send_timeout 300s;
+          lingering_timeout 5s;
+          proxy_connect_timeout 90s;
+          proxy_send_timeout 300s;
+          proxy_read_timeout 90s;
+          proxy_http_version 1.1;
+
+          proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.suwayomi.port};
+        }
     }
 
     server {

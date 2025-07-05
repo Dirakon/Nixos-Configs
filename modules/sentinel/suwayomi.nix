@@ -15,6 +15,7 @@ self@{ config, pkgs, boot, unstable, hostname, sensitive, ... }:
 
         systemTrayEnabled = false;
         webUIEnabled = true;
+        initialOpenInBrowserEnabled = false;
 
         autoDownloadNewChapters = false;
 
