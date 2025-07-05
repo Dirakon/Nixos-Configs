@@ -1,7 +1,5 @@
 self@{ config
 , pkgs
-, boot
-, godot
 , sensitive
 , deprecated-pkgs
 , unstable
@@ -117,6 +115,7 @@ self@{ config
         ];
         config = {
           save-position-on-quit = true; # somewhat better history -- remember position too
+          screenshot-directory = "/home/dirakon/Pictures/Screenshots/mpv";
         };
       };
       xdg.mimeApps.defaultApplications."video/x-matroska" = "mpv.desktop";

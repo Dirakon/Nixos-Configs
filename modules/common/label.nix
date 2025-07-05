@@ -1,1 +1,1 @@
-"Add_pixelorama"
+"Configure_mpv_screenshot_dir"
