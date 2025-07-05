@@ -1,1 +1,1 @@
-"Try_to_improve_suwayomi_experience"
+"Try_remove_all_non-recommended_suwayomi_nginx_thin..."
