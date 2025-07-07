@@ -158,9 +158,5 @@ self@{ config, pkgs, boot, hostname, ... }:
     # }
   ];
 
-  services.flatpak = {
-    enable = true;
-  };
-
   system.stateVersion = "23.11"; # Install value! Don't change
 }

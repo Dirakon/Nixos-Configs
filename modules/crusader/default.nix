@@ -34,6 +34,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./system.nix
 
+    ./flatpak.nix
+
     ./display-manager.nix
 
     ./desktop-environment.nix
