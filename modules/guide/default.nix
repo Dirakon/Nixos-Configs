@@ -50,6 +50,7 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
     htop
     ncdu
     fastfetch
+    sysz # cool systemd explorer
 
     # Nix stuff
     nh

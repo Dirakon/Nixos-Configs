@@ -33,6 +33,7 @@ self@{ config
     gifski # gif helper for ffmpeg - https://stackoverflow.com/a/47486545
     yt-dlp # download youtube videos
     ytdl-sub # download music from youtube to jellyfin
+    sysz # cool systemd explorer
 
     # For playing audio
     sox # 'play' command

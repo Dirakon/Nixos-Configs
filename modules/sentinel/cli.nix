@@ -23,6 +23,7 @@ self@{ config
     tldr
     arp-scan
     ncdu
+    sysz # cool systemd explorer
 
     # Nix stuff
     nix-index
