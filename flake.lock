@@ -756,10 +756,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "dirtyRev": "dc91203a75740b7053d54358afea83a6b344c582-dirty",
-        "dirtyShortRev": "dc91203-dirty",
-        "lastModified": 1751119405,
-        "narHash": "sha256-0wi3nG3u2ipOuV5pZAr6nGyxuacFMOhWNKrFsMEQXOI=",
+        "lastModified": 1752001762,
+        "narHash": "sha256-IfsgUfkXjQnv9GDNXhgQC7cPMmPqfrZM3XkIV9iRKCA=",
+        "ref": "refs/heads/main",
+        "rev": "e7f1dcb6d9b9ca92f30e3dad545aee837b42af86",
+        "revCount": 37,
         "type": "git",
         "url": "file:programs/nvim"
       },
