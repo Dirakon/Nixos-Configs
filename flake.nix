@@ -36,6 +36,10 @@
     mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
 
     sensitive.url = "git+file:sensitive";
+
+    # ds4drv.url = "github:Banh-Canh/ds4drv";
+    ds4drv.url = "github:clearpathrobotics/ds4drv";
+    ds4drv.flake = false;
   };
 
   outputs = inputs:
@@ -60,7 +64,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive my-utils;
+              inherit hostname sensitive my-utils ds4drv;
               hypr-pkgs = import hypr-pkgs {
                 system = system;
                 config.allowUnfree = true;

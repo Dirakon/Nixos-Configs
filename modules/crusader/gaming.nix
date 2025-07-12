@@ -4,8 +4,17 @@ self@{ config
 , ultim-mc
 , sensitive
 , unstable
+, ds4drv
 , ...
 }:
+let
+  ds4drv-pkg = (
+    pkgs.python313Packages.ds4drv.overrideAttrs (oldAttrs: {
+      src = ds4drv;
+      postPatch = ""; # <- patch already applied in the fork used
+    })
+  ); # this thing promises to emulate xbox360 via ps4 controller
+in
 {
   environment.systemPackages = with pkgs; [
     lutris
@@ -34,6 +43,8 @@ self@{ config
     jstest-gtk
     joystickwake
     linuxConsoleTools
+    ds4drv-pkg
+    # moltengamepad
 
     antimicrox # gamepad to keyboards GUI (non-declarative)
   ];
@@ -65,7 +76,39 @@ self@{ config
 
   # Udev rules for joystick deadzones
   # https://wiki.archlinux.org/title/Gamepad
-  services.udev.extraRules = ''
-    ACTION=="add", KERNEL=="js[0-9]*", ATTRS{uniq}=="90:b6:85:3a:e0:4f", RUN+="${pkgs.linuxConsoleTools}/bin/jscal -s 8,1,0,128,128,4194176,4227201,1,0,98,158,5478107,5534582,1,0,127,127,4227201,4194176,1,0,129,129,4161663,4260750,1,0,126,126,4260750,4161663,1,0,127,127,4227201,4194176,1,0,0,0,536854528,536854528,1,0,0,0,536854528,536854528 /dev/input/js%n"
-  '';
+  # Also from here: https://github.com/Banh-Canh/ds4drv/blob/master/udev/50-ds4drv.rules
+  services.udev = {
+    extraRules = ''
+      ACTION=="add", KERNEL=="js[0-9]*", ATTRS{uniq}=="90:b6:85:3a:e0:4f", RUN+="${pkgs.linuxConsoleTools}/bin/jscal -s 8,1,0,128,128,4194176,4227201,1,0,98,158,5478107,5534582,1,0,127,127,4227201,4194176,1,0,129,129,4161663,4260750,1,0,126,126,4260750,4161663,1,0,127,127,4227201,4194176,1,0,0,0,536854528,536854528,1,0,0,0,536854528,536854528 /dev/input/js%n"
+      KERNEL=="uinput", MODE="0666"
+      KERNEL=="event*", MODE="0666"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="05c4", MODE="0666"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", KERNELS=="0005:054C:05C4.*", MODE="0666"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="09cc", MODE="0666"
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", KERNELS=="0005:054C:09CC.*", MODE="0666"
+      KERNEL=="js*", SUBSYSTEM=="input", ATTRS{name}=="DS4DRV Managed Wireless Controller", MODE="0666", SYMLINK+="input/ds4x", SYMLINK+="input/ps4"
+    '';
+    packages = with pkgs; [
+      game-devices-udev-rules
+    ];
+  };
+  systemd.user.services.ds4drv = {
+    enable = true;
+    description = "Controller Support.";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${ds4drv-pkg}/bin/ds4drv --hidraw --emulate-xpad";
+      Restart = "always";
+    };
+  };
+  hardware = {
+    uinput.enable = true;
+    enableAllFirmware = true;
+  };
+  boot = {
+    kernelModules = [
+      "uinput"
+      "usbhid"
+    ];
+  };
 }
