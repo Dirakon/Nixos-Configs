@@ -1,6 +1,6 @@
 self@{ config
 , pkgs
-  # , godot
+, godot
 , sensitive
 , unstable
 , ...
@@ -11,8 +11,7 @@ self@{ config
     krita
     openutau # Eh...
     inkscape
-    # godot
-    godot-mono
+    godot
     # pixelorama # using flatpak version because I want 1.11.2
     lmms
     audacity

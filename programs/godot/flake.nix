@@ -14,12 +14,12 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            use-beta = false;
+            use-beta = true;
             stable-version = "4.4.1-stable";
             stable-hash = "sha256-uV5pTKGD63IDdmRc3DVHcVzG0MAhUoI4y2UZmCriiy8=";
-            # beta-version = "4.4-beta4";
-            beta-version = "4.4-rc2";
-            beta-hash = "sha256-ZUHJ48s++DD35UxTBbi6X9lMwkT0wMfRnWbB/k68Uh8=";
+            beta-version = "4.5-beta3";
+            # beta-version = "4.4-rc2";
+            beta-hash = "sha256-DUfuNVOMDfCEU0IqRxAoT4qY1Q+NRsK3P3LAqJ3kMXU=";
 
             version = if use-beta then beta-version else stable-version;
             hash = if use-beta then beta-hash else stable-hash;
@@ -95,7 +95,7 @@
               name = "godot";
               targetPkgs = pkgs: buildInputs ++ [
                 godot-unwrapped
-                pkgs.dotnet-sdk_8
+                # pkgs.dotnet-sdk_9
                 # pkgs.omnisharp-roslyn
                 # pkgs.mono
                 # pkgs.msbuild
