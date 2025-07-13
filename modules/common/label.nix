@@ -1,1 +1,1 @@
-"Try_xbox_emulation"
+"Allow_bottles_to_access_dolphin-mounted_isos"

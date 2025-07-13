@@ -69,6 +69,7 @@ in
           "/home/dirakon/Games"
           "/mnt/arch/home/dirakon/Games"
           "/media/"
+          "/run/media/"
         ];
       };
     };
