@@ -9,7 +9,7 @@ self@{ config
   environment.systemPackages = with pkgs; [
     vim
     hoppscotch
-    posting
+    unstable.posting
     lazysql
 
     # Nix stuff
