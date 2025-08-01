@@ -552,11 +552,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1749615682,
-        "narHash": "sha256-3T2Yl+xSnx7snXZkMaQNHCvlj0CB+lyAj+Q/+eeh+Ns=",
+        "lastModified": 1753170780,
+        "narHash": "sha256-rxnjPhOu7kr3REU8AhbKwRYnXHWlRXBqgWOO9MD0HyY=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "c0148957e961100bff3fd213b8a4bc5f669f3028",
+        "rev": "e0c3fd5c218c808ce31e29caa91df43c65d7dfc6",
         "type": "github"
       },
       "original": {
@@ -726,11 +726,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1750134718,
-        "narHash": "sha256-v263g4GbxXv87hMXMCpjkIxd/viIF7p3JpJrwgKdNiI=",
+        "lastModified": 1753939845,
+        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9e83b64f727c88a7711a2c463a7b16eedb69a84c",
+        "rev": "94def634a20494ee057c76998843c015909d6311",
         "type": "github"
       },
       "original": {
@@ -769,14 +769,15 @@
     "nvim": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs_9"
+        "nixpkgs": "nixpkgs_9",
+        "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1752168221,
-        "narHash": "sha256-sKRDQC6H9LyiHwk6kEL3TX1qBKQcsJUmhmjhBkbhTYI=",
+        "lastModified": 1754083901,
+        "narHash": "sha256-UDdEuNK4jek7Zq8A1XSHZj8+kIi1582tFCbugamTANY=",
         "ref": "refs/heads/main",
-        "rev": "0a2055e34d6c6778d7cf536911e3e2657375799f",
-        "revCount": 38,
+        "rev": "9606fd9e7587500f310f47b686db9bb0cc61d7e3",
+        "revCount": 40,
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -848,6 +849,22 @@
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "unstable": "unstable"
+      }
+    },
+    "roslynLock": {
+      "locked": {
+        "lastModified": 1753939845,
+        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "94def634a20494ee057c76998843c015909d6311",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "sensitive": {
