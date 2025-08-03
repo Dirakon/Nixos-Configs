@@ -45,6 +45,7 @@ in
     linuxConsoleTools
     ds4drv-pkg
     # moltengamepad
+    sc-controller
 
     antimicrox # gamepad to keyboards GUI (non-declarative)
   ];
@@ -93,15 +94,15 @@ in
       game-devices-udev-rules
     ];
   };
-  systemd.user.services.ds4drv = {
-    enable = true;
-    description = "Controller Support.";
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      ExecStart = "${ds4drv-pkg}/bin/ds4drv --hidraw --emulate-xpad";
-      Restart = "always";
-    };
-  };
+  # systemd.user.services.ds4drv = {
+  #   enable = true;
+  #   description = "Controller Support.";
+  #   wantedBy = [ "default.target" ];
+  #   serviceConfig = {
+  #     ExecStart = "${ds4drv-pkg}/bin/ds4drv --hidraw --emulate-xpad";
+  #     Restart = "always";
+  #   };
+  # };
   hardware = {
     uinput.enable = true;
     enableAllFirmware = true;
