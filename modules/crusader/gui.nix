@@ -37,7 +37,7 @@ self@{ config
     makima
 
     # For cool self-made DE stuff
-    deprecated-pkgs.gtkdialog
+    gtkdialog
 
     # latex
     texlive.combined.scheme-full
