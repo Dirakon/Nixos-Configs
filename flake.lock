@@ -116,22 +116,6 @@
         "type": "github"
       }
     },
-    "ds4drv": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1751464490,
-        "narHash": "sha256-4Ccw0x04Xr2v1mEmfBrwNA3cIp89bwpI/IcWVqr1+sk=",
-        "owner": "clearpathrobotics",
-        "repo": "ds4drv",
-        "rev": "781633f1778ba731aebb084dc1342c494da8d08c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "clearpathrobotics",
-        "repo": "ds4drv",
-        "type": "github"
-      }
-    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -767,7 +751,6 @@
         "call-flake": "call-flake",
         "deprecated-pkgs": "deprecated-pkgs",
         "disko": "disko",
-        "ds4drv": "ds4drv",
         "flatpaks": "flatpaks",
         "home-manager": "home-manager",
         "hypr-pkgs": "hypr-pkgs",

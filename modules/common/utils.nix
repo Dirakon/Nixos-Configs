@@ -15,7 +15,7 @@
     in
     f [ ] attrList;
 
-  mkSystemdStartupService = pkgs: { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none", disablePartOf ? false, disableWantedBy ? false, disableAfter ? false, disableRequisite ? false }:
+  mkSystemdStartupService = pkgs: { dependencies ? [ ], systemdDependencies ? [ ], name, script, busName ? "none", disablePartOf ? false, disableWantedBy ? false, disableAfter ? false, disableRequisite ? false, type ? "none" }:
     let
       bashScript = pkgs.writeShellScriptBin name script;
     in
@@ -29,11 +29,12 @@
       description = "${name}: autostarted on DE start";
       serviceConfig =
         {
-          Restart = "on-failure";
           ExecStart = "${bashScript}/bin/${name}";
           RestartSec = 1;
         } // (if busName == "none" then { } else {
           BusName = busName;
+        }) // (if type == "none" then { } else {
+          Type = type;
         });
     };
 }

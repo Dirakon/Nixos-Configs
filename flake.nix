@@ -36,10 +36,6 @@
     mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
 
     sensitive.url = "git+file:sensitive";
-
-    # ds4drv.url = "github:Banh-Canh/ds4drv";
-    ds4drv.url = "github:clearpathrobotics/ds4drv";
-    ds4drv.flake = false;
   };
 
   outputs = inputs:
@@ -55,7 +51,7 @@
     in
     with inputs;
     {
-      # TODO: for each unique system if I ever will actually have mutltiple
+      # TODO: for each unique system if I ever will actually have multiple
       formatter."x86_64-linux" = nixpkgs.legacyPackages."x86_64-linux".nixpkgs-fmt;
       nixosConfigurations.crusader =
         let hostname = "crusader"; in
@@ -64,7 +60,7 @@
           inherit system;
           specialArgs =
             {
-              inherit hostname sensitive my-utils ds4drv;
+              inherit hostname sensitive my-utils;
               hypr-pkgs = import hypr-pkgs {
                 system = system;
                 config.allowUnfree = true;
