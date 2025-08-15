@@ -1,1 +1,1 @@
-"add_sensitive_flatpak_section"
+"Up_nvim"
