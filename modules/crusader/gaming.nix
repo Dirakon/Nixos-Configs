@@ -79,18 +79,20 @@ self@{ config
       game-devices-udev-rules
     ];
   };
-  systemd.user.services = {
-    sc-controller-daemon = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ pkgs.sc-controller ];
-      name = "sc-controller-daemon";
-      script =
-        ''
-          scc-daemon --alone --once start
-        '';
-      # They use UNIX double forking for some reason, we have to cope with that...
-      type = "forking";
-    };
-  };
+
+  # TODO: sometimes doesn't work? also fails on restart?
+  # systemd.user.services = {
+  #   sc-controller-daemon = my-utils.mkSystemdStartupService pkgs {
+  #     dependencies = [ pkgs.sc-controller ];
+  #     name = "sc-controller-daemon";
+  #     script =
+  #       ''
+  #         scc-daemon --alone --once start
+  #       '';
+  #     # They use UNIX double forking for some reason, we have to cope with that...
+  #     type = "forking";
+  #   };
+  # };
 
   hardware = {
     uinput.enable = true;
