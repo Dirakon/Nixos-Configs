@@ -451,11 +451,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1753170780,
-        "narHash": "sha256-rxnjPhOu7kr3REU8AhbKwRYnXHWlRXBqgWOO9MD0HyY=",
+        "lastModified": 1756502529,
+        "narHash": "sha256-IPhN1a/DecHCJKugq51TnPqcMkwHU7qrQXagR2k1KwA=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "e0c3fd5c218c808ce31e29caa91df43c65d7dfc6",
+        "rev": "b262211fc80bf5909f9b6642a7930fee907e3e8d",
         "type": "github"
       },
       "original": {
@@ -625,11 +625,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1753939845,
-        "narHash": "sha256-K2ViRJfdVGE8tpJejs8Qpvvejks1+A4GQej/lBk5y7I=",
+        "lastModified": 1756542300,
+        "narHash": "sha256-tlOn88coG5fzdyqz6R93SQL5Gpq+m/DsWpekNFhqPQk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "94def634a20494ee057c76998843c015909d6311",
+        "rev": "d7600c775f877cd87b4f5a831c28aa94137377aa",
         "type": "github"
       },
       "original": {
@@ -673,11 +673,11 @@
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1755806024,
-        "narHash": "sha256-wgAkyD3pHLSAIzUDTOlR+g6V5Y0M3fnLoRN3sAGTQlw=",
+        "lastModified": 1756678773,
+        "narHash": "sha256-a44QuWnueqAEtcnyJRLDtGaoIUjXH+17kWVxefEl59w=",
         "ref": "refs/heads/main",
-        "rev": "ff2690a3ab1bcc920226fd2584bf410e322b1a29",
-        "revCount": 43,
+        "rev": "7afa930eb503aa8dbec0c75676ceee73985ddc07",
+        "revCount": 44,
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -777,8 +777,8 @@
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "rev": "94def634a20494ee057c76998843c015909d6311",
         "type": "github"
       }
     },
