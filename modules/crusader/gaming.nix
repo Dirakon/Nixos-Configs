@@ -13,6 +13,7 @@ self@{ config
     umu-launcher
     rpcs3
     ultim-mc
+    easyrpg-player
 
     # Wine
     # wine # https://nixos.wiki/wiki/Wine

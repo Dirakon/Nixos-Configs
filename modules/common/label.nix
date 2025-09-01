@@ -1,1 +1,1 @@
-"Up_nvim"
+"Install_easyrpg"
