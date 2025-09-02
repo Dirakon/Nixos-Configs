@@ -1,1 +1,1 @@
-"Install_easyrpg"
+"Try_setup_proxy_for_nextcloud_news"

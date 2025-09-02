@@ -18,6 +18,7 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
     configureRedis = true;
     settings = {
       maintenance_window_start = "4";
+      proxy = "socks5://127.0.0.1:10808";
       trusted_proxies = [
         sensitive.guide2.awg.ip
       ];
