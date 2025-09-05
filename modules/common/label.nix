@@ -1,1 +1,1 @@
-"Try_setup_proxy_for_nextcloud_news"
+"Up_for_pixelorama"
