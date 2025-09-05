@@ -3,10 +3,10 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      flake-utils,
+    { self
+    , nixpkgs
+    , flake-utils
+    ,
     }:
     let
       lmms-outputs = flake-utils.lib.eachDefaultSystem (
@@ -21,8 +21,8 @@
             src = pkgs.fetchFromGitHub {
               owner = "LMMS";
               repo = "lmms";
-              rev = "2c674eca3accbc6dab6f5aacbf34f7bd85af767e";
-              sha256 = "sha256-jq3Wog5BHBWIq5iLEBrHWIvYSzmKsCdb63Nu7j9kJRY=";
+              rev = "dec6a045746f5cc3ba831f2521cbcd95a7e314de";
+              sha256 = "sha256-rvauyjXOXTLirImUqvvVARlnUUXGzCT1vj52+5+OZVY=";
               fetchSubmodules = true;
             };
 
