@@ -79,6 +79,7 @@
               sops-nix = sops-nix.packages."${system}";
 
               godot = (call-flake ./programs/godot).godot."${system}";
+              lmms = (call-flake ./programs/lmms).lmms."${system}";
               ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
               nvimPackages = nvim.packages."${system}".packages;
               amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";

@@ -1,6 +1,7 @@
 self@{ config
 , pkgs
 , godot
+, lmms
 , sensitive
 , unstable
 , ...
@@ -12,7 +13,7 @@ self@{ config
     openutau # Eh...
     inkscape
     godot
-    # pixelorama # using flatpak version because I want 1.11.2
+    (unstable.pixelorama)
     lmms
     audacity
     kdePackages.kdenlive
@@ -24,7 +25,7 @@ self@{ config
   services.flatpak = {
     packages = [
       # "flathub:app/org.famistudio.FamiStudio/x86_64/stable" # trying nix version
-      "flathub:app/com.orama_interactive.Pixelorama/x86_64/stable"
+      # "flathub:app/com.orama_interactive.Pixelorama/x86_64/stable" # trying nix version
     ];
   };
 }
