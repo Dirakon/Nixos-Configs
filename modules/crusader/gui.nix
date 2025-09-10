@@ -6,8 +6,17 @@ self@{ config
 , ...
 }:
 {
+  # See https://nixos.wiki/wiki/Onlyoffice
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [ "corefonts" ];
+
+  fonts.fonts = with pkgs; [
+    corefonts
+  ];
+
   environment.systemPackages = with pkgs; [
     # Actual apps
+    pkgs.onlyoffice-bin
     libreoffice
     telegram-desktop
     mattermost-desktop
