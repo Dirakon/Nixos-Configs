@@ -7,7 +7,7 @@ let
       "https://${sensitive.sentinel.mattermost.hostname}" \
       "Home" \
       "$token" \
-      --print "${pkgs.cups}/bin/lp" \
+      --print "${pkgs.cups}/bin/lp -o fit-to-page" \
       --scan "${pkgs.sane-backends}/bin/scanimage --jpeg=no --resolution=300 -o"
   '';
 in
