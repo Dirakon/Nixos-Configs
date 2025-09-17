@@ -1,7 +1,7 @@
-self@{ config, pkgs, boot, hostname, modulesPath, amneziawg-go, amneziawg-tools, lib, sensitive, ... }:
+self@{ config, pkgs, boot, hostname, modulesPath, lib, sensitive, ... }:
 let
   wg-start-and-wait-subprocesses = pkgs.writeShellScriptBin "wg-start-and-wait-subprocesses" ''
-    ${amneziawg-tools}/bin/awg-quick up wg0
+    ${pkgs.amneziawg-tools}/bin/awg-quick up wg0
     pids=$(${pkgs.procps}/bin/pgrep amneziawg)
     # Why cant you wait for non-children...
     # wait $pids
@@ -59,6 +59,7 @@ in
     after = [ "sops-nix.service" "network.target" ];
     wantedBy = [ "sops-nix.service" "multi-user.target" ];
     description = "automatic awg-quick setupper";
+    path = [ pkgs.amneziawg-go pkgs.amneziawg-tools ];
     serviceConfig =
       {
         Type = "simple";

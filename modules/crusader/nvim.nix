@@ -1,8 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, amneziawg-tools
-, amneziawg-go
 , sensitive
 , nvimPackages
 , ...

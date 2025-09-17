@@ -84,8 +84,6 @@
               ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
               nvimPackages = nvim.packages."${system}".packages;
               kanata-layout-syncer = kanata-layout-syncer.default."${system}";
-              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
             };
 
 
@@ -170,8 +168,6 @@
           specialArgs =
             {
               inherit hostname sensitive my-utils;
-              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
             };
 
           modules = [
@@ -204,8 +200,6 @@
           specialArgs =
             {
               inherit hostname sensitive my-utils;
-              amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
-              amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
               unstable = import unstable { system = system; config.allowUnfree = true; };
               mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
               mattermost-youtube-bot = mattermost-youtube-bot.packages."${system}".default;
