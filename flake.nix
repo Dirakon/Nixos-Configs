@@ -34,6 +34,7 @@
     nvim.url = "git+file:programs/nvim";
     mattermost-printer-bot.url = "git+file:programs/mattermost-printer-bot";
     mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
+    kanata-layout-syncer.url = "git+file:programs/kanata-layout-syncer";
 
     sensitive.url = "git+file:sensitive";
   };
@@ -82,6 +83,7 @@
               lmms = (call-flake ./programs/lmms).lmms."${system}";
               ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
               nvimPackages = nvim.packages."${system}".packages;
+              kanata-layout-syncer = kanata-layout-syncer.default."${system}";
               amneziawg-go = (call-flake ./programs/amnezia/wg).amneziawg-go."${system}";
               amneziawg-tools = (call-flake ./programs/amnezia/tools).amneziawg-tools."${system}";
             };

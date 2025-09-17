@@ -4,6 +4,9 @@
 [submodule "programs/mattermost-printer-bot"]
 	path = programs/mattermost-printer-bot
 	url = git@github.com:Dirakon/Mattermost-Printer-Bot.git
+[submodule "programs/kanata-layout-syncer"]
+	path = programs/kanata-layout-syncer
+	url = git@github.com:Dirakon/Kanata-Layout-Syncer.git
 [submodule "sensitive"]
 	path = sensitive
 	url = my-git:Nixos-Sensitive-Data.git
