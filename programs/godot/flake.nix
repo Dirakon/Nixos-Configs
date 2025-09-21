@@ -14,9 +14,9 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            use-beta = true;
-            stable-version = "4.4.1-stable";
-            stable-hash = "sha256-uV5pTKGD63IDdmRc3DVHcVzG0MAhUoI4y2UZmCriiy8=";
+            use-beta = false;
+            stable-version = "4.5-stable";
+            stable-hash = "sha256-VFY8gr87bBMp50hi3x7iP2U+ikE1UUBDRkm7ZHkVgQA=";
             # beta-version = "4.5-beta5";
             beta-version = "4.5-rc2";
             beta-hash = "sha256-+FhlQax5z9z4KtLFg4WmlkmWK3ioKHK54sEaPsi6zVw=";
