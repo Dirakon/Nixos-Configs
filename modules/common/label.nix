@@ -1,1 +1,1 @@
-"add_jq"
+"add_diktor"

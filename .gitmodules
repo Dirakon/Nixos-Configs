@@ -7,6 +7,9 @@
 [submodule "programs/kanata-layout-syncer"]
 	path = programs/kanata-layout-syncer
 	url = git@github.com:Dirakon/Kanata-Layout-Syncer.git
+[submodule "programs/hyprland-vim-kbswitch"]
+	path = programs/hyprland-vim-kbswitch
+	url = git@github.com:Dirakon/hyprland-vim-kbswitch.git
 [submodule "sensitive"]
 	path = sensitive
 	url = my-git:Nixos-Sensitive-Data.git

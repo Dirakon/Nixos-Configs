@@ -35,6 +35,7 @@
     mattermost-printer-bot.url = "git+file:programs/mattermost-printer-bot";
     mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
     kanata-layout-syncer.url = "git+file:programs/kanata-layout-syncer";
+    hyprland-vim-kbswitch.url = "git+file:programs/hyprland-vim-kbswitch";
 
     sensitive.url = "git+file:sensitive";
   };
@@ -84,6 +85,7 @@
               ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
               nvimPackages = nvim.packages."${system}".packages;
               kanata-layout-syncer = kanata-layout-syncer.default."${system}";
+              hyprland-vim-kbswitch = hyprland-vim-kbswitch.defaultPackage."${system}";
             };
 
 
