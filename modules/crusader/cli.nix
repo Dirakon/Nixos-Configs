@@ -32,6 +32,7 @@ self@{ config
     yt-dlp # download youtube videos
     ytdl-sub # download music from youtube to jellyfin
     sysz # cool systemd explorer
+    jq # json
 
     # For playing audio
     sox # 'play' command

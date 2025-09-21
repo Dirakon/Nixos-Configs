@@ -51,6 +51,7 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
     ncdu
     fastfetch
     sysz # cool systemd explorer
+    jq # json
 
     # Nix stuff
     nh

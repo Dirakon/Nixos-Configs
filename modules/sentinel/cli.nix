@@ -24,6 +24,7 @@ self@{ config
     arp-scan
     ncdu
     sysz # cool systemd explorer
+    jq # json
 
     # Nix stuff
     nix-index
