@@ -30,26 +30,26 @@ self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
         devices = [ ];
         config = ''
           (defsrc
-            lctl rctl lsft rsft lalt ralt lmet rmet
+            lctl lsft lalt lmet
             caps
             ;; Add all your other keys here
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . /
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20
           )
 
           (defvar
-            mods (lctl rctl lsft rsft lalt ralt lmet rmet)
+            mods (lctl lalt lmet)
           )
 
           ;; Base layer (Colemak)
           (deflayer base
-            lctl rctl lsft rsft lalt ralt lmet rmet
+            lctl lsft lalt lmet
             lctl
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . /
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20
           )
 
           ;; Russian Diktor layer (only active when Russian layout is selected)
           (deflayer ru-diktor
-            lctl rctl lsft rsft lalt ralt lmet rmet
+            lctl lsft lalt lmet
             lctl
 
             (fork w q $mods)
@@ -58,15 +58,13 @@ self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
             (fork (tap-dance 200 (m ])) w $mods)
 
             (fork z f $mods)
-            (fork g p $mods)
-            (fork u b $mods)
+            (fork / p $mods)
+            (fork x b $mods)
             (fork p j $mods)
             (fork d l $mods)
             (fork r u $mods)
             (fork l y $mods)
-            (fork x ' $mods)
-
-            ;; todo: шщ tap dance
+            (fork q ' $mods)
 
             (fork e a $mods)
             (fork b r $mods)
@@ -86,9 +84,12 @@ self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
             (fork . v $mods)
             (fork , k $mods)
             (fork v h $mods)
-            (fork q , $mods)
-            (fork / . $mods)
+            (fork g , $mods)
+            (fork u . $mods)
             (fork ; / $mods)
+
+            ;; щ tap dance
+            (fork (tap-dance 200 (i o)) f20 $mods)
           )
         '';
       };
