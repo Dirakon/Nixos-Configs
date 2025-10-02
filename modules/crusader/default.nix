@@ -14,6 +14,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./cli.nix
 
+    ./sops.nix
+
     ./syncthing.nix
 
     ./tmux.nix

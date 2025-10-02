@@ -407,10 +407,10 @@
         "poetry2nix": "poetry2nix_2"
       },
       "locked": {
-        "dirtyRev": "e0d87ae6b995c31ed0b21e91817a51dbd968ba3b-dirty",
-        "dirtyShortRev": "e0d87ae-dirty",
-        "lastModified": 1747778709,
-        "narHash": "sha256-0vS7u0+xiMxdFeP3uiM7Utm5MKKOJVMuCgMJErQM4ow=",
+        "dirtyRev": "d3f2f105dd446f0a01e316276231a77c3fc5a112-dirty",
+        "dirtyShortRev": "d3f2f10-dirty",
+        "lastModified": 1759441327,
+        "narHash": "sha256-g3lpI9J5SUc0QwVpYbX+erhdN3S5xyAruLndppDJOqQ=",
         "type": "git",
         "url": "file:programs/mattermost-youtube-bot"
       },
@@ -824,16 +824,17 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1743690424,
-        "narHash": "sha256-cX98bUuKuihOaRp8dNV1Mq7u6/CQZWTPth2IJPATBXc=",
-        "owner": "nix-community",
+        "lastModified": 1753113929,
+        "narHash": "sha256-MqpJGg7//KcVA8NcOxBtpEQSdnXOUTI7G+2ctCLBgCg=",
+        "owner": "a-sup",
         "repo": "poetry2nix",
-        "rev": "ce2369db77f45688172384bbeb962bc6c2ea6f94",
+        "rev": "554a921d5cb1659880e42c0dccf322fe4b668e93",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "a-sup",
         "repo": "poetry2nix",
+        "rev": "554a921d5cb1659880e42c0dccf322fe4b668e93",
         "type": "github"
       }
     },
@@ -893,11 +894,11 @@
     },
     "sensitive": {
       "locked": {
-        "lastModified": 1754935227,
-        "narHash": "sha256-aWsoJvcHt6Y58bLYXlET0E6P7JFy4BiIo6fW+xNAA4E=",
+        "lastModified": 1759438447,
+        "narHash": "sha256-z53YvX9eGnRgkqSTKMWgZRGmxrggD2qKg/EsACwv0CY=",
         "ref": "refs/heads/main",
-        "rev": "2ed76fbadaaa9041e9c69642616f5dd481fb3774",
-        "revCount": 24,
+        "rev": "1eca8ad9b6bdc07718852013d9143a905d1c4ef7",
+        "revCount": 25,
         "type": "git",
         "url": "file:sensitive"
       },

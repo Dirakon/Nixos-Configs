@@ -1,1 +1,1 @@
-"up_nvim"
+"add_aider"
