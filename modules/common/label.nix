@@ -1,1 +1,1 @@
-"try_fixup_diktor"
+"up_nvim"
