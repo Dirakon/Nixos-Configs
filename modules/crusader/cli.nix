@@ -33,6 +33,8 @@ self@{ config
     ytdl-sub # download music from youtube to jellyfin
     sysz # cool systemd explorer
     jq # json
+    lsof # see open ports
+
 
     # For playing audio
     sox # 'play' command

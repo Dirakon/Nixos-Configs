@@ -1,39 +1,51 @@
-self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
-{
-  environment.systemPackages = [
-    kanata-layout-syncer
-    hyprland-vim-kbswitch
-    (pkgs.writeShellScriptBin "switch-layout-with-kanata" ''
+self@{ config
+, pkgs
+, boot
+, kanata-layout-syncer
+, hyprland-vim-kbswitch
+, ...
+}:
+let
+  switch-layout-with-kanata = (
+    pkgs.writeShellScriptBin "switch-layout-with-kanata" ''
       # Get the current layout and trim any surrounding whitespace
-      output=$(hyprlandkbswitcher --get 2>/dev/null)
+      output=$(${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --get 2>/dev/null)
       exit_code=$?
       trimmed_output=$(echo "$output" | xargs)
 
       if [ $exit_code -ne 0 ] || [ "$trimmed_output" = "ru" ]; then
-          kanata-layout-syncer --layer base
-          hyprlandkbswitcher --set us
+          ${kanata-layout-syncer}/bin/kanata-layout-syncer --layer base
+          ${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --set us
       elif [ "$trimmed_output" = "us" ]; then
-          kanata-layout-syncer --layer ru-diktor
-          hyprlandkbswitcher --set ru
+          ${kanata-layout-syncer}/bin/kanata-layout-syncer --layer ru-diktor
+          ${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --set ru
       fi
-    '')
-
+    ''
+  );
+in
+{
+  environment.systemPackages = [
+    kanata-layout-syncer
+    hyprland-vim-kbswitch
+    switch-layout-with-kanata
   ];
 
   services.kanata = {
     enable = true;
+    package = pkgs.kanata-with-cmd;
 
     keyboards = {
 
       main = {
         port = 38234;
         devices = [ ];
+        extraDefCfg = "danger-enable-cmd yes";
         config = ''
           (defsrc
             lctl lsft lalt lmet
             caps
             ;; Add all your other keys here
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 f21
           )
 
           (defvar
@@ -44,7 +56,7 @@ self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
           (deflayer base
             lctl lsft lalt lmet
             lctl
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd sudo -u dirakon bash -c "switch-layout-with-kanata")
           )
 
           ;; Russian Diktor layer (only active when Russian layout is selected)
@@ -90,6 +102,8 @@ self@{ config, pkgs, boot, kanata-layout-syncer, hyprland-vim-kbswitch, ... }:
 
             ;; щ tap dance
             (fork (tap-dance 200 (i o)) f20 $mods)
+
+            (cmd switch-layout-with-kanata)
           )
         '';
       };

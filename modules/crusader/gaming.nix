@@ -14,6 +14,7 @@ self@{ config
     rpcs3
     ultim-mc
     easyrpg-player
+    dolphin-emu
 
     # Wine
     # wine # https://nixos.wiki/wiki/Wine
