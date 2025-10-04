@@ -1,5 +1,6 @@
 self@{ config
 , pkgs
+, lib
 , boot
 , kanata-layout-syncer
 , hyprland-vim-kbswitch
@@ -41,10 +42,11 @@ in
     after = [ "graphical-session.target" ];
   };
 
-  systemd.user.services."kanata-main" = {
+  systemd.services."kanata-main" = {
     serviceConfig = {
-      User = "root";
-      Group = "root";
+      DynamicUser = lib.mkForce false;
+      User = lib.mkForce "root";
+      Group = lib.mkForce "root";
     };
   };
 
@@ -74,8 +76,7 @@ in
           (deflayer base
             lctl lsft lalt lmet
             lctl
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd ${pkgs.systemd}/bin/systemctl --user -M dirakon@ status change-lang-with-kanata.service)
-          )
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd ${pkgs.bashNonInteractive}/bin/bash -c "systemd-run systemctl --user -M dirakon@ start change-lang-with-kanata.service"))
 
           ;; Russian Diktor layer (only active when Russian layout is selected)
           (deflayer ru-diktor
@@ -121,7 +122,7 @@ in
             ;; щ tap dance
             (fork (tap-dance 200 (i o)) f20 $mods)
 
-            (cmd switch-layout-with-kanata)
+            (cmd ${pkgs.bashNonInteractive}/bin/bash -c "systemd-run systemctl --user -M dirakon@ start change-lang-with-kanata.service")
           )
         '';
       };
