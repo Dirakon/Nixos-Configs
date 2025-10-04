@@ -3,6 +3,7 @@ self@{ config
 , boot
 , kanata-layout-syncer
 , hyprland-vim-kbswitch
+, hypr-pkgs
 , ...
 }:
 let
@@ -30,6 +31,23 @@ in
     switch-layout-with-kanata
   ];
 
+  systemd.user.services."change-lang-with-kanata" = {
+    description = "what he said";
+    path = [ hypr-pkgs.hyprland ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${switch-layout-with-kanata}/bin/switch-layout-with-kanata";
+    };
+    after = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services."kanata-main" = {
+    serviceConfig = {
+      User = "root";
+      Group = "root";
+    };
+  };
+
   services.kanata = {
     enable = true;
     package = pkgs.kanata-with-cmd;
@@ -56,7 +74,7 @@ in
           (deflayer base
             lctl lsft lalt lmet
             lctl
-            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd sudo -u dirakon bash -c "switch-layout-with-kanata")
+            q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd ${pkgs.systemd}/bin/systemctl --user -M dirakon@ status change-lang-with-kanata.service)
           )
 
           ;; Russian Diktor layer (only active when Russian layout is selected)
