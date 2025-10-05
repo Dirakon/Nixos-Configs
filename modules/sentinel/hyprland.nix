@@ -1,7 +1,16 @@
-self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-utils, ... }:
+self@{ config
+, pkgs
+, boot
+, hostname
+, sensitive
+, lib
+, mattermost-youtube-bot
+, my-utils
+, ...
+}:
 let
   handle-monitor-replug = pkgs.writeShellScriptBin "handle-monitor-replug" ''
-    sleep 7
+    sleep 15
     # Check if any monitors are connected
     if output=$(cat /sys/class/drm/card*/*HDMI*/status |grep '^connected'); then
       sleep 3
@@ -15,10 +24,38 @@ let
   '';
 in
 {
+  home-manager.users.dirakon = {
+    home.file.".wallpaper.png" = {
+      source = sensitive.sentinel.wallpaper;
+    };
+  };
+
   # in fish default config we login to hyprland when on tty1
   systemd.services."getty@tty1" = {
     overrideStrategy = "asDropin";
-    serviceConfig.ExecStart = [ "" "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --autologin dirakon --noclear --keep-baud %I 115200,38400,9600 $TERM" ];
+    serviceConfig.ExecStart = [
+      ""
+      "@${pkgs.util-linux}/sbin/agetty agetty --login-program ${config.services.getty.loginProgram} --autologin dirakon --noclear --keep-baud %I 115200,38400,9600 $TERM"
+    ];
+  };
+
+  systemd.user.services = {
+    swww-daemon = my-utils.mkSystemdStartupService pkgs {
+      dependencies = [ pkgs.swww ];
+      name = "swww-daemon";
+      script = ''
+        swww-daemon
+      '';
+    };
+
+    swww-auto = my-utils.mkSystemdStartupService pkgs {
+      dependencies = [ pkgs.swww ];
+      systemdDependencies = [ "swww-daemon.service" ];
+      name = "swww-auto";
+      script = ''
+        swww img "/home/dirakon/.wallpaper.png"
+      '';
+    };
   };
 
   programs.hyprland = {
@@ -59,19 +96,26 @@ in
 
   systemd.user.services = {
     youtube-mattermost-bot = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ mattermost-youtube-bot pkgs.ydotool pkgs.mpv pkgs.hyprland pkgs.firefox pkgs.uwsm pkgs.procps ];
+      dependencies = [
+        mattermost-youtube-bot
+        pkgs.ydotool
+        pkgs.mpv
+        pkgs.hyprland
+        pkgs.firefox
+        pkgs.uwsm
+        pkgs.procps
+      ];
       name = "youtube-mattermost-bot";
-      script =
-        ''
-          token=`cat ${config.sops.secrets."sentinel/mattermost/youtube-bot-token".path}`
+      script = ''
+        token=`cat ${config.sops.secrets."sentinel/mattermost/youtube-bot-token".path}`
 
-          mattermost-youtube-bot \
-            "https://${sensitive.sentinel.mattermost.hostname}" \
-            "Home" \
-            "$token" \
-            -s "uwsm app -- firefox --marionette" \
-            -c "uwsm app -- mpv --http-proxy=http://127.0.0.1:20808"
-        '';
+        mattermost-youtube-bot \
+          "https://${sensitive.sentinel.mattermost.hostname}" \
+          "Home" \
+          "$token" \
+          -s "uwsm app -- firefox --marionette" \
+          -c "uwsm app -- mpv --http-proxy=http://127.0.0.1:20808"
+      '';
     };
   };
 
@@ -84,7 +128,12 @@ in
   '';
   systemd.user.services."handle-monitor-replug" = {
     description = "Ensure firefox is properly focused even through hyprland weirdness when replugging monitors";
-    path = [ pkgs.ydotool pkgs.hyprland pkgs.wlr-randr pkgs.uwsm ];
+    path = [
+      pkgs.ydotool
+      pkgs.hyprland
+      pkgs.wlr-randr
+      pkgs.uwsm
+    ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${handle-monitor-replug}/bin/handle-monitor-replug";

@@ -1,1 +1,1 @@
-"try_to_fix_youtube_bot_by_using_mpv"
+"add_wallpaper_to_sentinel"
