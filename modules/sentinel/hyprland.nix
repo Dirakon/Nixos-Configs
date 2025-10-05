@@ -1,16 +1,17 @@
 self@{ config, pkgs, boot, hostname, sensitive, lib, mattermost-youtube-bot, my-utils, ... }:
 let
-  ensure-firefox-focus = pkgs.writeShellScriptBin "ensure-firefox-focus" ''
+  handle-monitor-replug = pkgs.writeShellScriptBin "handle-monitor-replug" ''
     sleep 7
     # Check if any monitors are connected
     if output=$(cat /sys/class/drm/card*/*HDMI*/status |grep '^connected'); then
-      hyprctl dispatch focuswindow irefox
       sleep 3
       ydotool mousemove -x 0 -y 0 -a
-      hyprctl dispatch focuswindow irefox
       sleep 3
       ydotool mousemove -x 0 -y 0 -a
+    else
+      uwsm stop
     fi
+
   '';
 in
 {
@@ -58,7 +59,7 @@ in
 
   systemd.user.services = {
     youtube-mattermost-bot = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ mattermost-youtube-bot ];
+      dependencies = [ mattermost-youtube-bot pkgs.ydotool pkgs.mpv pkgs.hyprland pkgs.firefox pkgs.uwsm pkgs.procps ];
       name = "youtube-mattermost-bot";
       script =
         ''
@@ -67,7 +68,9 @@ in
           mattermost-youtube-bot \
             "https://${sensitive.sentinel.mattermost.hostname}" \
             "Home" \
-            "$token"
+            "$token" \
+            -s "uwsm app -- firefox --marionette" \
+            -c "uwsm app -- mpv --http-proxy=http://127.0.0.1:20808"
         '';
     };
   };
@@ -77,14 +80,14 @@ in
 
   # Monitor hotplugging (attempt 2)
   services.udev.extraRules = ''
-    ACTION=="change", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="ensure-firefox-focus"
+    ACTION=="change", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="handle-monitor-replug"
   '';
-  systemd.user.services."ensure-firefox-focus" = {
+  systemd.user.services."handle-monitor-replug" = {
     description = "Ensure firefox is properly focused even through hyprland weirdness when replugging monitors";
-    path = [ pkgs.ydotool pkgs.hyprland pkgs.wlr-randr ];
+    path = [ pkgs.ydotool pkgs.hyprland pkgs.wlr-randr pkgs.uwsm ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${ensure-firefox-focus}/bin/ensure-firefox-focus";
+      ExecStart = "${handle-monitor-replug}/bin/handle-monitor-replug";
     };
     after = [ "graphical-session.target" ];
   };

@@ -23,6 +23,7 @@ self@{ config
     tldr
     arp-scan
     ncdu
+    procps # pkill and others
     sysz # cool systemd explorer
     jq # json
 

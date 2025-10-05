@@ -14,6 +14,8 @@ self@{ config, pkgs, boot, ... }:
 
     ./hyprland.nix
 
+    ./mpv.nix
+
     ./xray.nix
 
     ./syncthing.nix
