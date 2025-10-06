@@ -407,11 +407,11 @@
         "poetry2nix": "poetry2nix_2"
       },
       "locked": {
-        "lastModified": 1759688705,
-        "narHash": "sha256-mzlt5WnOCGCdmLD9YZxWeiRsm9t3Z0drYBU+a/PIKPk=",
+        "lastModified": 1759763776,
+        "narHash": "sha256-UaulTiZ1Mbggozic0IY8QkhQssL/L7v0ELTnoSSArWQ=",
         "ref": "refs/heads/master",
-        "rev": "e7e2c2e3af488052459e083c1283beee58221f6e",
-        "revCount": 33,
+        "rev": "464854b7cea8ee9bf14922301b00591e11998796",
+        "revCount": 35,
         "type": "git",
         "url": "file:programs/mattermost-youtube-bot"
       },
@@ -780,11 +780,11 @@
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1759431388,
-        "narHash": "sha256-lJVD65Eiw6w54uWun67z5LtesxUPdgC2LE79BCYk9Gg=",
+        "lastModified": 1759789116,
+        "narHash": "sha256-/yJIY1TPdSZKUmT8lauA6T3DbzLHKo+pgUloa5j4upY=",
         "ref": "refs/heads/main",
-        "rev": "88b0e8d402e0cfb8a974d46d5ab27ee6fa6d99e9",
-        "revCount": 45,
+        "rev": "60413e2822d04281cca9e03c9f835aa2470941b1",
+        "revCount": 46,
         "type": "git",
         "url": "file:programs/nvim"
       },
