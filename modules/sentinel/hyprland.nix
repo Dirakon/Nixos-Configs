@@ -114,7 +114,7 @@ in
           "Home" \
           "$token" \
           -s "uwsm app -- firefox --marionette" \
-          -c "uwsm app -- mpv --gpu-api=opengl --http-proxy=http://127.0.0.1:20808" \
+          -c "uwsm app -- mpv --gpu-context=wayland --http-proxy=http://127.0.0.1:20808" \
           -C "pkil mpv"
       '';
     };
@@ -128,7 +128,7 @@ in
     ACTION=="change", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="handle-monitor-replug"
   '';
   systemd.user.services."handle-monitor-replug" = {
-    description = "Ensure firefox is properly focused even through hyprland weirdness when replugging monitors";
+    description = "Automatically kill hyprland session when unplugged";
     path = [
       pkgs.ydotool
       pkgs.hyprland

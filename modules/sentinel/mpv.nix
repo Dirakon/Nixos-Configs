@@ -10,6 +10,14 @@
   environment.systemPackages = [
     unstable.yt-dlp
   ];
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vpl-gpu-rt # for newer GPUs on NixOS >24.05 or unstable
+      vaapiIntel
+      intel-media-driver
+    ];
+  };
 
   home-manager.users.dirakon = {
 
@@ -27,11 +35,12 @@
         save-position-on-quit = true; # somewhat better history -- remember position too
         screenshot-directory = "/home/dirakon/Pictures/Screenshots/mpv";
         ytdl = "yes";
+        hwdec = "no";
         ytdl-raw-options = "proxy=[http://127.0.0.1:20808],cookies-from-browser=firefox,retry-sleep=5,retries=infinite,ignore-errors=";
         force-window = true;
         cache = "yes";
         cache-secs = 3000;
-
+        volume-max = 200;
         ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
       };
 

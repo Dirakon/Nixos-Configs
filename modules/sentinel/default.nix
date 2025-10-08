@@ -30,7 +30,7 @@ self@{ config, pkgs, boot, ... }:
 
     ./nextcloud.nix
 
-    ./jellyfin.nix
+    # ./jellyfin.nix
 
     ./gitea.nix
 
