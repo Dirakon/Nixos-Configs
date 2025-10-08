@@ -26,8 +26,12 @@
         save-position-on-quit = true; # somewhat better history -- remember position too
         screenshot-directory = "/home/dirakon/Pictures/Screenshots/mpv";
         ytdl = "yes";
-        ytdl-raw-options = "proxy=[http://127.0.0.1:20808],cookies-from-browser=firefox";
+        ytdl-raw-options = "proxy=[http://127.0.0.1:20808],cookies-from-browser=firefox,retry-sleep=5,retries=infinite,ignore-errors=";
         force-window = true;
+        cache = "yes";
+        cache-secs = 3000;
+
+        ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
       };
 
       bindings = {

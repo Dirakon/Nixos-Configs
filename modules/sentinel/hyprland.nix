@@ -114,7 +114,7 @@ in
           "Home" \
           "$token" \
           -s "uwsm app -- firefox --marionette" \
-          -c "uwsm app -- mpv --http-proxy=http://127.0.0.1:20808" \
+          -c "uwsm app -- mpv --gpu-api=opengl --http-proxy=http://127.0.0.1:20808" \
           -C "pkil mpv"
       '';
     };
