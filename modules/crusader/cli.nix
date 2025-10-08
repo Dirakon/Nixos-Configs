@@ -1,6 +1,7 @@
 self@{ config
 , pkgs
 , boot
+, unstable
 , sensitive
 , ...
 }:
@@ -29,7 +30,7 @@ self@{ config
     ncdu # explore how much different folder takes mem
     ffmpeg-full # media backend and utils
     gifski # gif helper for ffmpeg - https://stackoverflow.com/a/47486545
-    yt-dlp # download youtube videos
+    unstable.yt-dlp # download youtube videos
     ytdl-sub # download music from youtube to jellyfin
     sysz # cool systemd explorer
     jq # json

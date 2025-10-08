@@ -1,4 +1,5 @@
 { pkgs
+, unstable
 , config
 , lib
 , sensitive
@@ -7,7 +8,7 @@
 }:
 {
   environment.systemPackages = [
-    pkgs.yt-dlp
+    unstable.yt-dlp
   ];
 
   home-manager.users.dirakon = {

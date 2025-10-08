@@ -22,7 +22,7 @@
     # hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add some more pinning things when needed
 
-    flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
+    flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -94,7 +94,7 @@
 
             sops-nix.nixosModules.default
 
-            flatpaks.nixosModule
+            flatpaks.nixosModules.default
 
             stylix.nixosModules.stylix
 

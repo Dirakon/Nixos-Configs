@@ -58,7 +58,7 @@ self@{ config
     ];
     overrides = {
       "com.usebottles.bottles" = {
-        filesystems = [
+        Context.filesystems = [
           "/home/dirakon/Games"
           "/mnt/arch/home/dirakon/Games"
           "/media/"
