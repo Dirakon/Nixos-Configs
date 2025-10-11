@@ -17,6 +17,7 @@ in
     hoppscotch
     lazysql
     unstable.aider-chat-with-playwright
+    unstable.opencode
     with-or
 
     # Nix stuff
