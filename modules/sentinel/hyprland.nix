@@ -115,7 +115,7 @@ in
           "$token" \
           -s "uwsm app -- firefox --marionette" \
           -c "uwsm app -- mpv --gpu-context=wayland --http-proxy=http://127.0.0.1:20808" \
-          -C "pkil mpv"
+          -C "pkill mpv"
       '';
     };
   };

@@ -407,11 +407,11 @@
         "poetry2nix": "poetry2nix_2"
       },
       "locked": {
-        "lastModified": 1760192666,
-        "narHash": "sha256-JezrnBhuuU/c3STIWvtqZoMEPKFrIUufK2rbYHcmdww=",
+        "lastModified": 1760193399,
+        "narHash": "sha256-H8ZAVd6NcCYOnueQJjt9NMe1UaVV/cf39RqfO2+bgsg=",
         "ref": "refs/heads/master",
-        "rev": "93753882efce744f3471cf7f520aa7f729c1a53f",
-        "revCount": 38,
+        "rev": "63d309b69963cd1b67d5272413f26df4b7f79f33",
+        "revCount": 40,
         "type": "git",
         "url": "file:programs/mattermost-youtube-bot"
       },
