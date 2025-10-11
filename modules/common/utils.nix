@@ -30,6 +30,7 @@
       serviceConfig =
         {
           ExecStart = "${bashScript}/bin/${name}";
+          Restart = "on-failure";
           RestartSec = 1;
         } // (if busName == "none" then { } else {
           BusName = busName;

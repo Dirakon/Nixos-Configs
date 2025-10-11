@@ -109,7 +109,7 @@ in
       script = ''
         token=`cat ${config.sops.secrets."sentinel/mattermost/youtube-bot-token".path}`
 
-        mattermost-youtube-bot \
+        PYTHONUNBUFFERED=0 mattermost-youtube-bot \
           "https://${sensitive.sentinel.mattermost.hostname}" \
           "Home" \
           "$token" \
