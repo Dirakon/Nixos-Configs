@@ -38,8 +38,8 @@ self@{ config
     # Crypto
     electrum
     framesh
-    unstable.bisq2
-    unstable.basicswap
+    # unstable.bisq2
+    # unstable.basicswap
     tor-browser
 
     # For DE interaction with gamepad

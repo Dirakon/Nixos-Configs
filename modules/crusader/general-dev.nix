@@ -34,10 +34,10 @@ in
     key = "openrouter_key";
   };
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
 
   programs.java.enable = true;
 
