@@ -204,7 +204,7 @@
               inherit hostname sensitive my-utils;
               unstable = import unstable { system = system; config.allowUnfree = true; };
               mattermost-printer-bot = mattermost-printer-bot.packages."${system}".default;
-              mattermost-youtube-bot = mattermost-youtube-bot.packages."${system}".default;
+              mattermost-youtube-bot = mattermost-youtube-bot.packages."${system}";
             };
 
           modules = [

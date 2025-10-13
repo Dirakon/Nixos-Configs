@@ -97,8 +97,10 @@ in
   systemd.user.services = {
     youtube-mattermost-bot = my-utils.mkSystemdStartupService pkgs {
       dependencies = [
-        mattermost-youtube-bot
+        mattermost-youtube-bot.default
+        mattermost-youtube-bot.browserManager
         pkgs.ydotool
+        pkgs.bash
         pkgs.mpv
         pkgs.hyprland
         pkgs.firefox
@@ -109,13 +111,15 @@ in
       script = ''
         token=`cat ${config.sops.secrets."sentinel/mattermost/youtube-bot-token".path}`
 
-        PYTHONUNBUFFERED=0 mattermost-youtube-bot \
-          "https://${sensitive.sentinel.mattermost.hostname}" \
-          "Home" \
-          "$token" \
-          -s "uwsm app -- firefox --marionette" \
-          -c "uwsm app -- mpv --gpu-context=wayland --http-proxy=http://127.0.0.1:20808" \
-          -C "pkill mpv"
+        PYTHONUNBUFFERED=0 bot \
+          --mattermost-url="https://${sensitive.sentinel.mattermost.hostname}" \
+          --team-name="Home" \
+          --bot-token="$token" \
+          --browser-manager-cmd="${mattermost-youtube-bot.browserManager}/bin/browser-manager --browser-command='uwsm app -- firefox --marionette'" \
+          --browser-kill-command="pkill firefox;pkill browser-manage" \
+          --player-start-command="uwsm app -- mpv --gpu-context=wayland --http-proxy=http://127.0.0.1:20808" \
+          --webhook-host="127.0.0.1" \
+          --player-stop-command="pkill mpv"
       '';
     };
   };
