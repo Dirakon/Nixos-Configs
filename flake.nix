@@ -32,10 +32,22 @@
     disko.url = "github:nix-community/disko";
 
     nvim.url = "git+file:programs/nvim";
-    mattermost-printer-bot.url = "git+file:programs/mattermost-printer-bot";
-    mattermost-youtube-bot.url = "git+file:programs/mattermost-youtube-bot";
-    kanata-layout-syncer.url = "git+file:programs/kanata-layout-syncer";
-    hyprland-vim-kbswitch.url = "git+file:programs/hyprland-vim-kbswitch";
+    mattermost-printer-bot = {
+      url = "git+file:programs/mattermost-printer-bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mattermost-youtube-bot = {
+      url = "git+file:programs/mattermost-youtube-bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    kanata-layout-syncer = {
+      url = "git+file:programs/kanata-layout-syncer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-vim-kbswitch = {
+      url = "git+file:programs/hyprland-vim-kbswitch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sensitive.url = "git+file:sensitive";
   };
