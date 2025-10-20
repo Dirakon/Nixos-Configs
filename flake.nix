@@ -40,12 +40,21 @@
       url = "git+file:programs/mattermost-youtube-bot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     kanata-layout-syncer = {
       url = "git+file:programs/kanata-layout-syncer";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-vim-kbswitch = {
       url = "git+file:programs/hyprland-vim-kbswitch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    godot = {
+      url = "git+file:programs/godot";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lmms = {
+      url = "git+file:programs/lmms";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -92,9 +101,8 @@
               nix-alien = nix-alien.packages."${system}";
               sops-nix = sops-nix.packages."${system}";
 
-              godot = (call-flake ./programs/godot).godot."${system}";
-              lmms = (call-flake ./programs/lmms).lmms."${system}";
-              ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
+              godot = godot.godot."${system}";
+              lmms = lmms.lmms."${system}";
               nvimPackages = nvim.packages."${system}".packages;
               kanata-layout-syncer = kanata-layout-syncer.default."${system}";
               hyprland-vim-kbswitch = hyprland-vim-kbswitch.defaultPackage."${system}";
