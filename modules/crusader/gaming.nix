@@ -1,7 +1,6 @@
 self@{ config
 , pkgs
 , boot
-, ultim-mc
 , sensitive
 , unstable
 , my-utils
@@ -12,7 +11,6 @@ self@{ config
     lutris
     umu-launcher
     rpcs3
-    ultim-mc
     easyrpg-player
     dolphin-emu
 
