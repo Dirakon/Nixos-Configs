@@ -16,13 +16,13 @@
 
           lmms = pkgs.stdenv.mkDerivation {
             pname = "lmms";
-            version = "0-unstable-2025-01-28";
+            version = "1.2.2-unstable-2025-01-28";
 
             src = pkgs.fetchFromGitHub {
               owner = "LMMS";
               repo = "lmms";
-              rev = "dec6a045746f5cc3ba831f2521cbcd95a7e314de";
-              sha256 = "sha256-rvauyjXOXTLirImUqvvVARlnUUXGzCT1vj52+5+OZVY=";
+              rev = "2c674eca3accbc6dab6f5aacbf34f7bd85af767e";
+              hash = "sha256-jq3Wog5BHBWIq5iLEBrHWIvYSzmKsCdb63Nu7j9kJRY=";
               fetchSubmodules = true;
             };
 

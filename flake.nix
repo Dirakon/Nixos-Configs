@@ -27,11 +27,18 @@
     nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
 
-    call-flake.url = "github:divnix/call-flake";
-
     disko.url = "github:nix-community/disko";
 
+    godot = {
+      url = "path:./programs/godot/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lmms = {
+      url = "path:./programs/lmms/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nvim.url = "git+file:programs/nvim";
+
     mattermost-printer-bot = {
       url = "git+file:programs/mattermost-printer-bot";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -92,9 +99,8 @@
               nix-alien = nix-alien.packages."${system}";
               sops-nix = sops-nix.packages."${system}";
 
-              godot = (call-flake ./programs/godot).godot."${system}";
-              lmms = (call-flake ./programs/lmms).lmms."${system}";
-              ultim-mc = (call-flake ./programs/ultim-mc).ultim-mc."${system}";
+              godot = godot.godot."${system}";
+              lmms = lmms.lmms."${system}";
               nvimPackages = nvim.packages."${system}".packages;
               kanata-layout-syncer = kanata-layout-syncer.default."${system}";
               hyprland-vim-kbswitch = hyprland-vim-kbswitch.defaultPackage."${system}";
