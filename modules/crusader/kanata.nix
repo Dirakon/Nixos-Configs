@@ -1,7 +1,5 @@
-self@{ config
-, pkgs
+{ pkgs
 , lib
-, boot
 , kanata-layout-syncer
 , hyprland-vim-kbswitch
 , hypr-pkgs
@@ -25,11 +23,28 @@ let
     ''
   );
 in
+let
+  switch-layout-without-kanata = (
+    pkgs.writeShellScriptBin "switch-layout-without-kanata" ''
+      output=$(${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --get 2>/dev/null)
+      exit_code=$?
+      trimmed_output=$(echo "$output" | xargs)
+
+      ${kanata-layout-syncer}/bin/kanata-layout-syncer --layer base
+      if [ $exit_code -ne 0 ] || [ "$trimmed_output" = "ru" ]; then
+          ${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --set us
+      elif [ "$trimmed_output" = "us" ]; then
+          ${hyprland-vim-kbswitch}/bin/hyprlandkbswitcher --set ru
+      fi
+    ''
+  );
+in
 {
   environment.systemPackages = [
     kanata-layout-syncer
     hyprland-vim-kbswitch
     switch-layout-with-kanata
+    switch-layout-without-kanata
   ];
 
   systemd.user.services."change-lang-with-kanata" = {
