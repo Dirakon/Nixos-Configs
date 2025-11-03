@@ -70,7 +70,17 @@ in
     package = pkgs.kanata-with-cmd;
 
     keyboards = {
+      capser = {
+        devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+        config = ''
+          (defsrc
+            caps
+          )
 
+          (deflayer base
+            lctl)
+        '';
+      };
       main = {
         port = 38234;
         devices = [ ];
@@ -78,7 +88,6 @@ in
         config = ''
           (defsrc
             lctl lsft lalt lmet
-            caps ;; ctrl for lame keyboards
             f23 ;; caps for cool keyboards
             ;; Add all your other keys here
             q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 f21
@@ -91,14 +100,12 @@ in
           ;; Base layer (Colemak)
           (deflayer base
             lctl lsft lalt lmet
-            lctl
             caps
             q w f p b j l u y ' a r s t g m n e i o z x c d v k h , . / f20 (cmd ${pkgs.bashNonInteractive}/bin/bash -c "systemd-run systemctl --user -M dirakon@ start change-lang-with-kanata.service"))
 
           ;; Russian Diktor layer (only active when Russian layout is selected)
           (deflayer ru-diktor
             lctl lsft lalt lmet
-            lctl
             caps
 
             (fork w q $mods)
