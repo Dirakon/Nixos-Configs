@@ -356,11 +356,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-5T4XTBEGkhiQtO5Ckq+wiI4OaMkmNb4GtTmStpJSafc=",
-        "path": "./programs/godot/",
+        "path": "./programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "./programs/godot/",
+        "path": "./programs/godot",
         "type": "path"
       }
     },
@@ -477,12 +477,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-IDpWjl9/oWtpdENbKinQVcIMuiFPUgH2WSjwZcP4CzM=",
-        "path": "./programs/lmms/",
+        "narHash": "sha256-PV4oR1x7I43+QIFv7ObZ9EHDUDcvoXG0jNZ90ZlcNNk=",
+        "path": "./programs/lmms",
         "type": "path"
       },
       "original": {
-        "path": "./programs/lmms/",
+        "path": "./programs/lmms",
         "type": "path"
       }
     },
@@ -826,11 +826,11 @@
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1760268940,
+        "lastModified": 1761342626,
         "narHash": "sha256-sivlRvonGJq1ix5tGDQPRnB+Y0vAzRWUOCXNLFSn4/E=",
         "ref": "refs/heads/main",
-        "rev": "5e6ba8c5e850e4bb172bdfba3f842c0048a6516f",
-        "revCount": 47,
+        "rev": "37766baeba6b6f1a417c092b829a9da10f811851",
+        "revCount": 49,
         "type": "git",
         "url": "file:programs/nvim"
       },
