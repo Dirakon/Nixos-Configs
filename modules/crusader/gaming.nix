@@ -14,6 +14,9 @@ self@{ config
     easyrpg-player
     dolphin-emu
 
+    # yup
+    unstable.sillytavern
+
     # Wine
     # wine # https://nixos.wiki/wiki/Wine
     wineWowPackages.full

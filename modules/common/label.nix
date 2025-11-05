@@ -1,1 +1,1 @@
-"Try_to_get_rid_of_func_key"
+"Add_silly_tavern_and_stuff"
