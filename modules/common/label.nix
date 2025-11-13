@@ -1,1 +1,1 @@
-"Add_silly_tavern_and_stuff"
+"Add_qpwgraph_for_cool_pipewire"

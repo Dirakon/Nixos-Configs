@@ -6,10 +6,6 @@ self@{ config
 , ...
 }:
 {
-  # See https://nixos.wiki/wiki/Onlyoffice
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [ "corefonts" ];
-
   fonts.fonts = with pkgs; [
     corefonts
   ];
@@ -23,6 +19,7 @@ self@{ config
     kdePackages.ktorrent
     popsicle
 
+    qpwgraph
     kdePackages.okular
     kdePackages.gwenview
     kitty
