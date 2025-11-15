@@ -21,6 +21,7 @@ self@{ config
     imagemagick
     parted
     gparted
+    exfatprogs # for gparted exfat support
     tldr # see user-friendly man for some commands
     timer
     openssl
