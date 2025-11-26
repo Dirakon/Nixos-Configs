@@ -33,7 +33,7 @@ self@{ config
     newsflash # rss reader
 
     # Crypto
-    electrum
+    unstable.electrum
     framesh
     # unstable.bisq2
     # unstable.basicswap
