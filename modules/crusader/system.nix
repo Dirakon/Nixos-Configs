@@ -1,4 +1,9 @@
-self@{ config, pkgs, boot, hostname, ... }:
+self@{ config
+, pkgs
+, boot
+, hostname
+, ...
+}:
 {
   # New cache? Doesn't make difference
   #  nix.binaryCaches = [ "https://aseipp-nix-cache.global.ssl.fastly.net" ];
@@ -40,7 +45,10 @@ self@{ config, pkgs, boot, hostname, ... }:
   networking.firewall.checkReversePath = false;
   networking.firewall = {
     allowedTCPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
     ];
     allowedTCPPorts = [
       25565 # Minecraft
@@ -56,7 +64,10 @@ self@{ config, pkgs, boot, hostname, ... }:
       8579 # for testing of mattermost bots
     ];
     allowedUDPPortRanges = [
-      { from = 1714; to = 1764; } # KDE Connect
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
     ];
     #  if packets are still dropped, they will show up in dmesg
     logReversePathDrops = true;
@@ -70,7 +81,6 @@ self@{ config, pkgs, boot, hostname, ... }:
     #   ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 57798 -j RETURN || true
     # '';
   };
-
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -105,12 +115,14 @@ self@{ config, pkgs, boot, hostname, ... }:
 
   zramSwap.enable = true;
 
-  fonts.packages = with pkgs; [
-    pkgs.corefonts
-    pkgs.vistafonts
-  ]
-  # ALL nerdfonts
-  ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages =
+    with pkgs;
+    [
+      pkgs.corefonts
+      pkgs.vista-fonts
+    ]
+    # ALL nerdfonts
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -134,7 +146,9 @@ self@{ config, pkgs, boot, hostname, ... }:
   # TODO why cant i just set the dang ulimit.....
 
   # systemd?
-  systemd.extraConfig = "DefaultLimitNOFILE=524288:524288"; # defaults to 1024 if unset
+  systemd.settings.Manager = {
+    DefaultLimitNOFILE = "524288:524288"; # defaults to 1024 if unset
+  };
 
   # non-systemd?
   security.pam.loginLimits = [

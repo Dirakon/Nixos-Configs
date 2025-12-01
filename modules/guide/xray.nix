@@ -16,7 +16,7 @@ let
     {
       # TODO: nginx to proxy towards "hiding_ip", among other things
       # TODO: different keys for sops - one for crusader, one for guide
-      # TODO: also similary assemble nekoray client config
+      # TODO: also similary assemble throne client config
 
       services.xray.enable = true;
       services.xray.settingsFile = "${config.sops.templates."xray.json".path}";

@@ -15,7 +15,7 @@
         source = sensitive.crusader.switch-prod-keys;
       };
       home.packages = with pkgs; [
-        ryujinx
+        ryubing
         deprecated-pkgs.torzu
         nsz
       ];

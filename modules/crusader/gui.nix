@@ -1,18 +1,17 @@
 self@{ config
 , pkgs
 , sensitive
-, deprecated-pkgs
 , unstable
 , ...
 }:
 {
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     corefonts
   ];
 
   environment.systemPackages = with pkgs; [
     # Actual apps
-    pkgs.onlyoffice-bin
+    pkgs.onlyoffice-desktopeditors
     libreoffice
     telegram-desktop
     mattermost-desktop
@@ -57,12 +56,12 @@ self@{ config
     group = "ydotool";
   };
 
-  programs.nekoray =
+  programs.throne =
     {
       enable = true;
       tunMode.enable = true;
       tunMode.setuid = true;
-      # package = unstable.nekoray;
+      # package = unstable.throne;
     };
 
   users.users.dirakon = {

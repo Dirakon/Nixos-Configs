@@ -2,22 +2,23 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    lmms-pkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     deprecated-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       #url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix.url = "github:danth/stylix/release-25.11";
 
-    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     # add some more pinning things when needed
@@ -30,12 +31,12 @@
     disko.url = "github:nix-community/disko";
 
     godot = {
-      url = "path:./programs/godot";
+      url = "path:./programs/godot/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lmms = {
-      url = "path:./programs/lmms";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "path:./programs/lmms/";
+      inputs.nixpkgs.follows = "lmms-pkgs";
     };
     nvim.url = "git+file:programs/nvim";
 

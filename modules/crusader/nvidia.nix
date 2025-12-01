@@ -10,7 +10,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    glxinfo
+    mesa-demos
     nvidia-offload
     vulkan-loader
   ];
