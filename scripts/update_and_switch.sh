@@ -35,8 +35,8 @@ done
 shift $((OPTIND - 1))
 
 cd ~/.dotfiles || exit
-~/.dotfiles/scripts/actualize_submodule_flakes.sh
-nix fmt
+# ~/.dotfiles/scripts/actualize_submodule_flakes.sh
+# nix fmt
 
 lazygit || exit 1
 COMMIT_MESSAGE=$(git log -1 --pretty=%B)
@@ -56,17 +56,19 @@ LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
 printf "%s" "$LABEL_NIX_CONTENT" > ./modules/common/label.nix
 
 
-nix fmt
+# nix fmt
 git add ./modules/common/label.nix
 git commit --amend --no-edit 
 
 
 if [ "$host" == "$default_host" ]; then
     NH_FLAKE=~/.dotfiles/ nh os switch --ask
+elif [ "$host" == "$default_host-normal" ]; then
+    nixos-rebuild switch --flake ".#crusader" ---sudo --ask-sudo-password
 elif [ "$host" == "sentinel" ] || [ "$host" == "sentinel-local" ]; then
     # Don't know how to use nh tool with remote machines, so fallback to default for now
-    nixos-rebuild switch --flake ".#sentinel" --target-host "$host" --use-remote-sudo --build-host "$host"
+    nixos-rebuild switch --flake ".#sentinel" --target-host "$host" --sudo --ask-sudo-password --build-host "$host"
 else
     # Build on all non-sentinel
-    nixos-rebuild switch --flake ".#$host" --target-host "$host" --use-remote-sudo
+    nixos-rebuild switch --flake ".#$host" --target-host "$host" --sudo --ask-sudo-password
 fi

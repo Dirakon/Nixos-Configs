@@ -21,7 +21,7 @@ let
       text = ''
         # workspace 0
         swaymsg -q 'workspace 10'
-        i3-toolwait --nocheck -v -- kitty --hold sh -c 'sudo -E throne'
+        i3-toolwait --nocheck -v -- kitty --hold sh -c 'Throne'
 
         # go back to default - workspace 1
         swaymsg -q 'workspace 1'

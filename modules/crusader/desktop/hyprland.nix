@@ -6,7 +6,7 @@ let
       runtimeInputs = [ pkgs.libnotify pkgs.procps hypr-pkgs.uwsm ];
       text = ''
         # throne no longer run with sudo - no need for this logic
-        # if pgrep "throne"; then
+        # if pgrep "Throne"; then
         #    notify-send --urgency=critical "Disable throne first please"
         # else
             uwsm stop

@@ -17,7 +17,7 @@ self@{ config, pkgs, boot, hostname, sensitive, lib, ... }:
   # https://wiki.nixos.org/wiki/Jellyfin
   # enable vaapi on OS-level
   nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
   hardware.graphics = {
     enable = true;

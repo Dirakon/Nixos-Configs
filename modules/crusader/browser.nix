@@ -36,6 +36,7 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     brave
+    floorp-bin
     librewolfPackage
     tridactyl-native # lessgo
   ];
