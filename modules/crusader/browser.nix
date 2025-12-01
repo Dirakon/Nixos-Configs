@@ -23,9 +23,9 @@ in
   #   };
   # in
 let
-  floorpPackage =
+  librewolfPackage =
     with pkgs;
-    floorp.override {
+    librewolf.override {
       nativeMessagingHosts = [
         tridactyl-native
 
@@ -36,12 +36,12 @@ in
   environment.systemPackages = with pkgs; [
     chromium
     brave
-    floorpPackage
+    librewolfPackage
     tridactyl-native # lessgo
   ];
 
   # set default browser for Electron apps
-  environment.sessionVariables.DEFAULT_BROWSER = "${floorpPackage}/bin/floorp";
+  environment.sessionVariables.DEFAULT_BROWSER = "${librewolfPackage}/bin/librewolf";
 
   # For local usage (currently I'm hosting it on sentinel instead - see languagetool.nix):
   # services.languagetool = {
@@ -54,9 +54,9 @@ in
   # };
 
   home-manager.users.dirakon = {
-    programs.floorp = {
+    programs.librewolf = {
       enable = true;
-      package = floorpPackage;
+      package = librewolfPackage;
       policies = {
         "ExtensionSettings" = {
           "uBlock0@raymondhill.net" = {
@@ -94,6 +94,6 @@ in
   };
 
   home-manager.users.dirakon.xdg.mimeApps.defaultApplications = pkgs.lib.mergeAttrsList (
-    builtins.map (mimeType: { "${mimeType}" = "floorp.desktop"; }) mimeTypes
+    builtins.map (mimeType: { "${mimeType}" = "librewolf.desktop"; }) mimeTypes
   );
 }
