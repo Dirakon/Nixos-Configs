@@ -1,4 +1,4 @@
-self@{ config, pkgs, boot, nix-alien, nix-gl, ... }:
+self@{ config, pkgs, boot, nix-alien, ... }:
 let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -35,18 +35,19 @@ in
   hardware.nvidia = {
     open = true;
     # package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
-    package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta; # stable
+    # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta; # stable
     forceFullCompositionPipeline = false;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta; # beta
+    package = config.boot.kernelPackages.nvidiaPackages#.beta; # beta
     # # for using specific driver version:
-    # #.beta
+    .beta
+    ;
     # .overrideAttrs {
-    #   version = "555.42.02";
+    #   version = "575.64.05";
     #   # the new driver
     #   src = pkgs.fetchurl
     #     {
-    #       url = "https://download.nvidia.com/XFree86/Linux-x86_64/555.42.02/NVIDIA-Linux-x86_64-555.42.02.run";
-    #       sha256 = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
+    #       url = "https://us.download.nvidia.com/XFree86/Linux-x86_64/575.64.05/NVIDIA-Linux-x86_64-575.64.05.run";
+    #       sha256 = "sha256-hfK1D5EiYcGRegss9+H5dDr/0Aj9wPIJ9NVWP3dNUC0=";
     #     };
     # };
     modesetting.enable = true;

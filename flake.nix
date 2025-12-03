@@ -25,7 +25,6 @@
 
     flatpaks.url = "github:in-a-dil-emma/declarative-flatpak/latest";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    nix-gl.url = "github:nix-community/nixGL";
     sops-nix.url = "github:Mic92/sops-nix";
 
     disko.url = "github:nix-community/disko";
@@ -96,7 +95,6 @@
                 config.allowUnfree = true;
               };
               unstable-raw = unstable;
-              nix-gl = nix-gl;
               nix-alien = nix-alien.packages."${system}";
               sops-nix = sops-nix.packages."${system}";
 

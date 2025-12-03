@@ -1,11 +1,7 @@
-self@{ config, pkgs, nix-alien, nix-gl, ... }:
+self@{ config, pkgs, nix-alien, ... }:
 {
-  nixpkgs.overlays = [ nix-gl.overlay ];
-
   environment.systemPackages = with pkgs; [
     nix-alien.nix-alien
-    # pkgs.nixgl.nixGLIntel # If encounter some openGL problem look into this
-    # pkgs.nixgl.auto.nixGLDefault # broken for some reason
   ];
 
   services.envfs.enable = true;
