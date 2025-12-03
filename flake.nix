@@ -35,7 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lmms = {
-      url = "path:./programs/lmms/";
+      url = "path:./programs/lmms";
       inputs.nixpkgs.follows = "lmms-pkgs";
     };
     nvim.url = "git+file:programs/nvim";

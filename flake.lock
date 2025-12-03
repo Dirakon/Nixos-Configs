@@ -481,11 +481,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PV4oR1x7I43+QIFv7ObZ9EHDUDcvoXG0jNZ90ZlcNNk=",
-        "path": "./programs/lmms/",
+        "path": "./programs/lmms",
         "type": "path"
       },
       "original": {
-        "path": "./programs/lmms/",
+        "path": "./programs/lmms",
         "type": "path"
       }
     },
