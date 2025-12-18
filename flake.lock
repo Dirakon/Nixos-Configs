@@ -341,11 +341,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-5T4XTBEGkhiQtO5Ckq+wiI4OaMkmNb4GtTmStpJSafc=",
-        "path": "./programs/godot/",
+        "path": "/nix/store/z0wnxbwmsfhq4yc4h23k3lrl91fnvjvs-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "./programs/godot/",
+        "path": "/nix/store/z0wnxbwmsfhq4yc4h23k3lrl91fnvjvs-source/programs/godot",
         "type": "path"
       }
     },
@@ -463,11 +463,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PV4oR1x7I43+QIFv7ObZ9EHDUDcvoXG0jNZ90ZlcNNk=",
-        "path": "./programs/lmms",
+        "path": "/nix/store/z0wnxbwmsfhq4yc4h23k3lrl91fnvjvs-source/programs/lmms",
         "type": "path"
       },
       "original": {
-        "path": "./programs/lmms",
+        "path": "/nix/store/z0wnxbwmsfhq4yc4h23k3lrl91fnvjvs-source/programs/lmms",
         "type": "path"
       }
     },

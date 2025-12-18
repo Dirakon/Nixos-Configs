@@ -30,11 +30,11 @@
     disko.url = "github:nix-community/disko";
 
     godot = {
-      url = "path:./programs/godot/";
+      url = "./programs/godot/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lmms = {
-      url = "path:./programs/lmms";
+      url = "./programs/lmms";
       inputs.nixpkgs.follows = "lmms-pkgs";
     };
     nvim.url = "git+file:programs/nvim";
