@@ -35,8 +35,8 @@ done
 shift $((OPTIND - 1))
 
 cd ~/.dotfiles || exit
-# ~/.dotfiles/scripts/actualize_submodule_flakes.sh
-# nix fmt
+~/.dotfiles/scripts/actualize_submodule_flakes.sh
+nix fmt .
 
 lazygit || exit 1
 COMMIT_MESSAGE=$(git log -1 --pretty=%B)
@@ -56,7 +56,7 @@ LABEL_NIX_CONTENT="\"$NIXOS_LABEL_VERSION\""
 printf "%s" "$LABEL_NIX_CONTENT" > ./modules/common/label.nix
 
 
-# nix fmt
+nix fmt .
 git add ./modules/common/label.nix
 git commit --amend --no-edit 
 
