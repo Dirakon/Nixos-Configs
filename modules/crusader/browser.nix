@@ -28,7 +28,7 @@ let
     librewolf.override {
       nativeMessagingHosts = [
         tridactyl-native
-
+        firefoxpwa
       ];
     };
 in
@@ -39,6 +39,7 @@ in
     floorp-bin
     librewolfPackage
     tridactyl-native # lessgo
+    firefoxpwa # lessgo?
   ];
 
   # set default browser for Electron apps
@@ -60,6 +61,8 @@ in
       package = librewolfPackage;
       policies = {
         "ExtensionSettings" = {
+          # Look at https://addons.mozilla.org/api/v5/addons/addon/pwas-for-firefox/ for info 'bout extensions
+          # (field `guid`)
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
             installation_mode = "normal_installed";
@@ -86,6 +89,14 @@ in
           };
           "tridactyl.vim@cmcaine.co.uk" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
+            installation_mode = "normal_installed";
+          };
+          "firefoxpwa@filips.si" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/pwas-for-firefox/latest.xpi";
+            installation_mode = "normal_installed";
+          };
+          "addon@darkreader.org" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
             installation_mode = "normal_installed";
           };
         };
