@@ -68,26 +68,6 @@ let
     }
 
     server {
-        listen ${toString sensitive.sentinel.suwayomi.port} ssl;
-        server_name ${sensitive.sentinel.suwayomi.hostname} www.${sensitive.sentinel.suwayomi.hostname};
-          
-        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/privkey.pem;
-
-        location / {
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-          proxy_http_version 1.1;
-
-          proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.suwayomi.port};
-        }
-    }
-
-    server {
       listen 443 ssl;
       server_name ${sensitive.sentinel.nextcloud.hostname} www.${sensitive.sentinel.nextcloud.hostname};
 
@@ -150,60 +130,6 @@ let
     }
 
     server {
-      listen ${toString sensitive.sentinel.languagetool.port} ssl;
-      server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
-
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
-
-      location / {
-        allow ${sensitive.guide.ip};
-        deny all;
-
-        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.languagetool.port}/;
-        
-        proxy_set_header   Host             $host;
-        proxy_set_header   X-Real-IP        $remote_addr;
-        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
-      }
-    }
-
-    server {
-      listen 8322 ssl;
-      server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
-
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
-
-      location / {
-        proxy_pass http://localhost:8321/;
-      }
-    }
-
-    server {
-      listen ${toString sensitive.sentinel.firefox-syncserver.port} ssl;
-      server_name ${sensitive.sentinel.firefox-syncserver.hostname} www.${sensitive.sentinel.firefox-syncserver.hostname};
-
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/privkey.pem;
-
-      location / {
-        allow ${sensitive.guide.ip};
-        deny all;
-        
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_redirect off;
-        proxy_read_timeout 120;
-        proxy_connect_timeout 10;
-
-        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.firefox-syncserver.port}/;
-      }
-    }
-
-    server {
       listen 443 ssl;
       server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
 
@@ -212,22 +138,6 @@ let
 
       location / {
         proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.gitea.http-port}/;
-        
-        proxy_set_header   Host             $host;
-        proxy_set_header   X-Real-IP        $remote_addr;
-        proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
-      }
-    }
-
-    server {
-      listen ${toString sensitive.sentinel.jellyfin.port} ssl;
-      server_name ${sensitive.sentinel.jellyfin.hostname} www.${sensitive.sentinel.jellyfin.hostname};
-
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/privkey.pem;
-
-      location / {
-        proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.jellyfin.port}/;
         
         proxy_set_header   Host             $host;
         proxy_set_header   X-Real-IP        $remote_addr;
