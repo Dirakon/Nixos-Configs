@@ -15,6 +15,9 @@ let
     '';
   nginx-config = ''
     stream {
+      map_hash_max_size 128;
+      map_hash_bucket_size 128;
+
       upstream syncthing_proxy_1 {
           server ${sensitive.sentinel.awg.ip}:22000;
       }
