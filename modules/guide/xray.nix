@@ -38,7 +38,7 @@ let
             },
             "inbounds": [
               {
-                "listen": "${sensitive.guide.ip}",
+                "listen": "127.0.0.1",
                 "port": 444,
                 "protocol": "vless",
                 "tag": "reality-in",
