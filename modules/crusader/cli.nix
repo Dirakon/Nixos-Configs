@@ -36,6 +36,7 @@ self@{ config
     sysz # cool systemd explorer
     jq # json
     lsof # see open ports
+    dig.dnsutils # nslookup and such
 
 
     # For playing audio
