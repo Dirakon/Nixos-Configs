@@ -9,6 +9,13 @@ let
   '';
 in
 {
+  # To speedup (supposedly)
+  boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
+  };
+
   sops.secrets."guide/awg/private-key" = {
     sopsFile = sensitive.guide.secrets;
     mode = "0444";

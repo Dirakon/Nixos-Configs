@@ -19,6 +19,13 @@ let
   '';
 in
 {
+  # To speedup (supposedly)
+  boot = {
+    extraModulePackages = with config.boot.kernelPackages; [
+      amneziawg
+    ];
+  };
+
   sops.secrets."sentinel/awg/private-key" = {
     sopsFile = sensitive.sentinel.secrets;
     mode = "0444";
