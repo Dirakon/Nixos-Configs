@@ -3,13 +3,13 @@ let
   certbot-script =
     pkgs.writeShellScriptBin "certbot-script" ''
       mkdir -p /var/www/demo
-      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.gitea.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.gitea.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
       sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --webroot -w /var/www/demo -d ${sensitive.sentinel.mattermost.hostname} --non-interactive
+      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.mattermost.hostname} --non-interactive
       chown -R nginx:acme /etc/letsencrypt/ # nginx..
       chmod 755 /etc/letsencrypt/ # nginx...
     '';
