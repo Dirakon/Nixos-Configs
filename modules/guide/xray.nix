@@ -39,7 +39,7 @@ let
             "inbounds": [
               {
                 "listen": "${sensitive.guide.ip}",
-                "port": 443,
+                "port": 444,
                 "protocol": "vless",
                 "tag": "reality-in",
                 "settings": {

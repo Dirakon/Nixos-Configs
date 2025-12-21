@@ -9,6 +9,8 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
 
   imports = [
     ./xray.nix
+    ./amnezia.nix
+    ./nginx.nix
     ./network.nix
     ./sops.nix
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -93,10 +95,6 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
   services.openssh.ports = [ sensitive.guide.ssh.port ];
 
   nix.settings.trusted-users = [ "dirakon" ];
-
-  # https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/6
-  # https://discourse.nixos.org/t/remote-nixos-rebuild-sudo-askpass-problem/28830/22
-  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "${hostname}";
 }

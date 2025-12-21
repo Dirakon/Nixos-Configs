@@ -13,6 +13,7 @@ let
     # Cuz without ping the connection sometimes is not established?
     while [ true ]; do 
       ${pkgs.iputils}/bin/ping -W 3 -c 1 ${sensitive.guide2.awg.ip}
+      ${pkgs.iputils}/bin/ping -W 3 -c 1 ${sensitive.guide.awg.ip}
       sleep 60
     done
   '';
@@ -43,6 +44,12 @@ in
       PublicKey = ${sensitive.guide2.awg.public-key}
       AllowedIPs = ${sensitive.guide2.awg.ip}/32
       Endpoint = ${sensitive.guide2.ip}:${toString sensitive.guide2.awg.port}
+      PersistentKeepalive = 25
+
+      [Peer]
+      PublicKey = ${sensitive.guide.awg.public-key}
+      AllowedIPs = ${sensitive.guide.awg.ip}/32
+      Endpoint = ${sensitive.guide.ip}:${toString sensitive.guide.awg.port}
       PersistentKeepalive = 25
     '';
   };

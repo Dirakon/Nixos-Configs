@@ -44,9 +44,5 @@ self@{ config, pkgs, boot, hostname, modulesPath, ... }:
 
   nix.settings.trusted-users = [ "dirakon" ];
 
-  # https://discourse.nixos.org/t/remote-nixos-rebuild-works-with-build-but-not-with-switch/34741/6
-  # https://discourse.nixos.org/t/remote-nixos-rebuild-sudo-askpass-problem/28830/22
-  security.sudo.wheelNeedsPassword = false;
-
   networking.hostName = "${hostname}";
 }
