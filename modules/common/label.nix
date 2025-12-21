@@ -1,1 +1,1 @@
-"Speedup_amnezia_via_kernel_modules"
+"Up_worker_connections_for_nginx"

@@ -14,6 +14,7 @@ let
       chmod 755 /etc/letsencrypt/ # nginx...
     '';
   nginx-config = ''
+    worker_processes auto;
     stream {
       map_hash_max_size 128;
       map_hash_bucket_size 128;
@@ -276,6 +277,7 @@ in
     recommendedGzipSettings = true;
     recommendedOptimisation = true;
 
+    eventsConfig = "worker_connections 20480;";
     appendHttpConfig = nginx-http-config;
 
     appendConfig = nginx-config;
