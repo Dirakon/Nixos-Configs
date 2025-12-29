@@ -18,6 +18,7 @@ self@{ config
     telegram-desktop
     mattermost-desktop
     kdePackages.ktorrent
+    qbittorrent
     popsicle
 
     qpwgraph
