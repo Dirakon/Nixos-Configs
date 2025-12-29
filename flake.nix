@@ -16,7 +16,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:danth/stylix/release-25.11";
+    stylix.url = "github:nix-community/stylix/release-25.11";
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 

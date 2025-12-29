@@ -9,6 +9,8 @@ self@{ config
     corefonts
   ];
 
+  services.qbittorrent.enable = true;
+
   environment.systemPackages = with pkgs; [
     # Actual apps
     pkgs.onlyoffice-desktopeditors

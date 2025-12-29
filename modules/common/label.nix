@@ -1,1 +1,1 @@
-"Up_worker_connections_for_nginx"
+"Try_qbittorrent"
