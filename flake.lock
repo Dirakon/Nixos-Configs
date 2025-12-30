@@ -341,11 +341,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-5T4XTBEGkhiQtO5Ckq+wiI4OaMkmNb4GtTmStpJSafc=",
-        "path": "/nix/store/sz8ah55b80z6a29i7fscajbqp4kmss92-source/programs/godot",
+        "path": "/nix/store/8pjncp77bap1yri41wg4079m23c197j6-source/programs/godot",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/sz8ah55b80z6a29i7fscajbqp4kmss92-source/programs/godot",
+        "path": "/nix/store/8pjncp77bap1yri41wg4079m23c197j6-source/programs/godot",
         "type": "path"
       }
     },
@@ -463,11 +463,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PV4oR1x7I43+QIFv7ObZ9EHDUDcvoXG0jNZ90ZlcNNk=",
-        "path": "/nix/store/sz8ah55b80z6a29i7fscajbqp4kmss92-source/programs/lmms",
+        "path": "/nix/store/8pjncp77bap1yri41wg4079m23c197j6-source/programs/lmms",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/sz8ah55b80z6a29i7fscajbqp4kmss92-source/programs/lmms",
+        "path": "/nix/store/8pjncp77bap1yri41wg4079m23c197j6-source/programs/lmms",
         "type": "path"
       }
     },

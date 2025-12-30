@@ -76,10 +76,13 @@ self@{ config
 
   home-manager.users.dirakon =
     {
+      # Use `nix-shell -p glib.bin --run 'gio mime application/x-bittorrent'`
+      # to see which handlers are available
       xdg.mimeApps.defaultApplications =
         {
           "application/pdf" = "org.kde.okular.desktop";
-          "application/x-bittorrent" = "org.kde.ktorrent.desktop";
+          # "application/x-bittorrent" = "org.kde.ktorrent.desktop"; # Trying out qbittorrent
+          "application/x-bittorrent" = "org.qbittorrent.qBittorrent.desktop";
           "application/zip" = "org.kde.ark.desktop";
           "hoppscotch" = "hoppscotch-handler.desktop";
           "image/gif" = "org.gnome.Loupe.desktop";
