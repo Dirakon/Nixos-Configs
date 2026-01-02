@@ -16,7 +16,10 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix.url = "github:nix-community/stylix/release-25.11";
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hypr-pkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
@@ -30,11 +33,11 @@
     disko.url = "github:nix-community/disko";
 
     godot = {
-      url = "./programs/godot/";
+      url = "path:./programs/godot/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lmms = {
-      url = "./programs/lmms";
+      url = "path:./programs/lmms";
       inputs.nixpkgs.follows = "lmms-pkgs";
     };
     nvim.url = "git+file:programs/nvim";

@@ -1,1 +1,1 @@
-"Change_mime_default_for_torrents"
+"Up_all"
