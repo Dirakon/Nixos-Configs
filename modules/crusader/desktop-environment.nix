@@ -3,6 +3,7 @@ self@{ config, pkgs, hypr-pkgs, ... }:
 
   imports = [
     ./desktop/hyprland.nix
+    ./desktop/niri.nix
     ./desktop/sway.nix
   ];
 
