@@ -78,6 +78,7 @@
 #mode,
 #network,
 #pulseaudio,
+#custom-dualsense,
 #temperature,
 #tray,
 #backlight,
@@ -160,6 +161,32 @@
 #pulseaudio {
 	background: @sound;
 	color: @black;
+}
+
+#custom-dualsense {
+	background: @sound;
+	color: @black;
+}
+
+/* When battery is charging */
+#custom-dualsense.charging {
+	/* border-bottom: 2px solid #00ff96; */
+	/* color: @gray; */
+}
+
+/* When battery is discharging */
+/* #custom-dualsense.discharging { */
+/* 	border-bottom: 2px solid #bff874; */
+/* } */
+
+/* When device is not found - make invisible */
+#custom-dualsense.no-device {
+	color: transparent;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	min-width: 0;
 }
 
 #network {

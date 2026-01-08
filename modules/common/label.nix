@@ -1,1 +1,1 @@
-"misc_updates"
+"Add_dualsense_monitor_to_waybar"

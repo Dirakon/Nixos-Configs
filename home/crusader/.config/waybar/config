@@ -22,6 +22,7 @@
 			"custom/arrowr4",
 			"battery",
 			"custom/arrowr3",
+			"custom/dualsense",
 			"pulseaudio",
 			"custom/arrowr2",
 			"sway/language",
@@ -38,13 +39,13 @@
 			"tooltip-format": "{title}"
 		},
 		"sway/language": {
-			"format": "  {}",
+			"format": "{}  ",
 			"min-length": 5,
 			"on-click": "swaymsg 'input * xkb_switch_layout next'",
 			"tooltip": false
 		},
 		"hyprland/language": {
-			"format": "  {}",
+			"format": "{}  ",
 			"min-length": 5,
 			"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next && hyprctl switchxkblayout kanata next",
 			"tooltip": false
@@ -173,6 +174,16 @@
 			},
 			"on-click": "uwsm app -- pavucontrol",
 			"scroll-step": 1
+		},
+		"custom/dualsense": {
+			"interval": 10,
+	   		"format": "{percentage}%  ",
+			"nospacing": 1,
+			"return-type": "json",
+			"exec": "~/.scripts/dualsense-monitor.sh",
+			"on-click": "dualsensectl power-off",
+			"hide-empty-text": true,
+			"tooltip": false
 		},
 		"custom/vpn": {
 			"interval": 30,

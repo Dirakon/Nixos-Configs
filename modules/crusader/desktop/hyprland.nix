@@ -41,7 +41,7 @@ in
     # waybar already provides systemd, but we need to give it some dependencies:
     waybar =
       {
-        path = [ hypr-pkgs.uwsm pkgs.kitty pkgs.btop pkgs.pavucontrol ];
+        path = [ hypr-pkgs.uwsm pkgs.gawk pkgs.dualsensectl pkgs.bash pkgs.fish pkgs.kitty pkgs.btop pkgs.pavucontrol ];
       };
 
     # Based on https://github.com/KDE/dolphin/blob/master/plasma-dolphin.service.in
