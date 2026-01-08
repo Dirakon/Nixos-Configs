@@ -124,6 +124,8 @@ self@{ config
           screenshot-directory = "/home/dirakon/Pictures/Screenshots/mpv";
         };
       };
+
       xdg.mimeApps.defaultApplications."video/x-matroska" = "mpv.desktop";
+      xdg.mimeApps.defaultApplications."video/mpeg" = "mpv.desktop";
     };
 }
