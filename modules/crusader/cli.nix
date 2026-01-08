@@ -20,6 +20,7 @@ self@{ config
     fuseiso
     imagemagick
     parted
+    glib # for 'gio' command that lets us see .desktop options for mime
     gparted
     exfatprogs # for gparted exfat support
     tldr # see user-friendly man for some commands

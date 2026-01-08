@@ -39,6 +39,7 @@ self@{ config
     joystickwake
     linuxConsoleTools
     sc-controller # thing to create virtual xbox controller! Very cool.
+    dualsensectl # see charge of my dualsense ig
 
     antimicrox # gamepad to keyboards GUI (non-declarative)
   ];

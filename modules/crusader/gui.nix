@@ -76,7 +76,7 @@ self@{ config
 
   home-manager.users.dirakon =
     {
-      # Use `nix-shell -p glib.bin --run 'gio mime application/x-bittorrent'`
+      # Use `gio mime application/x-bittorrent`
       # to see which handlers are available
       xdg.mimeApps.defaultApplications =
         {
