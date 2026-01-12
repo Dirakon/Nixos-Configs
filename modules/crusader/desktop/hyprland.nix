@@ -1,18 +1,26 @@
-self@{ config, pkgs, hypr-pkgs, my-utils, ... }:
+self@{ config
+, pkgs
+, hypr-pkgs
+, my-utils
+, ...
+}:
 let
-  hypr-exit-session =
-    pkgs.writeShellApplication {
-      name = "hypr-exit-session";
-      runtimeInputs = [ pkgs.libnotify pkgs.procps hypr-pkgs.uwsm ];
-      text = ''
-        # throne no longer run with sudo - no need for this logic
-        # if pgrep "Throne"; then
-        #    notify-send --urgency=critical "Disable throne first please"
-        # else
-            uwsm stop
-        # fi
-      '';
-    };
+  hypr-exit-session = pkgs.writeShellApplication {
+    name = "hypr-exit-session";
+    runtimeInputs = [
+      pkgs.libnotify
+      pkgs.procps
+      hypr-pkgs.uwsm
+    ];
+    text = ''
+      # throne no longer run with sudo - no need for this logic
+      # if pgrep "Throne"; then
+      #    notify-send --urgency=critical "Disable throne first please"
+      # else
+          uwsm stop
+      # fi
+    '';
+  };
 
 in
 {
@@ -39,57 +47,73 @@ in
     # nm-applet already provides systemd
 
     # waybar already provides systemd, but we need to give it some dependencies:
-    waybar =
-      {
-        path = [ hypr-pkgs.uwsm pkgs.gawk pkgs.dualsensectl pkgs.bash pkgs.fish pkgs.kitty pkgs.btop pkgs.pavucontrol ];
-      };
+    waybar = {
+      path = [
+        hypr-pkgs.uwsm
+        pkgs.gawk
+        pkgs.dualsensectl
+        pkgs.bash
+        pkgs.fish
+        pkgs.kitty
+        pkgs.btop
+        pkgs.pavucontrol
+        pkgs.jc
+        pkgs.jq
+        pkgs.upower
+      ];
+    };
 
     # Based on https://github.com/KDE/dolphin/blob/master/plasma-dolphin.service.in
     dolphin-daemon = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.kdePackages.dolphin ];
       name = "dolphin-daemon";
-      script =
-        ''
-          dolphin --daemon
-        '';
+      script = ''
+        dolphin --daemon
+      '';
       busName = "org.freedesktop.FileManager1";
     };
 
     battery-monitor = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ pkgs.bash pkgs.fish pkgs.upower pkgs.gawk pkgs.libnotify ];
+      dependencies = [
+        pkgs.bash
+        pkgs.fish
+        pkgs.upower
+        pkgs.gawk
+        pkgs.libnotify
+      ];
       name = "battery-monitor";
-      script =
-        ''
-          /home/dirakon/.scripts/battery-monitor.sh
-        '';
+      script = ''
+        /home/dirakon/.scripts/battery-monitor.sh
+      '';
     };
 
     swww-daemon = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.swww ];
       name = "swww-daemon";
-      script =
-        ''
-          swww-daemon
-        '';
+      script = ''
+        swww-daemon
+      '';
     };
 
     swww-auto = my-utils.mkSystemdStartupService pkgs {
-      dependencies = [ pkgs.fish pkgs.bash pkgs.swww ];
+      dependencies = [
+        pkgs.fish
+        pkgs.bash
+        pkgs.swww
+      ];
       systemdDependencies = [ "swww-daemon.service" ];
       name = "swww-auto";
-      script =
-        ''
-          /home/dirakon/.scripts/swww-auto.sh /home/dirakon/Wallpapers/Final/
-        '';
+      script = ''
+        /home/dirakon/.scripts/swww-auto.sh /home/dirakon/Wallpapers/Final/
+      '';
     };
 
     lxqt-policykit-agent = my-utils.mkSystemdStartupService pkgs {
       dependencies = [ pkgs.lxqt.lxqt-policykit ];
       name = "lxqt-policykit-agent";
-      script =
-        ''
-          lxqt-policykit-agent
-        '';
+      script = ''
+        lxqt-policykit-agent
+      '';
     };
   };
 

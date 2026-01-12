@@ -23,6 +23,7 @@
 			"battery",
 			"custom/arrowr3",
 			"custom/dualsense",
+			"custom/headset",
 			"pulseaudio",
 			"custom/arrowr2",
 			"sway/language",
@@ -174,6 +175,15 @@
 			},
 			"on-click": "uwsm app -- pavucontrol",
 			"scroll-step": 1
+		},
+		"custom/headset": {
+			"interval": 100,
+	   		"format": "{percentage}% 󰥰 ",
+			"nospacing": 1,
+			"return-type": "json",
+			"exec": "~/.scripts/get-first-headset-percentage.sh",
+			"hide-empty-text": true,
+			"tooltip": false
 		},
 		"custom/dualsense": {
 			"interval": 10,

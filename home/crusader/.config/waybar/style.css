@@ -79,6 +79,7 @@
 #network,
 #pulseaudio,
 #custom-dualsense,
+#custom-headset,
 #temperature,
 #tray,
 #backlight,
@@ -181,6 +182,27 @@
 
 /* When device is not found - make invisible */
 #custom-dualsense.no-device {
+	color: transparent;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	min-width: 0;
+}
+
+#custom-headset {
+	background: @sound;
+	color: @black;
+}
+
+/* When headset is found */
+#custom-headset.normal {
+	/* border-bottom: 2px solid #00ff96; */
+	/* color: @gray; */
+}
+
+/* When device is not found - make invisible */
+#custom-headset.no-device {
 	color: transparent;
 	background-color: transparent;
 	border: none;
