@@ -36,6 +36,7 @@ self@{ config
     ytdl-sub # download music from youtube to jellyfin
     sysz # cool systemd explorer
     jq # json
+    jc # normal cli tools to json!!! https://kellyjonbrazil.github.io/jc/docs/parsers/upower.html
     lsof # see open ports
     dig.dnsutils # nslookup and such
 

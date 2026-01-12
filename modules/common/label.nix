@@ -1,1 +1,1 @@
-"Add_dualsense_monitor_to_waybar"
+"Add_jc_and_be_appy"
