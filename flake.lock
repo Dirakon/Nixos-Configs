@@ -776,11 +776,11 @@
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1761342626,
-        "narHash": "sha256-sivlRvonGJq1ix5tGDQPRnB+Y0vAzRWUOCXNLFSn4/E=",
+        "lastModified": 1768761176,
+        "narHash": "sha256-LjNtLy/BNp5ctaJflmUrFt87fejEaXd3zZYfzPBGvWQ=",
         "ref": "refs/heads/main",
-        "rev": "37766baeba6b6f1a417c092b829a9da10f811851",
-        "revCount": 49,
+        "rev": "b3a83ba94b4f0e94d50c86d1094fcb431c188461",
+        "revCount": 50,
         "type": "git",
         "url": "file:programs/nvim"
       },
