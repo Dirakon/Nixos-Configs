@@ -19,6 +19,7 @@ in
     unstable.aider-chat-with-playwright
     unstable.opencode
     with-or
+    hawkeye # license headers and stuff
 
     # Nix stuff
     nix-index
