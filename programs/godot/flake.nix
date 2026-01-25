@@ -14,18 +14,12 @@
           let
             pkgs = nixpkgs.legacyPackages.${system};
 
-            use-beta = false;
-            stable-version = "4.5-stable";
-            stable-hash = "sha256-VFY8gr87bBMp50hi3x7iP2U+ikE1UUBDRkm7ZHkVgQA=";
-            # beta-version = "4.5-beta5";
-            beta-version = "4.5-rc2";
-            beta-hash = "sha256-+FhlQax5z9z4KtLFg4WmlkmWK3ioKHK54sEaPsi6zVw=";
-
-            version = if use-beta then beta-version else stable-version;
-            hash = if use-beta then beta-hash else stable-hash;
+            version = "4.6";
+            flavor = "rc2";
+            hash = "sha256-O2R6WM4rMHPBReNvEs2wI9mciqoOFMuHKzUDfYcZOAo=";
 
             godot = pkgs.fetchurl {
-              url = "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_mono_linux_x86_64.zip";
+              url = "https://downloads.godotengine.org/?version=${version}&flavor=${flavor}&slug=mono_linux_x86_64.zip&platform=linux.64";
               hash = "${hash}";
             };
 
@@ -86,8 +80,8 @@
 
               installPhase = ''
                 mkdir -p $out/bin
-                cp -r source/Godot_v${version}_mono_linux_x86_64/GodotSharp $out/bin/
-                cp source/Godot_v${version}_mono_linux_x86_64/Godot_v${version}_mono_linux.x86_64 $out/bin/godot
+                cp -r source/Godot_v${version}-${flavor}_mono_linux_x86_64/GodotSharp $out/bin/
+                cp source/Godot_v${version}-${flavor}_mono_linux_x86_64/Godot_v${version}-${flavor}_mono_linux.x86_64 $out/bin/godot
               '';
             };
 

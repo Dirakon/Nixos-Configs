@@ -340,7 +340,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-5T4XTBEGkhiQtO5Ckq+wiI4OaMkmNb4GtTmStpJSafc=",
+        "narHash": "sha256-mNUv/DVWxNKpQlgQOzLm+N7zZnzPcZiimIFduUUaB0s=",
         "path": "./programs/godot/",
         "type": "path"
       },
