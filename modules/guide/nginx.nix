@@ -97,6 +97,19 @@ let
           root /var/www/demo;
       }
     }
+    
+    # Status endpoint (available only via vpn)
+    # TODO: figure out what to do with stream-level domain introspection?
+    # Force setup header in the nginx-prometeus-exporter? Possibly
+    # btw, nginx-prometeus-exporter here - https://github.com/dramaturg/nixos-config/blob/58c91ef5a8417980019ebb495d2e039eec3d209b/modules/server.nix#L205
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+        
+        # Allow only specific IPs
+        allow ${sensitive.sentinel.awg.ip};
+        deny all;                # Deny all others
+    }
 
     server {
         listen ${toString sensitive.sentinel.suwayomi.port} ssl;
