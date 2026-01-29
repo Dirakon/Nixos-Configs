@@ -312,6 +312,22 @@
         "type": "github"
       }
     },
+    "fss": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769709837,
+        "narHash": "sha256-VMPTdIP6s5YCQn4MOGTd/rp1CWZDWKZyZm0bjTJbw3I=",
+        "ref": "refs/heads/main",
+        "rev": "0f6d3d0bb1dedc184706d4720e28881b3fafb5de",
+        "revCount": 4,
+        "type": "git",
+        "url": "file:fss"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:fss"
+      }
+    },
     "gnome-shell": {
       "flake": false,
       "locked": {
@@ -770,17 +786,17 @@
     },
     "nvim": {
       "inputs": {
+        "fss": "fss",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_6",
         "postingLock": "postingLock",
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "lastModified": 1768761176,
-        "narHash": "sha256-LjNtLy/BNp5ctaJflmUrFt87fejEaXd3zZYfzPBGvWQ=",
-        "ref": "refs/heads/main",
-        "rev": "b3a83ba94b4f0e94d50c86d1094fcb431c188461",
-        "revCount": 50,
+        "dirtyRev": "f084d8a343b6c9861ad6eddf7d0af3cbc8606125-dirty",
+        "dirtyShortRev": "f084d8a-dirty",
+        "lastModified": 1769709708,
+        "narHash": "sha256-k9grmY2xnG5y1B9yed5ig80Gzw3e1nhI15YcTK/5bRc=",
         "type": "git",
         "url": "file:programs/nvim"
       },
@@ -1235,11 +1251,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1769170682,
-        "narHash": "sha256-oMmN1lVQU0F0W2k6OI3bgdzp2YOHWYUAw79qzDSjenU=",
+        "lastModified": 1769461804,
+        "narHash": "sha256-msG8SU5WsBUfVVa/9RPLaymvi5bI8edTavbIq3vRlhI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c5296fdd05cfa2c187990dd909864da9658df755",
+        "rev": "bfc1b8a4574108ceef22f02bafcf6611380c100d",
         "type": "github"
       },
       "original": {

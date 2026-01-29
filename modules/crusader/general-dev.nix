@@ -17,7 +17,7 @@ in
     hoppscotch
     lazysql
     unstable.aider-chat-with-playwright
-    opencode
+    unstable.opencode
     with-or
     hawkeye # license headers and stuff
 

@@ -37,6 +37,8 @@ in
     # package = config.boot.kernelPackages.nvidiaPackages.stable; # stable
     # package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta; # stable
     forceFullCompositionPipeline = false;
+
+    # Remember to `flatpak update` to fix bottles' nvidia
     package = config.boot.kernelPackages.nvidiaPackages#.beta; # beta
     # # for using specific driver version:
     .beta
