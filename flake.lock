@@ -315,11 +315,11 @@
     "fss": {
       "flake": false,
       "locked": {
-        "lastModified": 1769709837,
-        "narHash": "sha256-VMPTdIP6s5YCQn4MOGTd/rp1CWZDWKZyZm0bjTJbw3I=",
+        "lastModified": 1769728949,
+        "narHash": "sha256-ZiKyxSCATPcyDS63FHZS0uYwHeRDVzaz58wo8Jhq5DY=",
         "ref": "refs/heads/main",
-        "rev": "0f6d3d0bb1dedc184706d4720e28881b3fafb5de",
-        "revCount": 4,
+        "rev": "7b1bc438360be1cf2c3eae5b43c0ca41a5e5249c",
+        "revCount": 5,
         "type": "git",
         "url": "file:fss"
       },
@@ -793,10 +793,11 @@
         "roslynLock": "roslynLock"
       },
       "locked": {
-        "dirtyRev": "f084d8a343b6c9861ad6eddf7d0af3cbc8606125-dirty",
-        "dirtyShortRev": "f084d8a-dirty",
-        "lastModified": 1769709708,
-        "narHash": "sha256-k9grmY2xnG5y1B9yed5ig80Gzw3e1nhI15YcTK/5bRc=",
+        "lastModified": 1770400799,
+        "narHash": "sha256-Zlf14M6Rs0SoV+W9mXZtaP8Ojk0JIukO17T8YHeHIps=",
+        "ref": "refs/heads/main",
+        "rev": "a6e71a30b39c44b8b32b52757008bf2f1f3e2c5b",
+        "revCount": 53,
         "type": "git",
         "url": "file:programs/nvim"
       },

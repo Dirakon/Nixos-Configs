@@ -32,10 +32,18 @@ let
     '';
 in
 let
+  gost-open-to-network =
+    pkgs.writeShellScriptBin "gost-open-to-network" ''
+      sudo iptables -A INPUT -p tcp --dport 20808 -j ACCEPT
+      systemctl reload firewall
+    '';
+in
+let
   baseConfigPart = {
     environment.systemPackages = [
       pkgs.tsocks
       pkgs.gost
+      gost-open-to-network
     ];
 
     systemd.services.gost-init = {
