@@ -909,11 +909,11 @@
     },
     "sensitive": {
       "locked": {
-        "lastModified": 1766312544,
-        "narHash": "sha256-nxNmO6rbLh67cBuCHyZMNif5vFO3Q1qHFEQovIG7L+c=",
+        "lastModified": 1770465500,
+        "narHash": "sha256-Pf6t62DPzN3d8gMN19o8kFQHfBvjhJyllVA6RTJ28Ys=",
         "ref": "refs/heads/main",
-        "rev": "4f407fd89f857213b5ead6715fc7e6320d8f01f2",
-        "revCount": 28,
+        "rev": "316ae4aac2fd9969b67e97243f7321d2eed61381",
+        "revCount": 29,
         "type": "git",
         "url": "file:sensitive"
       },

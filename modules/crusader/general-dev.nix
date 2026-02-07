@@ -11,6 +11,12 @@ let
     exec "$@"
   '';
 in
+let
+  with-or2 = pkgs.writeShellScriptBin "with-or2" ''
+    export OPENROUTER_API_KEY="$(cat '/run/secrets/crusader/openrouter-key2')"
+    exec "$@"
+  '';
+in
 {
   environment.systemPackages = with pkgs; [
     vim
@@ -19,6 +25,7 @@ in
     unstable.aider-chat-with-playwright
     unstable.opencode
     with-or
+    with-or2
     hawkeye # license headers and stuff
 
     # Nix stuff
@@ -35,10 +42,11 @@ in
     key = "openrouter_key";
   };
 
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
+  sops.secrets."crusader/openrouter-key2" = {
+    sopsFile = sensitive.crusader.secrets;
+    mode = "0444";
+    key = "openrouter_key2";
+  };
 
   programs.java.enable = true;
 
@@ -48,11 +56,10 @@ in
   };
 
   # Easy shell environments
-  home-manager.users.dirakon.programs.direnv =
-    {
-      enable = true;
-      enableFishIntegration = true;
-      silent = true;
-      nix-direnv.enable = true;
-    };
+  home-manager.users.dirakon.programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+    silent = true;
+    nix-direnv.enable = true;
+  };
 }
