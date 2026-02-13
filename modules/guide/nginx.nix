@@ -1,18 +1,13 @@
-self@{ config, nix, pkgs, boot, sensitive, hostname, networking, ... }:
+self@{ config
+, nix
+, pkgs
+, boot
+, sensitive
+, hostname
+, networking
+, ...
+}:
 let
-  certbot-script =
-    pkgs.writeShellScriptBin "certbot-script" ''
-      mkdir -p /var/www/demo
-      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.nextcloud.hostname} --non-interactive
-      sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.gitea.hostname} --non-interactive
-      sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.misc.hostname} --non-interactive
-      sleep 10
-      ${pkgs.certbot}/bin/certbot certonly --agree-tos --webroot -w /var/www/demo -d ${sensitive.sentinel.mattermost.hostname} --non-interactive
-      chown -R nginx:acme /etc/letsencrypt/ # nginx..
-      chmod 755 /etc/letsencrypt/ # nginx...
-    '';
   nginx-config = ''
     worker_processes auto;
     stream {
@@ -281,27 +276,5 @@ in
     appendHttpConfig = nginx-http-config;
 
     appendConfig = nginx-config;
-  };
-
-  # certbot renew -- based on https://github.com/qsdrqs/mydotfiles/blob/5282bd45cd80fafc81d7ec647d821253b25681e8/nixos/server-configuration.nix#L32
-  systemd.services.certbot-renew = {
-    enable = true;
-    description = "Certbot Renewal";
-    serviceConfig = {
-      ExecStart = "${certbot-script}/bin/certbot-script";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    after = [ "sops-nix.service" "network.target" ];
-    wantedBy = [ "sops-nix.service" "multi-user.target" ];
-  };
-  systemd.timers.certbot-renew = {
-    enable = config.systemd.services.certbot-renew.enable;
-    description = "Daily renewal of Let's Encrypt's certificates by certbot";
-    timerConfig = {
-      OnCalendar = "daily";
-      Persistent = true;
-    };
-    wantedBy = [ "timers.target" ];
   };
 }

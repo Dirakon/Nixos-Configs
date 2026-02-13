@@ -11,6 +11,7 @@ self@{ config, nix, pkgs, boot, hostname, modulesPath, sensitive, ... }:
     ./xray.nix
     ./amnezia.nix
     ./nginx.nix
+    ./certbot.nix
     ./network.nix
     ./sops.nix
     (modulesPath + "/profiles/qemu-guest.nix")
