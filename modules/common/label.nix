@@ -1,1 +1,1 @@
-"Try_moving_to_dns_challenge_with_wildcard"
+"Moving_to_new_domain_"

@@ -7,6 +7,7 @@ self@{ config
 , networking
 , ...
 }:
+let main-domain = sensitive.sentinel.main-domain.domain; in
 let
   nginx-config = ''
     worker_processes auto;
@@ -58,22 +59,20 @@ let
       }
 
       map $ssl_preread_server_name $my_stream_domain_router {
-              ${sensitive.sentinel.nextcloud.hostname} nextcloud;
-              ${sensitive.sentinel.gitea.hostname} git;
-              ${sensitive.sentinel.mattermost.hostname} chat;
+              ${sensitive.sentinel.nextcloud.hostname} normal;
+              ${sensitive.sentinel.gitea.hostname} normal;
+              ${sensitive.sentinel.mattermost.hostname} normal;
+              ${sensitive.sentinel.suwayomi.hostname} normal;
+              ${sensitive.sentinel.languagetool.hostname} normal;
+              ${sensitive.sentinel.jellyfin.hostname} normal;
+              ${sensitive.sentinel.firefox-syncserver.hostname} normal;
               default xtls;
       }
       upstream xtls {
               server 127.0.0.1:444; # Xray port
       }
-      upstream nextcloud {
-              server 127.0.0.1:442; # Nextcloud port
-      }
-      upstream git {
-              server 127.0.0.1:442; # Git port
-      }
-      upstream chat {
-              server 127.0.0.1:442; # Chat port
+      upstream normal {
+              server 127.0.0.1:442; # Port for normal (non-xray) https
       }
 
       server {
@@ -86,19 +85,13 @@ let
   nginx-http-config = ''
     server_names_hash_bucket_size 128;
 
+    # suwayomi
     server {
-      listen 80;
-      location '/.well-known/acme-challenge' {
-          root /var/www/demo;
-      }
-    }
-
-    server {
-        listen ${toString sensitive.sentinel.suwayomi.port} ssl;
+        listen 442 ssl;
         server_name ${sensitive.sentinel.suwayomi.hostname} www.${sensitive.sentinel.suwayomi.hostname};
           
-        ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.suwayomi.hostname}/privkey.pem;
+        ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
         location / {
           proxy_set_header Upgrade $http_upgrade;
@@ -113,12 +106,13 @@ let
         }
     }
 
+    # nextcloud
     server {
       listen 442 ssl;
       server_name ${sensitive.sentinel.nextcloud.hostname} www.${sensitive.sentinel.nextcloud.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.nextcloud.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.nextcloud.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location / {
         proxy_pass http://${sensitive.sentinel.awg.ip}/;
@@ -129,12 +123,13 @@ let
       }
     }
 
+    # mattermost
     server {
       listen 442 ssl;
       server_name ${sensitive.sentinel.mattermost.hostname} www.${sensitive.sentinel.mattermost.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.mattermost.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.mattermost.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location ~ /api/v[0-9]+/(users/)?websocket$ {
         proxy_set_header Upgrade $http_upgrade;
@@ -175,15 +170,16 @@ let
       }
     }
 
+    # languagetool
     server {
-      listen ${toString sensitive.sentinel.languagetool.port} ssl;
+      listen 442 ssl;
       server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location / {
-        allow ${sensitive.guide.ip};
+        allow 127.0.0.1; # nginx to xray to nginx to languagetool, lol
         deny all;
 
         proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.languagetool.port}/;
@@ -194,24 +190,13 @@ let
       }
     }
 
+    # firefox-syncserver
     server {
-      listen 8322 ssl;
-      server_name ${sensitive.sentinel.languagetool.hostname} www.${sensitive.sentinel.languagetool.hostname};
-
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.languagetool.hostname}/privkey.pem;
-
-      location / {
-        proxy_pass http://localhost:8321/;
-      }
-    }
-
-    server {
-      listen ${toString sensitive.sentinel.firefox-syncserver.port} ssl;
+      listen 442 ssl;
       server_name ${sensitive.sentinel.firefox-syncserver.hostname} www.${sensitive.sentinel.firefox-syncserver.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.firefox-syncserver.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location / {
         allow ${sensitive.guide.ip};
@@ -233,8 +218,8 @@ let
       listen 442 ssl;
       server_name ${sensitive.sentinel.gitea.hostname} www.${sensitive.sentinel.gitea.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.gitea.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location / {
         proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.gitea.http-port}/;
@@ -246,11 +231,11 @@ let
     }
 
     server {
-      listen ${toString sensitive.sentinel.jellyfin.port} ssl;
+      listen 442 ssl;
       server_name ${sensitive.sentinel.jellyfin.hostname} www.${sensitive.sentinel.jellyfin.hostname};
 
-      ssl_certificate /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/fullchain.pem;
-      ssl_certificate_key /etc/letsencrypt/live/${sensitive.sentinel.jellyfin.hostname}/privkey.pem;
+      ssl_certificate /etc/letsencrypt/live/${main-domain}/fullchain.pem;
+      ssl_certificate_key /etc/letsencrypt/live/${main-domain}/privkey.pem;
 
       location / {
         proxy_pass http://${sensitive.sentinel.awg.ip}:${toString sensitive.sentinel.jellyfin.port}/;
